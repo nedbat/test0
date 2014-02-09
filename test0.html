@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<!-- TO DO:
+    - Something to replace the hidden Approaches section
+    - Most common question: how do I convince my team to test?
+-->
 <!-- *** Head stuff {{{ -->
 <!--[[[cog
 import cog
@@ -10,6 +14,8 @@ from cogutil import *
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <!-- Slide meta data, remove/edit as you see fit -->
     <title>Getting Started Testing</title>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,800|Merriweather:400,700' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,800,700|Permanent+Marker' rel='stylesheet' type='text/css'>
     <!-- Slippy core file and dependencies -->
     <script type="text/javascript" src="test0_static/slippy/src/jquery.min.js"></script>
     <script type="text/javascript" src="test0_static/slippy/src/jquery.history.js"></script>
@@ -113,11 +119,21 @@ from cogutil import *
 <!-- *** Introduction {{{ -->
 
 <div class="slide title" data-layout="clean">
-    <h1>Getting Started Testing your Python</h1>
+    <h1>Getting Started Testing</h1>
     <h2>Ned Batchelder</h2>
     <h2>@nedbat</h2>
     <h2 style="margin-top:1em">http://nedbatchelder/text/starttest.html</h2>
-    <div class="footer"><span class="left">&copy; 2011, Ned Batchelder</span><hr class="defloat" /></div>
+    <div class="footer"><span class="left">&copy; 2014, Ned Batchelder</span><hr class="defloat" /></div>
+</div>
+
+<div class="slide">
+    <h1>Font test</h1>
+    <ul>
+        <li>This is a long sentence with many words, what do I think of it?</li>
+        <li>This isn't "straight" quotes.</li>
+        <li>This isn&rsquo;t &ldquo;straight&rdquo; quotes.</li>
+        <li></li>
+    </ul>
 </div>
 
 <div class="slide" data-layout="withurl">
@@ -140,17 +156,16 @@ from cogutil import *
 </div>
 
 <div class="slide" data-layout="withurl">
-    <h1>Common testing mindset</h1>
-    <p class="incremental">Most developers' #1 thought about testing:</p>
-    <p class="incremental" style='font-size: 500%; text-align: center'>I AM BAD</p>
+    <h1>Testing mindset</h1>
+    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 450%; text-align: center; color: red'>I&nbsp;  AM&nbsp;  BAD!</p>
+    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 200%; text-align: center; color: red; letter-spacing: .05em'>and I should feel bad</p>
 </div>
 
 <div class="slide" data-layout="withurl">
     <h1>Reality</h1>
     <ul>
-        <li>Developers aren't bad (most of them)</li>
+        <li>You aren't bad (??)</li>
         <li>Testing is hard</li>
-        <li>It needs to be given its due</li>
         <li>It's real engineering</li>
         <li>It's worth it</li>
     </ul>
@@ -982,12 +997,12 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Approaches {{{ -->
-<div class="slide section" layout="clean">
+<div class="slide section todo" layout="clean">
     <h1>Approaches</h1>
     <h2>crafting tests</h2>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>What to test?</h1>
     <ul>
         <li>Any code that you want to work</li>
@@ -1009,7 +1024,7 @@ from cogutil import *
 
 -->
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>How to start?</h1>
     <ul>
         <li>Pick a chunk of code</li>
@@ -1020,7 +1035,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Test granularity</h1>
     <ul>
         <li>How big is the code chunk?</li>
@@ -1036,7 +1051,7 @@ from cogutil import *
 </div>
 
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>What should the code do?</h1>
     <ul>
         <li>This can be difficult!</li>
@@ -1046,7 +1061,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Test what the code should do</h1>
     <ul>
         <li>Typical values</li>
@@ -1055,7 +1070,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Test what the code shouldn't do</h1>
     <ul>
         <li>Error conditions</li>
@@ -1065,7 +1080,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Where to put them?</h1>
     <ul>
         <li>Put tests in their own files</li>
@@ -1075,7 +1090,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Good tests should be...</h1>
     <ul>
         <li>Automated</li>
@@ -1085,7 +1100,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>How much is enough?</h1>
     <ul>
         <li>Hard to know</li>
@@ -1094,7 +1109,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Tests will fail</h1>
     <ul>
         <li>Could be the code is broken</li>
@@ -1104,7 +1119,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Test-Driven Development</h1>
     <ul>
         <li>Write tests before code!</li>
@@ -1113,7 +1128,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Testability</h1>
     <ul>
         <li>The quality of being testable</li>
@@ -1788,4 +1803,4 @@ from cogutil import *
 
 </body>
 </html>
-<!-- vim: foldmethod=marker: -->
+<!-- vim: set foldmethod=marker: -->

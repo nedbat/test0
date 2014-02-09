@@ -18,7 +18,10 @@
 body, html {
     background: #0d490b; /* #242; */
     color: #000;
-    font-family: Fontin,Tahoma,Verdana,sans-serif;
+    #font-family: "Merriweather Sans",Tahoma,Verdana,sans-serif;
+    font-family: "Open Sans",Tahoma,Verdana,sans-serif;
+    #font-family: "Franklin Gothic Demi",Tahoma,Verdana,sans-serif;
+    font-weight: 600;
     font-size: 3em;
 }
 
@@ -26,6 +29,8 @@ body, html {
     overflow: hidden;
     height: 100%;
     line-height: 1.2;
+    background: #222;
+    color: #111;
 }
 
 a:visited, a:active, a:link, a {
@@ -40,9 +45,9 @@ a.eval {
 }
 
 .slide {
-    -moz-border-radius: 0.5em;
-    -webkit-border-radius: 0.5em;
-    background: #A4D3B3; /* #b1e31f; /* #B0F2B0; /* #8f8; */
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    background: #fffaf0; /* #A4D3B3; /* #b1e31f; /* #B0F2B0; /* #8f8; */
     border: #121;
     font-size: 150%;
 }
@@ -65,6 +70,10 @@ a.eval {
     text-align: center;
 }
 
+.slide.todo {
+    background: #f9a;
+}
+
 .slide.thankyou {
     background: #f9ff64 /* #F2CCCC; */
 }
@@ -73,6 +82,10 @@ a.eval {
     text-align: center;
     margin-top: 2em;
     font-size: 200%;
+}
+
+.hidden_slide {
+    display: none;
 }
 
 .gap {
@@ -134,7 +147,7 @@ a.eval {
 h1, h2, h3, h4 {
     margin: 0 0 .5em;
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: 800;
 }
 
 h1 {
