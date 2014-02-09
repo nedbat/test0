@@ -402,7 +402,8 @@ from cogutil import *
     ]]]-->
     <pre class='brush: python'>
     $ python
-    Python 2.7.3 (default, Apr 10 2012, 23:31:26) 
+    Python 2.7.5 (default, Aug  5 2013, 19:47:08) 
+
     &gt;&gt;&gt; from portfolio1 import Portfolio
     &gt;&gt;&gt; p = Portfolio()
     &gt;&gt;&gt; p.cost()
@@ -739,7 +740,7 @@ from cogutil import *
     AssertionError
 
     ----------------------------------------------------------------------
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (failures=1)
     </pre>
@@ -780,7 +781,7 @@ from cogutil import *
     AssertionError: 17600.0 != 17648.0
 
     ----------------------------------------------------------------------
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (failures=1)
     </pre>
@@ -839,7 +840,7 @@ from cogutil import *
     AttributeError: 'Portfolio' object has no attribute 'buyxxxxx'
 
     ----------------------------------------------------------------------
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (errors=1)
     </pre>
@@ -876,7 +877,8 @@ from cogutil import *
     ]]]-->
     <pre class='brush: python'>
     $ python
-    Python 2.7.3 (default, Apr 10 2012, 23:31:26) 
+    Python 2.7.5 (default, Aug  5 2013, 19:47:08) 
+
     &gt;&gt;&gt; from portfolio1 import Portfolio
     &gt;&gt;&gt; p = Portfolio()
     &gt;&gt;&gt; p.buy("IBM")
@@ -913,7 +915,7 @@ from cogutil import *
     TypeError: buy() takes exactly 4 arguments (2 given)
 
     ----------------------------------------------------------------------
-    Ran 4 tests in 0.001s
+    Ran 4 tests in 0.000s
 
     FAILED (errors=1)
     </pre>
@@ -941,7 +943,7 @@ from cogutil import *
     $ python test_port4.py
     ....
     ----------------------------------------------------------------------
-    Ran 4 tests in 0.001s
+    Ran 4 tests in 0.000s
 
     OK
     </pre>
@@ -1624,17 +1626,18 @@ from cogutil import *
     ]]]-->
     <pre class='brush: python'>
     $ python
-    Python 2.7.3 (default, Apr 10 2012, 23:31:26) 
+    Python 2.7.5 (default, Aug  5 2013, 19:47:08) 
+
     &gt;&gt;&gt; from portfolio3 import Portfolio
     &gt;&gt;&gt; p = Portfolio()
     &gt;&gt;&gt; p.buy("IBM", 100, 150.0)
     &gt;&gt;&gt; p.buy("HPQ", 100, 30.0)
 
     &gt;&gt;&gt; p.current_prices()
-    {'HPQ': 16.88, 'IBM': 194.85}
+    {'HPQ': 29.07, 'IBM': 177.25}
 
     &gt;&gt;&gt; p.value()
-    21173.0
+    20632.0
 
     </pre>
     <!--[[[end]]] }}}-->
@@ -1690,7 +1693,7 @@ from cogutil import *
     $ coverage run test_port7.py
     ........
     ----------------------------------------------------------------------
-    Ran 8 tests in 0.000s
+    Ran 8 tests in 0.001s
 
     OK
     $ coverage report -m
@@ -1820,15 +1823,16 @@ from cogutil import *
     ]]]-->
     <pre class='brush: python'>
     $ python
-    Python 2.7.3 (default, Apr 10 2012, 23:31:26) 
+    Python 2.7.5 (default, Aug  5 2013, 19:47:08) 
+
     &gt;&gt;&gt; import mock, StringIO
 
     &gt;&gt;&gt; # Make a mock object, call it, ask what was called.
     &gt;&gt;&gt; m = mock.Mock()
     &gt;&gt;&gt; m.foo(3, "hello")
-    &lt;Mock name='mock.foo()' id='42008112'&gt;
+    &lt;Mock name='mock.foo()' id='4499669200'&gt;
     &gt;&gt;&gt; m.bar(17).baz("ned").quux(47)
-    &lt;Mock name='mock.bar().baz().quux()' id='42516656'&gt;
+    &lt;Mock name='mock.bar().baz().quux()' id='4499670288'&gt;
     &gt;&gt;&gt; m.method_calls
     [call.foo(3, 'hello'), call.bar(17)]
 
