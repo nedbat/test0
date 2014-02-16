@@ -9,6 +9,80 @@
     * Layout
     - URL footer on first few slides.
 
+
+
+    # Getting Started Testing
+
+    - Goal
+        - Give you tools to start testing your code
+
+    - Two challenges:
+        - People
+        - Code
+
+    - Vegetables
+
+    = People
+
+    - Why test?
+        - Best way to know if your code works
+    - Resistance
+        - More work
+        - Hard to add to a legacy project
+        - Not a developer's job?
+    - Benefits
+        - Confidence
+        - Turns fear into boredom
+        - Faster in the long run
+    - Fighting Chaos!
+    - How to start
+        - Start with the easy
+        - Start with the necessary
+
+    = Code
+
+    - 2 vs 3
+
+    - How to write tests
+        - Show *a* way to do it.
+        - there are many techniques
+
+    = First principles
+
+    - Product code: stock portfolio
+    
+    - First test: interactive
+    
+    - Second test: standalone
+
+    - Third test: with expected results
+
+    - Fourth test: check results automatically
+
+    - Getting complicated!
+
+    = Unittest
+
+    - unittest
+        - stdlib
+        - a good solid foundation
+        - not the only way to do it
+        - not about unit vs integration
+
+    - Simple unit test
+
+    = Test Doubles
+
+
+    = Other stuff
+    - doctest
+    - coverage
+    - nose, py.test, trial
+    - lettuce
+    - Selenium
+    - ddt
+    - TDD
+
 -->
 <!-- *** Head stuff {{{ -->
 <!--[[[cog
@@ -192,7 +266,7 @@ from cogutil import *
         }
 
         .slide pre.python {
-            background: #cfc;
+            background: #beb;
         }
 
         pre .selected {
@@ -200,7 +274,11 @@ from cogutil import *
         }
 
         pre.python .selected {
-            background: #6f6;
+            background: #fff;
+            border: 1px solid black;
+            border-width: 0 0 0 .25em;
+            margin-left: -.5em;
+            padding-left: .25em;
         }
 
         .slide li {
@@ -306,6 +384,28 @@ from cogutil import *
     </ul>
 </div>
 
+<div class="slide">
+    <h1>Two challenges</h1>
+    <ul>
+        <li>People</li>
+        <li>Code</li>
+    </ul>
+</div>
+
+<div class="slide section">
+    <h1>People</h1>
+</div>
+
+<div class="slide">
+    <h1></h1>
+    <ul>
+        <li>Testing is a lot of work</li>
+        <li>People won't want to do it</li>
+        <li>It pays off in the long run</li>
+        <li>Turns fear into boredom</li>
+    </ul>
+</div>
+
 <div class="slide" data-layout="withurl">
     <h1>Why test?</h1>
     <ul>
@@ -325,10 +425,9 @@ from cogutil import *
 <div class="slide" data-layout="withurl">
     <h1>Reality</h1>
     <ul>
-        <li>You aren't bad (??)</li>
-        <li>Testing is hard</li>
-        <li>It's real engineering</li>
-        <li>It's worth it</li>
+        <li class="incremental">You aren't bad</li>
+        <li class="incremental">Testing is hard</li>
+        <li class="incremental">It's worth it</li>
     </ul>
 </div>
 
@@ -1304,12 +1403,12 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** nose {{{ -->
-<div class="slide section" data-layout="clean">
+<div class="hidden_slide section" data-layout="clean">
     <h1>nose and py.test</h1>
     <h2>Running tests</h2>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Test runners</h1>
     <ul>
         <li>Third-party test runners: nose, py.test, trial</li>
@@ -1320,7 +1419,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Test discovery</h1>
     <ul>
         <li>Running one file of tests is easy</li>
@@ -1331,7 +1430,7 @@ from cogutil import *
 </div>
 
 <!-- Unused slides {{{
-<div class="slide">
+<div class="hidden_slide">
     <h1>Running tests</h1>
     <ul>
         <li>Show test names as they run</li>
@@ -1341,7 +1440,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Plugins</h1>
     <ul>
         <li>LOTS of useful functions added by plugins</li>
@@ -1354,7 +1453,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Class-less tests</h1>
     <ul>
         <li>*Unit patterns are based on Smalltalk</li>
@@ -1365,7 +1464,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Test generators</h1>
     <ul>
         <li>Tests can be created with a generator</li>
@@ -1393,7 +1492,7 @@ from cogutil import *
     </pre>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>nose and unittest together</h1>
     <ul>
         <li>nose extended unittest</li>
@@ -1403,7 +1502,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide highlight_code_red">
+<div class="hidden_slide highlight_code_red">
     <h1>py.test</h1>
     <pre class='brush: plain, highlight: [17,18,19]'>
     $ py.test test_port2_broken.py
@@ -1431,7 +1530,7 @@ from cogutil import *
     </pre>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Twisted's trial</h1>
     <ul>
         <li>Many advanced options</li>
@@ -1441,7 +1540,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>IDEs</h1>
     <ul>
         <li>IDEs like Eclipse and Netbeans also have test runners</li>
@@ -1453,7 +1552,7 @@ from cogutil import *
 
  }}} -->
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Test runners</h1>
     <ul>
         <li>unittest (2.7)</li>
@@ -1462,7 +1561,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Lots of options</h1>
     <ul>
         <li>However you want to run your tests, you can</li>
@@ -1474,12 +1573,12 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Coverage {{{ -->
-<div class="slide section" data-layout="clean">
+<div class="hidden_slide section" data-layout="clean">
     <h1>Coverage</h1>
     <h2>Testing tests</h2>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>What code are you testing?</h1>
     <ul>
         <li>The goal: tests execute product code</li>
@@ -1488,7 +1587,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Coverage measurement</h1>
     <ul>
         <li>Run your tests</li>
@@ -1501,7 +1600,7 @@ from cogutil import *
 </div>
 
 <!--
-<div class="slide">
+<div class="hidden_slide">
     <h1>Running coverage.py</h1>
     <ul>
         <li>Install it from PyPI</li>
@@ -1513,12 +1612,12 @@ from cogutil import *
 </div>
 -->
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>HTML report</h1>
     <iframe src='test0_static/htmlcov/index.html' style='background:white;width:100%;height:85%;'></iframe>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Coverage can only tell you a few things</h1>
     <ul>
         <li>What lines were executed</li>
@@ -1528,7 +1627,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>What coverage can't tell you</h1>
     <ul>
         <li>Are you exercising all your data?</li>
