@@ -17,11 +17,9 @@ SAMPLE_ZIP = test0.zip
 
 IMAGES = dodeca3_500.png
 SD = slippy/src
-HD = $(SD)/highlighter
 JS_FILES = $(SD)/jquery-1.4.2.min.js $(SD)/jquery.history.js $(SD)/slippy-0.9.0.js 
 CSS_FILES = $(SD)/slippy-0.9.0.css neds.css
-HIGHLIGHTER_FILES = $(HD)/shCore.js $(HD)/shBrushPlain.js $(HD)/shBrushPython.js shNedCore.css $(HD)/shThemeEclipse.css  
-SLIDE_SUPPORT = $(JS_FILES) $(CSS_FILES) $(HIGHLIGHTER_FILES) $(IMAGES)
+SLIDE_SUPPORT = $(JS_FILES) $(CSS_FILES) $(IMAGES)
 
 .PHONY: $(SLIDE_HTML)
 
