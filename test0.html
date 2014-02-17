@@ -1110,7 +1110,8 @@ from cogutil import *
     <div class="code python"><div class="line"><span class="lineno">11</span> <span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">12</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">13</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">14</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mf">17648.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mf">17648.0</span><span class="p">)</span>
+    </span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
@@ -1140,7 +1141,8 @@ from cogutil import *
     <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port3_broken.py&quot;,&#xA0;line&#xA0;14,&#xA0;in&#xA0;test_ibm&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;self.assertEqual(p.cost(),&#xA0;17648.0)&nbsp;</div>
-    <div class="line"><span class="lineno"> 9</span> AssertionError:&#xA0;17600.0&#xA0;!=&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> <span class="hll">AssertionError:&#xA0;17600.0&#xA0;!=&#xA0;17648.0
+    </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
@@ -2330,7 +2332,8 @@ from cogutil import *
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;33&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;6&#xA0;&#xA0;&#xA0;&#xA0;82%&#xA0;&#xA0;&#xA0;57-62&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;33&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;6&#xA0;&#xA0;&#xA0;&#xA0;82%&#xA0;&#xA0;&#xA0;57-62
+    </span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> test_port7&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;45&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;78&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;6&#xA0;&#xA0;&#xA0;&#xA0;92%&nbsp;</div>
@@ -2512,9 +2515,9 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4383194320&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4452117712&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4384249104&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4453168400&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
     <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
     <div class="line">&nbsp;</div>

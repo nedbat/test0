@@ -43,9 +43,9 @@ def include_file(fname, start=None, end=None, highlight=None, section=None):
     text = "\n".join(lines[start-1:end])
 
     lang = "python" if fname.endswith(".py") else "text"
-    include_code(text, lang=lang, firstline=start, number=True, show_text=True)
+    include_code(text, lang=lang, firstline=start, number=True, show_text=True, highlight=highlight)
 
-def include_code(text, lang=None, number=False, firstline=1, show_text=False):
+def include_code(text, lang=None, number=False, firstline=1, show_text=False, highlight=None):
     # Put the code in a comment, so we can see it in the HTML while editing.
     if show_text:
         cog.outl("<!--")
@@ -75,7 +75,8 @@ def include_code(text, lang=None, number=False, firstline=1, show_text=False):
 
     lexer = pygments.lexers.get_lexer_by_name(lang, stripall=True)
     linenos = 'inline' if number else False
-    formatter = CodeHtmlFormatter(linenos=linenos, linenostart=firstline, cssclass="source")
+    hl_lines = [l-firstline+1 for l in (highlight or [])]
+    formatter = CodeHtmlFormatter(linenos=linenos, linenostart=firstline, cssclass="source", hl_lines=hl_lines)
     result = pygments.highlight(text, lexer, formatter)
     cog.outl(result)
 
