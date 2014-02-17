@@ -3,7 +3,7 @@
 import code
 import cStringIO as StringIO
 import sys
-import textwrap 
+import textwrap
 
 class CagedPrompt(code.InteractiveConsole):
     def __init__(self):
@@ -11,11 +11,15 @@ class CagedPrompt(code.InteractiveConsole):
         code.InteractiveConsole.__init__(self, env)
         self.out = StringIO.StringIO()
 
-    def run(self, input):
+    def run(self, input, banner=True):
         self.inlines = textwrap.dedent(input).splitlines()
         old_stdout = sys.stdout
         sys.stdout = self.out
-        self.interact("Python " + sys.version.split("[")[0])
+        if banner:
+            banner_text = "Python " + sys.version.split("[")[0]
+        else:
+            banner_text = ""
+        self.interact(banner_text)
         sys.stdout = old_stdout
         self.output = self.out.getvalue()
 
@@ -33,9 +37,9 @@ class CagedPrompt(code.InteractiveConsole):
     def write(self, data):
         self.out.write(data)
 
-def prompt_session(input):
+def prompt_session(input, banner=True):
     cp = CagedPrompt()
-    cp.run(input)
+    cp.run(input, banner=banner)
     return cp.output
 
 if __name__ == '__main__':

@@ -105,10 +105,6 @@ from cogutil import *
     <link type="text/css" rel="stylesheet" href="slippy/src/slippy.css"/>
     <link type="text/css" rel="stylesheet" href="slippy/src/slippy-pure.css"/>
 
-    <!-- Highlight, for syntax coloring. -->
-    <script type="text/javascript" src="highlight/highlight.pack.js"></script>
-    <link rel="stylesheet" href="highlight/vs.css">
-
     <!-- Ned's slides init code -->
     <script type="text/javascript" src="lineselect.js"></script>
 
@@ -154,20 +150,7 @@ from cogutil import *
                 });
             }
 
-            $('pre').each(function (i, e) {
-                hljs.highlightBlock(e, '    ');
-            });
-
-            $('pre').each(function (i, e) {
-                var $e = $(e);
-                var h = $e.html();
-                h = h.replace(/\n\n/g, "\n \n");
-                h = h.replace(/\n/g, "</span>\n<span class='line'>");
-                h = "<span class='line'>" + h + "</span>";
-                $e.html(h);
-            });
-
-            $("div.slide").lineselect({ lines: "pre span.line" });
+            $("div.slide").lineselect({ lines: ".code .line" });
         });
     </script>
 
@@ -256,8 +239,9 @@ from cogutil import *
             margin-top: .5em;
         }
 
-        .slide pre {
+        .slide .code {
             font-family: Consolas, monaco, monospace;
+            font-weight: 600
             margin-top: 1em;
             background: #ccf;
             padding: .25em .25em;
@@ -265,20 +249,25 @@ from cogutil import *
             font-size: 75%;
         }
 
-        .slide pre.python {
+        .slide .code.python {
             background: #beb;
         }
 
-        pre .selected {
-            background: #88f;
-        }
-
-        pre.python .selected {
+        .code .selected {
             background: #fff;
+            /*
             border: 1px solid black;
             border-width: 0 0 0 .25em;
             margin-left: -.5em;
             padding-left: .25em;
+            */
+        }
+
+        .code .selected .lineno {
+            background: #060;
+            color: white;
+            padding-left: .25em;
+            margin-left: -.25em;
         }
 
         .slide li {
@@ -304,6 +293,81 @@ from cogutil import *
         .notes img {
             display: none;
         }
+
+        .code .lineno {
+            width: 1em;
+            display: inline-block;
+            text-align: right;
+            padding-right: .5em;
+            color: #999;
+            font-style: italic;
+            font-weight: 400;
+            border-right: 1px dotted #999;
+        }
+
+        .code .hll { background-color: #ffffcc }
+        .code  { background: #f8f8f8; }
+        .code .c { color: #306030; font-style: italic } /* Comment */
+        .code .err { border: 1px solid #FF0000 } /* Error */
+        .code .k { color: #006000; font-weight: bold } /* Keyword */
+        .code .o { color: #666666 } /* Operator */
+        .code .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+        .code .cp { color: #BC7A00 } /* Comment.Preproc */
+        .code .c1 { color: #408080; font-style: italic } /* Comment.Single */
+        .code .cs { color: #408080; font-style: italic } /* Comment.Special */
+        .code .gd { color: #A00000 } /* Generic.Deleted */
+        .code .ge { font-style: italic } /* Generic.Emph */
+        .code .gr { color: #FF0000 } /* Generic.Error */
+        .code .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+        .code .gi { color: #00A000 } /* Generic.Inserted */
+        .code .go { color: #993333 } /* Generic.Output */
+        .code .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+        .code .gs { font-weight: bold } /* Generic.Strong */
+        .code .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+        .code .gt { color: #0044DD } /* Generic.Traceback */
+        .code .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+        .code .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+        .code .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+        .code .kp { color: #008000 } /* Keyword.Pseudo */
+        .code .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+        .code .kt { color: #B00040 } /* Keyword.Type */
+        .code .m { color: #333333 } /* Literal.Number */
+        .code .s { color: #BA2121 } /* Literal.String */
+        .code .na { color: #7D9029 } /* Name.Attribute */
+        .code .nb { color: #008000 } /* Name.Builtin */
+        .code .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+        .code .no { color: #880000 } /* Name.Constant */
+        .code .nd { color: #AA22FF } /* Name.Decorator */
+        .code .ni { color: #999999; font-weight: bold } /* Name.Entity */
+        .code .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+        .code .nf { color: #0000FF } /* Name.Function */
+        .code .nl { color: #A0A000 } /* Name.Label */
+        .code .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+        .code .nt { color: #008000; font-weight: bold } /* Name.Tag */
+        .code .nv { color: #19177C } /* Name.Variable */
+        .code .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+        .code .w { color: #bbbbbb } /* Text.Whitespace */
+        .code .mf { color: #333333 } /* Literal.Number.Float */
+        .code .mh { color: #333333 } /* Literal.Number.Hex */
+        .code .mi { color: #333333 } /* Literal.Number.Integer */
+        .code .mo { color: #333333 } /* Literal.Number.Oct */
+        .code .sb { color: #BA2121 } /* Literal.String.Backtick */
+        .code .sc { color: #BA2121 } /* Literal.String.Char */
+        .code .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+        .code .s2 { color: #BA2121 } /* Literal.String.Double */
+        .code .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+        .code .sh { color: #BA2121 } /* Literal.String.Heredoc */
+        .code .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+        .code .sx { color: #008000 } /* Literal.String.Other */
+        .code .sr { color: #BB6688 } /* Literal.String.Regex */
+        .code .s1 { color: #BA2121 } /* Literal.String.Single */
+        .code .ss { color: #19177C } /* Literal.String.Symbol */
+        .code .bp { color: #008000 } /* Name.Builtin.Pseudo */
+        .code .vc { color: #19177C } /* Name.Variable.Class */
+        .code .vg { color: #19177C } /* Name.Variable.Global */
+        .code .vi { color: #19177C } /* Name.Variable.Instance */
+        .code .il { color: #666666 } /* Literal.Number.Integer.Long */
+
     </style>
 
 </head>
@@ -459,27 +523,26 @@ from cogutil import *
     <!--[[[cog
     include_file("portfolio1.py")   # {{{
     ]]]-->
-    <pre class='brush: python'>
-    # portfolio1.py
-
-    class Portfolio(object):
-        """A simple stock portfolio"""
-        def __init__(self):
-            # stocks is a list of lists:
-            #   [[name, shares, price], ...]
-            self.stocks = []
-
-        def buy(self, name, shares, price):
-            """Buy `name`: `shares` shares at `price`."""
-            self.stocks.append([name, shares, price])
-
-        def cost(self):
-            """What was the total cost of this portfolio?"""
-            amt = 0.0
-            for name, shares, price in self.stocks:
-                amt += shares * price
-            return amt
-    </pre>
+    <div class="code python"><div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;portfolio1.py</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> <span class="k">class</span>&#xA0;<span class="nc">Portfolio</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;A&#xA0;simple&#xA0;stock&#xA0;portfolio&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;stocks&#xA0;is&#xA0;a&#xA0;list&#xA0;of&#xA0;lists:</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;[[name,&#xA0;shares,&#xA0;price],&#xA0;...]</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">[]</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">buy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Buy&#xA0;`name`:&#xA0;`shares`&#xA0;shares&#xA0;at&#xA0;`price`.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span><span class="p">])</span>&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">15</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;What&#xA0;was&#xA0;the&#xA0;total&#xA0;cost&#xA0;of&#xA0;this&#xA0;portfolio?&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">16</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">amt</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">17</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">18</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">amt</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">price</span>&nbsp;</div>
+    <div class="line"><span class="lineno">19</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">amt</span>&nbsp;</div>
+    </div>
         <!--[[[end]]] }}}-->
 </div>
 
@@ -499,24 +562,22 @@ from cogutil import *
         p.cost()
         """)
     ]]]-->
-    <pre class='brush: python'>
-    $ python
-    Python 2.7.5 (default, Aug  5 2013, 19:47:08) 
-
-    &gt;&gt;&gt; from portfolio1 import Portfolio
-    &gt;&gt;&gt; p = Portfolio()
-    &gt;&gt;&gt; p.cost()
-    0.0
-
-    &gt;&gt;&gt; p.buy("IBM", 100, 176.48)
-    &gt;&gt;&gt; p.cost()
-    17648.0
-
-    &gt;&gt;&gt; p.buy("HPQ", 100, 36.15)
-    &gt;&gt;&gt; p.cost()
-    21263.0
-
-    </pre>
+    <div class="code pycon"><div class="line"><span class="go">$&#xA0;python</span>&nbsp;</div>
+    <div class="line"><span class="go">Python&#xA0;2.7.5&#xA0;(default,&#xA0;Aug&#xA0;&#xA0;5&#xA0;2013,&#xA0;19:47:08)&#xA0;</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">0.0</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">17648.0</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">21263.0</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <ul>
     <li>Good: testing the code</li>
@@ -529,29 +590,27 @@ from cogutil import *
 <div class="slide">
     <h1>Second test: standalone</h1>
     <!--[[[cog
-    include_file("porttest1.py", klass="focus")   # {{{
+    include_file("porttest1.py")   # {{{
     ]]]-->
-    <pre class='brush: python; class-name: focus'>
-    # porttest1.py
-    from portfolio1 import Portfolio
-
-    p = Portfolio()
-    print "Empty portfolio cost: %s" % p.cost()
-    p.buy("IBM", 100, 176.48)
-    print "With 100 IBM @ 176.48: %s" % p.cost()
-    p.buy("HPQ", 100, 36.15)
-    print "With 100 HPQ @ 36.15: %s" % p.cost()
-    </pre>
+    <div class="code python"><div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;porttest1.py</span>&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
+    <div class="line"><span class="lineno">3</span>&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">5</span> <span class="k">print</span>&#xA0;<span class="s">&quot;Empty&#xA0;portfolio&#xA0;cost:&#xA0;</span><span class="si">%s</span><span class="s">&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">7</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">8</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">9</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("porttest1.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python porttest1.py
-    Empty portfolio cost: 0.0
-    With 100 IBM @ 176.48: 17648.0
-    With 100 HPQ @ 36.15: 21263.0
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest1.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <ul>
         <li>Good: testing the code</li>
@@ -564,29 +623,27 @@ from cogutil import *
 <div class="slide">
     <h1>Third test: expected results</h1>
     <!--[[[cog
-    include_file("porttest2.py", klass="focus")   # {{{
+    include_file("porttest2.py")   # {{{
     ]]]-->
-    <pre class='brush: python; class-name: focus'>
-    # porttest2.py
-    from portfolio1 import Portfolio
-
-    p = Portfolio()
-    print "Empty portfolio cost: %s, should be 0.0" % p.cost()
-    p.buy("IBM", 100, 176.48)
-    print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
-    p.buy("HPQ", 100, 36.15)
-    print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
-    </pre>
+    <div class="code python"><div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;porttest2.py</span>&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
+    <div class="line"><span class="lineno">3</span>&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">5</span> <span class="k">print</span>&#xA0;<span class="s">&quot;Empty&#xA0;portfolio&#xA0;cost:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;0.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">7</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;17648.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">8</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">9</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;21263.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}} -->
     <!--[[[cog
     include_file("porttest2.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python porttest2.py
-    Empty portfolio cost: 0.0, should be 0.0
-    With 100 IBM @ 176.48: 17648.0, should be 17648.0
-    With 100 HPQ @ 36.15: 21263.0, should be 21263.0
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest2.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
+    </div>
         <!--[[[end]]] }}}-->
     <ul>
         <li>Good: testing the code repeatably with low effort</li>
@@ -598,32 +655,30 @@ from cogutil import *
 <div class="slide">
     <h1>Fourth test: check results automatically</h1>
     <!--[[[cog
-    include_file("porttest3.py", klass="focus")   # {{{
+    include_file("porttest3.py")   # {{{
     ]]]-->
-    <pre class='brush: python; class-name: focus'>
-    # porttest3.py
-    from portfolio1 import Portfolio
-
-    p = Portfolio()
-    print "Empty portfolio cost: %s, should be 0.0" % p.cost()
-    assert p.cost() == 0.0
-    p.buy("IBM", 100, 176.48)
-    print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
-    assert p.cost() == 17648.0
-    p.buy("HPQ", 100, 36.15)
-    print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
-    assert p.cost() == 21263.0
-    </pre>
+    <div class="code python"><div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;porttest3.py</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> <span class="k">print</span>&#xA0;<span class="s">&quot;Empty&#xA0;portfolio&#xA0;cost:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;0.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;17648.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17648.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;21263.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">21263.0</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("porttest3.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python porttest3.py
-    Empty portfolio cost: 0.0, should be 0.0
-    With 100 IBM @ 176.48: 17648.0, should be 17648.0
-    With 100 HPQ @ 36.15: 21263.0, should be 21263.0
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <ul>
         <li>Good: testing the code repeatably with low effort</li>
@@ -637,15 +692,14 @@ from cogutil import *
     <!--[[[cog
     include_file("porttest3_broken.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python porttest3_broken.py
-    Empty portfolio cost: 0.0, should be 0.0
-    With 100 IBM @ 176.48: 17600.0, should be 17648.0
-    Traceback (most recent call last):
-      File "porttest3_broken.py", line 9, in &lt;module&gt;
-        assert p.cost() == 17648.0
-    AssertionError
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3_broken.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17600.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno">5</span> &#xA0;&#xA0;File&#xA0;&quot;porttest3_broken.py&quot;,&#xA0;line&#xA0;9,&#xA0;in&#xA0;&lt;module&gt;&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> &#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;p.cost()&#xA0;==&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">7</span> AssertionError&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <ul>
         <li>Good: testing the code repeatably with low effort</li>
@@ -696,41 +750,40 @@ from cogutil import *
 <div class="slide">
     <h1>A simple unit test</h1>
     <!--[[[cog
-    include_file("test_port1.py", klass="focus")   # {{{
+    include_file("test_port1.py")   # {{{
     ]]]-->
-    <pre class='brush: python; class-name: focus'>
-    # test_port1.py
-
-    import unittest
-    from portfolio1 import Portfolio
-
-    class PortfolioTest(unittest.TestCase):
-        def test_ibm(self):
-            p = Portfolio()
-            p.buy("IBM", 100, 176.48)
-            assert p.cost() == 17648.0
-
-    if __name__ == '__main__':
-        unittest.main()
-    </pre>
+    <div class="code python"><div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;test_port1.py</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> <span class="kn">import</span>&#xA0;<span class="nn">unittest</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17648.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> <span class="k">if</span>&#xA0;<span class="n">__name__</span>&#xA0;<span class="o">==</span>&#xA0;<span class="s">&#39;__main__&#39;</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port1.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python test_port1.py
-    .
-    ----------------------------------------------------------------------
-    Ran 1 test in 0.000s
-
-    OK
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port1.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> .&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> Ran&#xA0;1&#xA0;test&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">5</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
 <div class="slide">
     <h1>Under the covers</h1>
-    <pre class='brush: python'>
+    <!--[[[cog
+    include_code("""\
     # unittest runs the tests as if I had written:
     testcase = PortfolioTest()
     try:
@@ -739,7 +792,18 @@ from cogutil import *
         [record failure]
     else:
         [record success]
-    </pre>
+    """, lang="python")
+    ]]]-->
+    <div class="code python"><div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> <span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> <span class="k">try</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">5</span> <span class="k">except</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="lineno">7</span> <span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">8</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
+    </div>
+    <!--[[[end]]]-->
 </div>
 
 <div class="slide">
@@ -747,34 +811,33 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port2.py", start=6, end=20)   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 6'>
-    class PortfolioTest(unittest.TestCase):
-        def test_empty(self):
-            p = Portfolio()
-            assert p.cost() == 0.0
-
-        def test_ibm(self):
-            p = Portfolio()
-            p.buy("IBM", 100, 176.48)
-            assert p.cost() == 17648.0
-
-        def test_ibm_hpq(self):
-            p = Portfolio()
-            p.buy("IBM", 100, 176.48)
-            p.buy("HPQ", 100, 36.15)
-            assert p.cost() == 21263.0</pre>
+    <div class="code python"><div class="line"><span class="lineno"> 6</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17648.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">15</span>&nbsp;</div>
+    <div class="line"><span class="lineno">16</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_ibm_hpq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">17</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">18</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">19</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">20</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">21263.0</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port2.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python test_port2.py
-    ...
-    ----------------------------------------------------------------------
-    Ran 3 tests in 0.000s
-
-    OK
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port2.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> ...&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">5</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <ul>
         <li>A dot for every passed test</li>
@@ -827,22 +890,21 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port2_broken.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python test_port2_broken.py
-    .F.
-    ======================================================================
-    FAIL: test_ibm (__main__.PortfolioTest)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "test_port2_broken.py", line 14, in test_ibm
-        assert p.cost() == 17648.0
-    AssertionError
-
-    ----------------------------------------------------------------------
-    Ran 3 tests in 0.000s
-
-    FAILED (failures=1)
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port2_broken.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port2_broken.py&quot;,&#xA0;line&#xA0;14,&#xA0;in&#xA0;test_ibm&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;p.cost()&#xA0;==&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> AssertionError&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <ul>
         <li>Better: the failed test didn't keep others from running</li>
@@ -857,33 +919,32 @@ from cogutil import *
         <li>You get nicer messages</li>
     </ul>
     <!--[[[cog
-    include_file("test_port3.py", start=11, end=14, klass="focus", highlight=[14])   # {{{
+    include_file("test_port3.py", start=11, end=14, highlight=[14])   # {{{
     ]]]-->
-    <pre class='brush: python; highlight: [14]; first-line: 11; class-name: focus'>
-        def test_ibm(self):
-            p = Portfolio()
-            p.buy("IBM", 100, 176.48)
-            self.assertEqual(p.cost(), 17648.0)</pre>
+    <div class="code python"><div class="line"><span class="lineno">11</span> <span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mf">17648.0</span><span class="p">)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port3_broken.out", highlight=[9])   # {{{
     ]]]-->
-    <pre class='brush: plain; highlight: [9]'>
-    $ python test_port3_broken.py
-    .F.
-    ======================================================================
-    FAIL: test_ibm (__main__.PortfolioTest)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "test_port3_broken.py", line 14, in test_ibm
-        self.assertEqual(p.cost(), 17648.0)
-    AssertionError: 17600.0 != 17648.0
-
-    ----------------------------------------------------------------------
-    Ran 3 tests in 0.000s
-
-    FAILED (failures=1)
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port3_broken.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port3_broken.py&quot;,&#xA0;line&#xA0;14,&#xA0;in&#xA0;test_ibm&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;self.assertEqual(p.cost(),&#xA0;17648.0)&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> AssertionError:&#xA0;17600.0&#xA0;!=&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -927,22 +988,21 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port3_broken2.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python test_port3_broken2.py
-    .E.
-    ======================================================================
-    ERROR: test_ibm (__main__.PortfolioTest)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "test_port3_broken2.py", line 13, in test_ibm
-        p.buyxxxxx("IBM", 100, 176.48)
-    AttributeError: 'Portfolio' object has no attribute 'buyxxxxx'
-
-    ----------------------------------------------------------------------
-    Ran 3 tests in 0.000s
-
-    FAILED (errors=1)
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port3_broken2.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> .E.&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port3_broken2.py&quot;,&#xA0;line&#xA0;13,&#xA0;in&#xA0;test_ibm&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;p.buyxxxxx(&quot;IBM&quot;,&#xA0;100,&#xA0;176.48)&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> AttributeError:&#xA0;&#39;Portfolio&#39;&#xA0;object&#xA0;has&#xA0;no&#xA0;attribute&#xA0;&#39;buyxxxxx&#39;&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -974,18 +1034,16 @@ from cogutil import *
         p.buy("IBM")
         """)
     ]]]-->
-    <pre class='brush: python'>
-    $ python
-    Python 2.7.5 (default, Aug  5 2013, 19:47:08) 
-
-    &gt;&gt;&gt; from portfolio1 import Portfolio
-    &gt;&gt;&gt; p = Portfolio()
-    &gt;&gt;&gt; p.buy("IBM")
-    Traceback (most recent call last):
-      File "&lt;console&gt;", line 1, in &lt;module&gt;
-    TypeError: buy() takes exactly 4 arguments (2 given)
-
-    </pre>
+    <div class="code pycon"><div class="line"><span class="go">$&#xA0;python</span>&nbsp;</div>
+    <div class="line"><span class="go">Python&#xA0;2.7.5&#xA0;(default,&#xA0;Aug&#xA0;&#xA0;5&#xA0;2013,&#xA0;19:47:08)&#xA0;</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="gt">Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;File&#xA0;<span class="nb">&quot;&lt;console&gt;&quot;</span>,&#xA0;line&#xA0;<span class="m">1</span>,&#xA0;in&#xA0;<span class="n">&lt;module&gt;</span>&nbsp;</div>
+    <div class="line"><span class="gr">TypeError</span>:&#xA0;<span class="n">buy()&#xA0;takes&#xA0;exactly&#xA0;4&#xA0;arguments&#xA0;(2&#xA0;given)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -994,30 +1052,29 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port4_broken.py", start=22, end=24)   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 22'>
-        def test_bad_input(self):
-            p = Portfolio()
-            p.buy("IBM")</pre>
+    <div class="code python"><div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port4_broken.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python test_port4_broken.py
-    E...
-    ======================================================================
-    ERROR: test_bad_input (__main__.PortfolioTest)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "test_port4_broken.py", line 24, in test_bad_input
-        p.buy("IBM")
-    TypeError: buy() takes exactly 4 arguments (2 given)
-
-    ----------------------------------------------------------------------
-    Ran 4 tests in 0.000s
-
-    FAILED (errors=1)
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port4_broken.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> E...&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_bad_input&#xA0;(__main__.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port4_broken.py&quot;,&#xA0;line&#xA0;24,&#xA0;in&#xA0;test_bad_input&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;p.buy(&quot;IBM&quot;)&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> TypeError:&#xA0;buy()&#xA0;takes&#xA0;exactly&#xA0;4&#xA0;arguments&#xA0;(2&#xA0;given)&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1030,22 +1087,21 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port4.py", start=22, end=24)   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 22'>
-        def test_bad_input(self):
-            p = Portfolio()
-            self.assertRaises(TypeError, p.buy, "IBM")</pre>
+    <div class="code python"><div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">,</span>&#xA0;<span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port4.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ python test_port4.py
-    ....
-    ----------------------------------------------------------------------
-    Ran 4 tests in 0.000s
-
-    OK
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port4.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> ....&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">5</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <p>Nicer in 2.7:</p>
     <pre class='brush: python'>
@@ -1061,17 +1117,17 @@ from cogutil import *
     <!--[[[cog
     include_file("portfolio2.py", start=21, end=30)   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 21'>
-        def sell(self, name, shares):
-            """Sell some number of shares of `name`."""
-            for holding in self.stocks:
-                if holding[0] == name:
-                    if holding[1] &lt; shares:
-                        raise ValueError("Not enough shares")
-                    holding[1] -= shares
-                    break
-            else:
-                raise ValueError("You don't own that stock")</pre>
+    <div class="code python"><div class="line"><span class="lineno">21</span> <span class="k">def</span>&#xA0;<span class="nf">sell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">22</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Sell&#xA0;some&#xA0;number&#xA0;of&#xA0;shares&#xA0;of&#xA0;`name`.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">holding</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">if</span>&#xA0;<span class="n">holding</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>&#xA0;<span class="o">==</span>&#xA0;<span class="n">name</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">25</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">if</span>&#xA0;<span class="n">holding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>&#xA0;<span class="o">&lt;</span>&#xA0;<span class="n">shares</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">26</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">raise</span>&#xA0;<span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Not&#xA0;enough&#xA0;shares&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">holding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>&#xA0;<span class="o">-=</span>&#xA0;<span class="n">shares</span>&nbsp;</div>
+    <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">break</span>&nbsp;</div>
+    <div class="line"><span class="lineno">29</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">30</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">raise</span>&#xA0;<span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;You&#xA0;don&#39;t&#xA0;own&#xA0;that&#xA0;stock&quot;</span><span class="p">)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1080,31 +1136,31 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port5.py", start=26, end=49)   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 26'>
-    class PortfolioSellTest(unittest.TestCase):
-        def test_sell(self):
-            p = Portfolio()
-            p.buy("MSFT", 100, 27.0)
-            p.buy("DELL", 100, 17.0)
-            p.buy("ORCL", 100, 34.0)
-            p.sell("MSFT", 50)
-            self.assertEqual(p.cost(), 6450)
-
-        def test_not_enough(self):
-            p = Portfolio()
-            p.buy("MSFT", 100, 27.0)
-            p.buy("DELL", 100, 17.0)
-            p.buy("ORCL", 100, 34.0)
-            with self.assertRaises(ValueError):
-                p.sell("MSFT", 200)
-
-        def test_dont_own_it(self):
-            p = Portfolio()
-            p.buy("MSFT", 100, 27.0)
-            p.buy("DELL", 100, 17.0)
-            p.buy("ORCL", 100, 34.0)
-            with self.assertRaises(ValueError):
-                p.sell("IBM", 1)</pre>
+    <div class="code python"><div class="line"><span class="lineno">26</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">29</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">30</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">31</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">32</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">33</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">34</span>&nbsp;</div>
+    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">36</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">42</span>&nbsp;</div>
+    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">45</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">47</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1118,25 +1174,25 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port6.py", start=26, end=43)   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 26'>
-    class PortfolioSellTest(unittest.TestCase):
-        def setUp(self):
-            self.p = Portfolio()
-            self.p.buy("MSFT", 100, 27.0)
-            self.p.buy("DELL", 100, 17.0)
-            self.p.buy("ORCL", 100, 34.0)
-
-        def test_sell(self):
-            self.p.sell("MSFT", 50)
-            self.assertEqual(self.p.cost(), 6450)
-
-        def test_not_enough(self):
-            with self.assertRaises(ValueError):
-                self.p.sell("MSFT", 200)
-
-        def test_dont_own_it(self):
-            with self.assertRaises(ValueError):
-                self.p.sell("IBM", 1)</pre>
+    <div class="code python"><div class="line"><span class="lineno">26</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">29</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">30</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">31</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">32</span>&nbsp;</div>
+    <div class="line"><span class="lineno">33</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">34</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">36</span>&nbsp;</div>
+    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">40</span>&nbsp;</div>
+    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1684,27 +1740,27 @@ from cogutil import *
     <!--[[[cog
     include_file("portfolio3.py", section="value")   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 51'>
-        def current_prices(self):
-            """Return a dict mapping names to current prices."""
-            # http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq
-            # returns comma-separated values:
-            #   "IBM",174.23
-            #   "HPQ",35.13
-            url = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s="
-            names = [name for name, shares, price in self.stocks]
-            url += ",".join(sorted(names))
-            data = urllib.urlopen(url)
-            prices = dict((sym, float(last)) for sym, last in csv.reader(data))
-            return prices
-
-        def value(self):
-            """Return the current value of the portfolio."""
-            prices = self.current_prices()
-            total = 0.0
-            for name, shares, price in self.stocks:
-                total += shares * prices[name]
-            return total</pre>
+    <div class="code python"><div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;returns&#xA0;comma-separated&#xA0;values:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;IBM&quot;,174.23</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;HPQ&quot;,35.13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">names</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">[</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="nb">dict</span><span class="p">((</span><span class="n">sym</span><span class="p">,</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">))</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span> <span class="k">def</span>&#xA0;<span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;the&#xA0;current&#xA0;value&#xA0;of&#xA0;the&#xA0;portfolio.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">prices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">total</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1723,22 +1779,20 @@ from cogutil import *
         p.value()
         """)
     ]]]-->
-    <pre class='brush: python'>
-    $ python
-    Python 2.7.5 (default, Aug  5 2013, 19:47:08) 
-
-    &gt;&gt;&gt; from portfolio3 import Portfolio
-    &gt;&gt;&gt; p = Portfolio()
-    &gt;&gt;&gt; p.buy("IBM", 100, 150.0)
-    &gt;&gt;&gt; p.buy("HPQ", 100, 30.0)
-
-    &gt;&gt;&gt; p.current_prices()
-    {'HPQ': 29.07, 'IBM': 177.25}
-
-    &gt;&gt;&gt; p.value()
-    20632.0
-
-    </pre>
+    <div class="code pycon"><div class="line"><span class="go">$&#xA0;python</span>&nbsp;</div>
+    <div class="line"><span class="go">Python&#xA0;2.7.5&#xA0;(default,&#xA0;Aug&#xA0;&#xA0;5&#xA0;2013,&#xA0;19:47:08)&#xA0;</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio3</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">150.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;30.02,&#xA0;&#39;IBM&#39;:&#xA0;183.69}</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">21371.0</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1761,22 +1815,22 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port7.py", start=45, end=59)   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 45'>
-    # Replace Portfolio.current_prices with a stub implementation.
-    # This avoids the web, but also skips all our current_prices
-    # code.
-    class PortfolioValueTest(unittest.TestCase):
-        def fake_current_prices(self):
-            return {'IBM': 140.0, 'HPQ': 32.0}
-
-        def setUp(self):
-            self.p = Portfolio()
-            self.p.buy("IBM", 100, 120.0)
-            self.p.buy("HPQ", 100, 30.0)
-            self.p.current_prices = self.fake_current_prices
-
-        def test_value(self):
-            self.assertEqual(self.p.value(), 17200)</pre>
+    <div class="code python"><div class="line"><span class="lineno">45</span> <span class="c">#&#xA0;Replace&#xA0;Portfolio.current_prices&#xA0;with&#xA0;a&#xA0;stub&#xA0;implementation.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">46</span> <span class="c">#&#xA0;This&#xA0;avoids&#xA0;the&#xA0;web,&#xA0;but&#xA0;also&#xA0;skips&#xA0;all&#xA0;our&#xA0;current_prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">47</span> <span class="c">#&#xA0;code.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">fake_current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="p">{</span><span class="s">&#39;IBM&#39;</span><span class="p">:</span>&#xA0;<span class="mf">140.0</span><span class="p">,</span>&#xA0;<span class="s">&#39;HPQ&#39;</span><span class="p">:</span>&#xA0;<span class="mf">32.0</span><span class="p">}</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">fake_current_prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <ul>
         <li>Good: test results are predictable</li>
@@ -1788,38 +1842,37 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port7.out", highlight=[10])   # {{{
     ]]]-->
-    <pre class='brush: plain; highlight: [10]'>
-    $ coverage run test_port7.py
-    ........
-    ----------------------------------------------------------------------
-    Ran 8 tests in 0.001s
-
-    OK
-    $ coverage report -m
-    Name         Stmts   Miss  Cover   Missing
-    ------------------------------------------
-    portfolio3      33      6    82%   57-62
-    test_port7      45      0   100%   
-    ------------------------------------------
-    TOTAL           78      6    92%   
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;coverage&#xA0;run&#xA0;test_port7.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> ........&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> OK&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;33&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;6&#xA0;&#xA0;&#xA0;&#xA0;82%&#xA0;&#xA0;&#xA0;57-62&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port7&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;45&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;78&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;6&#xA0;&#xA0;&#xA0;&#xA0;92%&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("portfolio3.py", start=51, end=62)   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 51'>
-        def current_prices(self):
-            """Return a dict mapping names to current prices."""
-            # http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq
-            # returns comma-separated values:
-            #   "IBM",174.23
-            #   "HPQ",35.13
-            url = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s="
-            names = [name for name, shares, price in self.stocks]
-            url += ",".join(sorted(names))
-            data = urllib.urlopen(url)
-            prices = dict((sym, float(last)) for sym, last in csv.reader(data))
-            return prices</pre>
+    <div class="code python"><div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;returns&#xA0;comma-separated&#xA0;values:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;IBM&quot;,174.23</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;HPQ&quot;,35.13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">names</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">[</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="nb">dict</span><span class="p">((</span><span class="n">sym</span><span class="p">,</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">))</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1828,32 +1881,32 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port8.py", section="fake")   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 48'>
-    # A simple fake for urllib that implements only one method,
-    # and is only good for one request.  You can make this much
-    # more complex for your own needs.
-    class FakeUrllib(object):
-        """An object that can stand in for the urllib module."""
-
-        def urlopen(self, url):
-            """A stub urllib.urlopen() implementation."""
-            return StringIO('"IBM",140\n"HPQ",32\n')
-
-
-    class PortfolioValueTest(unittest.TestCase):
-        def setUp(self):
-            self.old_urllib = portfolio3.urllib
-            portfolio3.urllib = FakeUrllib()
-
-            self.p = Portfolio()
-            self.p.buy("IBM", 100, 120.0)
-            self.p.buy("HPQ", 100, 30.0)
-
-        def tearDown(self):
-            portfolio3.urllib = self.old_urllib
-
-        def test_value(self):
-            self.assertEqual(self.p.value(), 17200)</pre>
+    <div class="code python"><div class="line"><span class="lineno">48</span> <span class="c">#&#xA0;A&#xA0;simple&#xA0;fake&#xA0;for&#xA0;urllib&#xA0;that&#xA0;implements&#xA0;only&#xA0;one&#xA0;method,</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> <span class="c">#&#xA0;and&#xA0;is&#xA0;only&#xA0;good&#xA0;for&#xA0;one&#xA0;request.&#xA0;&#xA0;You&#xA0;can&#xA0;make&#xA0;this&#xA0;much</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> <span class="c">#&#xA0;more&#xA0;complex&#xA0;for&#xA0;your&#xA0;own&#xA0;needs.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> <span class="k">class</span>&#xA0;<span class="nc">FakeUrllib</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;An&#xA0;object&#xA0;that&#xA0;can&#xA0;stand&#xA0;in&#xA0;for&#xA0;the&#xA0;urllib&#xA0;module.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">url</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;A&#xA0;stub&#xA0;urllib.urlopen()&#xA0;implementation.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">FakeUrllib</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&nbsp;</div>
+    <div class="line"><span class="lineno">70</span>&nbsp;</div>
+    <div class="line"><span class="lineno">71</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">72</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1862,21 +1915,20 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port8.out")   # {{{
     ]]]-->
-    <pre class='brush: plain'>
-    $ coverage run test_port8.py
-    ........
-    ----------------------------------------------------------------------
-    Ran 8 tests in 0.001s
-
-    OK
-    $ coverage report -m
-    Name         Stmts   Miss  Cover   Missing
-    ------------------------------------------
-    portfolio3      33      0   100%   
-    test_port8      51      0   100%   
-    ------------------------------------------
-    TOTAL           84      0   100%   
-    </pre>
+    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;coverage&#xA0;run&#xA0;test_port8.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> ........&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> ----------------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> OK&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;33&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port8&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;51&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;84&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <ul>
         <li>Stdlib is stubbed</li>
@@ -1918,38 +1970,33 @@ from cogutil import *
         # The real methods still work
         s.write("hello")
         s.getvalue()
-        """)
+        """, command=False)
     ]]]-->
-    <pre class='brush: python'>
-    $ python
-    Python 2.7.5 (default, Aug  5 2013, 19:47:08) 
-
-    &gt;&gt;&gt; import mock, StringIO
-
-    &gt;&gt;&gt; # Make a mock object, call it, ask what was called.
-    &gt;&gt;&gt; m = mock.Mock()
-    &gt;&gt;&gt; m.foo(3, "hello")
-    &lt;Mock name='mock.foo()' id='4499669200'&gt;
-    &gt;&gt;&gt; m.bar(17).baz("ned").quux(47)
-    &lt;Mock name='mock.bar().baz().quux()' id='4499670288'&gt;
-    &gt;&gt;&gt; m.method_calls
-    [call.foo(3, 'hello'), call.bar(17)]
-
-    &gt;&gt;&gt; # Make a real object, give it a mock function
-    &gt;&gt;&gt; s = StringIO.StringIO()
-    &gt;&gt;&gt; s.fake_function = mock.Mock()
-    &gt;&gt;&gt; s.fake_function.return_value = "Success!"
-    &gt;&gt;&gt; s.fake_function(42)
-    'Success!'
-    &gt;&gt;&gt; s.fake_function.call_args
-    call(42)
-
-    &gt;&gt;&gt; # The real methods still work
-    &gt;&gt;&gt; s.write("hello")
-    &gt;&gt;&gt; s.getvalue()
-    'hello'
-
-    </pre>
+    <div class="code pycon"><div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">import</span>&#xA0;<span class="nn">mock</span><span class="o">,</span>&#xA0;<span class="nn">StringIO</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4318059792&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4318852432&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
+    <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;real&#xA0;object,&#xA0;give&#xA0;it&#xA0;a&#xA0;mock&#xA0;function</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">StringIO</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">fake_function</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">fake_function</span><span class="o">.</span><span class="n">return_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;Success!&quot;</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">fake_function</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="go">&#39;Success!&#39;</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">fake_function</span><span class="o">.</span><span class="n">call_args</span>&nbsp;</div>
+    <div class="line"><span class="go">call(42)</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;The&#xA0;real&#xA0;methods&#xA0;still&#xA0;work</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">&#39;hello&#39;</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1958,28 +2005,28 @@ from cogutil import *
     <!--[[[cog
     include_file("test_port9.py", section="mock")   # {{{
     ]]]-->
-    <pre class='brush: python; first-line: 49'>
-    class PortfolioValueTest(unittest.TestCase):
-        def setUp(self):
-            self.p = Portfolio()
-            self.p.buy("IBM", 100, 120.0)
-            self.p.buy("HPQ", 100, 30.0)
-
-        def test_value(self):
-            # Create a mock urllib.urlopen
-            with mock.patch('urllib.urlopen') as urlopen:
-
-                # When called, it will return this value
-                urlopen.return_value = StringIO('"IBM",140\n"HPQ",32\n')
-
-                # Run the test!
-                self.assertEqual(self.p.value(), 17200)
-
-                # We can ask the mock what its arguments were
-                urlopen.assert_called_with(
-                    "http://download.finance.yahoo.com/d/quotes.csv"
-                    "?f=sl1&amp;s=HPQ,IBM"
-                    )</pre>
+    <div class="code python"><div class="line"><span class="lineno">49</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Create&#xA0;a&#xA0;mock&#xA0;urllib.urlopen</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s">&#39;urllib.urlopen&#39;</span><span class="p">)</span>&#xA0;<span class="k">as</span>&#xA0;<span class="n">urlopen</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;When&#xA0;called,&#xA0;it&#xA0;will&#xA0;return&#xA0;this&#xA0;value</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">urlopen</span><span class="o">.</span><span class="n">return_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Run&#xA0;the&#xA0;test!</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;We&#xA0;can&#xA0;ask&#xA0;the&#xA0;mock&#xA0;what&#xA0;its&#xA0;arguments&#xA0;were</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">urlopen</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;http://download.finance.yahoo.com/d/quotes.csv&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;?f=sl1&amp;s=HPQ,IBM&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">)</span>&nbsp;</div>
+    </div>
     <!--[[[end]]] }}}-->
     <ul>
         <li>Using Foord's Mock: <a href='http://www.voidspace.org.uk/python/mock/'>http://www.voidspace.org.uk/python/mock</a></li>

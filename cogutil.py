@@ -1,60 +1,81 @@
 # Helpers for cogging slides.
 
+import textwrap
+
 import cog
 import cagedprompt
 
 def quote_html(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-def include_file(fname, highlight=None, start=None, end=None, section=None, klass=None):
+def include_file(fname, start=None, end=None, highlight=None, section=None):
     """Include a text file.
 
     `fname` is read as text, and included in a <pre> tag.
-    
+
     `highlight` is a list of lines to highlight.
-    
+
     `start` and `end` are the first and last line numbers to show, if provided.
 
     `section` is a named section.  If provided, a marked section in the file is extracted
     for display.  Markers for section foobar are "(((foobar))" and "(((end)))".
 
     """
-    if fname.endswith(".py"):
-        pre_class = "brush: python"
-    else:
-        pre_class = "brush: plain"
-    if highlight:
-        pre_class += "; highlight: %r" % (highlight,)
-    text = open(fname).read()
-    lines = text.split("\n")
+    with open(fname) as f:
+        text = f.read()
+
+    lines = text.splitlines()
     if section:
         assert start is None
         assert end is None
-        start_marker = "(((%s)))" % section
+        start_marker = "(((" + section + ")))"
         end_marker = "(((end)))"
-        start = next(i for i,l in enumerate(lines, 1) if start_marker in l)
-        end = next(i for i,l in enumerate(lines[start:], start+1) if end_marker in l)
+        start = next(i for i, l in enumerate(lines, 1) if start_marker in l)
+        end = next(i for i, l in enumerate(lines[start:], start+1) if end_marker in l)
         start += 1
         end -= 1
     else:
         if start is None:
             start = 1
         if end is None:
-            end = len(lines)+1
-    lines = lines[start-1:end]
+            end = len(lines)
 
-    if start != 1:
-        pre_class += "; first-line: %d" % start
-    if klass:
-        pre_class += "; class-name: %s" % klass
+    text = "\n".join(lines[start-1:end])
 
-    cog.outl("<pre class='%s'>" % (pre_class,))
-    cog.out(quote_html("\n".join(lines)))
-    cog.outl("</pre>")
+    lang = "python" if fname.endswith(".py") else "text"
+    include_code(text, lang=lang, firstline=start)
 
-def prompt_session(input):
-    output = cagedprompt.prompt_session(input)
-    cog.outl("<pre class='brush: python'>")
-    cog.outl("$ python")
-    cog.out(quote_html(output))
-    cog.outl("</pre>")
+def include_code(text, lang=None, number=True, firstline=1):
+    text = textwrap.dedent(text)
+    import pygments, pygments.lexers, pygments.formatters
+    # Because we are omitting the <pre> wrapper, we need spaces to become &nbsp;.
+    # This is totally not a public interface...
+    import pygments.formatters.html as pfh
+    pfh._escape_html_table.update({ord(' '): u'&#xA0;'})
+
+    class CodeHtmlFormatter(pygments.formatters.HtmlFormatter):
+
+        def wrap(self, source, outfile):
+            return self._wrap_code(source)
+
+        def _wrap_code(self, source):
+            yield 0, '<div class="code {}">'.format(lang)
+            for i, t in source:
+                if i == 1:
+                    # it's a line of formatted code
+                    t = '<div class="line">{}&nbsp;</div>\n'.format(t.rstrip())
+                yield i, t
+            yield 0, '</div>'
+
+    lexer = pygments.lexers.get_lexer_by_name(lang, stripall=True)
+    linenos = 'inline' if number else False
+    formatter = CodeHtmlFormatter(linenos=linenos, linenostart=firstline, cssclass="source")
+    result = pygments.highlight(text, lexer, formatter)
+    cog.outl(result)
+
+def prompt_session(input, command=True):
+    output = ""
+    if command:
+        output += "$ python\n"
+    output += cagedprompt.prompt_session(input, banner=command)
+    include_code(output, lang="pycon", number=False)
