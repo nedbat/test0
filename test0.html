@@ -548,7 +548,8 @@ from cogutil import *
                 amt += shares * price
             return amt
     -->
-    <div class="code python"><div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;portfolio1.py</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;portfolio1.py</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> <span class="k">class</span>&#xA0;<span class="nc">Portfolio</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 4</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;A&#xA0;simple&#xA0;stock&#xA0;portfolio&quot;&quot;&quot;</span>&nbsp;</div>
@@ -568,7 +569,7 @@ from cogutil import *
     <div class="line"><span class="lineno">18</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">amt</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">price</span>&nbsp;</div>
     <div class="line"><span class="lineno">19</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">amt</span>&nbsp;</div>
     </div>
-        <!--[[[end]]] }}}-->
+    <!--[[[end]]] }}}-->
 </div>
 
 <div class="slide">
@@ -587,9 +588,7 @@ from cogutil import *
         p.cost()
         """)
     ]]]-->
-    <div class="code pycon"><div class="line"><span class="go">$&#xA0;python</span>&nbsp;</div>
-    <div class="line"><span class="go">Python&#xA0;2.7.5&#xA0;(default,&#xA0;Aug&#xA0;&#xA0;5&#xA0;2013,&#xA0;19:47:08)&#xA0;</span>&nbsp;</div>
-    <div class="line">&nbsp;</div>
+    <div class="code pycon">
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
@@ -628,7 +627,8 @@ from cogutil import *
     p.buy("HPQ", 100, 36.15)
     print "With 100 HPQ @ 36.15: %s" % p.cost()
     -->
-    <div class="code python"><div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;porttest1.py</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;porttest1.py</span>&nbsp;</div>
     <div class="line"><span class="lineno">2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="lineno">3</span>&nbsp;</div>
     <div class="line"><span class="lineno">4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
@@ -648,7 +648,8 @@ from cogutil import *
     With 100 IBM @ 176.48: 17648.0
     With 100 HPQ @ 36.15: 21263.0
     -->
-    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest1.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest1.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0&nbsp;</div>
     <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0&nbsp;</div>
     <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0&nbsp;</div>
@@ -678,7 +679,8 @@ from cogutil import *
     p.buy("HPQ", 100, 36.15)
     print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
     -->
-    <div class="code python"><div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;porttest2.py</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;porttest2.py</span>&nbsp;</div>
     <div class="line"><span class="lineno">2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="lineno">3</span>&nbsp;</div>
     <div class="line"><span class="lineno">4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
@@ -698,7 +700,8 @@ from cogutil import *
     With 100 IBM @ 176.48: 17648.0, should be 17648.0
     With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     -->
-    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest2.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest2.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
     <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
     <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
@@ -730,7 +733,8 @@ from cogutil import *
     print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
     assert p.cost() == 21263.0
     -->
-    <div class="code python"><div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;porttest3.py</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;porttest3.py</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
@@ -753,7 +757,8 @@ from cogutil import *
     With 100 IBM @ 176.48: 17648.0, should be 17648.0
     With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     -->
-    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
     <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
     <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
@@ -780,7 +785,8 @@ from cogutil import *
         assert p.cost() == 17648.0
     AssertionError
     -->
-    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3_broken.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3_broken.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
     <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17600.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
@@ -855,7 +861,8 @@ from cogutil import *
     if __name__ == '__main__':
         unittest.main()
     -->
-    <div class="code python"><div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;test_port1.py</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;test_port1.py</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> <span class="kn">import</span>&#xA0;<span class="nn">unittest</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 4</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
@@ -881,7 +888,8 @@ from cogutil import *
 
     OK
     -->
-    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port1.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port1.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> .&nbsp;</div>
     <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Ran&#xA0;1&#xA0;test&#xA0;in&#xA0;0.000s&nbsp;</div>
@@ -895,17 +903,18 @@ from cogutil import *
     <h1>Under the covers</h1>
     <!--[[[cog
     include_code("""\
-    # unittest runs the tests as if I had written:
-    testcase = PortfolioTest()
-    try:
-        testcase.test_ibm()
-    except:
-        [record failure]
-    else:
-        [record success]
+        # unittest runs the tests as if I had written:
+        testcase = PortfolioTest()
+        try:
+            testcase.test_ibm()
+        except:
+            [record failure]
+        else:
+            [record success]
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm</span><span class="p">()</span>&nbsp;</div>
@@ -939,7 +948,8 @@ from cogutil import *
             p.buy("HPQ", 100, 36.15)
             assert p.cost() == 21263.0
     -->
-    <div class="code python"><div class="line"><span class="lineno"> 6</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno"> 6</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
@@ -967,7 +977,8 @@ from cogutil import *
 
     OK
     -->
-    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port2.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port2.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> ...&nbsp;</div>
     <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
@@ -984,33 +995,34 @@ from cogutil import *
     <h1>Under the covers</h1>
     <!--[[[cog
     include_code("""\
-    # unittest runs the tests as if I had written:
-    testcase = PortfolioTest()
-    try:
-        testcase.test_empty()
-    except:
-        [record failure]
-    else:
-        [record success]
+        # unittest runs the tests as if I had written:
+        testcase = PortfolioTest()
+        try:
+            testcase.test_empty()
+        except:
+            [record failure]
+        else:
+            [record success]
 
-    testcase = PortfolioTest()
-    try:
-        testcase.test_ibm()
-    except:
-        [record failure]
-    else:
-        [record success]
-    
-    testcase = PortfolioTest()
-    try:
-        testcase.test_ibm_hpq()
-    except:
-        [record failure]
-    else:
-        [record success]
+        testcase = PortfolioTest()
+        try:
+            testcase.test_ibm()
+        except:
+            [record failure]
+        else:
+            [record success]
+        
+        testcase = PortfolioTest()
+        try:
+            testcase.test_ibm_hpq()
+        except:
+            [record failure]
+        else:
+            [record success]
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_empty</span><span class="p">()</span>&nbsp;</div>
@@ -1070,7 +1082,8 @@ from cogutil import *
 
     FAILED (failures=1)
     -->
-    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port2_broken.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port2_broken.py&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
     <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
@@ -1107,7 +1120,8 @@ from cogutil import *
             p.buy("IBM", 100, 176.48)
             self.assertEqual(p.cost(), 17648.0)
     -->
-    <div class="code python"><div class="line"><span class="lineno">11</span> <span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">11</span> <span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">12</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">13</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mf">17648.0</span><span class="p">)</span>
@@ -1133,7 +1147,8 @@ from cogutil import *
 
     FAILED (failures=1)
     -->
-    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port3_broken.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port3_broken.py&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
     <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
@@ -1159,20 +1174,21 @@ from cogutil import *
     </ul>
     <!--[[[cog
     include_code("""\
-    assertEqual(first, second)
-    assertNotEqual(first, second)
-    assertTrue(expr)
-    assertFalse(expr)
-    assertIn(first, second)
-    assertNotIn(first, second)
-    assertAlmostEqual(first, second)
-    assertGreater(first, second)
-    assertLess(first, second)
-    assertRegexMatches(text, regexp)
-    .. etc ..
+        assertEqual(first, second)
+        assertNotEqual(first, second)
+        assertTrue(expr)
+        assertFalse(expr)
+        assertIn(first, second)
+        assertNotIn(first, second)
+        assertAlmostEqual(first, second)
+        assertGreater(first, second)
+        assertLess(first, second)
+        assertRegexMatches(text, regexp)
+        .. etc ..
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="n">assertEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="n">assertEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertNotEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertTrue</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertFalse</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>&nbsp;</div>
@@ -1185,16 +1201,6 @@ from cogutil import *
     <div class="line"><span class="o">..</span>&#xA0;<span class="n">etc</span>&#xA0;<span class="o">..</span>&nbsp;</div>
     </div>
     <!--[[[end]]]-->
-</div>
-
-<div class="hidden_slide">
-    <h1>Major enhancements in 2.7</h1>
-    <ul>
-        <li>unittest expanded significantly in 2.7 and 3.2</li>
-        <li>Some of what I show here is only available then</li>
-        <li>Test discovery</li>
-        <li>More asserters</li>
-    </ul>
 </div>
 
 
@@ -1223,7 +1229,8 @@ from cogutil import *
 
     FAILED (errors=1)
     -->
-    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port3_broken2.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port3_broken2.py&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> .E.&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
     <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
@@ -1245,18 +1252,19 @@ from cogutil import *
     <h1>Under the covers</h1>
     <!--[[[cog
     include_code("""\
-    testcase = PortfolioTest()
-    try:
-        testcase.test_method()
-    except AssertionError:
-        [record failure]
-    except:
-        [record error]
-    else:
-        [record success]
+        testcase = PortfolioTest()
+        try:
+            testcase.test_method()
+        except AssertionError:
+            [record failure]
+        except:
+            [record error]
+        else:
+            [record success]
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_method</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
@@ -1282,9 +1290,7 @@ from cogutil import *
         p.buy("IBM")
         """)
     ]]]-->
-    <div class="code pycon"><div class="line"><span class="go">$&#xA0;python</span>&nbsp;</div>
-    <div class="line"><span class="go">Python&#xA0;2.7.5&#xA0;(default,&#xA0;Aug&#xA0;&#xA0;5&#xA0;2013,&#xA0;19:47:08)&#xA0;</span>&nbsp;</div>
-    <div class="line">&nbsp;</div>
+    <div class="code pycon">
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
@@ -1305,7 +1311,8 @@ from cogutil import *
             p = Portfolio()
             p.buy("IBM")
     -->
-    <div class="code python"><div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
     </div>
@@ -1329,7 +1336,8 @@ from cogutil import *
 
     FAILED (errors=1)
     -->
-    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port4_broken.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port4_broken.py&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> E...&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
     <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_bad_input&#xA0;(__main__.PortfolioTest)&nbsp;</div>
@@ -1361,7 +1369,8 @@ from cogutil import *
             p = Portfolio()
             self.assertRaises(TypeError, p.buy, "IBM")
     -->
-    <div class="code python"><div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">,</span>&#xA0;<span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
     </div>
@@ -1377,7 +1386,8 @@ from cogutil import *
 
     OK
     -->
-    <div class="code text"><div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port4.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port4.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> ....&nbsp;</div>
     <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
@@ -1388,13 +1398,14 @@ from cogutil import *
     <p>Nicer in 2.7:</p>
     <!--[[[cog
     include_code("""\
-    def test_bad_input(self):
-        p = Portfolio()
-        with self.assertRaises(TypeError):
-            p.buy("IBM")
+        def test_bad_input(self):
+            p = Portfolio()
+            with self.assertRaises(TypeError):
+                p.buy("IBM")
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
@@ -1419,7 +1430,8 @@ from cogutil import *
             else:
                 raise ValueError("You don't own that stock")
     -->
-    <div class="code python"><div class="line"><span class="lineno">21</span> <span class="k">def</span>&#xA0;<span class="nf">sell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">21</span> <span class="k">def</span>&#xA0;<span class="nf">sell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">22</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Sell&#xA0;some&#xA0;number&#xA0;of&#xA0;shares&#xA0;of&#xA0;`name`.&quot;&quot;&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">holding</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">if</span>&#xA0;<span class="n">holding</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>&#xA0;<span class="o">==</span>&#xA0;<span class="n">name</span><span class="p">:</span>&nbsp;</div>
@@ -1464,7 +1476,8 @@ from cogutil import *
             with self.assertRaises(ValueError):
                 p.sell("IBM", 1)
     -->
-    <div class="code python"><div class="line"><span class="lineno">26</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">26</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">29</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
@@ -1522,7 +1535,8 @@ from cogutil import *
             with self.assertRaises(ValueError):
                 self.p.sell("IBM", 1)
     -->
-    <div class="code python"><div class="line"><span class="lineno">26</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">26</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">29</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
@@ -1569,7 +1583,8 @@ from cogutil import *
                     [record error]
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
@@ -1605,17 +1620,18 @@ from cogutil import *
     <h1>How NOT to do it</h1>
     <!--[[[cog
     include_code("""\
-    class MyBadTestCase(unittest.TestCase):
-        def test_a_thing(self):
-            old_global = some_global_thing
-            some_global_thing = new_test_value
+        class MyBadTestCase(unittest.TestCase):
+            def test_a_thing(self):
+                old_global = some_global_thing
+                some_global_thing = new_test_value
 
-            do_my_test_stuff()
-            
-            some_global_thing = old_global
+                do_my_test_stuff()
+                
+                some_global_thing = old_global
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="k">class</span>&#xA0;<span class="nc">MyBadTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="k">class</span>&#xA0;<span class="nc">MyBadTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_a_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">old_global</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">some_global_thing</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">some_global_thing</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">new_test_value</span>&nbsp;</div>
@@ -1635,19 +1651,20 @@ from cogutil import *
     <h1>The right way</h1>
     <!--[[[cog
     include_code("""\
-    class MyGoodTestCase(unittest.TestCase):
-        def setUp(self):
-            self.old_global = some_global_thing
-            some_global_thing = new_test_value
+        class MyGoodTestCase(unittest.TestCase):
+            def setUp(self):
+                self.old_global = some_global_thing
+                some_global_thing = new_test_value
 
-        def tearDown(self):
-            some_global_thing = self.old_global
+            def tearDown(self):
+                some_global_thing = self.old_global
 
-        def test_a_thing(self):
-            do_my_test_stuff()
+            def test_a_thing(self):
+                do_my_test_stuff()
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="k">class</span>&#xA0;<span class="nc">MyGoodTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="k">class</span>&#xA0;<span class="nc">MyGoodTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_global</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">some_global_thing</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">some_global_thing</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">new_test_value</span>&nbsp;</div>
@@ -1671,41 +1688,43 @@ from cogutil import *
     <h1>A better way</h1>
     <!--[[[cog
     include_code("""\
-    def test_with_special_settings(self):
-        with patch_settings(SOMETHING='special', ANOTHER='weird'):
-            do_my_test_stuff()
+        def test_with_special_settings(self):
+            with patch_settings(SOMETHING='special', ANOTHER='weird'):
+                do_my_test_stuff()
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="k">def</span>&#xA0;<span class="nf">test_with_special_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="k">def</span>&#xA0;<span class="nf">test_with_special_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">patch_settings</span><span class="p">(</span><span class="n">SOMETHING</span><span class="o">=</span><span class="s">&#39;special&#39;</span><span class="p">,</span>&#xA0;<span class="n">ANOTHER</span><span class="o">=</span><span class="s">&#39;weird&#39;</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">do_my_test_stuff</span><span class="p">()</span>&nbsp;</div>
     </div>
     <!--[[[end]]]-->
     <!--[[[cog
     include_code("""\
-    # From: http://stackoverflow.com/questions/913549
-    from somewhere import MY_GLOBALS
+        # From: http://stackoverflow.com/questions/913549
+        from somewhere import MY_GLOBALS
 
-    NO_SUCH_SETTING = object()
+        NO_SUCH_SETTING = object()
 
-    @contextlib.contextmanager
-    def patch_settings(**kwargs):
-        old_settings = []
-        for key, new_value in kwargs.items():
-            old_value = getattr(MY_GLOBALS, key, NO_SUCH_SETTING)
-            old_settings.append((key, old_value))
-            setattr(MY_GLOBALS, key, new_value)
+        @contextlib.contextmanager
+        def patch_settings(**kwargs):
+            old_settings = []
+            for key, new_value in kwargs.items():
+                old_value = getattr(MY_GLOBALS, key, NO_SUCH_SETTING)
+                old_settings.append((key, old_value))
+                setattr(MY_GLOBALS, key, new_value)
 
-        yield
+            yield
 
-        for key, old_value in old_settings:
-            if old_value is NO_SUCH_SETTING:
-                delattr(MY_GLOBALS, key)
-            else:
-                setattr(MY_GLOBALS, key, old_value)
+            for key, old_value in old_settings:
+                if old_value is NO_SUCH_SETTING:
+                    delattr(MY_GLOBALS, key)
+                else:
+                    setattr(MY_GLOBALS, key, old_value)
     """, lang="python")
     ]]]-->
-    <div class="code python"><div class="line"><span class="c">#&#xA0;From:&#xA0;http://stackoverflow.com/questions/913549</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="c">#&#xA0;From:&#xA0;http://stackoverflow.com/questions/913549</span>&nbsp;</div>
     <div class="line"><span class="kn">from</span>&#xA0;<span class="nn">somewhere</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">MY_GLOBALS</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="n">NO_SUCH_SETTING</span>&#xA0;<span class="o">=</span>&#xA0;<span class="nb">object</span><span class="p">()</span>&nbsp;</div>
@@ -2189,7 +2208,8 @@ from cogutil import *
                 total += shares * prices[name]
             return total
     -->
-    <div class="code python"><div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq</span>&nbsp;</div>
     <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;returns&#xA0;comma-separated&#xA0;values:</span>&nbsp;</div>
@@ -2228,9 +2248,7 @@ from cogutil import *
         p.value()
         """)
     ]]]-->
-    <div class="code pycon"><div class="line"><span class="go">$&#xA0;python</span>&nbsp;</div>
-    <div class="line"><span class="go">Python&#xA0;2.7.5&#xA0;(default,&#xA0;Aug&#xA0;&#xA0;5&#xA0;2013,&#xA0;19:47:08)&#xA0;</span>&nbsp;</div>
-    <div class="line">&nbsp;</div>
+    <div class="code pycon">
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio3</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">150.0</span><span class="p">)</span>&nbsp;</div>
@@ -2281,7 +2299,8 @@ from cogutil import *
         def test_value(self):
             self.assertEqual(self.p.value(), 17200)
     -->
-    <div class="code python"><div class="line"><span class="lineno">45</span> <span class="c">#&#xA0;Replace&#xA0;Portfolio.current_prices&#xA0;with&#xA0;a&#xA0;stub&#xA0;implementation.</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">45</span> <span class="c">#&#xA0;Replace&#xA0;Portfolio.current_prices&#xA0;with&#xA0;a&#xA0;stub&#xA0;implementation.</span>&nbsp;</div>
     <div class="line"><span class="lineno">46</span> <span class="c">#&#xA0;This&#xA0;avoids&#xA0;the&#xA0;web,&#xA0;but&#xA0;also&#xA0;skips&#xA0;all&#xA0;our&#xA0;current_prices</span>&nbsp;</div>
     <div class="line"><span class="lineno">47</span> <span class="c">#&#xA0;code.</span>&nbsp;</div>
     <div class="line"><span class="lineno">48</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
@@ -2312,7 +2331,7 @@ from cogutil import *
     $ coverage run test_port7.py
     ........
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 8 tests in 0.001s
+    Ran 8 tests in 0.000s
 
     OK
     $ coverage report –m
@@ -2323,10 +2342,11 @@ from cogutil import *
     ––––––––––––––––––––––––––––––––––––––––––
     TOTAL           78      6    92%   
     -->
-    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;coverage&#xA0;run&#xA0;test_port7.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;coverage&#xA0;run&#xA0;test_port7.py&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> ........&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> OK&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
@@ -2356,7 +2376,8 @@ from cogutil import *
             prices = dict((sym, float(last)) for sym, last in csv.reader(data))
             return prices
     -->
-    <div class="code python"><div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq</span>&nbsp;</div>
     <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;returns&#xA0;comma-separated&#xA0;values:</span>&nbsp;</div>
@@ -2404,7 +2425,8 @@ from cogutil import *
         def test_value(self):
             self.assertEqual(self.p.value(), 17200)
     -->
-    <div class="code python"><div class="line"><span class="lineno">48</span> <span class="c">#&#xA0;A&#xA0;simple&#xA0;fake&#xA0;for&#xA0;urllib&#xA0;that&#xA0;implements&#xA0;only&#xA0;one&#xA0;method,</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">48</span> <span class="c">#&#xA0;A&#xA0;simple&#xA0;fake&#xA0;for&#xA0;urllib&#xA0;that&#xA0;implements&#xA0;only&#xA0;one&#xA0;method,</span>&nbsp;</div>
     <div class="line"><span class="lineno">49</span> <span class="c">#&#xA0;and&#xA0;is&#xA0;only&#xA0;good&#xA0;for&#xA0;one&#xA0;request.&#xA0;&#xA0;You&#xA0;can&#xA0;make&#xA0;this&#xA0;much</span>&nbsp;</div>
     <div class="line"><span class="lineno">50</span> <span class="c">#&#xA0;more&#xA0;complex&#xA0;for&#xA0;your&#xA0;own&#xA0;needs.</span>&nbsp;</div>
     <div class="line"><span class="lineno">51</span> <span class="k">class</span>&#xA0;<span class="nc">FakeUrllib</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
@@ -2442,7 +2464,7 @@ from cogutil import *
     $ coverage run test_port8.py
     ........
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 8 tests in 0.001s
+    Ran 8 tests in 0.000s
 
     OK
     $ coverage report –m
@@ -2453,10 +2475,11 @@ from cogutil import *
     ––––––––––––––––––––––––––––––––––––––––––
     TOTAL           84      0   100%   
     -->
-    <div class="code text"><div class="line"><span class="lineno"> 1</span> $&#xA0;coverage&#xA0;run&#xA0;test_port8.py&nbsp;</div>
+    <div class="code text">
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;coverage&#xA0;run&#xA0;test_port8.py&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> ........&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> OK&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
@@ -2510,14 +2533,15 @@ from cogutil import *
         s.getvalue()
         """, command=False)
     ]]]-->
-    <div class="code pycon"><div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">import</span>&#xA0;<span class="nn">mock</span><span class="o">,</span>&#xA0;<span class="nn">StringIO</span>&nbsp;</div>
+    <div class="code pycon">
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">import</span>&#xA0;<span class="nn">mock</span><span class="o">,</span>&#xA0;<span class="nn">StringIO</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4452117712&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4345355600&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4453168400&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4343850384&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
     <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
@@ -2566,7 +2590,8 @@ from cogutil import *
                     "?f=sl1&s=HPQ,IBM"
                     )
     -->
-    <div class="code python"><div class="line"><span class="lineno">49</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="code python">
+    <div class="line"><span class="lineno">49</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
@@ -2647,8 +2672,7 @@ from cogutil import *
     <h1>Resources</h1>
     <ul>
         <li>Testing In Python mailing list</li>
-        <li>Python meetup! Project Night 8/11</li>
-        <li>#bostonpython and #python on freenode</li>
+        <li>#python on freenode</li>
     </ul>
 </div>
 
@@ -2665,11 +2689,8 @@ from cogutil import *
     <h1 style='margin:1em; font-size:140%'>http://nedbatchelder.com/text/starttest.html</h1>
     <h1 style='margin:1em; font-size:140%'>@nedbat</h1>
     
-    <!--
-    <p style='text-align:center; margin-top:7em;'>PS: I'm available for freelance work :)</p>
-    -->
     <p style='text-align:center; font-size:85%; margin-top:9em;'>
-    <i>Made with Cog, Slippy, and Fontin.</i>
+    <i>Made with Cog and Slippy.</i>
     </p>
 </div>
 

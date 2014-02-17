@@ -1,12 +1,16 @@
 # Helpers for cogging slides.
 
+import os
 import textwrap
+
+import pygments, pygments.lexers, pygments.formatters
 
 import cog
 import cagedprompt
 
 def quote_html(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
 
 def include_file(fname, start=None, end=None, highlight=None, section=None):
     """Include a text file.
@@ -45,6 +49,7 @@ def include_file(fname, start=None, end=None, highlight=None, section=None):
     lang = "python" if fname.endswith(".py") else "text"
     include_code(text, lang=lang, firstline=start, number=True, show_text=True, highlight=highlight)
 
+
 def include_code(text, lang=None, number=False, firstline=1, show_text=False, highlight=None):
     # Put the code in a comment, so we can see it in the HTML while editing.
     if show_text:
@@ -52,12 +57,15 @@ def include_code(text, lang=None, number=False, firstline=1, show_text=False, hi
         cog.outl(text.replace("-", u"\N{EN DASH}".encode("utf8"))) # Prevent breaking the HTML comment.
         cog.outl("-->")
 
+    if os.environ.get("NOPYG"):
+        cog.outl("<!-- *** NOPYG: {} lines of text will be here. *** -->".format(len(text.splitlines())))
+        return
+
     text = textwrap.dedent(text)
-    import pygments, pygments.lexers, pygments.formatters
+
     # Because we are omitting the <pre> wrapper, we need spaces to become &nbsp;.
     # This is totally not a public interface...
-    import pygments.formatters.html as pfh
-    pfh._escape_html_table.update({ord(' '): u'&#xA0;'})
+    pygments.formatters.html._escape_html_table.update({ord(' '): u'&#xA0;'})
 
     class CodeHtmlFormatter(pygments.formatters.HtmlFormatter):
 
@@ -65,7 +73,7 @@ def include_code(text, lang=None, number=False, firstline=1, show_text=False, hi
             return self._wrap_code(source)
 
         def _wrap_code(self, source):
-            yield 0, '<div class="code {}">'.format(lang)
+            yield 0, '<div class="code {}">\n'.format(lang)
             for i, t in source:
                 if i == 1:
                     # it's a line of formatted code
@@ -80,7 +88,8 @@ def include_code(text, lang=None, number=False, firstline=1, show_text=False, hi
     result = pygments.highlight(text, lexer, formatter)
     cog.outl(result)
 
-def prompt_session(input, command=True):
+
+def prompt_session(input, command=False):
     output = ""
     if command:
         output += "$ python\n"
