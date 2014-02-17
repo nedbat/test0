@@ -43,9 +43,15 @@ def include_file(fname, start=None, end=None, highlight=None, section=None):
     text = "\n".join(lines[start-1:end])
 
     lang = "python" if fname.endswith(".py") else "text"
-    include_code(text, lang=lang, firstline=start)
+    include_code(text, lang=lang, firstline=start, number=True, show_text=True)
 
-def include_code(text, lang=None, number=True, firstline=1):
+def include_code(text, lang=None, number=False, firstline=1, show_text=False):
+    # Put the code in a comment, so we can see it in the HTML while editing.
+    if show_text:
+        cog.outl("<!--")
+        cog.outl(text.replace("-", u"\N{EN DASH}".encode("utf8"))) # Prevent breaking the HTML comment.
+        cog.outl("-->")
+
     text = textwrap.dedent(text)
     import pygments, pygments.lexers, pygments.formatters
     # Because we are omitting the <pre> wrapper, we need spaces to become &nbsp;.
