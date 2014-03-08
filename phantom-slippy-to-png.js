@@ -14,7 +14,7 @@ if (phantom.args.length !== 2) {
 
 // settings
 delay = 1000;
-viewport = { width: 512, height: 384 };
+viewport = { width: 512*2, height: 384*2 };
 output = phantom.args[1];
 prefix = "";
 
