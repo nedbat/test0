@@ -24,6 +24,7 @@ class PortfolioTest(unittest.TestCase):
         self.assertRaises(TypeError, p.buy, "IBM")
 
 class PortfolioSellTest(unittest.TestCase):
+    # Invoked before each test method
     def setUp(self):
         self.p = Portfolio()
         self.p.buy("MSFT", 100, 27.0)
@@ -42,6 +43,6 @@ class PortfolioSellTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.p.sell("IBM", 1)
 
-    
+
 if __name__ == '__main__':
     unittest.main()

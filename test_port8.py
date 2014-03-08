@@ -50,11 +50,9 @@ class PortfolioSellTest(unittest.TestCase):
 # more complex for your own needs.
 class FakeUrllib(object):
     """An object that can stand in for the urllib module."""
-
     def urlopen(self, url):
         """A stub urllib.urlopen() implementation."""
         return StringIO('"IBM",140\n"HPQ",32\n')
-
 
 class PortfolioValueTest(unittest.TestCase):
     def setUp(self):

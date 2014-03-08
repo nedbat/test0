@@ -55,8 +55,7 @@ class Portfolio(object):
         #   "IBM",174.23
         #   "HPQ",35.13
         url = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&s="
-        names = [name for name, shares, price in self.stocks]
-        url += ",".join(sorted(names))
+        url += ",".join(sorted(name for name, _, _ in self.stocks))
         data = urllib.urlopen(url)
         prices = { sym: float(last) for sym, last in csv.reader(data) }
         return prices
@@ -65,7 +64,7 @@ class Portfolio(object):
         """Return the current value of the portfolio."""
         prices = self.current_prices()
         total = 0.0
-        for name, shares, price in self.stocks:
+        for name, shares, _ in self.stocks:
             total += shares * prices[name]
         return total
     #(((end)))

@@ -491,10 +491,10 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide" data-layout="withurl">
-    <h1>Testing mindset</h1>
-    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 450%; text-align: center; color: red'>I&nbsp;  AM&nbsp;  BAD!</p>
-    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 200%; text-align: center; color: red; letter-spacing: .05em'>and I should feel bad</p>
+<div class="slide" data-layout="clean">
+    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 450%; text-align: center; color: red; margin-top:0'>I&nbsp;  AM&nbsp;  BAD!</p>
+    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 200%; text-align: center; color: red; margin-top:0; letter-spacing: .05em'>and I should feel bad</p>
+    <p class="incremental" style='text-align: center'><img src='dadtoon-iambad-3.png' width="50%"/></p>
 </div>
 
 <div class="slide" data-layout="withurl">
@@ -811,7 +811,7 @@ from cogutil import *
 </div>
 
 <div class="slide">
-    <h1>This is starting to get complicated!</h1>
+    <h1>Getting complicated!</h1>
     <ul>
         <li>Like any code, tests will grow</li>
         <li>A test is a real program</li>
@@ -833,18 +833,10 @@ from cogutil import *
 <div class="slide">
     <h1>unittest</h1>
     <ul>
-        <li>Part of the Python standard library</li>
-        <li>Provides infrastructure for well-structured tests</li>
-        <li>Provides a test runner</li>
-        <li>Based on patterns used across many languages</li>
-    </ul>
-</div>
-
-<div class="slide">
-    <h1>Test classes</h1>
-    <ul>
-        <li>Tests are organized into classes</li>
-        <li>Tests are methods starting with test_</li>
+        <li>Python standard library</li>
+        <li>Infrastructure for well-structured tests</li>
+        <li>Test runner</li>
+        <li>Patterned on xUnit</li>
     </ul>
 </div>
 
@@ -974,7 +966,7 @@ from cogutil import *
     </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
-    include_file("test_port2.out")   # {{{
+    include_file("test_port2.out", highlight=[2])   # {{{
     ]]]-->
     <!--
     $ python test_port2.py
@@ -986,7 +978,8 @@ from cogutil import *
     -->
     <div class="code text">
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port2.py&nbsp;</div>
-    <div class="line"><span class="lineno">2</span> ...&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> <span class="hll">...
+    </span>&nbsp;</div>
     <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">5</span>&nbsp;</div>
@@ -1026,13 +1019,14 @@ from cogutil import *
             [record failure]
         else:
             [record success]
-    """, lang="python")
+    """, lang="python", highlight=[4, 12, 20])
     ]]]-->
     <div class="code python">
     <div class="line"><span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_empty</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_empty</span><span class="p">()</span>
+    </span>&nbsp;</div>
     <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
@@ -1040,7 +1034,8 @@ from cogutil import *
     <div class="line">&nbsp;</div>
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm</span><span class="p">()</span>
+    </span>&nbsp;</div>
     <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
@@ -1048,7 +1043,8 @@ from cogutil import *
     <div class="line">&nbsp;</div>
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm_hpq</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm_hpq</span><span class="p">()</span>
+    </span>&nbsp;</div>
     <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
@@ -1115,8 +1111,7 @@ from cogutil import *
 <div class="slide">
     <h1>unittest assert helpers</h1>
     <ul>
-        <li>Use self.assertEqual(x, y) instead of assert x == y</li>
-        <li>You get nicer messages</li>
+        <li>self.assertEqual(x, y) instead of assert x == y</li>
     </ul>
     <!--[[[cog
     include_file("test_port3.py", start=11, end=14, highlight=[14])   # {{{
@@ -1175,10 +1170,7 @@ from cogutil import *
 </div>
 
 <div class="slide">
-    <h1>unittest assert helpers</h1>
-    <ul>
-        <li>There are lots of specialized assert methods</li>
-    </ul>
+    <h1>Lots of assert helpers</h1>
     <!--[[[cog
     include_code("""\
         assertEqual(first, second)
@@ -1187,10 +1179,17 @@ from cogutil import *
         assertFalse(expr)
         assertIn(first, second)
         assertNotIn(first, second)
+        assertIs(first, second)
+        assertIsNot(first, second)
         assertAlmostEqual(first, second)
+        assertNotAlmostEqual(first, second)
         assertGreater(first, second)
         assertLess(first, second)
-        assertRegexMatches(text, regexp)
+        assertRegexpMatches(text, regexp)
+        assertRaises(exc_class, func, ...)
+        assertSequenceEqual(seq1, seq2)
+        assertItemsEqual(seq1, seq2)
+
         .. etc ..
     """, lang="python")
     ]]]-->
@@ -1201,10 +1200,17 @@ from cogutil import *
     <div class="line"><span class="n">assertFalse</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertIn</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertNotIn</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertIs</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertIsNot</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertNotAlmostEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertGreater</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertLess</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="n">assertRegexMatches</span><span class="p">(</span><span class="n">text</span><span class="p">,</span>&#xA0;<span class="n">regexp</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertRegexpMatches</span><span class="p">(</span><span class="n">text</span><span class="p">,</span>&#xA0;<span class="n">regexp</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertRaises</span><span class="p">(</span><span class="n">exc_class</span><span class="p">,</span>&#xA0;<span class="n">func</span><span class="p">,</span>&#xA0;<span class="o">...</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertSequenceEqual</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span>&#xA0;<span class="n">seq2</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertItemsEqual</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span>&#xA0;<span class="n">seq2</span><span class="p">)</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
     <div class="line"><span class="o">..</span>&#xA0;<span class="n">etc</span>&#xA0;<span class="o">..</span>&nbsp;</div>
     </div>
     <!--[[[end]]]-->
@@ -1214,11 +1220,11 @@ from cogutil import *
 <div class="slide">
     <h1>Three possible outcomes</h1>
     <ul>
-        <li>Test raises an exception other than AssertionError</li>
+        <li>Test raises an exception</li>
         <li>Produces an E outcome</li>
     </ul>
     <!--[[[cog
-    include_file("test_port3_broken2.out")   # {{{
+    include_file("test_port3_broken2.out", highlight=[2,8,9])   # {{{
     ]]]-->
     <!--
     $ python test_port3_broken2.py
@@ -1238,14 +1244,17 @@ from cogutil import *
     -->
     <div class="code text">
     <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port3_broken2.py&nbsp;</div>
-    <div class="line"><span class="lineno"> 2</span> .E.&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> <span class="hll">.E.
+    </span>&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
     <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port3_broken2.py&quot;,&#xA0;line&#xA0;13,&#xA0;in&#xA0;test_ibm&nbsp;</div>
-    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;p.buyxxxxx(&quot;IBM&quot;,&#xA0;100,&#xA0;176.48)&nbsp;</div>
-    <div class="line"><span class="lineno"> 9</span> AttributeError:&#xA0;&#39;Portfolio&#39;&#xA0;object&#xA0;has&#xA0;no&#xA0;attribute&#xA0;&#39;buyxxxxx&#39;&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;p.buyxxxxx(&quot;IBM&quot;,&#xA0;100,&#xA0;176.48)
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> <span class="hll">AttributeError:&#xA0;&#39;Portfolio&#39;&#xA0;object&#xA0;has&#xA0;no&#xA0;attribute&#xA0;&#39;buyxxxxx&#39;
+    </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
@@ -1285,10 +1294,7 @@ from cogutil import *
 </div>
 
 <div class="slide">
-    <h1>Testing for failure</h1>
-    <ul>
-        <li>What if your code is supposed to raise an exception?</li>
-    </ul>
+    <h1>Testing for exceptions</h1>
     <!-- ** Interactive session {{{ -->
     <!--[[[cog
     prompt_session("""\
@@ -1364,22 +1370,22 @@ from cogutil import *
 
 <div class="slide">
     <h1>assertRaises</h1>
-    <ul>
-        <li>assertRaises(exc, callable, arg1, arg2, ...)</li>
-        <li>Have to provide callable and args separately</li>
-    </ul>
     <!--[[[cog
-    include_file("test_port4.py", start=22, end=24)   # {{{
+    include_file("test_port4.py", start=22, end=25, highlight=[24,25])   # {{{
     ]]]-->
     <!--
         def test_bad_input(self):
             p = Portfolio()
-            self.assertRaises(TypeError, p.buy, "IBM")
+            with self.assertRaises(TypeError):
+                p.buy("IBM")
     -->
     <div class="code python">
     <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">,</span>&#xA0;<span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">24</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">25</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>
+    </span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
@@ -1402,22 +1408,6 @@ from cogutil import *
     <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
-    <p>Nicer in 2.7:</p>
-    <!--[[[cog
-    include_code("""\
-        def test_bad_input(self):
-            p = Portfolio()
-            with self.assertRaises(TypeError):
-                p.buy("IBM")
-    """, lang="python")
-    ]]]-->
-    <div class="code python">
-    <div class="line"><span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
-    </div>
-    <!--[[[end]]]-->
 </div>
 
 <div class="slide">
@@ -1453,7 +1443,7 @@ from cogutil import *
 </div>
 
 <div class="slide">
-    <h1>Testing sell</h1>
+    <h1>Testing sell()</h1>
     <!--[[[cog
     include_file("test_port5.py", start=26, end=49)   # {{{
     ]]]-->
@@ -1514,16 +1504,12 @@ from cogutil import *
 
 <div class="slide">
     <h1>Setting up a test</h1>
-    <ul>
-        <li>Tests can get repetitive</li>
-        <li>Many tests may need similar setup</li>
-        <li>A class can define setUp() to create initial state</li>
-    </ul>
     <!--[[[cog
-    include_file("test_port6.py", start=26, end=43)   # {{{
+    include_file("test_port6.py", start=26, end=44)   # {{{
     ]]]-->
     <!--
     class PortfolioSellTest(unittest.TestCase):
+        # Invoked before each test method
         def setUp(self):
             self.p = Portfolio()
             self.p.buy("MSFT", 100, 27.0)
@@ -1544,23 +1530,24 @@ from cogutil import *
     -->
     <div class="code python">
     <div class="line"><span class="lineno">26</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">29</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">30</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">31</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">32</span>&nbsp;</div>
-    <div class="line"><span class="lineno">33</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">34</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">36</span>&nbsp;</div>
-    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">40</span>&nbsp;</div>
-    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Invoked&#xA0;before&#xA0;each&#xA0;test&#xA0;method</span>&nbsp;</div>
+    <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">29</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">30</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">31</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">32</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">33</span>&nbsp;</div>
+    <div class="line"><span class="lineno">34</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">36</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">37</span>&nbsp;</div>
+    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">41</span>&nbsp;</div>
+    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
 </div>
@@ -1588,12 +1575,13 @@ from cogutil import *
                     testcase.tearDown()
                 except:
                     [record error]
-    """, lang="python")
+    """, lang="python", highlight=[3,17])
     ]]]-->
     <div class="code python">
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+    </span>&nbsp;</div>
     <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
@@ -1607,7 +1595,8 @@ from cogutil import *
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">finally</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">try</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
+    </span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">except</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
     </div>
@@ -2118,7 +2107,7 @@ from cogutil import *
         <li>Focus on one component</li>
         <li>Different kinds: Mocks, stubs, fakes, etc</li>
     </ul>
-    <img src='test0_static/mock.png'/>
+    <img src='mock.png'/>
 </div>
 
 <div class="slide">
@@ -2134,8 +2123,7 @@ from cogutil import *
             #   "IBM",174.23
             #   "HPQ",35.13
             url = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&s="
-            names = [name for name, shares, price in self.stocks]
-            url += ",".join(sorted(names))
+            url += ",".join(sorted(name for name, _, _ in self.stocks))
             data = urllib.urlopen(url)
             prices = { sym: float(last) for sym, last in csv.reader(data) }
             return prices
@@ -2144,7 +2132,7 @@ from cogutil import *
             """Return the current value of the portfolio."""
             prices = self.current_prices()
             total = 0.0
-            for name, shares, price in self.stocks:
+            for name, shares, _ in self.stocks:
                 total += shares * prices[name]
             return total
     -->
@@ -2156,19 +2144,18 @@ from cogutil import *
     <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;IBM&quot;,174.23</span>&nbsp;</div>
     <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;HPQ&quot;,35.13</span>&nbsp;</div>
     <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">names</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">[</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">]</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>&nbsp;</div>
-    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
-    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
-    <div class="line"><span class="lineno">63</span>&nbsp;</div>
-    <div class="line"><span class="lineno">64</span> <span class="k">def</span>&#xA0;<span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;the&#xA0;current&#xA0;value&#xA0;of&#xA0;the&#xA0;portfolio.&quot;&quot;&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
-    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
-    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">prices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>&nbsp;</div>
-    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">total</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">_</span><span class="p">,</span>&#xA0;<span class="n">_</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span> <span class="k">def</span>&#xA0;<span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;the&#xA0;current&#xA0;value&#xA0;of&#xA0;the&#xA0;portfolio.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">_</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">prices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">total</span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
 </div>
@@ -2195,10 +2182,10 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;29.88,&#xA0;&#39;IBM&#39;:&#xA0;185.17}</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;30.34,&#xA0;&#39;IBM&#39;:&#xA0;187.68}</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">21505.0</span>&nbsp;</div>
+    <div class="line"><span class="go">21802.0</span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
 </div>
@@ -2265,42 +2252,30 @@ from cogutil import *
 <div class="slide">
     <h1>But some code isn't tested!</h1>
     <!--[[[cog
-    include_file("test_port7.out", highlight=[10])   # {{{
+    include_file("test_port7.out", start=7, end=13, highlight=[10])   # {{{
     ]]]-->
     <!--
-    $ coverage run test_port7.py
-    ........
-    ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 8 tests in 0.001s
-
-    OK
     $ coverage report –m
     Name         Stmts   Miss  Cover   Missing
     ––––––––––––––––––––––––––––––––––––––––––
-    portfolio3      33      6    82%   57–62
+    portfolio3      32      5    84%   57–61
     test_port7      45      0   100%   
     ––––––––––––––––––––––––––––––––––––––––––
-    TOTAL           78      6    92%   
+    TOTAL           77      5    94%   
     -->
     <div class="code text">
-    <div class="line"><span class="lineno"> 1</span> $&#xA0;coverage&#xA0;run&#xA0;test_port7.py&nbsp;</div>
-    <div class="line"><span class="lineno"> 2</span> ........&nbsp;</div>
-    <div class="line"><span class="lineno"> 3</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
-    <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
-    <div class="line"><span class="lineno"> 6</span> OK&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;33&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;6&#xA0;&#xA0;&#xA0;&#xA0;82%&#xA0;&#xA0;&#xA0;57-62
+    <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;32&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;5&#xA0;&#xA0;&#xA0;&#xA0;84%&#xA0;&#xA0;&#xA0;57-61
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> test_port7&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;45&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;78&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;6&#xA0;&#xA0;&#xA0;&#xA0;92%&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;77&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;5&#xA0;&#xA0;&#xA0;&#xA0;94%&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
-    include_file("portfolio3.py", start=51, end=62)   # {{{
+    include_file("portfolio3.py", start=51, end=61)   # {{{
     ]]]-->
     <!--
         def current_prices(self):
@@ -2310,8 +2285,7 @@ from cogutil import *
             #   "IBM",174.23
             #   "HPQ",35.13
             url = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&s="
-            names = [name for name, shares, price in self.stocks]
-            url += ",".join(sorted(names))
+            url += ",".join(sorted(name for name, _, _ in self.stocks))
             data = urllib.urlopen(url)
             prices = { sym: float(last) for sym, last in csv.reader(data) }
             return prices
@@ -2324,11 +2298,10 @@ from cogutil import *
     <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;IBM&quot;,174.23</span>&nbsp;</div>
     <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;HPQ&quot;,35.13</span>&nbsp;</div>
     <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">names</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">[</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">]</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>&nbsp;</div>
-    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
-    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">_</span><span class="p">,</span>&#xA0;<span class="n">_</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
 </div>
@@ -2344,11 +2317,9 @@ from cogutil import *
     # more complex for your own needs.
     class FakeUrllib(object):
         """An object that can stand in for the urllib module."""
-
         def urlopen(self, url):
             """A stub urllib.urlopen() implementation."""
             return StringIO('"IBM",140\n"HPQ",32\n')
-
 
     class PortfolioValueTest(unittest.TestCase):
         def setUp(self):
@@ -2371,26 +2342,24 @@ from cogutil import *
     <div class="line"><span class="lineno">50</span> <span class="c">#&#xA0;more&#xA0;complex&#xA0;for&#xA0;your&#xA0;own&#xA0;needs.</span>&nbsp;</div>
     <div class="line"><span class="lineno">51</span> <span class="k">class</span>&#xA0;<span class="nc">FakeUrllib</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;An&#xA0;object&#xA0;that&#xA0;can&#xA0;stand&#xA0;in&#xA0;for&#xA0;the&#xA0;urllib&#xA0;module.&quot;&quot;&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">url</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;A&#xA0;stub&#xA0;urllib.urlopen()&#xA0;implementation.&quot;&quot;&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">57</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&nbsp;</div>
-    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">FakeUrllib</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">63</span>&nbsp;</div>
-    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">67</span>&nbsp;</div>
-    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&nbsp;</div>
-    <div class="line"><span class="lineno">70</span>&nbsp;</div>
-    <div class="line"><span class="lineno">71</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">72</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">url</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;A&#xA0;stub&#xA0;urllib.urlopen()&#xA0;implementation.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">FakeUrllib</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
 </div>
@@ -2398,37 +2367,25 @@ from cogutil import *
 <div class="slide">
     <h1>All of our code is executed</h1>
     <!--[[[cog
-    include_file("test_port8.out")   # {{{
+    include_file("test_port8.out", start=7, end=13)   # {{{
     ]]]-->
     <!--
-    $ coverage run test_port8.py
-    ........
-    ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 8 tests in 0.000s
-
-    OK
     $ coverage report –m
     Name         Stmts   Miss  Cover   Missing
     ––––––––––––––––––––––––––––––––––––––––––
-    portfolio3      33      0   100%   
+    portfolio3      32      0   100%   
     test_port8      51      0   100%   
     ––––––––––––––––––––––––––––––––––––––––––
-    TOTAL           84      0   100%   
+    TOTAL           83      0   100%   
     -->
     <div class="code text">
-    <div class="line"><span class="lineno"> 1</span> $&#xA0;coverage&#xA0;run&#xA0;test_port8.py&nbsp;</div>
-    <div class="line"><span class="lineno"> 2</span> ........&nbsp;</div>
-    <div class="line"><span class="lineno"> 3</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
-    <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
-    <div class="line"><span class="lineno"> 6</span> OK&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;33&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;32&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">11</span> test_port8&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;51&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;84&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;83&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
     <ul>
@@ -2448,10 +2405,11 @@ from cogutil import *
     </ul>
 </div>
 
+<!--
 <div class="slide">
     <h1>Automatic chameleons</h1>
-    <!-- ** Interactive session {{{ -->
-    <!--[[[cog
+    <!- - ** Interactive session {{{ - ->
+    <!- -[[[cog
     prompt_session("""\
         import mock, StringIO
 
@@ -2472,16 +2430,16 @@ from cogutil import *
         s.write("hello")
         s.getvalue()
         """, command=False)
-    ]]]-->
+    ]]]- ->
     <div class="code pycon">
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">import</span>&#xA0;<span class="nn">mock</span><span class="o">,</span>&#xA0;<span class="nn">StringIO</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4460747984&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4563471632&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4459242768&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4564522320&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
     <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
@@ -2499,8 +2457,9 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="go">&#39;hello&#39;</span>&nbsp;</div>
     </div>
-    <!--[[[end]]] }}}-->
+    <!- -[[[end]]] }}}- ->
 </div>
+-->
 
 <div class="slide">
     <h1>Mocking with no set up</h1>
@@ -2554,9 +2513,11 @@ from cogutil import *
     <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">)</span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
+    <!--
     <ul>
         <li>Using Foord's Mock: <a href='http://www.voidspace.org.uk/python/mock/'>http://www.voidspace.org.uk/python/mock</a></li>
     </ul>
+    -->
 </div>
 
 <div class="slide">
@@ -2573,12 +2534,24 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Other topics {{{ -->
-<!--
+
 <div class="slide section" data-layout="clean">
     <h1>Other topics</h1>
-    <h2>You should at least know what these are</h2>
+    <h2>Too many things I couldn't fit!</h2>
 </div>
 
+<div class="slide">
+    <h3 class="incremental">addCleanup: <span style="font-weight: normal">nicer than tearDown</span></h3>
+    <h3 class="incremental">doctest: <span style="font-weight: normal">only for testing docs!!</span></h3>
+    <h3 class="incremental">nose, py.test: <span style="font-weight: normal">better test runners</span></h3>
+    <h3 class="incremental">ddt: <span style="font-weight: normal">data-driven tests</span></h3>
+    <h3 class="incremental">coverage: <span style="font-weight: normal">you'll wonder how you lived without it</span></h3>
+    <h3 class="incremental">selenium: <span style="font-weight: normal">in-browser testing</span></h3>
+    <h3 class="incremental">jenkins, travis: <span style="font-weight: normal">run tests all the time</span></h3>
+</div>
+
+
+<!--
 <div class="slide">
     <h1>Doctest</h1>
     <ul>
@@ -2608,14 +2581,6 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
-    <h1>Resources</h1>
-    <ul>
-        <li>Testing In Python mailing list</li>
-        <li>#python on freenode</li>
-    </ul>
-</div>
-
 <!--
     Things to add:
 
@@ -2625,10 +2590,13 @@ from cogutil import *
 -->
 
 <div class="slide thankyou" data-layout="clean">
-    <h1 style='margin-top:1em'>Thank You</h1>
-    <h1 style='margin:1em; font-size:140%'>http://nedbatchelder.com/text/starttest.html</h1>
-    <h1 style='margin:1em; font-size:140%'>@nedbat</h1>
+    <h1 style='text-align: center; margin-top:1em'>Thank You</h1>
+    <h3 style='marginx:1em'>http://nedbatchelder.com/text/starttest.html</h3>
+    <h3 style='marginx:1em'>@nedbat</h3>
     
+    <p>Testing in Python mailing list</p>
+    <p>#python IRC channel</p>
+
     <p style='text-align:center; font-size:85%; margin-top:9em;'>
     <i>Made with Cog and Slippy.</i>
     </p>
