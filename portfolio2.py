@@ -19,7 +19,7 @@ class Portfolio(object):
         return amt
 
     def sell(self, name, shares):
-        """Sell some number of shares of `name`."""
+        """Sell some shares."""
         for holding in self.stocks:
             if holding[0] == name:
                 if holding[1] < shares:

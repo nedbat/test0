@@ -58,7 +58,7 @@ class Portfolio(object):
         names = [name for name, shares, price in self.stocks]
         url += ",".join(sorted(names))
         data = urllib.urlopen(url)
-        prices = dict((sym, float(last)) for sym, last in csv.reader(data))
+        prices = { sym: float(last) for sym, last in csv.reader(data) }
         return prices
 
     def value(self):

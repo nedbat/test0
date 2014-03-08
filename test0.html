@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+<!-- Prez mode:
+
+    Run KeyRemap4MacBook.
+    Enable presentation settings at the top.
+
+-->
+
 <!-- TO DO:
 
     * Content
@@ -245,7 +252,7 @@ from cogutil import *
 
         .slide .code {
             font-family: Consolas, monaco, monospace;
-            font-weight: 600
+            font-weight: 600;
             margin-top: 1em;
             background: #ccf;
             padding: .25em .25em;
@@ -1414,13 +1421,13 @@ from cogutil import *
 </div>
 
 <div class="slide">
-    <h1>Add sell functionality</h1>
+    <h1>Add .sell()</h1>
     <!--[[[cog
     include_file("portfolio2.py", start=21, end=30)   # {{{
     ]]]-->
     <!--
         def sell(self, name, shares):
-            """Sell some number of shares of `name`."""
+            """Sell some shares."""
             for holding in self.stocks:
                 if holding[0] == name:
                     if holding[1] < shares:
@@ -1432,7 +1439,7 @@ from cogutil import *
     -->
     <div class="code python">
     <div class="line"><span class="lineno">21</span> <span class="k">def</span>&#xA0;<span class="nf">sell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">22</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Sell&#xA0;some&#xA0;number&#xA0;of&#xA0;shares&#xA0;of&#xA0;`name`.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">22</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Sell&#xA0;some&#xA0;shares.&quot;&quot;&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">holding</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">if</span>&#xA0;<span class="n">holding</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>&#xA0;<span class="o">==</span>&#xA0;<span class="n">name</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="lineno">25</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">if</span>&#xA0;<span class="n">holding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>&#xA0;<span class="o">&lt;</span>&#xA0;<span class="n">shares</span><span class="p">:</span>&nbsp;</div>
@@ -1682,70 +1689,6 @@ from cogutil import *
         <li>Test method is small and focused</li>
         <li>* unless setUp fails</li>
     </ul>
-</div>
-
-<div class="slide">
-    <h1>A better way</h1>
-    <!--[[[cog
-    include_code("""\
-        def test_with_special_settings(self):
-            with patch_settings(SOMETHING='special', ANOTHER='weird'):
-                do_my_test_stuff()
-    """, lang="python")
-    ]]]-->
-    <div class="code python">
-    <div class="line"><span class="k">def</span>&#xA0;<span class="nf">test_with_special_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">patch_settings</span><span class="p">(</span><span class="n">SOMETHING</span><span class="o">=</span><span class="s">&#39;special&#39;</span><span class="p">,</span>&#xA0;<span class="n">ANOTHER</span><span class="o">=</span><span class="s">&#39;weird&#39;</span><span class="p">):</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">do_my_test_stuff</span><span class="p">()</span>&nbsp;</div>
-    </div>
-    <!--[[[end]]]-->
-    <!--[[[cog
-    include_code("""\
-        # From: http://stackoverflow.com/questions/913549
-        from somewhere import MY_GLOBALS
-
-        NO_SUCH_SETTING = object()
-
-        @contextlib.contextmanager
-        def patch_settings(**kwargs):
-            old_settings = []
-            for key, new_value in kwargs.items():
-                old_value = getattr(MY_GLOBALS, key, NO_SUCH_SETTING)
-                old_settings.append((key, old_value))
-                setattr(MY_GLOBALS, key, new_value)
-
-            yield
-
-            for key, old_value in old_settings:
-                if old_value is NO_SUCH_SETTING:
-                    delattr(MY_GLOBALS, key)
-                else:
-                    setattr(MY_GLOBALS, key, old_value)
-    """, lang="python")
-    ]]]-->
-    <div class="code python">
-    <div class="line"><span class="c">#&#xA0;From:&#xA0;http://stackoverflow.com/questions/913549</span>&nbsp;</div>
-    <div class="line"><span class="kn">from</span>&#xA0;<span class="nn">somewhere</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">MY_GLOBALS</span>&nbsp;</div>
-    <div class="line">&nbsp;</div>
-    <div class="line"><span class="n">NO_SUCH_SETTING</span>&#xA0;<span class="o">=</span>&#xA0;<span class="nb">object</span><span class="p">()</span>&nbsp;</div>
-    <div class="line">&nbsp;</div>
-    <div class="line"><span class="nd">@contextlib.contextmanager</span>&nbsp;</div>
-    <div class="line"><span class="k">def</span>&#xA0;<span class="nf">patch_settings</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">old_settings</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">[]</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">key</span><span class="p">,</span>&#xA0;<span class="n">new_value</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">old_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="nb">getattr</span><span class="p">(</span><span class="n">MY_GLOBALS</span><span class="p">,</span>&#xA0;<span class="n">key</span><span class="p">,</span>&#xA0;<span class="n">NO_SUCH_SETTING</span><span class="p">)</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">old_settings</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span>&#xA0;<span class="n">old_value</span><span class="p">))</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="nb">setattr</span><span class="p">(</span><span class="n">MY_GLOBALS</span><span class="p">,</span>&#xA0;<span class="n">key</span><span class="p">,</span>&#xA0;<span class="n">new_value</span><span class="p">)</span>&nbsp;</div>
-    <div class="line">&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">yield</span>&nbsp;</div>
-    <div class="line">&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">key</span><span class="p">,</span>&#xA0;<span class="n">old_value</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">old_settings</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">if</span>&#xA0;<span class="n">old_value</span>&#xA0;<span class="ow">is</span>&#xA0;<span class="n">NO_SUCH_SETTING</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="nb">delattr</span><span class="p">(</span><span class="n">MY_GLOBALS</span><span class="p">,</span>&#xA0;<span class="n">key</span><span class="p">)</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">else</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="nb">setattr</span><span class="p">(</span><span class="n">MY_GLOBALS</span><span class="p">,</span>&#xA0;<span class="n">key</span><span class="p">,</span>&#xA0;<span class="n">old_value</span><span class="p">)</span>&nbsp;</div>
-    </div>
-    <!--[[[end]]]-->
 </div>
 
 <div class="slide">
@@ -2180,9 +2123,6 @@ from cogutil import *
 
 <div class="slide">
     <h1>Real-time data!</h1>
-    <ul>
-        <li>Hit the web to get current stock prices</li>
-    </ul>
     <!--[[[cog
     include_file("portfolio3.py", section="value")   # {{{
     ]]]-->
@@ -2197,7 +2137,7 @@ from cogutil import *
             names = [name for name, shares, price in self.stocks]
             url += ",".join(sorted(names))
             data = urllib.urlopen(url)
-            prices = dict((sym, float(last)) for sym, last in csv.reader(data))
+            prices = { sym: float(last) for sym, last in csv.reader(data) }
             return prices
 
         def value(self):
@@ -2219,7 +2159,7 @@ from cogutil import *
     <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">names</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">[</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>&nbsp;</div>
     <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="nb">dict</span><span class="p">((</span><span class="n">sym</span><span class="p">,</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">))</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
     <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
     <div class="line"><span class="lineno">63</span>&nbsp;</div>
     <div class="line"><span class="lineno">64</span> <span class="k">def</span>&#xA0;<span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
@@ -2255,10 +2195,10 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;30.02,&#xA0;&#39;IBM&#39;:&#xA0;183.69}</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;29.88,&#xA0;&#39;IBM&#39;:&#xA0;185.17}</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">21371.0</span>&nbsp;</div>
+    <div class="line"><span class="go">21505.0</span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
 </div>
@@ -2331,7 +2271,7 @@ from cogutil import *
     $ coverage run test_port7.py
     ........
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 8 tests in 0.000s
+    Ran 8 tests in 0.001s
 
     OK
     $ coverage report –m
@@ -2346,7 +2286,7 @@ from cogutil import *
     <div class="line"><span class="lineno"> 1</span> $&#xA0;coverage&#xA0;run&#xA0;test_port7.py&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> ........&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> Ran&#xA0;8&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> OK&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
@@ -2373,7 +2313,7 @@ from cogutil import *
             names = [name for name, shares, price in self.stocks]
             url += ",".join(sorted(names))
             data = urllib.urlopen(url)
-            prices = dict((sym, float(last)) for sym, last in csv.reader(data))
+            prices = { sym: float(last) for sym, last in csv.reader(data) }
             return prices
     -->
     <div class="code python">
@@ -2387,7 +2327,7 @@ from cogutil import *
     <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">names</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">[</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>&nbsp;</div>
     <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="nb">dict</span><span class="p">((</span><span class="n">sym</span><span class="p">,</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">))</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
     <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
@@ -2539,9 +2479,9 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4345355600&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4460747984&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4343850384&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4459242768&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
     <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
