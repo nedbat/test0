@@ -42,7 +42,3 @@ class PortfolioSellTest(unittest.TestCase):
     def test_dont_own_it(self):
         with self.assertRaises(ValueError):
             self.p.sell("IBM", 1)
-
-
-if __name__ == '__main__':
-    unittest.main()

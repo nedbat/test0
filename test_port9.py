@@ -68,6 +68,3 @@ class PortfolioValueTest(unittest.TestCase):
                 "?f=sl1&s=HPQ,IBM"
                 )
 #(((end)))
-
-if __name__ == '__main__':
-    unittest.main()

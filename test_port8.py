@@ -69,6 +69,3 @@ class PortfolioValueTest(unittest.TestCase):
     def test_value(self):
         self.assertEqual(self.p.value(), 17200)
 #(((end)))
-
-if __name__ == '__main__':
-    unittest.main()

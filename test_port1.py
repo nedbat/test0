@@ -8,6 +8,3 @@ class PortfolioTest(unittest.TestCase):
         p = Portfolio()
         p.buy("IBM", 100, 176.48)
         assert p.cost() == 17648.0
-
-if __name__ == '__main__':
-    unittest.main()

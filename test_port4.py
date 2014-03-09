@@ -23,6 +23,3 @@ class PortfolioTest(unittest.TestCase):
         p = Portfolio()
         with self.assertRaises(TypeError):
             p.buy("IBM")
-
-if __name__ == '__main__':
-    unittest.main()

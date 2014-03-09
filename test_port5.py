@@ -47,7 +47,3 @@ class PortfolioSellTest(unittest.TestCase):
         p.buy("ORCL", 100, 34.0)
         with self.assertRaises(ValueError):
             p.sell("IBM", 1)
-
-    
-if __name__ == '__main__':
-    unittest.main()

@@ -22,6 +22,3 @@ class PortfolioTest(unittest.TestCase):
     def test_bad_input(self):
         p = Portfolio()
         p.buy("IBM")
-
-if __name__ == '__main__':
-    unittest.main()
