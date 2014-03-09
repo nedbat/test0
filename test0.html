@@ -499,11 +499,14 @@ from cogutil import *
 
 <div class="slide" data-layout="withurl">
     <h1>Reality</h1>
+    <!--
     <ul>
         <li class="incremental">You aren't bad</li>
         <li class="incremental">Testing is hard</li>
         <li class="incremental">It's worth it</li>
     </ul>
+    -->
+    <p class="incremental" style='text-align: center'><img src='dadtoon-chaos-2.png' width="50%"/></p>
 </div>
 
 <!-- }}} -->
@@ -856,9 +859,6 @@ from cogutil import *
             p = Portfolio()
             p.buy("IBM", 100, 176.48)
             assert p.cost() == 17648.0
-
-    if __name__ == '__main__':
-        unittest.main()
     -->
     <div class="code python">
     <div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;test_port1.py</span>&nbsp;</div>
@@ -871,16 +871,13 @@ from cogutil import *
     <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17648.0</span>&nbsp;</div>
-    <div class="line"><span class="lineno">11</span>&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> <span class="k">if</span>&#xA0;<span class="n">__name__</span>&#xA0;<span class="o">==</span>&#xA0;<span class="s">&#39;__main__&#39;</span><span class="p">:</span>&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port1.out")   # {{{
     ]]]-->
     <!--
-    $ python test_port1.py
+    $ python –m unittest test_port1
     .
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     Ran 1 test in 0.000s
@@ -888,7 +885,7 @@ from cogutil import *
     OK
     -->
     <div class="code text">
-    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port1.py&nbsp;</div>
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port1&nbsp;</div>
     <div class="line"><span class="lineno">2</span> .&nbsp;</div>
     <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Ran&#xA0;1&#xA0;test&#xA0;in&#xA0;0.000s&nbsp;</div>
@@ -969,7 +966,7 @@ from cogutil import *
     include_file("test_port2.out", highlight=[2])   # {{{
     ]]]-->
     <!--
-    $ python test_port2.py
+    $ python –m unittest test_port2
     ...
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     Ran 3 tests in 0.000s
@@ -977,7 +974,7 @@ from cogutil import *
     OK
     -->
     <div class="code text">
-    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port2.py&nbsp;</div>
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port2&nbsp;</div>
     <div class="line"><span class="lineno">2</span> <span class="hll">...
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
@@ -1070,10 +1067,10 @@ from cogutil import *
     include_file("test_port2_broken.out")   # {{{
     ]]]-->
     <!--
-    $ python test_port2_broken.py
+    $ python –m unittest test_port2_broken
     .F.
     ======================================================================
-    FAIL: test_ibm (__main__.PortfolioTest)
+    FAIL: test_ibm (test_port2_broken.PortfolioTest)
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     Traceback (most recent call last):
       File "test_port2_broken.py", line 14, in test_ibm
@@ -1086,10 +1083,10 @@ from cogutil import *
     FAILED (failures=1)
     -->
     <div class="code text">
-    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port2_broken.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port2_broken&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(test_port2_broken.PortfolioTest)&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port2_broken.py&quot;,&#xA0;line&#xA0;14,&#xA0;in&#xA0;test_ibm&nbsp;</div>
@@ -1134,10 +1131,10 @@ from cogutil import *
     include_file("test_port3_broken.out", highlight=[9])   # {{{
     ]]]-->
     <!--
-    $ python test_port3_broken.py
+    $ python –m unittest test_port3_broken
     .F.
     ======================================================================
-    FAIL: test_ibm (__main__.PortfolioTest)
+    FAIL: test_ibm (test_port3_broken.PortfolioTest)
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     Traceback (most recent call last):
       File "test_port3_broken.py", line 14, in test_ibm
@@ -1150,10 +1147,10 @@ from cogutil import *
     FAILED (failures=1)
     -->
     <div class="code text">
-    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port3_broken.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port3_broken&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(test_port3_broken.PortfolioTest)&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port3_broken.py&quot;,&#xA0;line&#xA0;14,&#xA0;in&#xA0;test_ibm&nbsp;</div>
@@ -1227,10 +1224,10 @@ from cogutil import *
     include_file("test_port3_broken2.out", highlight=[2,8,9])   # {{{
     ]]]-->
     <!--
-    $ python test_port3_broken2.py
+    $ python –m unittest test_port3_broken2
     .E.
     ======================================================================
-    ERROR: test_ibm (__main__.PortfolioTest)
+    ERROR: test_ibm (test_port3_broken2.PortfolioTest)
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     Traceback (most recent call last):
       File "test_port3_broken2.py", line 13, in test_ibm
@@ -1243,11 +1240,11 @@ from cogutil import *
     FAILED (errors=1)
     -->
     <div class="code text">
-    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port3_broken2.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port3_broken2&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> <span class="hll">.E.
     </span>&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_ibm&#xA0;(__main__.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_ibm&#xA0;(test_port3_broken2.PortfolioTest)&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port3_broken2.py&quot;,&#xA0;line&#xA0;13,&#xA0;in&#xA0;test_ibm&nbsp;</div>
@@ -1334,10 +1331,10 @@ from cogutil import *
     include_file("test_port4_broken.out")   # {{{
     ]]]-->
     <!--
-    $ python test_port4_broken.py
+    $ python –m unittest test_port4_broken
     E...
     ======================================================================
-    ERROR: test_bad_input (__main__.PortfolioTest)
+    ERROR: test_bad_input (test_port4_broken.PortfolioTest)
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     Traceback (most recent call last):
       File "test_port4_broken.py", line 24, in test_bad_input
@@ -1350,10 +1347,10 @@ from cogutil import *
     FAILED (errors=1)
     -->
     <div class="code text">
-    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;test_port4_broken.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port4_broken&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> E...&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_bad_input&#xA0;(__main__.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_bad_input&#xA0;(test_port4_broken.PortfolioTest)&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port4_broken.py&quot;,&#xA0;line&#xA0;24,&#xA0;in&#xA0;test_bad_input&nbsp;</div>
@@ -1392,7 +1389,7 @@ from cogutil import *
     include_file("test_port4.out")   # {{{
     ]]]-->
     <!--
-    $ python test_port4.py
+    $ python –m unittest test_port4
     ....
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     Ran 4 tests in 0.000s
@@ -1400,7 +1397,7 @@ from cogutil import *
     OK
     -->
     <div class="code text">
-    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;test_port4.py&nbsp;</div>
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port4&nbsp;</div>
     <div class="line"><span class="lineno">2</span> ....&nbsp;</div>
     <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
@@ -2259,9 +2256,9 @@ from cogutil import *
     Name         Stmts   Miss  Cover   Missing
     ––––––––––––––––––––––––––––––––––––––––––
     portfolio3      32      5    84%   57–61
-    test_port7      45      0   100%   
+    test_port7      43      0   100%   
     ––––––––––––––––––––––––––––––––––––––––––
-    TOTAL           77      5    94%   
+    TOTAL           75      5    93%   
     -->
     <div class="code text">
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
@@ -2269,9 +2266,9 @@ from cogutil import *
     <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;32&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;5&#xA0;&#xA0;&#xA0;&#xA0;84%&#xA0;&#xA0;&#xA0;57-61
     </span>&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> test_port7&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;45&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port7&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;43&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;77&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;5&#xA0;&#xA0;&#xA0;&#xA0;94%&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;75&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;5&#xA0;&#xA0;&#xA0;&#xA0;93%&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
     <!--[[[cog
@@ -2374,18 +2371,18 @@ from cogutil import *
     Name         Stmts   Miss  Cover   Missing
     ––––––––––––––––––––––––––––––––––––––––––
     portfolio3      32      0   100%   
-    test_port8      51      0   100%   
+    test_port8      49      0   100%   
     ––––––––––––––––––––––––––––––––––––––––––
-    TOTAL           83      0   100%   
+    TOTAL           81      0   100%   
     -->
     <div class="code text">
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;32&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> test_port8&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;51&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port8&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;49&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;83&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;81&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
     </div>
     <!--[[[end]]] }}}-->
     <ul>
@@ -2437,9 +2434,9 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4563471632&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4447112592&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4564522320&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4448163280&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
     <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
@@ -2541,13 +2538,22 @@ from cogutil import *
 </div>
 
 <div class="slide">
+    <h1>Tools</h1>
     <h3 class="incremental">addCleanup: <span style="font-weight: normal">nicer than tearDown</span></h3>
     <h3 class="incremental">doctest: <span style="font-weight: normal">only for testing docs!!</span></h3>
     <h3 class="incremental">nose, py.test: <span style="font-weight: normal">better test runners</span></h3>
     <h3 class="incremental">ddt: <span style="font-weight: normal">data-driven tests</span></h3>
     <h3 class="incremental">coverage: <span style="font-weight: normal">you'll wonder how you lived without it</span></h3>
-    <h3 class="incremental">selenium: <span style="font-weight: normal">in-browser testing</span></h3>
-    <h3 class="incremental">jenkins, travis: <span style="font-weight: normal">run tests all the time</span></h3>
+    <h3 class="incremental">Selenium: <span style="font-weight: normal">in-browser testing</span></h3>
+    <h3 class="incremental">Jenkins, Travis: <span style="font-weight: normal">run tests all the time</span></h3>
+</div>
+
+<div class="slide">
+    <h1>Topics</h1>
+    <h3 class="incremental">TDD: <span style="font-weight: normal">tests before code!?</span></h3>
+    <h3 class="incremental">integration tests: <span style="font-weight: normal">bigger chunks</span></h3>
+    <h3 class="incremental">load testing: <span style="font-weight: normal">how much traffic is OK?</span></h3>
+    <h3 class="incremental">: <span style="font-weight: normal"></span></h3>
 </div>
 
 
