@@ -24,7 +24,7 @@ SLUG = test0
 SLIDE_HTML = $(SLUG).html
 SAMPLE_ZIP = $(SLUG).zip
 
-IMAGES = 
+IMAGES = dadtoon-chaos-2.png dadtoon-iambad-3.png mock.png
 SD = slippy/src
 JS_FILES = $(SD)/jquery-1.4.2.min.js $(SD)/jquery.history.js $(SD)/slippy-0.9.0.js 
 CSS_FILES = $(SD)/slippy-0.9.0.css neds.css
@@ -53,7 +53,7 @@ $(COVERAGE_OUT) : test_port7.py test_port8.py portfolio3.py
 
 clean:
 	rm -f $(OUTPUT)
-	rm -f $(SAMPLE_ZIP)
+	rm -f $(SAMPLE_ZIP) $(PX)
 	rm -f *.pyc
 	rm -rf __pycache__
 	rm -f .coverage
@@ -68,11 +68,19 @@ tar $(TARFILE): $(SLIDE_HTML) $(SAMPLES) $(SLIDE_SUPPORT) Makefile cog.py
 PNG_DIR = png
 
 pngs: $(SLIDE_HTML)
-	phantomjs phantom-slippy-to-png.js $(SLIDE_HTML) $(PNG_DIR)/
+	phantomjs phantom-slippy-to-png.js $(SLIDE_HTML) $(PNG_DIR)/ $(SLUG)_
 
 WEBHOME = ~/web/stellated/pages/text
+WEBPRZHOME = $(WEBHOME)/$(SLUG)
 
-publish: $(SLIDE_HTML) $(SAMPLE_ZIP)
-	cp $(SLIDE_HTML) $(WEBHOME)/$(SLUG).html
-	svn export --force starttest_stuff $(WEBHOME)/starttest_stuff
-	cp $(SAMPLE_ZIP) $(WEBHOME)
+PX = $(SLUG).px
+
+px $(PX): $(SLIDE_HTML)
+	python slippy_to_px.py $(SLIDE_HTML) $(PX) $(SLUG)
+
+publish: $(SLIDE_HTML) $(SAMPLE_ZIP) $(PX) pngs
+	cp -f $(PX) $(WEBHOME)
+	mkdir -p $(WEBPRZHOME)
+	cp $(PNG_DIR)/*.png $(WEBHOME)/$(SLUG)
+	cp -f $(SLIDE_HTML) $(WEBPRZHOME)
+	cp -f $(SAMPLE_ZIP) $(WEBPRZHOME)

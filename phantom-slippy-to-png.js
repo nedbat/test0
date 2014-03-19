@@ -7,7 +7,7 @@ if (phantom.version.major == 1 && phantom.version.minor < 3) {
 }
 
 // check usage
-if (phantom.args.length !== 2) {
+if (phantom.args.length !== 3) {
     console.log('Usage: phantom-pdf.js URL dirname');
     phantom.exit(-1);
 }
@@ -16,7 +16,7 @@ if (phantom.args.length !== 2) {
 delay = 1000;
 viewport = { width: 512*2, height: 384*2 };
 output = phantom.args[1];
-prefix = "";
+prefix = phantom.args[2];
 
 (function init() {
     var i, slides, workers, slidesPerWorker, page;
