@@ -73,13 +73,13 @@ def include_code(text, lang=None, number=False, firstline=1, show_text=False, hi
             return self._wrap_code(source)
 
         def _wrap_code(self, source):
-            yield 0, '<div class="code {}">\n'.format(lang)
+            yield 0, '<div class="code {}"> <!-- {{{{{{ -->\n'.format(lang)
             for i, t in source:
                 if i == 1:
                     # it's a line of formatted code
                     t = '<div class="line">{}&nbsp;</div>\n'.format(t.rstrip())
                 yield i, t
-            yield 0, '</div>'
+            yield 0, '</div><!-- }}} -->'
 
     lexer = pygments.lexers.get_lexer_by_name(lang, stripall=True)
     linenos = 'inline' if number else False
@@ -94,4 +94,4 @@ def prompt_session(input, command=False):
     if command:
         output += "$ python\n"
     output += cagedprompt.prompt_session(input, banner=command)
-    include_code(output, lang="pycon", number=False)
+    include_code(output, lang="pycon", number=False, show_text=True)

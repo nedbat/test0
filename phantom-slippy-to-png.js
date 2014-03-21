@@ -31,7 +31,7 @@ prefix = phantom.args[2];
                 return $('.slideContent').length;
             });
 
-            workers = Math.min(4, slides);
+            workers = Math.min(8, slides);
             slidesPerWorker = Math.ceil(slides / workers);
             i = 0;
 

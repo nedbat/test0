@@ -7,7 +7,7 @@
 
 -->
 
-<!-- TO DO:
+<!-- TO DO:  {{{
 
     * Content
     - Something to replace the hidden Approaches section
@@ -90,7 +90,7 @@
     - ddt
     - TDD
 
--->
+}}} -->
 <!-- *** Head stuff {{{ -->
 <!--[[[cog
 import cog
@@ -241,7 +241,7 @@ from cogutil import *
             color: #666;
         }
         .slide .footer .punct {
-            padding: 0 .1em;
+            padding: 0 .15em;
             color: #999;
         }
 
@@ -390,54 +390,15 @@ from cogutil import *
 
 <div class="layout" data-name="default">
     <content></content>
-    <!--
-    <div class="footer">
-        <span class="left">@nedbat</span>
-        <span class="right">http://nedbatchelder.com/text/aware.html</span>
-        <hr class="defloat" />
-    </div>
-    -->
 </div>
 
 <div class="layout" data-name="withurl">
     <content></content>
     <div class="footer">
-        <span class="left">@nedbat</span>
-        <span class="right">http://nedbatchelder.com/text/starttest.html</span>
+        <span class="left">bit.ly<span class='punct'>/</span>pytest0</span>
+        <span class="right"><span class='punct'>@</span>nedbat</span>
         <hr class="defloat" />
     </div>
-</div>
-
-<div class="layout nochrome" data-name="clean">
-    <content></content>
-</div>
-
-<!--
-<div class="slide">
-    <h1>Style test, including a very long title that wraps I think</h1>
-    <ul>
-        <li>A simple bullet</li>
-        <li>A long bullet that has a very important point to make, or it better, else why would it be so long?</li>
-        <li>This has sub-bullets:
-        <ul>
-            <li>First</li>
-            <li>Second</li>
-        </ul>
-        </li>
-    </ul>
-</div>
--->
-
-<!-- }}} -->
-
-<!-- *** Introduction {{{ -->
-
-<div class="slide title" data-layout="clean">
-    <h1>Getting Started Testing</h1>
-    <h2>Ned Batchelder</h2>
-    <h2>@nedbat</h2>
-    <h2 style="margin-top:1em">http://nedbatchelder/text/starttest.html</h2>
-    <div class="footer"><span class="left">&copy; 2014, Ned Batchelder</span><hr class="defloat" /></div>
 </div>
 
 <div class="hidden_slide">
@@ -449,67 +410,6 @@ from cogutil import *
         <li></li>
     </ul>
 </div>
-
-<div class="slide" data-layout="withurl">
-    <h1>Goals</h1>
-    <ul>
-        <li>Convince you to test</li>
-        <li>Show you a way to test your Python code</li>
-        <li>Remove the mystery</li>
-    </ul>
-</div>
-
-<div class="slide">
-    <h1>Two challenges</h1>
-    <ul>
-        <li>People</li>
-        <li>Code</li>
-    </ul>
-</div>
-
-<div class="slide section">
-    <h1>People</h1>
-</div>
-
-<div class="slide">
-    <h1></h1>
-    <ul>
-        <li>Testing is a lot of work</li>
-        <li>People won't want to do it</li>
-        <li>It pays off in the long run</li>
-        <li>Turns fear into boredom</li>
-    </ul>
-</div>
-
-<div class="slide" data-layout="withurl">
-    <h1>Why test?</h1>
-    <ul>
-        <li>The best way to know if your code works</li>
-        <li>Saves time in the long run</li>
-        <li>Produces better code</li>
-        <li>Removes fear from development</li>
-    </ul>
-</div>
-
-<div class="slide" data-layout="clean">
-    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 450%; text-align: center; color: red; margin-top:0'>I&nbsp;  AM&nbsp;  BAD!</p>
-    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 200%; text-align: center; color: red; margin-top:0; letter-spacing: .05em'>and I should feel bad</p>
-    <p class="incremental" style='text-align: center'><img src='dadtoon-iambad-3.png' width="50%"/></p>
-</div>
-
-<div class="slide" data-layout="withurl">
-    <h1>Reality</h1>
-    <!--
-    <ul>
-        <li class="incremental">You aren't bad</li>
-        <li class="incremental">Testing is hard</li>
-        <li class="incremental">It's worth it</li>
-    </ul>
-    -->
-    <p class="incremental" style='text-align: center'><img src='dadtoon-chaos-2.png' width="50%"/></p>
-</div>
-
-<!-- }}} -->
 
 <!-- *** Blank slides {{{ 
 
@@ -525,11 +425,172 @@ from cogutil import *
 
  }}} -->
 
+<!-- }}} -->
+
+<!-- *** Introduction {{{ -->
+
+<div class="text"><!-- {{{ -->
+
+    <p>This is a presentation I am giving at PyCon 2014.  You can read the
+    slides and text on this page, or open the <a href="text/test0/test0.html">actual presentation</a> 
+    in your browser (use right and left arrows to advance the slides).</p>
+    <!--
+    or watch the video:</p>
+
+    <p align="center">
+    <iframe width="500" height="369" src="http://www.youtube.com/embed/EnSu9hHGq5o" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+    </p>
+    -->
+
+</div><!-- }}} -->
+
+<div class="slide title">
+    <h1>Getting Started Testing</h1>
+    <h2>Ned Batchelder</h2>
+    <h2>@nedbat</h2>
+    <h2 style="margin-top:1em">http://nedbatchelder.com/text/test0.html</h2>
+    <div class="footer"><span class="left">&copy; 2014, Ned Batchelder</span><hr class="defloat" /></div>
+</div>
+
+<div class="slide" data-layout="withurl">
+    <h1>Goals</h1>
+    <ul>
+        <li>Show you a way to test your Python code</li>
+        <li>Remove the mystery</li>
+    </ul>
+</div>
+
+<div class="text"><!-- {{{ -->
+    <p>Writing correct code is complicated, it's hard.  How do you know when
+    you've gotten it right, and how do you know your code has stayed right
+    even after you've changed it?</p>
+
+    <p>The best we know to do this is with automated testing.  Testing is a
+    large topic, with its own tools and techniques.  It can be overwhelming.</p>
+
+    <p>In this talk, I will show you how to write automated tests to test your
+    Python code.  I'll start from scratch, which is why the slug is test0. By
+    the time we're done here, you should have a mystery-free view of the basics
+    and even a few advanced techniques, of automated testing.</p>
+
+</div><!-- }}} -->
+
+<div class="slide" data-layout="withurl">
+    <h1>Why test?</h1>
+    <ul>
+        <li>The best way to know if your code works</li>
+        <li>Saves time in the long run</li>
+        <li>Produces better code</li>
+        <li>Removes fear from development</li>
+    </ul>
+</div>
+
+<div class="text"><!-- {{{ -->
+    <p>My main point here isn't to convince you to test, I hope you are reading
+    this because you want to learn how to do it.  But I have to say at least
+    a little bit about why you should test.</p>
+
+    <p>Testing is the best way we know to determine if your code works.  There
+    are other techniques, like manual testing, or shipping it to customers and
+    waiting for complaints, but automated testing works much better than those
+    ways.</p>
+
+    <p>Although writing tests is serious effort that will take real time, in
+    the long run it will let you produce software faster because it makes your
+    development process more predictable, and you'll spend less time fighting
+    expensive fires.</p>
+
+    <p>Testing also gives you another view into your code, and will probably
+    help you write just plain better code.  The tests force you to think about
+    the structure of your code, and you will find better ways to modularize it.</p>
+
+    <p>Lastly, testing removes fear, because your tests are a safety net that
+    can tell you early when you have made a mistake and set you back on the 
+    right path.</p>
+
+</div><!-- }}} -->
+
+<div class="slide section">
+    <h1>People</h1>
+</div>
+
+<div class="text"><!-- {{{ -->
+    <p>The first challenge in writing automated tests is people.  In particular,
+    you.</p>
+
+</div><!-- }}} -->
+
+<div class="slide">
+    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 450%; text-align: center; color: red; margin-top:0'>I&nbsp;  AM&nbsp;  BAD!</p>
+    <p class="incremental" style='font-family: "Permanent Marker"; font-size: 200%; text-align: center; color: red; margin-top:0; letter-spacing: .05em'>and I should feel bad</p>
+    <p class="incremental" style='text-align: center'><img src='dadtoon-iambad-3.png' width="50%"/></p>
+</div>
+
+<div class="text"><!-- {{{ -->
+    <p>If you are like most developers, you know that you should be writing
+    tests, and you feel bad about it.  Tests are the dental floss of development:
+    everyone knows they should do it more, but they don't, and they feel 
+    guilty about it.</p>
+
+</div><!-- }}} -->
+
+<div class="slide">
+    <h1>Yeah, it's hard</h1>
+    <ul>
+        <li>Testing is a lot of work</li>
+        <li>People won't want to do it</li>
+        <li>It pays off in the long run</li>
+    </ul>
+</div>
+
+<div class="text"><!-- {{{ -->
+    <p>It's true, testing is not easy.  It's real engineering that takes
+    real thought and hard work.  It pays off in the end.</p>
+
+    <p>How often have you heard someone say, "I wrote a lot of tests, but it
+    wasn't worth it, so I deleted them."  They don't.  Tests are good.</p>
+
+</div><!-- }}} -->
+
+<div class="slide" data-layout="withurl">
+    <h1>Reality</h1>
+    <p class="incremental" style='text-align: center'><img src='dadtoon-chaos-2.png' width="50%"/></p>
+</div>
+
+<div class="text"><!-- {{{ -->
+    <p>The fact is that developing software is a constant battle against chaos.
+    You carefully organize your ideas in lines of code, but things change.
+    You add extra lines later, and they don't quite work as you want.  New
+    components are added to the system and your previous assumptions are invalidated.
+    Those services you depended on shift subtly.</p>
+
+    <p>You know the feeling: on a bad day, it seems like everything is out to
+    get you, the world is populated by gremlins and monsters, and they are all
+    trying to get at your code.</p>
+
+    <p>You have to fight that chaos, and the weapon you have is automated tests.</p> 
+
+    <p>OK, enough of the sermon, let's talk about how to write tests.</p>
+
+</div><!-- }}} -->
+
+<!-- }}} -->
+
 <!-- *** Grow a first test {{{ -->
-<div class="slide section" data-layout="clean">
+<div class="slide section">
     <h1>Starting from first principles</h1>
     <h2>Evolving tests</h2>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>We'll start with a real (if tiny) piece of code, and start testing
+    it.  First we'll do it manually, and then grow in sophistication from there,
+    adding to our tests to solve problems we have with them along the way.</p>
+
+    <p>Keep in mind, the first few iterations of these tests are the wrong way
+    to do them.  I'll let you know when we've gotten to the right way.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Stock portfolio class</h1>
@@ -558,7 +619,7 @@ from cogutil import *
                 amt += shares * price
             return amt
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;portfolio1.py</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> <span class="k">class</span>&#xA0;<span class="nc">Portfolio</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
@@ -578,9 +639,17 @@ from cogutil import *
     <div class="line"><span class="lineno">17</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="lineno">18</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">amt</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">price</span>&nbsp;</div>
     <div class="line"><span class="lineno">19</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">amt</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Here is our code under test, a simple stock portfolio class.  It simply
+    stores the lots of stocks purchase, each is a stock name, a number of shares,
+    and the price it was bought at.  We have a method to buy a stock, and a
+    method that tells us the total cost of the portfolio.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>First test: interactive</h1>
@@ -598,7 +667,24 @@ from cogutil import *
         p.cost()
         """)
     ]]]-->
-    <div class="code pycon">
+    <!--
+
+    >>> from portfolio1 import Portfolio
+    >>> p = Portfolio()
+    >>> p.cost()
+    0.0
+
+    >>> p.buy("IBM", 100, 176.48)
+    >>> p.cost()
+    17648.0
+
+    >>> p.buy("HPQ", 100, 36.15)
+    >>> p.cost()
+    21263.0
+
+
+    -->
+    <div class="code pycon"> <!-- {{{ -->
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
@@ -611,7 +697,7 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="go">21263.0</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
     <li>Good: testing the code</li>
@@ -620,6 +706,29 @@ from cogutil import *
     <li>Bad: is it right?</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>For our first test, we just run it manually in a Python prompt.  This
+    is where most programmers start with testing: play around with it and see
+    if it works.</p>
+
+    <p>Here we can see that it's right.  An empty portfolio has a cost of zero,
+    we buy one stock, and the cost is the price times the shares, then we buy
+    another, and it's gone up as it should.</p>
+
+    <p>This is good, we're testing the code.  Some developers wouldn't have
+    even taken this step!  But it's bad because it's not repeatable.  If tomorrow
+    we make a change to this code, how do we know we'll run the same tests and
+    cover the same conditions that we did today?</p>
+
+    <p>It's also labor intensive: you have to site and type these function calls
+    each time you want to test the class.  And how do we know it's right?  We 
+    have to carefully examine the results, and get out a calculator, and see that
+    the answer is what we expect</p>
+
+    <p>So we have one good quality, and three bad ones.  Let's improve the situation.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Second test: standalone</h1>
@@ -637,7 +746,7 @@ from cogutil import *
     p.buy("HPQ", 100, 36.15)
     print "With 100 HPQ @ 36.15: %s" % p.cost()
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;porttest1.py</span>&nbsp;</div>
     <div class="line"><span class="lineno">2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="lineno">3</span>&nbsp;</div>
@@ -647,7 +756,7 @@ from cogutil import *
     <div class="line"><span class="lineno">7</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">8</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">9</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("porttest1.out")   # {{{
@@ -658,12 +767,12 @@ from cogutil import *
     With 100 IBM @ 176.48: 17648.0
     With 100 HPQ @ 36.15: 21263.0
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest1.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0&nbsp;</div>
     <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0&nbsp;</div>
     <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li>Good: testing the code</li>
@@ -672,6 +781,21 @@ from cogutil import *
         <li>Still bad: is it right?</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Instead of typing code into a Python prompt, let's make a separate file
+    to hold test code.  We'll do the same series of steps as before, but they'll
+    be recorded in our test file, and we'll print the results we get.</p>
+
+    <p>This is better because it's repeatable, since we can run this test file
+    any time we want and have the same tests run.  And it's low effort: running
+    a file is easy and quick.</p>
+
+    <p>But we still don't know for sure that the answers are right unless we
+    peer at the numbers printed and work out each time what they are supposed
+    to be.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Third test: expected results</h1>
@@ -689,7 +813,7 @@ from cogutil import *
     p.buy("HPQ", 100, 36.15)
     print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;porttest2.py</span>&nbsp;</div>
     <div class="line"><span class="lineno">2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="lineno">3</span>&nbsp;</div>
@@ -699,7 +823,7 @@ from cogutil import *
     <div class="line"><span class="lineno">7</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;17648.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">8</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">9</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;21263.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}} -->
     <!--[[[cog
     include_file("porttest2.out")   # {{{
@@ -710,12 +834,12 @@ from cogutil import *
     With 100 IBM @ 176.48: 17648.0, should be 17648.0
     With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest2.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
     <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
     <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
         <!--[[[end]]] }}}-->
     <ul>
         <li>Good: testing the code repeatably with low effort</li>
@@ -723,6 +847,21 @@ from cogutil import *
         <li>Bad: have to check the results yourself</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Here we've added to our test file so that in addition to printing the
+    result it got, it prints the result it should have gotten.  This is better:
+    we don't have to calculate the expected results, they are recorded right
+    there in the output.</p>
+
+    <p>But we still have to examine all the output and compare the actual result
+    to the expected result.  This is still tedious work we have to do.</p>
+
+    <p>Keep in mind, the code here is very small.  In a real system, you might
+    have thousands of tests.  You don't want to examine each one to see if the
+    result is correct.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Fourth test: check results automatically</h1>
@@ -743,7 +882,7 @@ from cogutil import *
     print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
     assert p.cost() == 21263.0
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;porttest3.py</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span>&nbsp;</div>
@@ -756,7 +895,7 @@ from cogutil import *
     <div class="line"><span class="lineno">10</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;21263.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">12</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">21263.0</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("porttest3.out")   # {{{
@@ -767,12 +906,12 @@ from cogutil import *
     With 100 IBM @ 176.48: 17648.0, should be 17648.0
     With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
     <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
     <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li>Good: testing the code repeatably with low effort</li>
@@ -780,6 +919,22 @@ from cogutil import *
         <li>Good: results checked automatically</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Here we've used the Python assert statement.  You may not have run
+    across this before.  It takes a condition, and evaluates whether it's
+    true or not.  If it's true, then execution continues onto the next
+    statement.  If the condition is false, then it raises an AssertionError
+    exception.</p>
+
+    <p>So now we have the results checked automatically.  If one of the results
+    is incorrect, the assert statement will raise an exception.</p>
+
+    <p>Assertions like these are at the heart of automated testing, and you'll
+    see a lot of them in real tests, though as we'll see, they take slightly
+    different forms.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Fourth test: what failure looks like</h1>
@@ -795,7 +950,7 @@ from cogutil import *
         assert p.cost() == 17648.0
     AssertionError
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3_broken.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
     <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17600.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
@@ -803,7 +958,7 @@ from cogutil import *
     <div class="line"><span class="lineno">5</span> &#xA0;&#xA0;File&#xA0;&quot;porttest3_broken.py&quot;,&#xA0;line&#xA0;9,&#xA0;in&#xA0;&lt;module&gt;&nbsp;</div>
     <div class="line"><span class="lineno">6</span> &#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;p.cost()&#xA0;==&#xA0;17648.0&nbsp;</div>
     <div class="line"><span class="lineno">7</span> AssertionError&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li>Good: testing the code repeatably with low effort</li>
@@ -812,6 +967,16 @@ from cogutil import *
         <li>Bad: failure prevents further tests</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>There are a couple of problems with assertions like these.  First,
+    all the successful tests clutter up the output.  You may think it's good
+    to see all your successes, but it's not good if they obscure failures.
+    Second, when an assertion fails, it raises an exception, which ends our
+    program.  If the first assertion failed, you'll never even get to run
+    the rest of the file.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Getting complicated!</h1>
@@ -824,14 +989,24 @@ from cogutil import *
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>As you can see, we're starting to build up a real program here. To make
+    the output hide successes, and continue on in the face of failures, you'll
+    have to create a way to divide this test file into chunks, and run the
+    chunks so that if one fails, others will still run.  You can see it could
+    start to get complicated.</p>
+
+    <p>Anyone writing tests will face these problems, and common problems can
+    often be solved with standard libraries. Let's use one.</p>
+</div><!-- }}} -->
+
 <!-- }}} -->
 
 <!-- *** Using unittest {{{ -->
-<div class="slide section" data-layout="clean">
+<div class="slide section">
     <h1>unittest</h1>
     <h2>Writing tests</h2>
 </div>
-
 
 <div class="slide">
     <h1>unittest</h1>
@@ -860,7 +1035,7 @@ from cogutil import *
             p.buy("IBM", 100, 176.48)
             assert p.cost() == 17648.0
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;test_port1.py</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> <span class="kn">import</span>&#xA0;<span class="nn">unittest</span>&nbsp;</div>
@@ -871,7 +1046,7 @@ from cogutil import *
     <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17648.0</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port1.out")   # {{{
@@ -884,14 +1059,14 @@ from cogutil import *
 
     OK
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port1&nbsp;</div>
     <div class="line"><span class="lineno">2</span> .&nbsp;</div>
     <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Ran&#xA0;1&#xA0;test&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">5</span>&nbsp;</div>
     <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -909,7 +1084,7 @@ from cogutil import *
             [record success]
     """, lang="python")
     ]]]-->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
@@ -918,7 +1093,7 @@ from cogutil import *
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -944,7 +1119,7 @@ from cogutil import *
             p.buy("HPQ", 100, 36.15)
             assert p.cost() == 21263.0
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 6</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
@@ -960,7 +1135,7 @@ from cogutil import *
     <div class="line"><span class="lineno">18</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">19</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">20</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">21263.0</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port2.out", highlight=[2])   # {{{
@@ -973,7 +1148,7 @@ from cogutil import *
 
     OK
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port2&nbsp;</div>
     <div class="line"><span class="lineno">2</span> <span class="hll">...
     </span>&nbsp;</div>
@@ -981,7 +1156,7 @@ from cogutil import *
     <div class="line"><span class="lineno">4</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">5</span>&nbsp;</div>
     <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li>A dot for every passed test</li>
@@ -1018,7 +1193,7 @@ from cogutil import *
             [record success]
     """, lang="python", highlight=[4, 12, 20])
     ]]]-->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
@@ -1046,7 +1221,7 @@ from cogutil import *
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -1078,11 +1253,11 @@ from cogutil import *
     AssertionError
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.000s
+    Ran 3 tests in 0.001s
 
     FAILED (failures=1)
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port2_broken&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
@@ -1094,10 +1269,10 @@ from cogutil import *
     <div class="line"><span class="lineno"> 9</span> AssertionError&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li>Better: the failed test didn't keep others from running</li>
@@ -1119,13 +1294,13 @@ from cogutil import *
             p.buy("IBM", 100, 176.48)
             self.assertEqual(p.cost(), 17648.0)
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">11</span> <span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">12</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">13</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mf">17648.0</span><span class="p">)</span>
     </span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port3_broken.out", highlight=[9])   # {{{
@@ -1142,11 +1317,11 @@ from cogutil import *
     AssertionError: 17600.0 != 17648.0
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.000s
+    Ran 3 tests in 0.001s
 
     FAILED (failures=1)
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port3_broken&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
@@ -1159,10 +1334,10 @@ from cogutil import *
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1190,7 +1365,7 @@ from cogutil import *
         .. etc ..
     """, lang="python")
     ]]]-->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="n">assertEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertNotEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="n">assertTrue</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>&nbsp;</div>
@@ -1209,7 +1384,7 @@ from cogutil import *
     <div class="line"><span class="n">assertItemsEqual</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span>&#xA0;<span class="n">seq2</span><span class="p">)</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="o">..</span>&#xA0;<span class="n">etc</span>&#xA0;<span class="o">..</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -1235,11 +1410,11 @@ from cogutil import *
     AttributeError: 'Portfolio' object has no attribute 'buyxxxxx'
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.000s
+    Ran 3 tests in 0.001s
 
     FAILED (errors=1)
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port3_broken2&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> <span class="hll">.E.
     </span>&nbsp;</div>
@@ -1254,10 +1429,10 @@ from cogutil import *
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1276,7 +1451,7 @@ from cogutil import *
             [record success]
     """, lang="python")
     ]]]-->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_method</span><span class="p">()</span>&nbsp;</div>
@@ -1286,7 +1461,7 @@ from cogutil import *
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -1300,14 +1475,25 @@ from cogutil import *
         p.buy("IBM")
         """)
     ]]]-->
-    <div class="code pycon">
+    <!--
+
+    >>> from portfolio1 import Portfolio
+    >>> p = Portfolio()
+    >>> p.buy("IBM")
+    Traceback (most recent call last):
+      File "<console>", line 1, in <module>
+    TypeError: buy() takes exactly 4 arguments (2 given)
+
+
+    -->
+    <div class="code pycon"> <!-- {{{ -->
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="gt">Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;File&#xA0;<span class="nb">&quot;&lt;console&gt;&quot;</span>,&#xA0;line&#xA0;<span class="m">1</span>,&#xA0;in&#xA0;<span class="n">&lt;module&gt;</span>&nbsp;</div>
     <div class="line"><span class="gr">TypeError</span>:&#xA0;<span class="n">buy()&#xA0;takes&#xA0;exactly&#xA0;4&#xA0;arguments&#xA0;(2&#xA0;given)</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1321,11 +1507,11 @@ from cogutil import *
             p = Portfolio()
             p.buy("IBM")
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port4_broken.out")   # {{{
@@ -1346,7 +1532,7 @@ from cogutil import *
 
     FAILED (errors=1)
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port4_broken&nbsp;</div>
     <div class="line"><span class="lineno"> 2</span> E...&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ======================================================================&nbsp;</div>
@@ -1361,7 +1547,7 @@ from cogutil import *
     <div class="line"><span class="lineno">12</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1376,14 +1562,14 @@ from cogutil import *
             with self.assertRaises(TypeError):
                 p.buy("IBM")
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">24</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">25</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>
     </span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("test_port4.out")   # {{{
@@ -1396,14 +1582,14 @@ from cogutil import *
 
     OK
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port4&nbsp;</div>
     <div class="line"><span class="lineno">2</span> ....&nbsp;</div>
     <div class="line"><span class="lineno">3</span> ----------------------------------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">5</span>&nbsp;</div>
     <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1424,7 +1610,7 @@ from cogutil import *
             else:
                 raise ValueError("You don't own that stock")
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">21</span> <span class="k">def</span>&#xA0;<span class="nf">sell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">22</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Sell&#xA0;some&#xA0;shares.&quot;&quot;&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">holding</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
@@ -1435,7 +1621,7 @@ from cogutil import *
     <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">break</span>&nbsp;</div>
     <div class="line"><span class="lineno">29</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="lineno">30</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">raise</span>&#xA0;<span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;You&#xA0;don&#39;t&#xA0;own&#xA0;that&#xA0;stock&quot;</span><span class="p">)</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1470,7 +1656,7 @@ from cogutil import *
             with self.assertRaises(ValueError):
                 p.sell("IBM", 1)
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">26</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
@@ -1495,7 +1681,7 @@ from cogutil import *
     <div class="line"><span class="lineno">47</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1525,7 +1711,7 @@ from cogutil import *
             with self.assertRaises(ValueError):
                 self.p.sell("IBM", 1)
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">26</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Invoked&#xA0;before&#xA0;each&#xA0;test&#xA0;method</span>&nbsp;</div>
     <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
@@ -1545,7 +1731,7 @@ from cogutil import *
     <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1574,7 +1760,7 @@ from cogutil import *
                     [record error]
     """, lang="python", highlight=[3,17])
     ]]]-->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
@@ -1596,7 +1782,7 @@ from cogutil import *
     </span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">except</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -1623,7 +1809,7 @@ from cogutil import *
                 some_global_thing = old_global
     """, lang="python")
     ]]]-->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="k">class</span>&#xA0;<span class="nc">MyBadTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_a_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">old_global</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">some_global_thing</span>&nbsp;</div>
@@ -1632,7 +1818,7 @@ from cogutil import *
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">do_my_test_stuff</span><span class="p">()</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">some_global_thing</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">old_global</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
     <ul>
         <li>Common impulse</li>
@@ -1656,7 +1842,7 @@ from cogutil import *
                 do_my_test_stuff()
     """, lang="python")
     ]]]-->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="k">class</span>&#xA0;<span class="nc">MyGoodTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_global</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">some_global_thing</span>&nbsp;</div>
@@ -1667,7 +1853,7 @@ from cogutil import *
     <div class="line">&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_a_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">do_my_test_stuff</span><span class="p">()</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
     <ul>
         <li>tearDown gets run no matter what *</li>
@@ -1690,7 +1876,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Approaches {{{ -->
-<div class="slide section todo" data-layout="clean">
+<div class="slide section todo">
     <h1>Approaches</h1>
     <h2>crafting tests</h2>
 </div>
@@ -1834,7 +2020,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** nose {{{ -->
-<div class="hidden_slide section" data-layout="clean">
+<div class="hidden_slide section">
     <h1>nose and py.test</h1>
     <h2>Running tests</h2>
 </div>
@@ -2004,7 +2190,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Coverage {{{ -->
-<div class="hidden_slide section" data-layout="clean">
+<div class="hidden_slide section">
     <h1>Coverage</h1>
     <h2>Testing tests</h2>
 </div>
@@ -2074,7 +2260,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Mocking {{{ -->
-<div class="slide section" data-layout="clean">
+<div class="slide section">
     <h1>Test Doubles</h1>
     <h2>Focusing tests</h2>
 </div>
@@ -2133,7 +2319,7 @@ from cogutil import *
                 total += shares * prices[name]
             return total
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq</span>&nbsp;</div>
@@ -2153,7 +2339,7 @@ from cogutil import *
     <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">_</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">prices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">total</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -2172,18 +2358,33 @@ from cogutil import *
         p.value()
         """)
     ]]]-->
-    <div class="code pycon">
+    <!--
+
+    >>> from portfolio3 import Portfolio
+    >>> p = Portfolio()
+    >>> p.buy("IBM", 100, 150.0)
+    >>> p.buy("HPQ", 100, 30.0)
+
+    >>> p.current_prices()
+    {'HPQ': 31.48, 'IBM': 187.9}
+
+    >>> p.value()
+    21938.0
+
+
+    -->
+    <div class="code pycon"> <!-- {{{ -->
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio3</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">150.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;30.56,&#xA0;&#39;IBM&#39;:&#xA0;186.81}</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;31.48,&#xA0;&#39;IBM&#39;:&#xA0;187.9}</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">21737.0</span>&nbsp;</div>
-    </div>
+    <div class="line"><span class="go">21938.0</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -2223,7 +2424,7 @@ from cogutil import *
         def test_value(self):
             self.assertEqual(self.p.value(), 17200)
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">45</span> <span class="c">#&#xA0;Replace&#xA0;Portfolio.current_prices&#xA0;with&#xA0;a&#xA0;stub&#xA0;implementation.</span>&nbsp;</div>
     <div class="line"><span class="lineno">46</span> <span class="c">#&#xA0;This&#xA0;avoids&#xA0;the&#xA0;web,&#xA0;but&#xA0;also&#xA0;skips&#xA0;all&#xA0;our&#xA0;current_prices</span>&nbsp;</div>
     <div class="line"><span class="lineno">47</span> <span class="c">#&#xA0;code.</span>&nbsp;</div>
@@ -2239,7 +2440,7 @@ from cogutil import *
     <div class="line"><span class="lineno">57</span>&nbsp;</div>
     <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li>Good: test results are predictable</li>
@@ -2260,7 +2461,7 @@ from cogutil import *
     ––––––––––––––––––––––––––––––––––––––––––
     TOTAL           75      5    93%   
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
@@ -2269,7 +2470,7 @@ from cogutil import *
     <div class="line"><span class="lineno">11</span> test_port7&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;43&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;75&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;5&#xA0;&#xA0;&#xA0;&#xA0;93%&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog
     include_file("portfolio3.py", start=51, end=61)   # {{{
@@ -2287,7 +2488,7 @@ from cogutil import *
             prices = { sym: float(last) for sym, last in csv.reader(data) }
             return prices
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq</span>&nbsp;</div>
@@ -2299,7 +2500,7 @@ from cogutil import *
     <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
     <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -2333,7 +2534,7 @@ from cogutil import *
         def test_value(self):
             self.assertEqual(self.p.value(), 17200)
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">48</span> <span class="c">#&#xA0;A&#xA0;simple&#xA0;fake&#xA0;for&#xA0;urllib&#xA0;that&#xA0;implements&#xA0;only&#xA0;one&#xA0;method,</span>&nbsp;</div>
     <div class="line"><span class="lineno">49</span> <span class="c">#&#xA0;and&#xA0;is&#xA0;only&#xA0;good&#xA0;for&#xA0;one&#xA0;request.&#xA0;&#xA0;You&#xA0;can&#xA0;make&#xA0;this&#xA0;much</span>&nbsp;</div>
     <div class="line"><span class="lineno">50</span> <span class="c">#&#xA0;more&#xA0;complex&#xA0;for&#xA0;your&#xA0;own&#xA0;needs.</span>&nbsp;</div>
@@ -2357,7 +2558,7 @@ from cogutil import *
     <div class="line"><span class="lineno">68</span>&nbsp;</div>
     <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -2375,7 +2576,7 @@ from cogutil import *
     ––––––––––––––––––––––––––––––––––––––––––
     TOTAL           81      0   100%   
     -->
-    <div class="code text">
+    <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
@@ -2383,7 +2584,7 @@ from cogutil import *
     <div class="line"><span class="lineno">11</span> test_port8&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;49&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;81&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li>Stdlib is stubbed</li>
@@ -2402,11 +2603,10 @@ from cogutil import *
     </ul>
 </div>
 
-<!--
-<div class="slide">
+<div class="hidden_slide">
     <h1>Automatic chameleons</h1>
-    <!- - ** Interactive session {{{ - ->
-    <!- -[[[cog
+    <!-- ** Interactive session {{{ -->
+    <!--[[[cog
     prompt_session("""\
         import mock, StringIO
 
@@ -2427,16 +2627,45 @@ from cogutil import *
         s.write("hello")
         s.getvalue()
         """, command=False)
-    ]]]- ->
-    <div class="code pycon">
+    ]]]-->
+    <!--
+
+    >>> import mock, StringIO
+
+    >>> # Make a mock object, call it, ask what was called.
+    >>> m = mock.Mock()
+    >>> m.foo(3, "hello")
+    <Mock name='mock.foo()' id='4462108048'>
+    >>> m.bar(17).baz("ned").quux(47)
+    <Mock name='mock.bar().baz().quux()' id='4463166928'>
+    >>> m.method_calls
+    [call.foo(3, 'hello'), call.bar(17)]
+
+    >>> # Make a real object, give it a mock function
+    >>> s = StringIO.StringIO()
+    >>> s.fake_function = mock.Mock()
+    >>> s.fake_function.return_value = "Success!"
+    >>> s.fake_function(42)
+    'Success!'
+    >>> s.fake_function.call_args
+    call(42)
+
+    >>> # The real methods still work
+    >>> s.write("hello")
+    >>> s.getvalue()
+    'hello'
+
+
+    -->
+    <div class="code pycon"> <!-- {{{ -->
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">import</span>&#xA0;<span class="nn">mock</span><span class="o">,</span>&#xA0;<span class="nn">StringIO</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4474371600&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4462108048&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4475434576&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4463166928&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
     <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
@@ -2453,10 +2682,9 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="go">&#39;hello&#39;</span>&nbsp;</div>
-    </div>
-    <!- -[[[end]]] }}}- ->
+    </div><!-- }}} -->
+    <!--[[[end]]] }}}-->
 </div>
--->
 
 <div class="slide">
     <h1>Mocking with no set up</h1>
@@ -2486,7 +2714,7 @@ from cogutil import *
                     "?f=sl1&s=HPQ,IBM"
                     )
     -->
-    <div class="code python">
+    <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">49</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
@@ -2508,7 +2736,7 @@ from cogutil import *
     <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;http://download.finance.yahoo.com/d/quotes.csv&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;?f=sl1&amp;s=HPQ,IBM&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">)</span>&nbsp;</div>
-    </div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--
     <ul>
@@ -2532,7 +2760,7 @@ from cogutil import *
 
 <!-- *** Other topics {{{ -->
 
-<div class="slide section" data-layout="clean">
+<div class="slide section">
     <h1>Other topics</h1>
     <h2>Too many things I couldn't fit!</h2>
 </div>
@@ -2573,7 +2801,7 @@ from cogutil import *
 <!-- }}} -->
 
 
-<div class="slide section" data-layout="clean">
+<div class="slide section">
     <h1>Summing up</h1>
 </div>
 
@@ -2595,9 +2823,9 @@ from cogutil import *
         - How do you get people on board?
 -->
 
-<div class="slide thankyou" data-layout="clean">
+<div class="slide thankyou">
     <h1 style='text-align: center; margin-top:1em'>Thank You</h1>
-    <h3 style='marginx:1em'>http://nedbatchelder.com/text/starttest.html</h3>
+    <h3 style='marginx:1em'>http://nedbatchelder.com/text/test0.html</h3>
     <h3 style='marginx:1em'>@nedbat</h3>
     
     <p>Testing in Python mailing list</p>

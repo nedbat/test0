@@ -81,6 +81,6 @@ px $(PX): $(SLIDE_HTML)
 publish: $(SLIDE_HTML) $(SAMPLE_ZIP) $(PX) pngs
 	cp -f $(PX) $(WEBHOME)
 	mkdir -p $(WEBPRZHOME)
-	cp $(PNG_DIR)/*.png $(IMAGES) $(WEBHOME)/$(SLUG)
+	cp $(PNG_DIR)/*.png $(IMAGES) $(WEBPRZHOME)
 	cp -f $(SLIDE_HTML) $(WEBPRZHOME)
 	cp -f $(SAMPLE_ZIP) $(WEBPRZHOME)
