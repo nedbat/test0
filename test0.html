@@ -448,7 +448,7 @@ from cogutil import *
     <h1>Getting Started Testing</h1>
     <h2>Ned Batchelder</h2>
     <h2>@nedbat</h2>
-    <h2 style="margin-top:1em">http://nedbatchelder.com/text/test0.html</h2>
+    <h2 style="margin-top:1em">http://bit.ly/pytest0</h2>
     <div class="footer"><span class="left">&copy; 2014, Ned Batchelder</span><hr class="defloat" /></div>
 </div>
 
@@ -1253,7 +1253,7 @@ from cogutil import *
     AssertionError
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (failures=1)
     -->
@@ -1269,7 +1269,7 @@ from cogutil import *
     <div class="line"><span class="lineno"> 9</span> AssertionError&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
     </div><!-- }}} -->
@@ -1317,7 +1317,7 @@ from cogutil import *
     AssertionError: 17600.0 != 17648.0
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (failures=1)
     -->
@@ -1334,7 +1334,7 @@ from cogutil import *
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
     </div><!-- }}} -->
@@ -1410,7 +1410,7 @@ from cogutil import *
     AttributeError: 'Portfolio' object has no attribute 'buyxxxxx'
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (errors=1)
     -->
@@ -1429,7 +1429,7 @@ from cogutil import *
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
     </div><!-- }}} -->
@@ -2229,10 +2229,12 @@ from cogutil import *
 </div>
 -->
 
+<!--
 <div class="hidden_slide">
     <h1>HTML report</h1>
     <iframe src='test0_static/htmlcov/index.html' style='background:white;width:100%;height:85%;'></iframe>
 </div>
+-->
 
 <div class="hidden_slide">
     <h1>Coverage can only tell you a few things</h1>
@@ -2366,10 +2368,10 @@ from cogutil import *
     >>> p.buy("HPQ", 100, 30.0)
 
     >>> p.current_prices()
-    {'HPQ': 31.48, 'IBM': 187.9}
+    {'HPQ': 31.95, 'IBM': 186.67}
 
     >>> p.value()
-    21938.0
+    21862.0
 
 
     -->
@@ -2380,10 +2382,10 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;31.48,&#xA0;&#39;IBM&#39;:&#xA0;187.9}</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;31.95,&#xA0;&#39;IBM&#39;:&#xA0;186.67}</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">21938.0</span>&nbsp;</div>
+    <div class="line"><span class="go">21862.0</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -2635,9 +2637,9 @@ from cogutil import *
     >>> # Make a mock object, call it, ask what was called.
     >>> m = mock.Mock()
     >>> m.foo(3, "hello")
-    <Mock name='mock.foo()' id='4462108048'>
+    <Mock name='mock.foo()' id='4534422928'>
     >>> m.bar(17).baz("ned").quux(47)
-    <Mock name='mock.bar().baz().quux()' id='4463166928'>
+    <Mock name='mock.bar().baz().quux()' id='4535477712'>
     >>> m.method_calls
     [call.foo(3, 'hello'), call.bar(17)]
 
@@ -2663,9 +2665,9 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4462108048&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4534422928&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4463166928&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4535477712&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
     <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
     <div class="line">&nbsp;</div>

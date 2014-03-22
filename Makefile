@@ -26,8 +26,8 @@ SAMPLE_ZIP = $(SLUG).zip
 
 IMAGES = dadtoon-chaos-2.png dadtoon-iambad-3.png mock.png
 SD = slippy/src
-JS_FILES = $(SD)/jquery-1.4.2.min.js $(SD)/jquery.history.js $(SD)/slippy-0.9.0.js 
-CSS_FILES = $(SD)/slippy-0.9.0.css neds.css
+JS_FILES = $(SD)/jquery.min.js $(SD)/jquery.history.js $(SD)/slippy.js lineselect.js
+CSS_FILES = $(SD)/slippy.css $(SD)/slippy-pure.css
 SLIDE_SUPPORT = $(JS_FILES) $(CSS_FILES) $(IMAGES)
 
 .PHONY: $(SLIDE_HTML)
@@ -37,15 +37,15 @@ slides: $(SLIDE_HTML)
 $(SLIDE_HTML): $(SAMPLES) $(OUTPUT)
 	python cog.py -r $@
 
-$(PY_OUT) : *.py portfolio1.py portfolio2.py portfolio3.py
+$(PY_OUT): *.py portfolio1.py portfolio2.py portfolio3.py
 	echo "$$ python $*.py" > $@
 	-python $*.py >> $@ 2>&1
 
-$(UNIT_OUT) : *.py 
+$(UNIT_OUT): *.py
 	echo "$$ python -m unittest $*" > $@
 	-python -m unittest $* >> $@ 2>&1
 
-$(COVERAGE_OUT) : test_port7.py test_port8.py portfolio3.py
+$(COVERAGE_OUT): test_port7.py test_port8.py portfolio3.py
 	echo "$$ coverage run -m unittest $*" > $@
 	coverage run -m unittest $* >> $@ 2>&1
 	echo "$$ coverage report -m" >> $@
@@ -80,7 +80,8 @@ px $(PX): $(SLIDE_HTML)
 
 publish: $(SLIDE_HTML) $(SAMPLE_ZIP) $(PX) pngs
 	cp -f $(PX) $(WEBHOME)
-	mkdir -p $(WEBPRZHOME)
+	mkdir -p $(WEBPRZHOME)/slippy/src
 	cp $(PNG_DIR)/*.png $(IMAGES) $(WEBPRZHOME)
+	echo $(SLIDE_SUPPORT) | xargs -n1 -I{} cp {} $(WEBPRZHOME)/{}
 	cp -f $(SLIDE_HTML) $(WEBPRZHOME)
 	cp -f $(SAMPLE_ZIP) $(WEBPRZHOME)
