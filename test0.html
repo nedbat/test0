@@ -469,9 +469,13 @@ from cogutil import *
     large topic, with its own tools and techniques.  It can be overwhelming.</p>
 
     <p>In this talk, I will show you how to write automated tests to test your
-    Python code.  I'll start from scratch, which is why the slug is test0. By
-    the time we're done here, you should have a mystery-free view of the basics
-    and even a few advanced techniques, of automated testing.</p>
+    Python code.  I'll start from scratch. By the time we're done here, you
+    should have a mystery-free view of the basics and even a few advanced
+    techniques, of automated testing.</p>
+
+    <p>I'll include some pointers off to more advanced or exotic techniques,
+    but you will have a good set of tools if you follow the methods shown
+    here.</p>
 
 </div><!-- }}} -->
 
@@ -502,7 +506,8 @@ from cogutil import *
 
     <p>Testing also gives you another view into your code, and will probably
     help you write just plain better code.  The tests force you to think about
-    the structure of your code, and you will find better ways to modularize it.</p>
+    the structure of your code, and you will find better ways to modularize
+    it.</p>
 
     <p>Lastly, testing removes fear, because your tests are a safety net that
     can tell you early when you have made a mistake and set you back on the 
@@ -528,9 +533,9 @@ from cogutil import *
 
 <div class="text"><!-- {{{ -->
     <p>If you are like most developers, you know that you should be writing
-    tests, and you feel bad about it.  Tests are the dental floss of development:
-    everyone knows they should do it more, but they don't, and they feel 
-    guilty about it.</p>
+    tests, and you feel bad about it.  Tests are the dental floss of
+    development: everyone knows they should do it more, but they don't, and
+    they feel guilty about it.</p>
 
 </div><!-- }}} -->
 
@@ -559,16 +564,17 @@ from cogutil import *
 
 <div class="text"><!-- {{{ -->
     <p>The fact is that developing software is a constant battle against chaos.
-    You carefully organize your ideas in lines of code, but things change.
-    You add extra lines later, and they don't quite work as you want.  New
-    components are added to the system and your previous assumptions are invalidated.
-    Those services you depended on shift subtly.</p>
+    You carefully organize your ideas in lines of code, but things change.  You
+    add extra lines later, and they don't quite work as you want.  New
+    components are added to the system and your previous assumptions are
+    invalidated.  Those services you depended on shift subtly.</p>
 
     <p>You know the feeling: on a bad day, it seems like everything is out to
     get you, the world is populated by gremlins and monsters, and they are all
     trying to get at your code.</p>
 
-    <p>You have to fight that chaos, and the weapon you have is automated tests.</p> 
+    <p>You have to fight that chaos, and the weapon you have is automated
+    tests.</p> 
 
     <p>OK, enough of the sermon, let's talk about how to write tests.</p>
 
@@ -645,9 +651,9 @@ from cogutil import *
 
 <div class="text"><!-- {{{ -->
     <p>Here is our code under test, a simple stock portfolio class.  It simply
-    stores the lots of stocks purchase, each is a stock name, a number of shares,
-    and the price it was bought at.  We have a method to buy a stock, and a
-    method that tells us the total cost of the portfolio.</p>
+    stores the lots of stocks purchase, each is a stock name, a number of
+    shares, and the price it was bought at.  We have a method to buy a stock,
+    and a method that tells us the total cost of the portfolio.</p>
 
 </div><!-- }}} -->
 
@@ -717,16 +723,17 @@ from cogutil import *
     another, and it's gone up as it should.</p>
 
     <p>This is good, we're testing the code.  Some developers wouldn't have
-    even taken this step!  But it's bad because it's not repeatable.  If tomorrow
-    we make a change to this code, how do we know we'll run the same tests and
-    cover the same conditions that we did today?</p>
+    even taken this step!  But it's bad because it's not repeatable.  If
+    tomorrow we make a change to this code, how do we know we'll run the same
+    tests and cover the same conditions that we did today?</p>
 
-    <p>It's also labor intensive: you have to site and type these function calls
-    each time you want to test the class.  And how do we know it's right?  We 
-    have to carefully examine the results, and get out a calculator, and see that
-    the answer is what we expect</p>
+    <p>It's also labor intensive: you have to site and type these function
+    calls each time you want to test the class.  And how do we know it's right?
+    We have to carefully examine the results, and get out a calculator, and see
+    that the answer is what we expect</p>
 
-    <p>So we have one good quality, and three bad ones.  Let's improve the situation.</p>
+    <p>So we have one good quality, and three bad ones.  Let's improve the
+    situation.</p>
 
 </div><!-- }}} -->
 
@@ -1013,10 +1020,20 @@ from cogutil import *
     <ul>
         <li>Python standard library</li>
         <li>Infrastructure for well-structured tests</li>
-        <li>Test runner</li>
         <li>Patterned on xUnit</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>The Python standard library provides us the unittest module.  It gives
+    us the infrastructure for writing well-structured tests.</p>
+
+    <p>The design is modelled on the common xUnit pattern that is available in
+    many different languages, notably jUnit for Java.  This gives unittest a
+    more verbose feeling than many Python libraries.  There are alternatives to
+    unittest, but it's a good foundation to build on.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>A simple unit test</h1>
@@ -1070,6 +1087,32 @@ from cogutil import *
     <!--[[[end]]] }}}-->
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>Here is an actual unit test written with unittest.  Let's look at the
+    structure of the test in detail.</p>
+
+    <p>All tests are written as methods in a new class.  The class is derived
+    from unittest.TestCase, and usually has a name with the word Test in it.</p>
+
+    <p>The test methods all must start with the word "test_".  Here we have only
+    one, called "test_ibm".  The body of the method is the test itself.  Here
+    we create a Portfolio, buy 100 shares of IBM, and then make an assertion
+    about the resulting cost.</p>
+
+    <p>This is a complete test.  To run it, we use the unittest module as a
+    test runner.  "python -m unittest" means, instead of running a Python
+    program in a file, run the importable module "unittest" as the main
+    program.</p>
+
+    <p>The unittest module accepts a number of forms of command-line arguments
+    telling it what to run.  In this case we give it the module name
+    "test_port1".  It will import that module, find the test classes and
+    methods in it, and run them all.</p>
+
+    <p>We can see from the output that it ran 1 test, and it passed.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Under the covers</h1>
     <!--[[[cog
@@ -1078,7 +1121,7 @@ from cogutil import *
         testcase = PortfolioTest()
         try:
             testcase.test_ibm()
-        except:
+        except AssertionError:
             [record failure]
         else:
             [record success]
@@ -1089,13 +1132,25 @@ from cogutil import *
     <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Our test code is organized a bit differently that you might have
+    expected.  To help understand why, this is what the test runner does to
+    execute your tests.</p>
+
+    <p>To run a test, unittest creates an instance of your test case class.
+    Then it executes the test method on that object.  It wraps the execution
+    in a try/except clause so that assertion failures will be recorded as test
+    failures, and if no exception happens, it's recorded as a succcess.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Add more tests</h1>
@@ -1163,6 +1218,19 @@ from cogutil import *
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>One test isn't enough, let's add some more.  Here we add a simpler
+    test, test_empty, and a more complicated test, test_ibm_hpq.  Each test
+    is another test method in our PortfolioTest class.</p>
+
+    <p>Each one creates the portfolio object it needs, performs the
+    manipulations it wants, and makes assertions about the outcome.</p>
+
+    <p>When you run the tests, it prints a dot for every test that passes,
+    which is why you see "..." in the test output here.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Under the covers</h1>
     <!--[[[cog
@@ -1171,7 +1239,7 @@ from cogutil import *
         testcase = PortfolioTest()
         try:
             testcase.test_empty()
-        except:
+        except AssertionError:
             [record failure]
         else:
             [record success]
@@ -1179,7 +1247,7 @@ from cogutil import *
         testcase = PortfolioTest()
         try:
             testcase.test_ibm()
-        except:
+        except AssertionError:
             [record failure]
         else:
             [record success]
@@ -1187,7 +1255,7 @@ from cogutil import *
         testcase = PortfolioTest()
         try:
             testcase.test_ibm_hpq()
-        except:
+        except AssertionError:
             [record failure]
         else:
             [record success]
@@ -1199,7 +1267,7 @@ from cogutil import *
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_empty</span><span class="p">()</span>
     </span>&nbsp;</div>
-    <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
@@ -1208,7 +1276,7 @@ from cogutil import *
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm</span><span class="p">()</span>
     </span>&nbsp;</div>
-    <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
@@ -1217,13 +1285,21 @@ from cogutil import *
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
     <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm_hpq</span><span class="p">()</span>
     </span>&nbsp;</div>
-    <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>With three tests, the execution model is much as before.  The key
+    thing to note here is that a new instance of PortfolioTest is created
+    for each test method.  This helps to guarantee an important property of
+    good tests: isolation.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Test isolation</h1>
@@ -1235,6 +1311,18 @@ from cogutil import *
         <li>Failure doesn't prevent further tests</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Test isolation means that each of your tests is unaffected by every
+    other test. This is good because it makes your tests more repeatable, and
+    they are clearer about what they are testing.</p>
+
+    <p>Earlier we had a problem where one test failing prevented the other
+    tests from running.  Here unittest is running each test independently, so
+    if one fails, the rest will run, and will run just as if the earlier test
+    had succeeded.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>What failure looks like</h1>
@@ -1279,6 +1367,24 @@ from cogutil import *
         <li>Bad: what value was returned?</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>So far, all of our tests have passed.  What happens when they fail?</p>
+
+    <p>The test runner prints a dot for every test that passes, and it prints
+    an "F" for each test failure, so here we see ".F." in the output.  Then
+    for each test failure, it prints the name of the test, and the traceback
+    of the assertion failure.</p>
+
+    <p>This style of test output means that test successes are very quiet, just
+    a single dot.  When a test fails, it stands out, and you can focus on
+    them.</p>
+
+    <p>It's great that the traceback shows what assertion failed, but notice
+    that it doesn't tell us what bad value was returned.  We can see that we
+    expected it to be 17648.0, but we don't know what the actual value was.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>unittest assert helpers</h1>
@@ -1341,6 +1447,21 @@ from cogutil import *
     <!--[[[end]]] }}}-->
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>One of the reasons to derive your test classes from unittest.TestCase
+    is that it provides you with specialized assertion methods.</p>
+
+    <p>In this test, we've used self.assertEqual instead of the built-in
+    assert statement.  The benefit of the method is that it can print both the
+    actual and expected values if the test fails.</p>
+
+    <p>Here the assertion error message shows both values.  The best tests
+    will give you information you can use to diagnose and debug the problem.
+    Here, when comparing two values for equality, we are told not only that
+    they are not equal, but also what each value was.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Lots of assert helpers</h1>
     <!--[[[cog
@@ -1388,6 +1509,24 @@ from cogutil import *
     <!--[[[end]]]-->
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>The unittest.TestCase class provides many assertion methods for testing
+    many conditions.  Read through the
+    <a href='http://docs.python.org/2/library/unittest.html'>unittest documentation</a>
+    to familiarize yourself with the variety available.</p>
+
+</div><!-- }}} -->
+
+
+<div class="slide todo">
+    <h1>Pro tip: use your own base class for tests</h1>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 
 <div class="slide">
     <h1>Three possible outcomes</h1>
@@ -1410,7 +1549,7 @@ from cogutil import *
     AttributeError: 'Portfolio' object has no attribute 'buyxxxxx'
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.000s
+    Ran 3 tests in 0.001s
 
     FAILED (errors=1)
     -->
@@ -1429,14 +1568,25 @@ from cogutil import *
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ----------------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
-<div class="slide">
+<div class="text"><!-- {{{ -->
+    <p>There are actually three possible outcomes for a test: passing, failure,
+    and error.  Error means that the test raised an exception other than
+    AssertionError.  Well-written tests should either succeed, or should fail
+    in an assertion.  If another exception happens, it means that the test
+    itself is improper.  This condition is marked with an "E", and the error
+    stacktrace is displayed.</p>
+
+</div><!-- }}} -->
+
+
+<div class="hidden_slide">
     <h1>Under the covers</h1>
     <!--[[[cog
     include_code("""\
@@ -1497,6 +1647,14 @@ from cogutil import *
     <!--[[[end]]] }}}-->
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>This makes negative testing, testing for error outcomes, difficult.
+    Here we manually try an error case in our code, calling buy() with too few
+    arguments.  When we make the buy() call, our Portfolio class will throw
+    a TypeError.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Can't just call the function</h1>
     <!--[[[cog
@@ -1551,6 +1709,14 @@ from cogutil import *
     <!--[[[end]]] }}}-->
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>Here we try to write an automated test of the same scenario.  When we
+    call buy() with too few arguments, of course it raises TypeError, and 
+    there's nothing to catch the exception, so the test ends with an Error
+    status.  That's not good, we want all our tests to pass.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>assertRaises</h1>
     <!--[[[cog
@@ -1593,6 +1759,18 @@ from cogutil import *
     <!--[[[end]]] }}}-->
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>To properly handle the error-raising function call, we use a method
+    called assertRaises.  This neatly captures our intent, that we are asserting
+    that a statement will raise an exception.  It's used as a context manager
+    with a with statement so that it can handle the exception when it is
+    raised.</p>
+
+    <p>If you have experience with unittest before 2.7, the context manager
+    style is new, and much more convenient than the old way.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Add .sell()</h1>
     <!--[[[cog
@@ -1624,6 +1802,15 @@ from cogutil import *
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Our testing is going well, time to extend our product.  Let's add
+    a .sell() method to our Portfolio class.  It will remove shares of a
+    particular stock from our Portfolio.</p>
+
+    <p>Note: this code is very simple, for the purpose of fitting on a slide!</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Testing sell()</h1>
@@ -1685,6 +1872,17 @@ from cogutil import *
     <!--[[[end]]] }}}-->
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>To test the .sell() method, we add three more tests.  In each case,
+    we need to create a portfolio with some stocks in it so that we have
+    something to sell.</p>
+
+    <p>But now our tests are getting really repetitve.  We've used the same
+    four lines of code to create the same portfolio object three times.</p>
+
+</div><!-- }}} -->
+
+
 <div class="slide">
     <h1>Setting up a test</h1>
     <!--[[[cog
@@ -1734,6 +1932,24 @@ from cogutil import *
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>This is a common problem, so unittest has a solution for us.  A test
+    class can define a .setUp() method.  This method is invoked before each
+    test method.  Because your test class is a class, you have a self object
+    that you can create attributes on.</p>
+
+    <p>Here we have a .setup() method that creates a portfolio and stores it
+    as self.p.  Then the three test methods can simply use the self.p portfolio.
+    Not the three test methods are much smaller, since they share the common
+    setup code in .setUp().</p>
+
+    <p>Naturally, there's also a .tearDown() method that will be invoked when
+    the test method is finished.  tearDown can clean up after a test, for example
+    if your setUp created records in a database, or files on disk.  We don't
+    need one here.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Under the covers</h1>
@@ -1786,14 +2002,34 @@ from cogutil import *
     <!--[[[end]]]-->
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>Here's the detail on how unittest runs the setUp, test_method, and tearDown
+    methods.  A test case object is instantiated, and its .setUp() is run.
+    if it doesn't raise an exception, then the .test_method() is run, noting
+    its outcome.  No matter what happens with the .test_method(), the tearDown()
+    is run.</p>
+
+    <p>This is an important reason to put clean up code in a tearDown() method:
+    it will be run even if your test fails.  If you try to clean up after
+    yourself at the end of you test method, then when the test fails, the clean
+    up doesn't happen.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>setUp and tearDown: isolation!</h1>
     <ul>
         <li>Establish context for tests</li>
         <li>Use them for common pre-test or post-test work</li>
         <li>They ensure isolation, even in the face of failures</li>
+        <li>Advanced: fixtures</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>setUp and tearDown are important ways to write more concise tests,</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>How NOT to do it</h1>
@@ -1801,12 +2037,12 @@ from cogutil import *
     include_code("""\
         class MyBadTestCase(unittest.TestCase):
             def test_a_thing(self):
-                old_global = some_global_thing
-                some_global_thing = new_test_value
+                old_global = SOME_GLOBAL_THING
+                SOME_GLOBAL_THING = new_test_value
 
                 do_my_test_stuff()
                 
-                some_global_thing = old_global
+                SOME_GLOBAL_THING = old_global
     """, lang="python")
     ]]]-->
     <div class="code python"> <!-- {{{ -->
@@ -1832,11 +2068,11 @@ from cogutil import *
     include_code("""\
         class MyGoodTestCase(unittest.TestCase):
             def setUp(self):
-                self.old_global = some_global_thing
-                some_global_thing = new_test_value
+                self.old_global = SOME_GLOBAL_THING
+                SOME_GLOBAL_THING = new_test_value
 
             def tearDown(self):
-                some_global_thing = self.old_global
+                SOME_GLOBAL_THING = self.old_global
 
             def test_a_thing(self):
                 do_my_test_stuff()
@@ -1876,7 +2112,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Approaches {{{ -->
-<div class="slide section todo">
+<div class="hidden_slide section todo">
     <h1>Approaches</h1>
     <h2>crafting tests</h2>
 </div>
@@ -2046,7 +2282,9 @@ from cogutil import *
     </ul>
 </div>
 
-<!-- Unused slides {{{
+<!-- }}} -->
+
+<!-- *** Other test runners {{{ -->
 <div class="hidden_slide">
     <h1>Running tests</h1>
     <ul>
@@ -2166,8 +2404,6 @@ from cogutil import *
         <li>They are probably awesome</li>
     </ul>
 </div>
-
- }}} -->
 
 <div class="hidden_slide">
     <h1>Test runners</h1>
@@ -2637,9 +2873,9 @@ from cogutil import *
     >>> # Make a mock object, call it, ask what was called.
     >>> m = mock.Mock()
     >>> m.foo(3, "hello")
-    <Mock name='mock.foo()' id='4534422928'>
+    <Mock name='mock.foo()' id='4521242000'>
     >>> m.bar(17).baz("ned").quux(47)
-    <Mock name='mock.bar().baz().quux()' id='4535477712'>
+    <Mock name='mock.bar().baz().quux()' id='4521489872'>
     >>> m.method_calls
     [call.foo(3, 'hello'), call.bar(17)]
 
@@ -2665,9 +2901,9 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4534422928&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4521242000&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4535477712&#39;&gt;</span>&nbsp;</div>
+    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4521489872&#39;&gt;</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
     <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
