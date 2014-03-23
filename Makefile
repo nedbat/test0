@@ -5,6 +5,7 @@ SAMPLES = \
 	porttest1.py porttest2.py porttest3.py porttest3_broken.py \
 	test_port1.py test_port2.py test_port2_broken.py \
 	test_port3.py test_port3_broken.py test_port3_broken2.py \
+	test_port3b.py \
 	test_port4.py test_port4_broken.py test_port5.py \
 	test_port6.py test_port7.py test_port8.py test_port9.py
 
