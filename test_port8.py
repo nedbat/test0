@@ -49,13 +49,12 @@ class PortfolioSellTest(unittest.TestCase):
 # and is only good for one request.  You can make this much
 # more complex for your own needs.
 class FakeUrllib(object):
-    """An object that can stand in for the urllib module."""
     def urlopen(self, url):
-        """A stub urllib.urlopen() implementation."""
         return StringIO('"IBM",140\n"HPQ",32\n')
 
 class PortfolioValueTest(unittest.TestCase):
     def setUp(self):
+        # Save the real urllib, and install our fake.
         self.old_urllib = portfolio3.urllib
         portfolio3.urllib = FakeUrllib()
 
@@ -64,6 +63,7 @@ class PortfolioValueTest(unittest.TestCase):
         self.p.buy("HPQ", 100, 30.0)
 
     def tearDown(self):
+        # Restore the real urllib.
         portfolio3.urllib = self.old_urllib
 
     def test_value(self):

@@ -50,15 +50,10 @@ class Portfolio(object):
     #(((value)))
     def current_prices(self):
         """Return a dict mapping names to current prices."""
-        # http://download.finance.yahoo.com/d/quotes.csv?f=sl1&s=ibm,hpq
-        # returns comma-separated values:
-        #   "IBM",174.23
-        #   "HPQ",35.13
-        url = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&s="
-        url += ",".join(sorted(name for name, _, _ in self.stocks))
+        url = "http://finance.yahoo.com/d/quotes.csv?f=sl1&s="
+        url += ",".join(sorted(s[0] for s in self.stocks))
         data = urllib.urlopen(url)
-        prices = { sym: float(last) for sym, last in csv.reader(data) }
-        return prices
+        return { sym: float(last) for sym, last in csv.reader(data) }
 
     def value(self):
         """Return the current value of the portfolio."""

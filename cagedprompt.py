@@ -9,9 +9,9 @@ class CagedPrompt(code.InteractiveConsole):
     def __init__(self):
         env = {'__name__': '__main__'}
         code.InteractiveConsole.__init__(self, env)
-        self.out = StringIO.StringIO()
 
     def run(self, input, banner=True):
+        self.out = StringIO.StringIO()
         self.inlines = textwrap.dedent(input).splitlines()
         old_stdout = sys.stdout
         sys.stdout = self.out
@@ -37,8 +37,11 @@ class CagedPrompt(code.InteractiveConsole):
     def write(self, data):
         self.out.write(data)
 
-def prompt_session(input, banner=True):
+def prompt_session(input, banner=True, prelude=""):
+    assert not (banner and prelude)
     cp = CagedPrompt()
+    if prelude:
+        cp.run(prelude, banner=False)
     cp.run(input, banner=banner)
     return cp.output
 

@@ -662,7 +662,6 @@ from cogutil import *
     <!-- ** Interactive session {{{ -->
     <!--[[[cog
     prompt_session("""\
-        from portfolio1 import Portfolio
         p = Portfolio()
         p.cost()
 
@@ -671,11 +670,13 @@ from cogutil import *
 
         p.buy("HPQ", 100, 36.15)
         p.cost()
+        """,
+        prelude="""\
+        from portfolio1 import Portfolio
         """)
     ]]]-->
     <!--
 
-    >>> from portfolio1 import Portfolio
     >>> p = Portfolio()
     >>> p.cost()
     0.0
@@ -691,7 +692,6 @@ from cogutil import *
 
     -->
     <div class="code pycon"> <!-- {{{ -->
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="go">0.0</span>&nbsp;</div>
@@ -970,7 +970,7 @@ from cogutil import *
     <ul>
         <li>Good: testing the code repeatably with low effort</li>
         <li>Good: expected results checked automatically</li>
-        <li>So-so: failure is visible, but output is cluttered with success</li>
+        <li>Meh: failure is visible, but output is cluttered</li>
         <li>Bad: failure prevents further tests</li>
     </ul>
 </div>
@@ -1667,14 +1667,15 @@ from cogutil import *
     <!-- ** Interactive session {{{ -->
     <!--[[[cog
     prompt_session("""\
-        from portfolio1 import Portfolio
         p = Portfolio()
         p.buy("IBM")
+        """,
+        prelude="""\
+        from portfolio1 import Portfolio
         """)
     ]]]-->
     <!--
 
-    >>> from portfolio1 import Portfolio
     >>> p = Portfolio()
     >>> p.buy("IBM")
     Traceback (most recent call last):
@@ -1684,7 +1685,6 @@ from cogutil import *
 
     -->
     <div class="code pycon"> <!-- {{{ -->
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="gt">Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):</span>&nbsp;</div>
@@ -1819,7 +1819,7 @@ from cogutil import *
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>Add .sell()</h1>
+    <h1>Portfolio: .sell()</h1>
     <!--[[[cog
     include_file("portfolio2.py", start=21, end=30)   # {{{
     ]]]-->
@@ -1992,9 +1992,9 @@ from cogutil import *
     setup code in .setUp().</p>
 
     <p>Naturally, there's also a .tearDown() method that will be invoked when
-    the test method is finished.  tearDown can clean up after a test, for example
-    if your setUp created records in a database, or files on disk.  We don't
-    need one here.</p>
+    the test method is finished.  tearDown can clean up after a test, for
+    example if your setUp created records in a database, or files on disk.  We
+    don't need one here.</p>
 
 </div><!-- }}} -->
 
@@ -2067,18 +2067,24 @@ from cogutil import *
     <h1>setUp and tearDown: isolation!</h1>
     <ul>
         <li>Establish context for tests</li>
-        <li>Use them for common pre-test or post-test work</li>
-        <li>They ensure isolation, even in the face of failures</li>
-        <li>Advanced: fixtures</li>
+        <li>Common pre-test or post-test work</li>
+        <li>Ensure isolation, even with failures</li>
+        <li>Also: "fixtures"</li>
     </ul>
 </div>
 
 <div class="text"><!-- {{{ -->
-    <p>setUp and tearDown are important ways to write more concise tests,</p>
+    <p>setUp and tearDown are important ways to write more concise tests, and
+    more importantly, give you powerful tools for ensuring proper test
+    isolation.</p>
+
+    <p>If you find your setUp and tearDown methods getting elaborate, there are
+    third party "fixture" libraries that can help automate the creation of
+    test data and environments.</p>
 
 </div><!-- }}} -->
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>How NOT to do it</h1>
     <!--[[[cog
     include_code("""\
@@ -2109,7 +2115,7 @@ from cogutil import *
     </ul>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>The right way</h1>
     <!--[[[cog
     include_code("""\
@@ -2147,14 +2153,32 @@ from cogutil import *
 </div>
 
 <div class="slide">
-    <h1>Tests are real code</h1>
+    <h1>Tests are real code!</h1>
     <ul>
         <li>Test helpers can become significant</li>
-        <li>All the same techniques you use for product code, you can use for test code</li>
         <li>Helper functions, classes, etc.</li>
-        <li>BTW: These helpers might need tests!</li>
+        <li>These helpers might need tests!</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>You can see as we add more capability to our tests, they are becoming
+    significant, even with the help of unittest.  This is a key point to
+    understand: writing tests is real engineering!</p>
+
+    <p>If you approach your tests as boring paperwork to get done because
+    everyone says you have to, you will be unhappy and you will have bad
+    tests.</p>
+
+    <p>You have to approach tests as valuable solutions to a real problem: how
+    do you know if your code works?  And as a valuable solution, you will put
+    real effort into it, designing a strategy, building helpers, and so on.</p>
+
+    <p>In a well-tested project, it isn't unusual to have more lines of tests
+    than you have lines of product code! It is definitely worthwhile to
+    engineer those tests well.</p>
+
+</div><!-- }}} -->
 
 <!-- }}} -->
 
@@ -2546,9 +2570,15 @@ from cogutil import *
 
 <!-- *** Mocking {{{ -->
 <div class="slide section">
-    <h1>Test Doubles</h1>
+    <h1>Mocks</h1>
     <h2>Focusing tests</h2>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>We've covered the basics of how to write tests.  The most useful skill
+    to cover next is called mocking.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Testing small amounts of code</h1>
@@ -2559,6 +2589,14 @@ from cogutil import *
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>Any real-sized program is built in layers and components.  In the full
+    program, each component depends on a number of other components.  But the
+    best tests focus on just one piece of code.  How can you test a component
+    in isolation from all of the components it depends on?</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Dependencies are bad</h1>
     <ul>
@@ -2568,33 +2606,56 @@ from cogutil import *
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>Dependencies among components are bad for testing.  They mean that when
+    you are testing one component, you are actually testing it and all the 
+    components it depends on.  This is more code than you want to be thinking
+    about when writing or debugging a test.</p>
+
+    <p>Also, some components might be slow, which will make your tests slow,
+    which makes it hard to write lots of tests that will be run frequently.</p>
+
+    <p>Lastly, some components are unpredictable, which makes it hard to write
+    repeatable tests.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Test Doubles</h1>
     <ul>
         <li>Replace a component's dependencies</li>
         <li>Focus on one component</li>
-        <li>Different kinds: Mocks, stubs, fakes, etc</li>
     </ul>
     <img src='mock.png'/>
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>The solutions to these problems are known as test doubles: code that
+    can stand-in for real code during testing, kind of like stunt doubles in
+    movies.</p>
+
+    <p>The idea is to replace certain dependencies with doubles. During
+    testing, you test the primary component, and avoid invoking the complex,
+    time-consuming, or unpredictable dependencies, because they have been
+    replaced.</p>
+
+    <p>The result is tests that focus in on the primary component without
+    involving complicating dependencies.</p>
+    
+</div><!-- }}} -->
+
 <div class="slide">
-    <h1>Real-time data!</h1>
+    <h1>Portfolio: Real-time data!</h1>
     <!--[[[cog
     include_file("portfolio3.py", section="value")   # {{{
     ]]]-->
     <!--
         def current_prices(self):
             """Return a dict mapping names to current prices."""
-            # http://download.finance.yahoo.com/d/quotes.csv?f=sl1&s=ibm,hpq
-            # returns comma–separated values:
-            #   "IBM",174.23
-            #   "HPQ",35.13
-            url = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&s="
-            url += ",".join(sorted(name for name, _, _ in self.stocks))
+            url = "http://finance.yahoo.com/d/quotes.csv?f=sl1&s="
+            url += ",".join(sorted(s[0] for s in self.stocks))
             data = urllib.urlopen(url)
-            prices = { sym: float(last) for sym, last in csv.reader(data) }
-            return prices
+            return { sym: float(last) for sym, last in csv.reader(data) }
 
         def value(self):
             """Return the current value of the portfolio."""
@@ -2607,33 +2668,23 @@ from cogutil import *
     <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;returns&#xA0;comma-separated&#xA0;values:</span>&nbsp;</div>
-    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;IBM&quot;,174.23</span>&nbsp;</div>
-    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;HPQ&quot;,35.13</span>&nbsp;</div>
-    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">_</span><span class="p">,</span>&#xA0;<span class="n">_</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">))</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
-    <div class="line"><span class="lineno">62</span>&nbsp;</div>
-    <div class="line"><span class="lineno">63</span> <span class="k">def</span>&#xA0;<span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;the&#xA0;current&#xA0;value&#xA0;of&#xA0;the&#xA0;portfolio.&quot;&quot;&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
-    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">_</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
-    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">prices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>&nbsp;</div>
-    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">total</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">s</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> <span class="k">def</span>&#xA0;<span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;the&#xA0;current&#xA0;value&#xA0;of&#xA0;the&#xA0;portfolio.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">_</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">prices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">total</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-</div>
-
-<div class="slide">
-    <h1>It works great!</h1>
     <!-- ** Interactive session {{{ -->
     <!--[[[cog
     prompt_session("""\
-        from portfolio3 import Portfolio
         p = Portfolio()
         p.buy("IBM", 100, 150.0)
         p.buy("HPQ", 100, 30.0)
@@ -2641,11 +2692,13 @@ from cogutil import *
         p.current_prices()
         
         p.value()
+        """,
+        prelude="""\
+        from portfolio3 import Portfolio
         """)
     ]]]-->
     <!--
 
-    >>> from portfolio3 import Portfolio
     >>> p = Portfolio()
     >>> p.buy("IBM", 100, 150.0)
     >>> p.buy("HPQ", 100, 30.0)
@@ -2659,7 +2712,6 @@ from cogutil import *
 
     -->
     <div class="code pycon"> <!-- {{{ -->
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">portfolio3</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">150.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
@@ -2672,6 +2724,22 @@ from cogutil import *
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>As an example, we'll add more code to our Portfolio class.  This code
+    will tell us the actual real-world current value of our collection of
+    stocks.  To do that, we've added a method called current_prices which
+    uses a Yahoo web service to get the current market prices of the stocks
+    we hold.</p>
+
+    <p>The new .value() method will get the current prices, and sum up the
+    value of each stock holding to tell us the current value.</p>
+
+    <p>Here we can try out our code manually, and see that current_prices()
+    really does return us a dictionary of market prices, and .value() computes
+    the value of the portfolio using those market prices.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>But how to test it?</h1>
@@ -2686,6 +2754,23 @@ from cogutil import *
             </ul></li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Here we have all the problems of difficult dependencies in a nutshell.
+    Our product code is great, but depends on an external web service run by a
+    third party.  It could be slow to contact, it could be unavailable.  But
+    even when it is working, it is impossible to predict what values it will
+    return.  The whole point of this function is to give us real-world data as
+    of the current moment, so how can you write a test that proves it is
+    working properly?  You don't know in advance what values it will
+    return.</p>
+
+    <p>If we actually contact Yahoo as part of our testing, then we are testing
+    whether Yahoo is working properly as well as our own code.  We want to only
+    test our own code.  Our test should tell us, if Yahoo is working properly,
+    will our code work properly?</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Fake implementation of current_prices</h1>
@@ -2732,6 +2817,18 @@ from cogutil import *
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>Our first test double will be a fake implementation of current_prices().
+    Here in our setUp function, we create a Portfolio, and then we give it a
+    new current_prices method that simply returns a fixed value.</p>
+
+    <p>This is very simple, and neatly solves a number of our problems: the
+    code no longer contacts Yahoo, so it is fast and reliable, and it always
+    produces the same value, so we can predict what values our .value() method
+    should return.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>But some code isn't tested!</h1>
     <!--[[[cog
@@ -2741,53 +2838,69 @@ from cogutil import *
     $ coverage report –m
     Name         Stmts   Miss  Cover   Missing
     ––––––––––––––––––––––––––––––––––––––––––
-    portfolio3      32      5    84%   57–61
+    portfolio3      31      4    87%   53–56
     test_port7      43      0   100%   
     ––––––––––––––––––––––––––––––––––––––––––
-    TOTAL           75      5    93%   
+    TOTAL           74      4    95%   
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;32&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;5&#xA0;&#xA0;&#xA0;&#xA0;84%&#xA0;&#xA0;&#xA0;57-61
+    <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;87%&#xA0;&#xA0;&#xA0;53-56
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> test_port7&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;43&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;75&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;5&#xA0;&#xA0;&#xA0;&#xA0;93%&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;74&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;95%&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog
-    include_file("portfolio3.py", start=51, end=61)   # {{{
+    include_file("portfolio3.py", start=51, end=61, highlight=[53,54,55,56])   # {{{
     ]]]-->
     <!--
         def current_prices(self):
             """Return a dict mapping names to current prices."""
-            # http://download.finance.yahoo.com/d/quotes.csv?f=sl1&s=ibm,hpq
-            # returns comma–separated values:
-            #   "IBM",174.23
-            #   "HPQ",35.13
-            url = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&s="
-            url += ",".join(sorted(name for name, _, _ in self.stocks))
+            url = "http://finance.yahoo.com/d/quotes.csv?f=sl1&s="
+            url += ",".join(sorted(s[0] for s in self.stocks))
             data = urllib.urlopen(url)
-            prices = { sym: float(last) for sym, last in csv.reader(data) }
-            return prices
+            return { sym: float(last) for sym, last in csv.reader(data) }
+
+        def value(self):
+            """Return the current value of the portfolio."""
+            prices = self.current_prices()
+            total = 0.0
     -->
     <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
     <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=ibm,hpq</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;returns&#xA0;comma-separated&#xA0;values:</span>&nbsp;</div>
-    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;IBM&quot;,174.23</span>&nbsp;</div>
-    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;&quot;HPQ&quot;,35.13</span>&nbsp;</div>
-    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://download.finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">name</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">_</span><span class="p">,</span>&#xA0;<span class="n">_</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">))</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">s</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">))</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> <span class="k">def</span>&#xA0;<span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;the&#xA0;current&#xA0;value&#xA0;of&#xA0;the&#xA0;portfolio.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>But we may have gone too far: none of our actual current_prices() method
+    is tested now.  Here I've used <a href="http://nedbatchelder.com/code/coverage">coverage.py</a>
+    to measure what product lines are executed during testing, and it shows us
+    that lines 53 through 56 are not executed.  Those are the body of the 
+    current_prices() method.</p>
+
+    <p>That's our code, and we need to test it somehow.  We got isolation from
+    Yahoo, but we removed some of our own code in the process.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Fake urllib.urlopen instead</h1>
@@ -2799,13 +2912,12 @@ from cogutil import *
     # and is only good for one request.  You can make this much
     # more complex for your own needs.
     class FakeUrllib(object):
-        """An object that can stand in for the urllib module."""
         def urlopen(self, url):
-            """A stub urllib.urlopen() implementation."""
             return StringIO('"IBM",140\n"HPQ",32\n')
 
     class PortfolioValueTest(unittest.TestCase):
         def setUp(self):
+            # Save the real urllib, and install our fake.
             self.old_urllib = portfolio3.urllib
             portfolio3.urllib = FakeUrllib()
 
@@ -2814,6 +2926,7 @@ from cogutil import *
             self.p.buy("HPQ", 100, 30.0)
 
         def tearDown(self):
+            # Restore the real urllib.
             portfolio3.urllib = self.old_urllib
 
         def test_value(self):
@@ -2824,21 +2937,21 @@ from cogutil import *
     <div class="line"><span class="lineno">49</span> <span class="c">#&#xA0;and&#xA0;is&#xA0;only&#xA0;good&#xA0;for&#xA0;one&#xA0;request.&#xA0;&#xA0;You&#xA0;can&#xA0;make&#xA0;this&#xA0;much</span>&nbsp;</div>
     <div class="line"><span class="lineno">50</span> <span class="c">#&#xA0;more&#xA0;complex&#xA0;for&#xA0;your&#xA0;own&#xA0;needs.</span>&nbsp;</div>
     <div class="line"><span class="lineno">51</span> <span class="k">class</span>&#xA0;<span class="nc">FakeUrllib</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;An&#xA0;object&#xA0;that&#xA0;can&#xA0;stand&#xA0;in&#xA0;for&#xA0;the&#xA0;urllib&#xA0;module.&quot;&quot;&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">url</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;A&#xA0;stub&#xA0;urllib.urlopen()&#xA0;implementation.&quot;&quot;&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">56</span>&nbsp;</div>
-    <div class="line"><span class="lineno">57</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&nbsp;</div>
-    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">FakeUrllib</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span>&nbsp;</div>
-    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">65</span>&nbsp;</div>
-    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">url</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Save&#xA0;the&#xA0;real&#xA0;urllib,&#xA0;and&#xA0;install&#xA0;our&#xA0;fake.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">FakeUrllib</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Restore&#xA0;the&#xA0;real&#xA0;urllib.</span>&nbsp;</div>
     <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&nbsp;</div>
     <div class="line"><span class="lineno">68</span>&nbsp;</div>
     <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
@@ -2846,6 +2959,35 @@ from cogutil import *
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>To test our code but still not use Yahoo, we can intercept the flow
+    lower down.  Our current_prices() method uses the urllib module to make
+    the HTTP request to Yahoo.  We can replace urllib to let our code run,
+    but not make a real network request.</p>
+
+    <p>Here we define a class called FakeUrlLib with a method called urlopen
+    that will be the test double for urllib.urlopen().  Our fake implementation
+    simply returns a file object that provides the same stream of bytes that
+    Yahoo would have returned.</p>
+
+    <p>In our test's setUp() method, we replace the urllib reference in our
+    product code with our fake implementation.  When the test method runs,
+    our FakeUrlLib object will be invoked instead of the urllib module, it will
+    return its canned response, and our code will process it just as if it had
+    come from Yahoo.</p>
+    
+    <p>Notice that the product code uses a module with a function, and we are
+    replacing it with an object with a method.  That's fine, Python's dynamic
+    nature means that it doesn't matter what "urllib" is defined as, so long as
+    it has a .urlopen attribute that is callable, the product code will be
+    fine.</p>
+
+    <p>This sort of manipulation is one place where Python really shines, since
+    types and access protection don't constrain what we can do to create the
+    test environment we want.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>All of our code is executed</h1>
@@ -2856,19 +2998,19 @@ from cogutil import *
     $ coverage report –m
     Name         Stmts   Miss  Cover   Missing
     ––––––––––––––––––––––––––––––––––––––––––
-    portfolio3      32      0   100%   
+    portfolio3      31      0   100%   
     test_port8      49      0   100%   
     ––––––––––––––––––––––––––––––––––––––––––
-    TOTAL           81      0   100%   
+    TOTAL           80      0   100%   
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;32&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">11</span> test_port8&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;49&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;81&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;80&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
@@ -2878,6 +3020,14 @@ from cogutil import *
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>Now the coverage report shows that all of our code has been executed.
+    By stubbing the standard library, we cut off the component dependencies
+    at just the right point: where our code (current_prices) started calling
+    someone else's code (urllib.urlopen).</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Even better: mock objects</h1>
     <ul>
@@ -2886,90 +3036,60 @@ from cogutil import *
         <li>Also record what happened to them</li>
         <li>You can make assertions after the fact</li>
     </ul>
-</div>
-
-<div class="hidden_slide">
-    <h1>Automatic chameleons</h1>
     <!-- ** Interactive session {{{ -->
     <!--[[[cog
     prompt_session("""\
-        import mock, StringIO
+        from mock import Mock
 
-        # Make a mock object, call it, ask what was called.
-        m = mock.Mock()
-        m.foo(3, "hello")
-        m.bar(17).baz("ned").quux(47)
-        m.method_calls
+        func = Mock()
+        func.return_value = "Hello!"
 
-        # Make a real object, give it a mock function
-        s = StringIO.StringIO()
-        s.fake_function = mock.Mock()
-        s.fake_function.return_value = "Success!"
-        s.fake_function(42)
-        s.fake_function.call_args
-
-        # The real methods still work
-        s.write("hello")
-        s.getvalue()
-        """, command=False)
+        func(17, "something")
+        
+        func.call_args
+        """)
     ]]]-->
     <!--
 
-    >>> import mock, StringIO
+    >>> from mock import Mock
 
-    >>> # Make a mock object, call it, ask what was called.
-    >>> m = mock.Mock()
-    >>> m.foo(3, "hello")
-    <Mock name='mock.foo()' id='4433583504'>
-    >>> m.bar(17).baz("ned").quux(47)
-    <Mock name='mock.bar().baz().quux()' id='4433843664'>
-    >>> m.method_calls
-    [call.foo(3, 'hello'), call.bar(17)]
+    >>> func = Mock()
+    >>> func.return_value = "Hello!"
 
-    >>> # Make a real object, give it a mock function
-    >>> s = StringIO.StringIO()
-    >>> s.fake_function = mock.Mock()
-    >>> s.fake_function.return_value = "Success!"
-    >>> s.fake_function(42)
-    'Success!'
-    >>> s.fake_function.call_args
-    call(42)
+    >>> func(17, "something")
+    'Hello!'
 
-    >>> # The real methods still work
-    >>> s.write("hello")
-    >>> s.getvalue()
-    'hello'
+    >>> func.call_args
+    call(17, 'something')
 
 
     -->
     <div class="code pycon"> <!-- {{{ -->
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">import</span>&#xA0;<span class="nn">mock</span><span class="o">,</span>&#xA0;<span class="nn">StringIO</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">mock</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Mock</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;mock&#xA0;object,&#xA0;call&#xA0;it,&#xA0;ask&#xA0;what&#xA0;was&#xA0;called.</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span>&#xA0;<span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.foo()&#39;&#xA0;id=&#39;4433583504&#39;&gt;</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span><span class="o">.</span><span class="n">baz</span><span class="p">(</span><span class="s">&quot;ned&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quux</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&lt;Mock&#xA0;name=&#39;mock.bar().baz().quux()&#39;&#xA0;id=&#39;4433843664&#39;&gt;</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">m</span><span class="o">.</span><span class="n">method_calls</span>&nbsp;</div>
-    <div class="line"><span class="go">[call.foo(3,&#xA0;&#39;hello&#39;),&#xA0;call.bar(17)]</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">func</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">func</span><span class="o">.</span><span class="n">return_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;Hello!&quot;</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;Make&#xA0;a&#xA0;real&#xA0;object,&#xA0;give&#xA0;it&#xA0;a&#xA0;mock&#xA0;function</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">StringIO</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">fake_function</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">fake_function</span><span class="o">.</span><span class="n">return_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;Success!&quot;</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">fake_function</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="go">&#39;Success!&#39;</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">fake_function</span><span class="o">.</span><span class="n">call_args</span>&nbsp;</div>
-    <div class="line"><span class="go">call(42)</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">func</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span>&#xA0;<span class="s">&quot;something&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="go">&#39;Hello!&#39;</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="c">#&#xA0;The&#xA0;real&#xA0;methods&#xA0;still&#xA0;work</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">s</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">&#39;hello&#39;</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">func</span><span class="o">.</span><span class="n">call_args</span>&nbsp;</div>
+    <div class="line"><span class="go">call(17,&#xA0;&#39;something&#39;)</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>A more powerful way to create test doubles is with Mock objects.
+    The mock library (third-party for 2.7, in the standard library for 3.3)
+    provides the Mock class.  This object will happily act like any object
+    you please.  You can set a return_value on it, and when called, it will
+    return that value.  Then you can ask what arguments it was called with.</p>
+
+    <p>Mock objects can do other magic things, but these two behaviors give us
+    what we need for now.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Mocking with no set up</h1>
@@ -3023,12 +3143,31 @@ from cogutil import *
     <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">)</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--
-    <ul>
-        <li>Using Foord's Mock: <a href='http://www.voidspace.org.uk/python/mock/'>http://www.voidspace.org.uk/python/mock</a></li>
-    </ul>
-    -->
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Here's a new test of our current_prices code.  In our test method, we
+    use a context manager provided by mock:  mock.patch will replace the given
+    name with a mock object, and give us the mock object so we can manipulate
+    it.</p>
+
+    <p>We mock out urllib.urlopen, and then set the value it should return. We
+    use the same open file object that we did in the last example, which just
+    mimics the bytes that Yahoo would return to us.</p>
+
+    <p>Then we can run the product code, which will call current_prices, which
+    will call urllib.urlopen, which is now our mock object.  It will return our
+    mocked return value, and produce the expected portfolio value.</p>
+
+    <p>Mock objects also have a handy method on them called
+    .assert_called_with() that let us make assertions about the arguments the
+    mock object was passed.  This gives us certainty that our code called the
+    external component properly.</p>
+
+    <p>When the with statement ends, the mock.patch context manager cleans up,
+    restoring urllib.urlopen to it previous authentic value.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Test doubles</h1>
@@ -3037,16 +3176,24 @@ from cogutil import *
         <li>Focuses tests on one thing at a time</li>
         <li>Removes speed bumps and randomness</li>
         <li>Lots of libraries to make it easier</li>
-        <li>Also called Dependency Injection</li>
+        <li>Also: "dependency injection"</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>Test doubles are a big topic all of their own.  I wanted to give you a
+    quick taste of what they are and what they can do.  Using them will
+    dramatically improve the isolation, and therefore the speed and usefulness
+    of your tests.</p>
+
+</div><!-- }}} -->
 
 <!-- }}} -->
 
 <!-- *** Other topics {{{ -->
 
 <div class="slide section">
-    <h1>Other topics</h1>
+    <h1>Also</h1>
     <h2>Too many things I couldn't fit!</h2>
 </div>
 
@@ -3066,7 +3213,7 @@ from cogutil import *
     <h3 class="incremental">TDD: <span style="font-weight: normal">tests before code!?</span></h3>
     <h3 class="incremental">integration tests: <span style="font-weight: normal">bigger chunks</span></h3>
     <h3 class="incremental">load testing: <span style="font-weight: normal">how much traffic is OK?</span></h3>
-    <h3 class="incremental">: <span style="font-weight: normal"></span></h3>
+    <h3 class="incremental">others, I'm sure....<span style="font-weight: normal"></span></h3>
 </div>
 
 
@@ -3108,15 +3255,12 @@ from cogutil import *
         - How do you get people on board?
 -->
 
-<div class="slide thankyou">
-    <h1 style='text-align: center; margin-top:1em'>Thank You</h1>
-    <h3 style='marginx:1em'>http://nedbatchelder.com/text/test0.html</h3>
+<div class="slide">
+    <h1 style='text-align: center; margin-top:1em'>Questions?</h1>
+    <h3 style='marginx:1em'>http://bit.ly/pytest0</h3>
     <h3 style='marginx:1em'>@nedbat</h3>
     
-    <p>Testing in Python mailing list</p>
-    <p>#python IRC channel</p>
-
-    <p style='text-align:center; font-size:85%; margin-top:9em;'>
+    <p style='text-align:center; font-size:85%; margin-top:19em;'>
     <i>Made with Cog and Slippy.</i>
     </p>
 </div>
