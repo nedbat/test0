@@ -486,6 +486,7 @@ from cogutil import *
         <li>Saves time in the long run</li>
         <li>Produces better code</li>
         <li>Removes fear from development</li>
+        <li>"Debugging is hard, testing is easy"</li>
     </ul>
 </div>
 
@@ -515,16 +516,6 @@ from cogutil import *
 
 </div><!-- }}} -->
 
-<div class="slide section">
-    <h1>People</h1>
-</div>
-
-<div class="text"><!-- {{{ -->
-    <p>The first challenge in writing automated tests is people.  In particular,
-    you.</p>
-
-</div><!-- }}} -->
-
 <div class="slide">
     <p class="incremental" style='font-family: "Permanent Marker"; font-size: 450%; text-align: center; color: red; margin-top:0'>I&nbsp;  AM&nbsp;  BAD!</p>
     <p class="incremental" style='font-family: "Permanent Marker"; font-size: 200%; text-align: center; color: red; margin-top:0; letter-spacing: .05em'>and I should feel bad</p>
@@ -533,9 +524,9 @@ from cogutil import *
 
 <div class="text"><!-- {{{ -->
     <p>If you are like most developers, you know that you should be writing
-    tests, and you feel bad about it.  Tests are the dental floss of
-    development: everyone knows they should do it more, but they don't, and
-    they feel guilty about it.</p>
+    tests, but you aren't, and you feel bad about it.  Tests are the dental
+    floss of development: everyone knows they should do it more, but they
+    don't, and they feel guilty about it.</p>
 
 </div><!-- }}} -->
 
@@ -992,7 +983,6 @@ from cogutil import *
         <li>A test is a real program</li>
         <li>Testing deserves real engineering</li>
         <li>Common issues can be handled in standard ways</li>
-        <li>Unique issues can be handled in custom ways</li>
     </ul>
 </div>
 
@@ -1626,8 +1616,9 @@ from cogutil import *
     <p>There are actually three possible outcomes for a test: passing, failure,
     and error.  Error means that the test raised an exception other than
     AssertionError.  Well-written tests should either succeed, or should fail
-    in an assertion.  If another exception happens, it means that the test
-    itself is improper.  This condition is marked with an "E", and the error
+    in an assertion.  If another exception happens, it could either mean that
+    the test is broken, or that the code is broken, but either way, it isn't
+    what you intended.  This condition is marked with an "E", and the error
     stacktrace is displayed.</p>
 
 </div><!-- }}} -->
@@ -3197,6 +3188,11 @@ from cogutil import *
     <h2>Too many things I couldn't fit!</h2>
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>Testing is a huge topic, there are many paths to take from here.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Tools</h1>
     <h3 class="incremental">addCleanup: <span style="font-weight: normal">nicer than tearDown</span></h3>
@@ -3239,13 +3235,15 @@ from cogutil import *
 
 <div class="slide">
     <h1>Testing is...</h1>
-    <ul>
+    <ul class="incremental">
         <li>Complicated</li>
         <li>Important</li>
         <li>Worthy</li>
         <li>Rewarding</li>
     </ul>
+    <p class="incremental" style='text-align:right;margin-top:-3em'><img src='happysticks.png' width="50%"/></p>
 </div>
+
 
 <!--
     Things to add:
@@ -3257,10 +3255,10 @@ from cogutil import *
 
 <div class="slide">
     <h1 style='text-align: center; margin-top:1em'>Questions?</h1>
-    <h3 style='marginx:1em'>http://bit.ly/pytest0</h3>
-    <h3 style='marginx:1em'>@nedbat</h3>
+    <p style='marginx:1em'>http://bit.ly/pytest0</p>
+    <p style='marginx:1em'>@nedbat</p>
     
-    <p style='text-align:center; font-size:85%; margin-top:19em;'>
+    <p style='text-align:right; font-size:85%; margin-top:19em;'>
     <i>Made with Cog and Slippy.</i>
     </p>
 </div>
