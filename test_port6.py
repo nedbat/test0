@@ -41,7 +41,7 @@ class PortfolioSellTest(PortfolioTestCase):
 
     def test_sell(self):
         self.p.sell("MSFT", 50)
-        self.assertCostEqual(p, 6450)
+        self.assertCostEqual(self.p, 6450)
 
     def test_not_enough(self):
         with self.assertRaises(ValueError):
