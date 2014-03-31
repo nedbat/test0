@@ -290,7 +290,7 @@ from cogutil import *
         .slide li { 
             margin-top: .5em;
             padding-left: 1.25em; 
-            text-indent: -.7em;
+            text-indent: -1em;
         }
 
         .slide li:before {
@@ -1303,11 +1303,9 @@ from cogutil import *
 <div class="slide">
     <h1>Test isolation</h1>
     <ul>
-        <li>Every test is run with a new test object</li>
-        <li>Test isolation is very important</li>
-        <li>Tests are focused on a small amount of code</li>
+        <li>Every test gets a new test object</li>
         <li>Tests can't affect each other</li>
-        <li>Failure doesn't prevent further tests</li>
+        <li>Failure doesn't stop next tests</li>
     </ul>
 </div>
 
@@ -1362,8 +1360,8 @@ from cogutil import *
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
-        <li>Better: the failed test didn't keep others from running</li>
-        <li>Bad: what value was returned?</li>
+        <li class="good">Better: failed test didn't stop others</li>
+        <li class="bad">Bad: what value was returned?</li>
     </ul>
 </div>
 
@@ -1387,9 +1385,7 @@ from cogutil import *
 
 <div class="slide">
     <h1>unittest assert helpers</h1>
-    <ul>
-        <li>self.assertEqual(x, y) instead of assert x == y</li>
-    </ul>
+    <p>self.assertEqual(x, y) instead of assert x == y</p>
     <!--[[[cog
     include_file("test_port3.py", start=11, end=14, highlight=[14])   # {{{
     ]]]-->
@@ -1577,9 +1573,7 @@ from cogutil import *
 
 <div class="slide">
     <h1>Third possible outcome: E</h1>
-    <ul>
-        <li>Test raises an exception</li>
-    </ul>
+    <p>Test raises an exception</p>
     <!--[[[cog
     include_file("test_port3_broken2.out", highlight=[2,8,9])   # {{{
     ]]]-->
@@ -2813,7 +2807,7 @@ from cogutil import *
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
-        <li>Good: test results are predictable</li>
+        <li class="good">Good: test results are predictable</li>
     </ul>
 </div>
 
@@ -3014,9 +3008,9 @@ from cogutil import *
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
-        <li>Stdlib is stubbed</li>
-        <li>All our code is run</li>
-        <li>No web access during tests</li>
+        <li class="good">Stdlib is stubbed</li>
+        <li class="good">All our code is run</li>
+        <li class="good">No web access during tests</li>
     </ul>
 </div>
 
