@@ -64,7 +64,7 @@ class PortfolioValueTest(unittest.TestCase):
 
             # We can ask the mock what its arguments were
             urlopen.assert_called_with(
-                "http://download.finance.yahoo.com/d/quotes.csv"
+                "http://finance.yahoo.com/d/quotes.csv"
                 "?f=sl1&s=HPQ,IBM"
                 )
 #(((end)))

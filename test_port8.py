@@ -62,10 +62,10 @@ class PortfolioValueTest(unittest.TestCase):
         self.p.buy("IBM", 100, 120.0)
         self.p.buy("HPQ", 100, 30.0)
 
+    def test_value(self):
+        self.assertEqual(self.p.value(), 17200)
+
     def tearDown(self):
         # Restore the real urllib.
         portfolio3.urllib = self.old_urllib
-
-    def test_value(self):
-        self.assertEqual(self.p.value(), 17200)
 #(((end)))

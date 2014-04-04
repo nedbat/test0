@@ -422,7 +422,7 @@ from cogutil import *
     </div>
 </div>
 
-<div class="slide">
+<div class="hidden_slide">
     <h1>Font test</h1>
     <ul>
         <li>This is a long sentence with many words, what do I think of it?</li>
@@ -589,6 +589,26 @@ from cogutil import *
     tests.</p> 
 
     <p>OK, enough of the sermon, let's talk about how to write tests.</p>
+
+</div><!-- }}} -->
+
+<div class="slide">
+    <h1>Roadmap</h1>
+    <ul>
+        <li>Growing tests</li>
+        <li>unittest</li>
+        <li>Mocks</li>
+    </ul>
+</div>
+
+<div class="text"><!-- {{{ -->
+    <p>The rest of the talk is divided into three parts:</p>
+    <ol>
+        <li>We'll grow some tests in an ad-hoc way, examining what's good and
+            bad about the style of code we get,</li>
+        <li>we'll use unittest to write tests the right way,</li>
+        <li>and we'll talk about a more advanced topic, mocks.</li>
+    </ol>
 
 </div><!-- }}} -->
 
@@ -988,10 +1008,10 @@ from cogutil import *
 <div class="slide">
     <h1>Getting complicated!</h1>
     <ul>
-        <li>Like any code, tests will grow</li>
-        <li>A test is a real program</li>
-        <li>Testing deserves real engineering</li>
-        <li>Common issues can be handled in standard ways</li>
+        <li>Ttests will grow</li>
+        <li>Real programs</li>
+        <li>Real engineering</li>
+        <li>Handle common issues in standard ways</li>
     </ul>
 </div>
 
@@ -999,11 +1019,54 @@ from cogutil import *
     <p>As you can see, we're starting to build up a real program here. To make
     the output hide successes, and continue on in the face of failures, you'll
     have to create a way to divide this test file into chunks, and run the
-    chunks so that if one fails, others will still run.  You can see it could
-    start to get complicated.</p>
+    chunks so that if one fails, others will still run.  It starts to get
+    complicated.</p>
 
     <p>Anyone writing tests will face these problems, and common problems can
-    often be solved with standard libraries. Let's use one.</p>
+    often be solved with standard libraries. In the next section, we'll use
+    unittest, from the Python standard library, to solve our common
+    problems.</p>
+
+</div><!-- }}} -->
+
+<div class="slide">
+    <h1>Good tests</h1>
+    <ul>
+        <li>Automated</li>
+        <li>Fast</li>
+        <li>Informative</li>
+        <li>Focused</li>
+    </ul>
+</div>
+
+<div class="text"><!-- {{{ -->
+    <p>Before we look at unittest, let's talk for a minute about what qualities
+    we value in tests.</p>
+
+    <p>The whole point of a test is to tell you something about your code: does
+    it work?  They are no use to us if they are a burden to run, so we need
+    them to be automated, and they need to be fast.</p>
+
+    <p>If you think about the testing workflow, it's easy what happens if the
+    tests pass: you go on to write more fun features, or you go outside and
+    enjoy the sunshine.  But what happens when they fail?  Then you have to
+    find out what is wrong with your product code, and the more the test can
+    tell you about the failure, the more useful they are to you.  So we want
+    our tests to be informative.</p>
+
+    <p>And we also want them to be focused: the less code tested by each test,
+    the more that test tells us when it fails, because the broken code must be
+    in the chunk it tested.  The smaller that chunk of product code, the more
+    you've already narrowed down the cause of the failure.  So we want each
+    test to test as little code as possible.</p>
+
+    <p>This may seem surprising, usually we're looking for code we write to do
+    as big a job as possible.  Think of it like this: if broken product code is
+    a crime, then the line containing the bug is the perpetrator, and your test
+    should narrow down the list of suspects as much as possible.  Don't think
+    of your test as testing as little as possible, think of it as exonerating
+    as much of your code as possible.</p>
+
 </div><!-- }}} -->
 
 <!-- }}} -->
@@ -2698,10 +2761,10 @@ from cogutil import *
     >>> p.buy("HPQ", 100, 30.0)
 
     >>> p.current_prices()
-    {'HPQ': 32.04, 'IBM': 190.45}
+    {'HPQ': 33.0, 'IBM': 192.69}
 
     >>> p.value()
-    22249.0
+    22569.0
 
 
     -->
@@ -2711,10 +2774,10 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;32.04,&#xA0;&#39;IBM&#39;:&#xA0;190.45}</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;33.0,&#xA0;&#39;IBM&#39;:&#xA0;192.69}</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">22249.0</span>&nbsp;</div>
+    <div class="line"><span class="go">22569.0</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -2919,12 +2982,12 @@ from cogutil import *
             self.p.buy("IBM", 100, 120.0)
             self.p.buy("HPQ", 100, 30.0)
 
+        def test_value(self):
+            self.assertEqual(self.p.value(), 17200)
+
         def tearDown(self):
             # Restore the real urllib.
             portfolio3.urllib = self.old_urllib
-
-        def test_value(self):
-            self.assertEqual(self.p.value(), 17200)
     -->
     <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">48</span> <span class="c">#&#xA0;A&#xA0;simple&#xA0;fake&#xA0;for&#xA0;urllib&#xA0;that&#xA0;implements&#xA0;only&#xA0;one&#xA0;method,</span>&nbsp;</div>
@@ -2944,12 +3007,12 @@ from cogutil import *
     <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">64</span>&nbsp;</div>
-    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Restore&#xA0;the&#xA0;real&#xA0;urllib.</span>&nbsp;</div>
-    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&nbsp;</div>
-    <div class="line"><span class="lineno">68</span>&nbsp;</div>
-    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Restore&#xA0;the&#xA0;real&#xA0;urllib.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -3109,7 +3172,7 @@ from cogutil import *
 
                 # We can ask the mock what its arguments were
                 urlopen.assert_called_with(
-                    "http://download.finance.yahoo.com/d/quotes.csv"
+                    "http://finance.yahoo.com/d/quotes.csv"
                     "?f=sl1&s=HPQ,IBM"
                     )
     -->
@@ -3132,7 +3195,7 @@ from cogutil import *
     <div class="line"><span class="lineno">64</span>&nbsp;</div>
     <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;We&#xA0;can&#xA0;ask&#xA0;the&#xA0;mock&#xA0;what&#xA0;its&#xA0;arguments&#xA0;were</span>&nbsp;</div>
     <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">urlopen</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span>&nbsp;</div>
-    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;http://download.finance.yahoo.com/d/quotes.csv&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;http://finance.yahoo.com/d/quotes.csv&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;?f=sl1&amp;s=HPQ,IBM&quot;</span>&nbsp;</div>
     <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">)</span>&nbsp;</div>
     </div><!-- }}} -->
@@ -3166,11 +3229,11 @@ from cogutil import *
 <div class="slide">
     <h1>Test doubles</h1>
     <ul>
-        <li>A powerful way to isolate your code</li>
-        <li>Focuses tests on one thing at a time</li>
-        <li>Removes speed bumps and randomness</li>
-        <li>Lots of libraries to make it easier</li>
-        <li>Also: "dependency injection"</li>
+        <li class="incremental">Powerful: isolates code</li>
+        <li class="incremental">Focuses tests</li>
+        <li class="incremental">Removes speed bumps and randomness</li>
+        <li class="incremental">BUT: fragile tests!</li>
+        <li class="incremental">Also: "dependency injection"</li>
     </ul>
 </div>
 
@@ -3179,6 +3242,23 @@ from cogutil import *
     quick taste of what they are and what they can do.  Using them will
     dramatically improve the isolation, and therefore the speed and usefulness
     of your tests.</p>
+
+    <p>Notice though, that they also make our tests more fragile.  I tested
+    current_prices by mocking urllib.urlopen, which only works because I knew
+    that current_prices called urlopen.  If I later change the implementation
+    of current_prices to access the URL differently, my test will break.</p>
+
+    <p>Finding the right way to use test doubles is a very tricky problem,
+    involving tradeoffs between what code is tested, and how dependent on the
+    implementation you want to be.</p>
+
+    <p>Another test double technique is "dependency injection," where your code
+    is given explicit references to the components it relies on.  This way, the
+    dependencies are made more visible.  This also makes them more visible to
+    the non-test callers of the code, which could actually be a good thing.
+    This can make the code more modular, since it has fewer implicit
+    connections to other components.  Again, this is a tradeoff, and you have
+    to choose carefully how deeply to use the technique.</p>
 
 </div><!-- }}} -->
 
@@ -3199,7 +3279,7 @@ from cogutil import *
 <div class="slide">
     <h1>Tools</h1>
     <h3 class="incremental">addCleanup: <span style="font-weight: normal">nicer than tearDown</span></h3>
-    <h3 class="incremental">doctest: <span style="font-weight: normal">only for testing docs!!</span></h3>
+    <h3 class="incremental">doctest: <span style="font-weight: normal">only for testing docs!!!</span></h3>
     <h3 class="incremental">nose, py.test: <span style="font-weight: normal">better test runners</span></h3>
     <h3 class="incremental">ddt: <span style="font-weight: normal">data-driven tests</span></h3>
     <h3 class="incremental">coverage: <span style="font-weight: normal">you'll wonder how you lived without it</span></h3>
@@ -3210,6 +3290,7 @@ from cogutil import *
 <div class="slide">
     <h1>Topics</h1>
     <h3 class="incremental">TDD: <span style="font-weight: normal">tests before code!?</span></h3>
+    <h3 class="incremental">BDD: <span style="font-weight: normal">describe external behavior</span></h3>
     <h3 class="incremental">integration tests: <span style="font-weight: normal">bigger chunks</span></h3>
     <h3 class="incremental">load testing: <span style="font-weight: normal">how much traffic is OK?</span></h3>
     <h3 class="incremental">others, I'm sure....<span style="font-weight: normal"></span></h3>
