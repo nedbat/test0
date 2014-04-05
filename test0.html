@@ -177,7 +177,6 @@ from cogutil import *
         }
 
         .slide {
-            font-family: "Open Sans", sans-serif;
             font-weight: 600;
             margin: 1em;
             border: 1px solid #ccc;
@@ -186,7 +185,6 @@ from cogutil import *
             font-size: 150%;
         }
         h1, h2, h3, h4 {
-            font-family: "Open Sans", sans-serif;
             font-weight: 700;
             line-height: 1.5;
             text-align: left;
@@ -194,9 +192,8 @@ from cogutil import *
         }
 
         .slide.title h1 {
-            font-family: "Open Sans", sans-serif;
             font-weight: 800;
-            margin-top: 3em;
+            padding-top: 3em;
             font-size: 200%;
             text-align: center;
         }
@@ -204,7 +201,7 @@ from cogutil import *
             text-align: center;
             font-size: 125%;
             color: #666;
-            margin-top: 2em;
+            padding-top: 2em;
         }
         .slide.section {
             background-color: #ff8;
@@ -213,9 +210,8 @@ from cogutil import *
             background-color: #f88;
         }
         .slide.section h1 {
-            font-family: "Open Sans", sans-serif;
             font-weight: 700;
-            margin-top: 3em;
+            padding-top: 3em;
             font-size: 200%;
             text-align: center;
         }
@@ -223,7 +219,7 @@ from cogutil import *
             text-align: center;
             font-size: 125%;
             color: #666;
-            margin-top: 2em;
+            padding-top: 2em;
         }
         .hidden_slide {
             display: none;
@@ -231,10 +227,6 @@ from cogutil import *
         .slide p {
             text-align: left;
             margin-top: 1em;
-        }
-        .slide.nofooter {
-            border: 0;
-            background: 0;
         }
         .slide .footer {
             font-weight: 400;
@@ -294,16 +286,14 @@ from cogutil import *
         }
 
         .slide li:before {
-            content: "▸  "; /* U+25B8 U+00A0 U+00A0 */
+            content: "▸  ";     /* U+25B8 U+00A0 U+00A0 */
         }
-
         .slide li.good:before {
-            content: "✓   ";
+            content: "✓   ";    /* U+2713 U+00A0 U+00A0 */
             color: #4c4;
         }
-
         .slide li.bad:before {
-            content: "✘   ";
+            content: "✘   ";    /* U+2718 U+00A0 U+00A0 */
             color: #f44;
         }
 
@@ -465,12 +455,11 @@ from cogutil import *
 
 </div><!-- }}} -->
 
-<div class="slide title">
+<div class="slide title" data-layout="clean">
     <h1>Getting Started Testing</h1>
     <h2>Ned Batchelder</h2>
     <h2>@nedbat</h2>
     <h2 style="margin-top:1em">http://bit.ly/pytest0</h2>
-    <div class="footer"><span class="left">&copy; 2014, Ned Batchelder</span><hr class="defloat" /></div>
 </div>
 
 <div class="slide">
@@ -615,7 +604,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Grow a first test {{{ -->
-<div class="slide section">
+<div class="slide section" data-layout="clean">
     <h1>Starting from first principles</h1>
     <h2>Evolving tests</h2>
 </div>
@@ -1072,7 +1061,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Using unittest {{{ -->
-<div class="slide section">
+<div class="slide section" data-layout="clean">
     <h1>unittest</h1>
     <h2>Writing tests</h2>
 </div>
@@ -2240,7 +2229,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Approaches {{{ -->
-<div class="hidden_slide section todo">
+<div class="hidden_slide section todo" data-layout="clean">
     <h1>Approaches</h1>
     <h2>crafting tests</h2>
 </div>
@@ -2384,7 +2373,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** nose {{{ -->
-<div class="hidden_slide section">
+<div class="hidden_slide section" data-layout="clean">
     <h1>nose and py.test</h1>
     <h2>Running tests</h2>
 </div>
@@ -2554,7 +2543,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Coverage {{{ -->
-<div class="hidden_slide section">
+<div class="hidden_slide section" data-layout="clean">
     <h1>Coverage</h1>
     <h2>Testing tests</h2>
 </div>
@@ -2626,7 +2615,7 @@ from cogutil import *
 <!-- }}} -->
 
 <!-- *** Mocking {{{ -->
-<div class="slide section">
+<div class="slide section" data-layout="clean">
     <h1>Mocks</h1>
     <h2>Focusing tests</h2>
 </div>
@@ -2761,10 +2750,10 @@ from cogutil import *
     >>> p.buy("HPQ", 100, 30.0)
 
     >>> p.current_prices()
-    {'HPQ': 33.0, 'IBM': 192.69}
+    {'HPQ': 32.64, 'IBM': 191.77}
 
     >>> p.value()
-    22569.0
+    22441.0
 
 
     -->
@@ -2774,10 +2763,10 @@ from cogutil import *
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;33.0,&#xA0;&#39;IBM&#39;:&#xA0;192.69}</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;32.64,&#xA0;&#39;IBM&#39;:&#xA0;191.77}</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">22569.0</span>&nbsp;</div>
+    <div class="line"><span class="go">22441.0</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -3266,7 +3255,7 @@ from cogutil import *
 
 <!-- *** Other topics {{{ -->
 
-<div class="slide section">
+<div class="slide section" data-layout="clean">
     <h1>Also</h1>
     <h2>Too many things I couldn't fit!</h2>
 </div>
@@ -3313,7 +3302,7 @@ from cogutil import *
 <!-- }}} -->
 
 
-<div class="slide section">
+<div class="slide section" data-layout="clean">
     <h1>Summing up</h1>
 </div>
 
