@@ -53,16 +53,17 @@ class PortfolioValueTest(unittest.TestCase):
         self.p.buy("HPQ", 100, 30.0)
 
     def test_value(self):
-        # Create a mock urllib.urlopen
+        # Create a mock urllib.urlopen.
         with mock.patch('urllib.urlopen') as urlopen:
 
-            # When called, it will return this value
-            urlopen.return_value = StringIO('"IBM",140\n"HPQ",32\n')
+            # When called, it will return this value:
+            fake_yahoo = StringIO('"IBM",140\n"HPQ",32\n')
+            urlopen.return_value = fake_yahoo
 
             # Run the test!
             self.assertEqual(self.p.value(), 17200)
 
-            # We can ask the mock what its arguments were
+            # We can ask the mock what its arguments were.
             urlopen.assert_called_with(
                 "http://finance.yahoo.com/d/quotes.csv"
                 "?f=sl1&s=HPQ,IBM"

@@ -12,7 +12,16 @@ def quote_html(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def include_file(fname, start=None, end=None, highlight=None, section=None):
+def clip_long_boring_line(s, l):
+    """
+    If s is a line with only one character in it, shorten it to length l.
+    """
+    if len(s) > l and len(set(s)) == 1:
+        s = s[:l]
+    return s
+
+
+def include_file(fname, start=None, end=None, highlight=None, section=None, px=False):
     """Include a text file.
 
     `fname` is read as text, and included in a <pre> tag.
@@ -23,6 +32,8 @@ def include_file(fname, start=None, end=None, highlight=None, section=None):
 
     `section` is a named section.  If provided, a marked section in the file is extracted
     for display.  Markers for section foobar are "(((foobar))" and "(((end)))".
+
+    If `px` is true, the result is meant for text rather than slides.
 
     """
     with open(fname) as f:
@@ -44,13 +55,25 @@ def include_file(fname, start=None, end=None, highlight=None, section=None):
         if end is None:
             end = len(lines)
 
-    text = "\n".join(lines[start-1:end])
+    # Take only the lines we want, and shorten lines that are too long and
+    # easily shortened.
+    lines = [clip_long_boring_line(l, 65) for l in lines[start-1:end]]
+
+    text = "\n".join(lines)
 
     lang = "python" if fname.endswith(".py") else "text"
-    include_code(text, lang=lang, firstline=start, number=True, show_text=True, highlight=highlight)
+    include_code(text, lang=lang, firstline=start, number=True, show_text=True, highlight=highlight, px=px)
 
 
-def include_code(text, lang=None, number=False, firstline=1, show_text=False, highlight=None):
+def include_code(text, lang=None, number=False, firstline=1, show_text=False, highlight=None, px=False):
+    text = textwrap.dedent(text)
+
+    if px:
+        cog.outl("<code lang='{}'>".format(lang))
+        cog.outl(text.replace("&", "&amp;").replace("<", "&lt;"))
+        cog.outl("</code>")
+        return
+
     # Put the code in a comment, so we can see it in the HTML while editing.
     if show_text:
         cog.outl("<!--")
@@ -60,8 +83,6 @@ def include_code(text, lang=None, number=False, firstline=1, show_text=False, hi
     if os.environ.get("NOPYG"):
         cog.outl("<!-- *** NOPYG: {} lines of text will be here. *** -->".format(len(text.splitlines())))
         return
-
-    text = textwrap.dedent(text)
 
     # Because we are omitting the <pre> wrapper, we need spaces to become &nbsp;.
     # This is totally not a public interface...
