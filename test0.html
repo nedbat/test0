@@ -647,7 +647,27 @@ from cogutil import *
                 amt += shares * price
             return amt
     -->
-    <!-- *** NOPYG: 19 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;portfolio1.py</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> <span class="k">class</span>&#xA0;<span class="nc">Portfolio</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;A&#xA0;simple&#xA0;stock&#xA0;portfolio&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;stocks&#xA0;is&#xA0;a&#xA0;list&#xA0;of&#xA0;lists:</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;&#xA0;&#xA0;[[name,&#xA0;shares,&#xA0;price],&#xA0;...]</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span>&#xA0;<span class="o">=</span>&#xA0;<span class="p">[]</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">buy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Buy&#xA0;`name`:&#xA0;`shares`&#xA0;shares&#xA0;at&#xA0;`price`.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span><span class="p">])</span>&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">15</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;What&#xA0;was&#xA0;the&#xA0;total&#xA0;cost&#xA0;of&#xA0;this&#xA0;portfolio?&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">16</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">amt</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">17</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">price</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">18</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">amt</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">price</span>&nbsp;</div>
+    <div class="line"><span class="lineno">19</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">amt</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -717,7 +737,19 @@ class Portfolio(object):
 
 
     -->
-    <!-- *** NOPYG: 13 lines of text will be here. *** -->
+    <div class="code pycon"> <!-- {{{ -->
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">0.0</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">17648.0</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">21263.0</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
     <li class="good">Good: testing the code</li>
@@ -754,9 +786,7 @@ class Portfolio(object):
 
 <div class="slide">
     <h1>Second test: standalone</h1>
-    <!--[[[cog
-    include_file("porttest1.py")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("porttest1.py")   ]]] {{{ -->
     <!--
     # porttest1.py
     from portfolio1 import Portfolio
@@ -768,18 +798,31 @@ class Portfolio(object):
     p.buy("HPQ", 100, 36.15)
     print "With 100 HPQ @ 36.15: %s" % p.cost()
     -->
-    <!-- *** NOPYG: 9 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">1</span> <span class="c">#&#xA0;porttest1.py</span>&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
+    <div class="line"><span class="lineno">3</span>&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">5</span> <span class="k">print</span>&#xA0;<span class="s">&quot;Empty&#xA0;portfolio&#xA0;cost:&#xA0;</span><span class="si">%s</span><span class="s">&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">7</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">8</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">9</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog
-    include_file("porttest1.out")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("porttest1.out")   ]]] {{{ -->
     <!--
     $ python porttest1.py
     Empty portfolio cost: 0.0
     With 100 IBM @ 176.48: 17648.0
     With 100 HPQ @ 36.15: 21263.0
     -->
-    <!-- *** NOPYG: 4 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest1.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li class="good">Good: testing the code</li>
@@ -808,6 +851,17 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 </code>
 <!--[[[end]]] }}}-->
 
+    <p>When we run it, we get:</p>
+
+<!--[[[cog include_file("porttest1.out", px=True) ]]] {{{ -->
+<code lang='text'>
+$ python porttest1.py
+Empty portfolio cost: 0.0
+With 100 IBM @ 176.48: 17648.0
+With 100 HPQ @ 36.15: 21263.0
+</code>
+<!--[[[end]]] }}}-->
+
     <p>This is better because it's repeatable, since we can run this test file
     any time we want and have the same tests run.  And it's low effort: running
     a file is easy and quick.</p>
@@ -820,9 +874,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>Third test: expected results</h1>
-    <!--[[[cog
-    include_file("porttest2.py", start=4)   # {{{
-    ]]]-->
+    <!--[[[cog include_file("porttest2.py", start=4)   ]]] {{{ -->
     <!--
     p = Portfolio()
     print "Empty portfolio cost: %s, should be 0.0" % p.cost()
@@ -831,21 +883,31 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
     p.buy("HPQ", 100, 36.15)
     print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
     -->
-    <!-- *** NOPYG: 6 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">5</span> <span class="k">print</span>&#xA0;<span class="s">&quot;Empty&#xA0;portfolio&#xA0;cost:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;0.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">7</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;17648.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">8</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">9</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;21263.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}} -->
-    <!--[[[cog
-    include_file("porttest2.out")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("porttest2.out")   ]]] {{{ -->
     <!--
     $ python porttest2.py
     Empty portfolio cost: 0.0, should be 0.0
     With 100 IBM @ 176.48: 17648.0, should be 17648.0
     With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     -->
-    <!-- *** NOPYG: 4 lines of text will be here. *** -->
-        <!--[[[end]]] }}}-->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest2.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
+    </div><!-- }}} -->
+    <!--[[[end]]] }}}-->
     <ul>
-        <li class="good">Good: testing the code repeatably with low effort</li>
+        <li class="good">Good: repeatable with low effort</li>
         <li class="good">Better: explicit expected results</li>
         <li class="bad">Bad: have to check the results yourself</li>
     </ul>
@@ -853,24 +915,48 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="text"><!-- {{{ -->
     <p>Here we've added to our test file so that in addition to printing the
-    result it got, it prints the result it should have gotten.  This is better:
-    we don't have to calculate the expected results, they are recorded right
-    there in the output.</p>
+    result it got, it prints the result it should have gotten:</p>
+    
+<!--[[[cog include_file("porttest2.py", px=True) ]]] {{{ -->
+<code lang='python'>
+# porttest2.py
+from portfolio1 import Portfolio
 
-    <p>But we still have to examine all the output and compare the actual result
-    to the expected result.  This is still tedious work we have to do.</p>
+p = Portfolio()
+print "Empty portfolio cost: %s, should be 0.0" % p.cost()
+p.buy("IBM", 100, 176.48)
+print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
+p.buy("HPQ", 100, 36.15)
+print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
+</code>
+<!--[[[end]]] }}}-->
 
-    <p>Keep in mind, the code here is very small.  In a real system, you might
-    have thousands of tests.  You don't want to examine each one to see if the
+    <p>This is better: we don't have to calculate the expected results, they
+    are recorded right there in the output:</p>
+
+<!--[[[cog include_file("porttest2.out", px=True) ]]] {{{ -->
+<code lang='text'>
+$ python porttest2.py
+Empty portfolio cost: 0.0, should be 0.0
+With 100 IBM @ 176.48: 17648.0, should be 17648.0
+With 100 HPQ @ 36.15: 21263.0, should be 21263.0
+</code>
+<!--[[[end]]] }}}-->
+
+    <p>But we still have to examine all the output and compare the actual
+    result to the expected result.  Keep in mind, the code here is very small,
+    so it doesn't seem like a burden.  But in a real system, you might have
+    thousands of tests.  You don't want to examine each one to see if the
     result is correct.</p>
+    
+    <p>This is still tedious work we have to do, we should get the computer to
+    do it for us.</p>
 
 </div><!-- }}} -->
 
 <div class="slide">
     <h1>Fourth test: check results automatically</h1>
-    <!--[[[cog
-    include_file("porttest3.py", start=4)   # {{{
-    ]]]-->
+    <!--[[[cog include_file("porttest3.py", start=4)   ]]] {{{ -->
     <!--
     p = Portfolio()
     print "Empty portfolio cost: %s, should be 0.0" % p.cost()
@@ -882,21 +968,34 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
     print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
     assert p.cost() == 21263.0
     -->
-    <!-- *** NOPYG: 9 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> <span class="k">print</span>&#xA0;<span class="s">&quot;Empty&#xA0;portfolio&#xA0;cost:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;0.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;17648.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17648.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;21263.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">21263.0</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog
-    include_file("porttest3.out")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("porttest3.out")   ]]] {{{ -->
     <!--
     $ python porttest3.py
     Empty portfolio cost: 0.0, should be 0.0
     With 100 IBM @ 176.48: 17648.0, should be 17648.0
     With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     -->
-    <!-- *** NOPYG: 4 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
-        <li class="good">Good: testing the code repeatably with low effort</li>
+        <li class="good">Good: repeatable with low effort</li>
         <li class="good">Good: explicit expected results</li>
         <li class="good">Good: results checked automatically</li>
     </ul>
@@ -906,7 +1005,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
     <p>Here we've used the Python assert statement.  You may not have run
     across this before.  It takes a condition, and evaluates whether it's
     true or not.  If it's true, then execution continues onto the next
-    statement.  If the condition is false, then it raises an AssertionError
+    statement.  If the condition is false, it raises an AssertionError
     exception.</p>
 
     <p>So now we have the results checked automatically.  If one of the results
@@ -920,9 +1019,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>Fourth test: what failure looks like</h1>
-    <!--[[[cog
-    include_file("porttest3_broken.out")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("porttest3_broken.out")   ]]] {{{ -->
     <!--
     $ python porttest3_broken.py
     Empty portfolio cost: 0.0, should be 0.0
@@ -932,7 +1029,15 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
         assert p.cost() == 17648.0
     AssertionError
     -->
-    <!-- *** NOPYG: 7 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3_broken.py&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17600.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno">5</span> &#xA0;&#xA0;File&#xA0;&quot;porttest3_broken.py&quot;,&#xA0;line&#xA0;9,&#xA0;in&#xA0;&lt;module&gt;&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> &#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;p.cost()&#xA0;==&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">7</span> AssertionError&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li class="good">Good: testing the code repeatably with low effort</li>
@@ -1046,9 +1151,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>A simple unit test</h1>
-    <!--[[[cog
-    include_file("test_port1.py")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port1.py")   ]]] {{{ -->
     <!--
     # test_port1.py
 
@@ -1061,11 +1164,20 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             p.buy("IBM", 100, 176.48)
             assert p.cost() == 17648.0
     -->
-    <!-- *** NOPYG: 10 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 1</span> <span class="c">#&#xA0;test_port1.py</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> <span class="kn">import</span>&#xA0;<span class="nn">unittest</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> <span class="kn">from</span>&#xA0;<span class="nn">portfolio1</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Portfolio</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17648.0</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog
-    include_file("test_port1.out")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port1.out")   ]]] {{{ -->
     <!--
     $ python –m unittest test_port1
     .
@@ -1074,7 +1186,14 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
     OK
     -->
-    <!-- *** NOPYG: 6 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port1&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> .&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> Ran&#xA0;1&#xA0;test&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">5</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1118,7 +1237,16 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             [record success]
     """, lang="python")
     ]]]-->
-    <!-- *** NOPYG: 8 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
+    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -1136,9 +1264,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide" data-layout="clean">
     <h1>Add more tests</h1>
-    <!--[[[cog
-    include_file("test_port2.py", start=6, end=20)   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port2.py", start=6, end=20)   ]]] {{{ -->
     <!--
     class PortfolioTest(unittest.TestCase):
         def test_empty(self):
@@ -1156,11 +1282,25 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             p.buy("HPQ", 100, 36.15)
             assert p.cost() == 21263.0
     -->
-    <!-- *** NOPYG: 15 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 6</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17648.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">15</span>&nbsp;</div>
+    <div class="line"><span class="lineno">16</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_ibm_hpq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">17</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">18</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">19</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">20</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">21263.0</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog
-    include_file("test_port2.out", highlight=[2])   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port2.out", highlight=[2])   ]]] {{{ -->
     <!--
     $ python –m unittest test_port2
     ...
@@ -1169,7 +1309,15 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
     OK
     -->
-    <!-- *** NOPYG: 6 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port2&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> <span class="hll">...
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">5</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li>A dot for every passed test</li>
@@ -1219,7 +1367,35 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             [record success]
     """, lang="python", highlight=[4, 12, 20])
     ]]]-->
-    <!-- *** NOPYG: 24 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="c">#&#xA0;unittest&#xA0;runs&#xA0;the&#xA0;tests&#xA0;as&#xA0;if&#xA0;I&#xA0;had&#xA0;written:</span>&nbsp;</div>
+    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_empty</span><span class="p">()</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm</span><span class="p">()</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_ibm_hpq</span><span class="p">()</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -1254,9 +1430,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>What failure looks like</h1>
-    <!--[[[cog
-    include_file("test_port2_broken.out")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port2_broken.out")   ]]] {{{ -->
     <!--
     $ python –m unittest test_port2_broken
     .F.
@@ -1273,7 +1447,22 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
     FAILED (failures=1)
     -->
-    <!-- *** NOPYG: 14 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port2_broken&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> =================================================================&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(test_port2_broken.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port2_broken.py&quot;,&#xA0;line&#xA0;14,&#xA0;in&#xA0;test_ibm&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;p.cost()&#xA0;==&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> AssertionError&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li class="good">Better: failed test didn't stop others</li>
@@ -1302,20 +1491,22 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 <div class="slide">
     <h1>unittest assert helpers</h1>
     <p>self.assertEqual(x, y) instead of assert x == y</p>
-    <!--[[[cog
-    include_file("test_port3.py", start=11, end=14, highlight=[14])   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port3.py", start=11, end=14, highlight=[14])   ]]] {{{ -->
     <!--
     def test_ibm(self):
         p = Portfolio()
         p.buy("IBM", 100, 176.48)
         self.assertEqual(p.cost(), 17648.0)
     -->
-    <!-- *** NOPYG: 4 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">11</span> <span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="mf">17648.0</span><span class="p">)</span>
+    </span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog
-    include_file("test_port3_broken.out", highlight=[9])   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port3_broken.out", highlight=[9])   ]]] {{{ -->
     <!--
     $ python –m unittest test_port3_broken
     .F.
@@ -1332,7 +1523,23 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
     FAILED (failures=1)
     -->
-    <!-- *** NOPYG: 14 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port3_broken&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> =================================================================&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> FAIL:&#xA0;test_ibm&#xA0;(test_port3_broken.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port3_broken.py&quot;,&#xA0;line&#xA0;14,&#xA0;in&#xA0;test_ibm&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;self.assertEqual(p.cost(),&#xA0;17648.0)&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> <span class="hll">AssertionError:&#xA0;17600.0&#xA0;!=&#xA0;17648.0
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1375,7 +1582,26 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
         .. etc ..
     """, lang="python")
     ]]]-->
-    <!-- *** NOPYG: 18 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="n">assertEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertNotEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertTrue</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertFalse</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertIn</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertNotIn</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertIs</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertIsNot</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertNotAlmostEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertGreater</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertLess</span><span class="p">(</span><span class="n">first</span><span class="p">,</span>&#xA0;<span class="n">second</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertRegexpMatches</span><span class="p">(</span><span class="n">text</span><span class="p">,</span>&#xA0;<span class="n">regexp</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertRaises</span><span class="p">(</span><span class="n">exc_class</span><span class="p">,</span>&#xA0;<span class="n">func</span><span class="p">,</span>&#xA0;<span class="o">...</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertSequenceEqual</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span>&#xA0;<span class="n">seq2</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="n">assertItemsEqual</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span>&#xA0;<span class="n">seq2</span><span class="p">)</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="o">..</span>&#xA0;<span class="n">etc</span>&#xA0;<span class="o">..</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -1390,9 +1616,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>Pro tip: your own base class</h1>
-    <!--[[[cog
-    include_file("test_port3b.py", start=6)      # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port3b.py", start=6)      ]]] {{{ -->
     <!--
     class PortfolioTestCase(unittest.TestCase):
         """Base class for all Portfolio tests."""
@@ -1418,16 +1642,38 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             p.buy("HPQ", 100, 36.15)
             self.assertCostEqual(p, 21263.0)
     -->
-    <!-- *** NOPYG: 23 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 6</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Base&#xA0;class&#xA0;for&#xA0;all&#xA0;Portfolio&#xA0;tests.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">assertCostEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">p</span><span class="p">,</span>&#xA0;<span class="n">cost</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Assert&#xA0;that&#xA0;`p`&#39;s&#xA0;cost&#xA0;is&#xA0;equal&#xA0;to&#xA0;`cost`.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">(),</span>&#xA0;<span class="n">cost</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span>&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioTest</span><span class="p">(</span><span class="n">PortfolioTestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">15</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">16</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">17</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mf">0.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">18</span>&nbsp;</div>
+    <div class="line"><span class="lineno">19</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_ibm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">20</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">21</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">22</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mf">17648.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">23</span>&nbsp;</div>
+    <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_ibm_hpq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">25</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">26</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mf">21263.0</span><span class="p">)</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
 <div class="slide">
     <h1>Third possible outcome: E</h1>
     <p>Test raises an exception</p>
-    <!--[[[cog
-    include_file("test_port3_broken2.out", highlight=[2,8,9])   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port3_broken2.out", highlight=[2,8,9])   ]]] {{{ -->
     <!--
     $ python –m unittest test_port3_broken2
     .E.
@@ -1444,7 +1690,25 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
     FAILED (errors=1)
     -->
-    <!-- *** NOPYG: 14 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port3_broken2&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> <span class="hll">.E.
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> =================================================================&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_ibm&#xA0;(test_port3_broken2.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port3_broken2.py&quot;,&#xA0;line&#xA0;13,&#xA0;in&#xA0;test_ibm&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;p.buyxxxxx(&quot;IBM&quot;,&#xA0;100,&#xA0;176.48)
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> <span class="hll">AttributeError:&#xA0;&#39;Portfolio&#39;&#xA0;object&#xA0;has&#xA0;no&#xA0;attribute&#xA0;&#39;buyxxxxx&#39;
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1475,7 +1739,17 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             [record success]
     """, lang="python")
     ]]]-->
-    <!-- *** NOPYG: 9 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_method</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -1501,7 +1775,13 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 
     -->
-    <!-- *** NOPYG: 7 lines of text will be here. *** -->
+    <div class="code pycon"> <!-- {{{ -->
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="gt">Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;File&#xA0;<span class="nb">&quot;&lt;console&gt;&quot;</span>,&#xA0;line&#xA0;<span class="m">1</span>,&#xA0;in&#xA0;<span class="n">&lt;module&gt;</span>&nbsp;</div>
+    <div class="line"><span class="gr">TypeError</span>:&#xA0;<span class="n">buy()&#xA0;takes&#xA0;exactly&#xA0;4&#xA0;arguments&#xA0;(2&#xA0;given)</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1515,19 +1795,19 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>Can't just call the function</h1>
-    <!--[[[cog
-    include_file("test_port4_broken.py", start=22, end=24)   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port4_broken.py", start=22, end=24)   ]]] {{{ -->
     <!--
     def test_bad_input(self):
         p = Portfolio()
         p.buy("IBM")
     -->
-    <!-- *** NOPYG: 3 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog
-    include_file("test_port4_broken.out")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port4_broken.out")   ]]] {{{ -->
     <!--
     $ python –m unittest test_port4_broken
     E...
@@ -1544,7 +1824,22 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
     FAILED (errors=1)
     -->
-    <!-- *** NOPYG: 14 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port4_broken&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> E...&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> =================================================================&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_bad_input&#xA0;(test_port4_broken.PortfolioTest)&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port4_broken.py&quot;,&#xA0;line&#xA0;24,&#xA0;in&#xA0;test_bad_input&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;p.buy(&quot;IBM&quot;)&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> TypeError:&#xA0;buy()&#xA0;takes&#xA0;exactly&#xA0;4&#xA0;arguments&#xA0;(2&#xA0;given)&nbsp;</div>
+    <div class="line"><span class="lineno">10</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">13</span>&nbsp;</div>
+    <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1558,20 +1853,23 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>assertRaises</h1>
-    <!--[[[cog
-    include_file("test_port4.py", start=22, end=25, highlight=[24,25])   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port4.py", start=22, end=25, highlight=[24,25])   ]]] {{{ -->
     <!--
     def test_bad_input(self):
         p = Portfolio()
         with self.assertRaises(TypeError):
             p.buy("IBM")
     -->
-    <!-- *** NOPYG: 4 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">24</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">25</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>
+    </span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog
-    include_file("test_port4.out")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port4.out")   ]]] {{{ -->
     <!--
     $ python –m unittest test_port4
     ....
@@ -1580,7 +1878,14 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
     OK
     -->
-    <!-- *** NOPYG: 6 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port4&nbsp;</div>
+    <div class="line"><span class="lineno">2</span> ....&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> -----------------------------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">5</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1598,9 +1903,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>Portfolio: .sell()</h1>
-    <!--[[[cog
-    include_file("portfolio2.py", start=21, end=30)   # {{{
-    ]]]-->
+    <!--[[[cog include_file("portfolio2.py", start=21, end=30)   ]]] {{{ -->
     <!--
     def sell(self, name, shares):
         """Sell some shares."""
@@ -1613,7 +1916,18 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
         else:
             raise ValueError("You don't own that stock")
     -->
-    <!-- *** NOPYG: 10 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">21</span> <span class="k">def</span>&#xA0;<span class="nf">sell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">22</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Sell&#xA0;some&#xA0;shares.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">holding</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">if</span>&#xA0;<span class="n">holding</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>&#xA0;<span class="o">==</span>&#xA0;<span class="n">name</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">25</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">if</span>&#xA0;<span class="n">holding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>&#xA0;<span class="o">&lt;</span>&#xA0;<span class="n">shares</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">26</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">raise</span>&#xA0;<span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Not&#xA0;enough&#xA0;shares&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">27</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">holding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>&#xA0;<span class="o">-=</span>&#xA0;<span class="n">shares</span>&nbsp;</div>
+    <div class="line"><span class="lineno">28</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">break</span>&nbsp;</div>
+    <div class="line"><span class="lineno">29</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">30</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">raise</span>&#xA0;<span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;You&#xA0;don&#39;t&#xA0;own&#xA0;that&#xA0;stock&quot;</span><span class="p">)</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1628,9 +1942,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide" data-layout="clean">
     <h1>Testing sell()</h1>
-    <!--[[[cog
-    include_file("test_port5.py", start=34)   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port5.py", start=34)   ]]] {{{ -->
     <!--
     class PortfolioSellTest(PortfolioTestCase):
         def test_sell(self):
@@ -1657,7 +1969,32 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             with self.assertRaises(ValueError):
                 p.sell("IBM", 1)
     -->
-    <!-- *** NOPYG: 24 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">34</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">PortfolioTestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">36</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">42</span>&nbsp;</div>
+    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Didn&#39;t&#xA0;I&#xA0;just&#xA0;do&#xA0;this?</span>&nbsp;</div>
+    <div class="line"><span class="lineno">45</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">47</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;What,&#xA0;again!?!?</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1674,9 +2011,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>Setting up a test</h1>
-    <!--[[[cog
-    include_file("test_port6.py", start=34)   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port6.py", start=34)   ]]] {{{ -->
     <!--
     class PortfolioSellTest(PortfolioTestCase):
         # Invoked before each test method
@@ -1698,7 +2033,27 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             with self.assertRaises(ValueError):
                 self.p.sell("IBM", 1)
     -->
-    <!-- *** NOPYG: 19 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">34</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">PortfolioTestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Invoked&#xA0;before&#xA0;each&#xA0;test&#xA0;method</span>&nbsp;</div>
+    <div class="line"><span class="lineno">36</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">41</span>&nbsp;</div>
+    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">45</span>&nbsp;</div>
+    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">47</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -1745,7 +2100,29 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
                     [record error]
     """, lang="python", highlight=[3,17])
     ]]]-->
-    <!-- *** NOPYG: 19 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">try</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_method</span><span class="p">()</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">except</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">else</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">finally</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">try</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
+    </span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">except</span><span class="p">:</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
 
@@ -1798,7 +2175,16 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
                 SOME_GLOBAL_THING = old_global
     """, lang="python")
     ]]]-->
-    <!-- *** NOPYG: 8 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="k">class</span>&#xA0;<span class="nc">MyBadTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_a_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">old_global</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">SOME_GLOBAL_THING</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">SOME_GLOBAL_THING</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">new_test_value</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">do_my_test_stuff</span><span class="p">()</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">SOME_GLOBAL_THING</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">old_global</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
     <ul>
         <li>Common impulse</li>
@@ -1822,7 +2208,18 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
                 do_my_test_stuff()
     """, lang="python")
     ]]]-->
-    <!-- *** NOPYG: 10 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="k">class</span>&#xA0;<span class="nc">MyGoodTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_global</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">SOME_GLOBAL_THING</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">SOME_GLOBAL_THING</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">new_test_value</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">SOME_GLOBAL_THING</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_global</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_a_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">do_my_test_stuff</span><span class="p">()</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]]-->
     <ul>
         <li>tearDown gets run no matter what *</li>
@@ -2326,9 +2723,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide" data-layout="clean">
     <h1>Portfolio: Real-time data!</h1>
-    <!--[[[cog
-    include_file("portfolio3.py", section="value")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("portfolio3.py", section="value")   ]]] {{{ -->
     <!--
     def current_prices(self):
         """Return a dict mapping names to current prices."""
@@ -2345,7 +2740,22 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             total += shares * prices[name]
         return total
     -->
-    <!-- *** NOPYG: 14 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">s</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">))</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> <span class="k">def</span>&#xA0;<span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;the&#xA0;current&#xA0;value&#xA0;of&#xA0;the&#xA0;portfolio.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">for</span>&#xA0;<span class="n">name</span><span class="p">,</span>&#xA0;<span class="n">shares</span><span class="p">,</span>&#xA0;<span class="n">_</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="n">shares</span>&#xA0;<span class="o">*</span>&#xA0;<span class="n">prices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">total</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!-- ** Interactive session {{{ -->
     <!--[[[cog
@@ -2376,7 +2786,17 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 
     -->
-    <!-- *** NOPYG: 11 lines of text will be here. *** -->
+    <div class="code pycon"> <!-- {{{ -->
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">150.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;32.64,&#xA0;&#39;IBM&#39;:&#xA0;191.77}</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="go">22441.0</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -2429,9 +2849,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>Fake implementation of current_prices</h1>
-    <!--[[[cog
-    include_file("test_port7.py", start=45, end=59)   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port7.py", start=45, end=59)   ]]] {{{ -->
     <!--
     # Replace Portfolio.current_prices with a stub implementation.
     # This avoids the web, but also skips all our current_prices
@@ -2449,7 +2867,23 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
         def test_value(self):
             self.assertEqual(self.p.value(), 17200)
     -->
-    <!-- *** NOPYG: 15 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">45</span> <span class="c">#&#xA0;Replace&#xA0;Portfolio.current_prices&#xA0;with&#xA0;a&#xA0;stub&#xA0;implementation.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">46</span> <span class="c">#&#xA0;This&#xA0;avoids&#xA0;the&#xA0;web,&#xA0;but&#xA0;also&#xA0;skips&#xA0;all&#xA0;our&#xA0;current_prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">47</span> <span class="c">#&#xA0;code.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">fake_current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="p">{</span><span class="s">&#39;IBM&#39;</span><span class="p">:</span>&#xA0;<span class="mf">140.0</span><span class="p">,</span>&#xA0;<span class="s">&#39;HPQ&#39;</span><span class="p">:</span>&#xA0;<span class="mf">32.0</span><span class="p">}</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">fake_current_prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li class="good">Good: test results are predictable</li>
@@ -2470,9 +2904,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>But some code isn't tested!</h1>
-    <!--[[[cog
-    include_file("test_port7.out", start=7, end=13, highlight=[10])   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port7.out", start=7, end=13, highlight=[10])   ]]] {{{ -->
     <!--
     $ coverage report –m
     Name         Stmts   Miss  Cover   Missing
@@ -2482,11 +2914,18 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
     ––––––––––––––––––––––––––––––––––––––––––
     TOTAL           74      4    95%   
     -->
-    <!-- *** NOPYG: 7 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;87%&#xA0;&#xA0;&#xA0;53-56
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port7&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;43&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;74&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;95%&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog
-    include_file("portfolio3.py", start=51, end=61, highlight=[53,54,55,56])   # {{{
-    ]]]-->
+    <!--[[[cog include_file("portfolio3.py", start=51, end=61, highlight=[53,54,55,56])   ]]] {{{ -->
     <!--
     def current_prices(self):
         """Return a dict mapping names to current prices."""
@@ -2500,7 +2939,23 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
         prices = self.current_prices()
         total = 0.0
     -->
-    <!-- *** NOPYG: 11 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">51</span> <span class="k">def</span>&#xA0;<span class="nf">current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;a&#xA0;dict&#xA0;mapping&#xA0;names&#xA0;to&#xA0;current&#xA0;prices.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;http://finance.yahoo.com/d/quotes.csv?f=sl1&amp;s=&quot;</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">url</span>&#xA0;<span class="o">+=</span>&#xA0;<span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">s</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">stocks</span><span class="p">))</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">data</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="p">{</span>&#xA0;<span class="n">sym</span><span class="p">:</span>&#xA0;<span class="nb">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>&#xA0;<span class="k">for</span>&#xA0;<span class="n">sym</span><span class="p">,</span>&#xA0;<span class="n">last</span>&#xA0;<span class="ow">in</span>&#xA0;<span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#xA0;<span class="p">}</span>
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> <span class="k">def</span>&#xA0;<span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="sd">&quot;&quot;&quot;Return&#xA0;the&#xA0;current&#xA0;value&#xA0;of&#xA0;the&#xA0;portfolio.&quot;&quot;&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">total</span>&#xA0;<span class="o">=</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -2518,9 +2973,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>Fake urllib.urlopen instead</h1>
-    <!--[[[cog
-    include_file("test_port8.py", section="fake")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port8.py", section="fake")   ]]] {{{ -->
     <!--
     # A simple fake for urllib that implements only one method,
     # and is only good for one request.  You can make this much
@@ -2546,7 +2999,31 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
             # Restore the real urllib.
             portfolio3.urllib = self.old_urllib
     -->
-    <!-- *** NOPYG: 23 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">48</span> <span class="c">#&#xA0;A&#xA0;simple&#xA0;fake&#xA0;for&#xA0;urllib&#xA0;that&#xA0;implements&#xA0;only&#xA0;one&#xA0;method,</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> <span class="c">#&#xA0;and&#xA0;is&#xA0;only&#xA0;good&#xA0;for&#xA0;one&#xA0;request.&#xA0;&#xA0;You&#xA0;can&#xA0;make&#xA0;this&#xA0;much</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> <span class="c">#&#xA0;more&#xA0;complex&#xA0;for&#xA0;your&#xA0;own&#xA0;needs.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> <span class="k">class</span>&#xA0;<span class="nc">FakeUrllib</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">url</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Save&#xA0;the&#xA0;real&#xA0;urllib,&#xA0;and&#xA0;install&#xA0;our&#xA0;fake.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">FakeUrllib</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Restore&#xA0;the&#xA0;real&#xA0;urllib.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -2581,9 +3058,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>All of our code is executed</h1>
-    <!--[[[cog
-    include_file("test_port8.out", start=7, end=13)   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port8.out", start=7, end=13)   ]]] {{{ -->
     <!--
     $ coverage report –m
     Name         Stmts   Miss  Cover   Missing
@@ -2593,7 +3068,15 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
     ––––––––––––––––––––––––––––––––––––––––––
     TOTAL           80      0   100%   
     -->
-    <!-- *** NOPYG: 7 lines of text will be here. *** -->
+    <div class="code text"> <!-- {{{ -->
+    <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port8&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;49&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;80&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
         <li class="good">Stdlib is stubbed</li>
@@ -2646,7 +3129,18 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 
     -->
-    <!-- *** NOPYG: 12 lines of text will be here. *** -->
+    <div class="code pycon"> <!-- {{{ -->
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="kn">from</span>&#xA0;<span class="nn">mock</span>&#xA0;<span class="kn">import</span>&#xA0;<span class="n">Mock</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">func</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Mock</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">func</span><span class="o">.</span><span class="n">return_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="s">&quot;Hello!&quot;</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">func</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span>&#xA0;<span class="s">&quot;something&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="go">&#39;Hello!&#39;</span>&nbsp;</div>
+    <div class="line">&nbsp;</div>
+    <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">func</span><span class="o">.</span><span class="n">call_args</span>&nbsp;</div>
+    <div class="line"><span class="go">call(17,&#xA0;&#39;something&#39;)</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
@@ -2664,9 +3158,7 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 
 <div class="slide">
     <h1>Mocking with no setup</h1>
-    <!--[[[cog
-    include_file("test_port9.py", section="mock")   # {{{
-    ]]]-->
+    <!--[[[cog include_file("test_port9.py", section="mock")   ]]] {{{ -->
     <!--
     class PortfolioValueTest(unittest.TestCase):
         def setUp(self):
@@ -2691,7 +3183,30 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
                     "?f=sl1&s=HPQ,IBM"
                     )
     -->
-    <!-- *** NOPYG: 22 lines of text will be here. *** -->
+    <div class="code python"> <!-- {{{ -->
+    <div class="line"><span class="lineno">49</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Create&#xA0;a&#xA0;mock&#xA0;urllib.urlopen.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s">&#39;urllib.urlopen&#39;</span><span class="p">)</span>&#xA0;<span class="k">as</span>&#xA0;<span class="n">urlopen</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;When&#xA0;called,&#xA0;it&#xA0;will&#xA0;return&#xA0;this&#xA0;value:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">fake_yahoo</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">urlopen</span><span class="o">.</span><span class="n">return_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">fake_yahoo</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Run&#xA0;the&#xA0;test!</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;We&#xA0;can&#xA0;ask&#xA0;the&#xA0;mock&#xA0;what&#xA0;its&#xA0;arguments&#xA0;were.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">urlopen</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;http://finance.yahoo.com/d/quotes.csv&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;?f=sl1&amp;s=HPQ,IBM&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">)</span>&nbsp;</div>
+    </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
 
