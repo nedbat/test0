@@ -57,7 +57,7 @@ def include_file(fname, start=None, end=None, highlight=None, section=None, px=F
 
     # Take only the lines we want, and shorten lines that are too long and
     # easily shortened.
-    lines = [clip_long_boring_line(l, 65) for l in lines[start-1:end]]
+    lines = [clip_long_boring_line(l, 60) for l in lines[start-1:end]]
 
     text = "\n".join(lines)
 
