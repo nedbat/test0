@@ -82,6 +82,7 @@ px $(PX): $(SLIDE_HTML)
 
 publish: $(SLIDE_HTML) $(SAMPLE_ZIP) $(PX) pngs
 	cp -f $(PX) $(WEBHOME)
+	rm -rf $(WEBPRZHOME)
 	mkdir -p $(WEBPRZHOME)/slippy/src
 	cp $(PNG_DIR)/*.png $(IMAGES) $(WEBPRZHOME)
 	echo $(SLIDE_SUPPORT) | xargs -n1 -I{} cp {} $(WEBPRZHOME)/{}
