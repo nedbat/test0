@@ -199,7 +199,7 @@ from cogutil import *
         }
         .slide.title h2 {
             text-align: center;
-            font-size: 125%;
+            font-size: 150%;
             color: #666;
             padding-top: 2em;
         }
@@ -235,11 +235,6 @@ from cogutil import *
         .slide .punct {
             padding: 0 .15em;
             color: #aaa;
-        }
-
-        .slide p.generic {
-            font-family: serif;
-            margin-top: .5em;
         }
 
         .slide .code {
@@ -287,6 +282,11 @@ from cogutil import *
             margin-top: .5em;
             padding-left: 1.25em;
             text-indent: -1em;
+            font-size: 125%;
+        }
+
+        .slide li li {
+            font-size: 100%;
         }
 
         .slide li:before {
@@ -472,8 +472,8 @@ from cogutil import *
 <div class="slide">
     <h1>Goals</h1>
     <ul>
-        <li>Show you a way to test your Python code</li>
-        <li>Remove the mystery</li>
+        <li>Show you a way to test</li>
+        <li>Remove mystery</li>
     </ul>
 </div>
 
@@ -560,9 +560,9 @@ from cogutil import *
 <div class="slide">
     <h1>Yeah, it's hard</h1>
     <ul>
-        <li>A lot of work</li>
-        <li>People won't want to</li>
-        <li>It pays off</li>
+        <li class="incremental">A lot of work</li>
+        <li class="incremental">People (you) won't want to</li>
+        <li class="incremental">But: it pays off</li>
     </ul>
 </div>
 
@@ -577,7 +577,7 @@ from cogutil import *
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>Reality</h1>
+    <h1>Chaos!</h1>
     <p style='text-align: center'><img src='dadtoon-chaos-2.png' width="50%"/></p>
 </div>
 
@@ -627,8 +627,8 @@ from cogutil import *
 
 <!-- *** Grow a first test {{{ -->
 <div class="slide section" data-layout="clean">
-    <h1>Starting from first principles</h1>
-    <h2>Evolving tests</h2>
+    <h1>First principles</h1>
+    <h2>Growing tests</h2>
 </div>
 
 <div class="text"><!-- {{{ -->
@@ -2573,9 +2573,9 @@ class PortfolioSellTest(PortfolioTestCase):
 <div class="slide">
     <h1>Tests are real code!</h1>
     <ul>
-        <li>Test helpers can become significant</li>
         <li>Helper functions, classes, etc.</li>
-        <li>These helpers might need tests!</li>
+        <li>Can become significant</li>
+        <li>Might need tests!</li>
     </ul>
 </div>
 
@@ -3185,9 +3185,9 @@ def value(self):
 <div class="slide">
     <h1>But how to test it?</h1>
     <ul>
-        <li>Live data from the web is unpredictable</li>
-        <li>Could be slowish</li>
-        <li>Could be unavailable</li>
+        <li>Live data: unpredictable</li>
+        <li>Slow?</li>
+        <li>Unavailable?</li>
         <li>Question should be:
             <ul>
                 <li>"Assuming yahoo.com is working,</li>
@@ -3515,10 +3515,10 @@ class PortfolioValueTest(unittest.TestCase):
 <div class="slide">
     <h1>Even better: mock objects</h1>
     <ul>
-        <li>Mock objects are automatic chameleons</li>
-        <li>Can act like any object</li>
-        <li>Also record what happened to them</li>
-        <li>You can make assertions after the fact</li>
+        <li>Automatic chameleons</li>
+        <li>Act like any object</li>
+        <li>Record what happened to them</li>
+        <li>You can make assertions afterward</li>
     </ul>
     <!-- ** Interactive session {{{ -->
     <!--[[[cog
@@ -3911,15 +3911,17 @@ class PortfolioValueTest(unittest.TestCase):
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     @nedbat</h2>
 
+    <div class="incremental">
     <p style='text-align:right;margin-top:5em;margin-bottom:-1.5em'><img src='dadtoon-mii.png' width="35%"></p>
     <p style='text-align:right; font-size:85%;margin-top:0'>
-    <i>Illustrations by Ben Batchelder</i>
+    <i>Illustrations by Ben Batchelder...</i>
     <!--
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <i>Made with Cog and Slippy</i>
     -->
     </p>
+    </div>
 </div>
 
 </body>
