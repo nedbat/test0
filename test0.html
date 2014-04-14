@@ -238,7 +238,7 @@ from cogutil import *
         }
 
         .slide .code {
-            font-family: monaco, Consolas, monaco, monospace;
+            font-family: Consolas, monaco, monospace;
             font-weight: 600;
             margin-top: 1em;
             background: #ccf;
@@ -462,7 +462,7 @@ from cogutil import *
 </div><!-- }}} -->
 
 <div class="slide title" data-layout="clean">
-    <h1>Getting Started Testing</h1>
+    <h1 style="margin-top:-2em;">Getting Started Testing</h1>
     <h2>Ned Batchelder
     <br/>@nedbat
     <br/>
@@ -578,7 +578,7 @@ from cogutil import *
 
 <div class="slide">
     <h1>Chaos!</h1>
-    <p style='text-align: center'><img src='dadtoon-chaos-2.png' width="50%"/></p>
+    <p style='text-align: center; margin-top:-1em'><img src='dadtoon-chaos-2.png' width="60%"/></p>
 </div>
 
 <div class="text"><!-- {{{ -->
@@ -645,7 +645,6 @@ from cogutil import *
 
 <div class="slide">
     <h1>Stock portfolio class</h1>
-    <p>A simple system under test:</p>
     <!--[[[cog include_file("portfolio1.py") ]]] {{{ -->
     <!--
     # portfolio1.py
@@ -902,16 +901,16 @@ With 100 HPQ @ 36.15: 21263.0
     <!--
     p = Portfolio()
     print "Empty portfolio cost: %s, should be 0.0" % p.cost()
-    p.buy("IBM", 100, 176)
-    print "With 100 IBM @ 176: %s, should be 17600.0" % p.cost()
+    p.buy("IBM", 100, 176.48)
+    print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
     p.buy("HPQ", 100, 36.15)
     print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
     -->
     <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno">4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">5</span> <span class="k">print</span>&#xA0;<span class="s">&quot;Empty&#xA0;portfolio&#xA0;cost:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;0.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">6</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mi">176</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">7</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;17600.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">7</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;17648.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno">8</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">9</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;21263.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
     </div><!-- }}} -->
@@ -920,14 +919,14 @@ With 100 HPQ @ 36.15: 21263.0
     <!--
     $ python porttest2.py
     Empty portfolio cost: 0.0, should be 0.0
-    With 100 IBM @ 176: 17600.0, should be 17600.0
-    With 100 HPQ @ 36.15: 21215.0, should be 21263.0
+    With 100 IBM @ 176.48: 17648.0, should be 17648.0
+    With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest2.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
-    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176:&#xA0;17600.0,&#xA0;should&#xA0;be&#xA0;17600.0&nbsp;</div>
-    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21215.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
@@ -949,8 +948,8 @@ from portfolio1 import Portfolio
 
 p = Portfolio()
 print "Empty portfolio cost: %s, should be 0.0" % p.cost()
-p.buy("IBM", 100, 176)
-print "With 100 IBM @ 176: %s, should be 17600.0" % p.cost()
+p.buy("IBM", 100, 176.48)
+print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
 p.buy("HPQ", 100, 36.15)
 print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
 </code>
@@ -963,8 +962,8 @@ print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
 <code lang='text'>
 $ python porttest2.py
 Empty portfolio cost: 0.0, should be 0.0
-With 100 IBM @ 176: 17600.0, should be 17600.0
-With 100 HPQ @ 36.15: 21215.0, should be 21263.0
+With 100 IBM @ 176.48: 17648.0, should be 17648.0
+With 100 HPQ @ 36.15: 21263.0, should be 21263.0
 </code>
 <!--[[[end]]] }}}-->
 
@@ -986,37 +985,37 @@ With 100 HPQ @ 36.15: 21215.0, should be 21263.0
     p = Portfolio()
     print "Empty portfolio cost: %s, should be 0.0" % p.cost()
     assert p.cost() == 0.0
-    p.buy("IBM", 100, 176)
-    print "With 100 IBM @ 176: %s, should be 17600.0" % p.cost()
-    assert p.cost() == 17600.0
+    p.buy("IBM", 100, 176.48)
+    print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
+    assert p.cost() == 17648.0
     p.buy("HPQ", 100, 36.15)
-    print "With 100 HPQ @ 36.15: %s, should be 21215.0" % p.cost()
-    assert p.cost() == 21215.0
+    print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
+    assert p.cost() == 21263.0
     -->
     <div class="code python"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 4</span> <span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span> <span class="k">print</span>&#xA0;<span class="s">&quot;Empty&#xA0;portfolio&#xA0;cost:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;0.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">0.0</span>&nbsp;</div>
-    <div class="line"><span class="lineno"> 7</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mi">176</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno"> 8</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;17600.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno"> 9</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17600.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">176.48</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;17648.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">17648.0</span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span> <span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">36.15</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;21215.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">21215.0</span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> <span class="k">print</span>&#xA0;<span class="s">&quot;With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;</span><span class="si">%s</span><span class="s">,&#xA0;should&#xA0;be&#xA0;21263.0&quot;</span>&#xA0;<span class="o">%</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> <span class="k">assert</span>&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">cost</span><span class="p">()</span>&#xA0;<span class="o">==</span>&#xA0;<span class="mf">21263.0</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog include_file("porttest3.out")   ]]] {{{ -->
     <!--
     $ python porttest3.py
     Empty portfolio cost: 0.0, should be 0.0
-    With 100 IBM @ 176: 17600.0, should be 17600.0
-    With 100 HPQ @ 36.15: 21215.0, should be 21215.0
+    With 100 IBM @ 176.48: 17648.0, should be 17648.0
+    With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
-    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176:&#xA0;17600.0,&#xA0;should&#xA0;be&#xA0;17600.0&nbsp;</div>
-    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21215.0,&#xA0;should&#xA0;be&#xA0;21215.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">4</span> With&#xA0;100&#xA0;HPQ&#xA0;@&#xA0;36.15:&#xA0;21263.0,&#xA0;should&#xA0;be&#xA0;21263.0&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
@@ -1039,12 +1038,12 @@ With 100 HPQ @ 36.15: 21215.0, should be 21263.0
 p = Portfolio()
 print "Empty portfolio cost: %s, should be 0.0" % p.cost()
 assert p.cost() == 0.0
-p.buy("IBM", 100, 176)
-print "With 100 IBM @ 176: %s, should be 17600.0" % p.cost()
-assert p.cost() == 17600.0
+p.buy("IBM", 100, 176.48)
+print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
+assert p.cost() == 17648.0
 p.buy("HPQ", 100, 36.15)
-print "With 100 HPQ @ 36.15: %s, should be 21215.0" % p.cost()
-assert p.cost() == 21215.0
+print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
+assert p.cost() == 21263.0
 </code>
 <!--[[[end]]] }}}-->
 
@@ -1063,19 +1062,19 @@ assert p.cost() == 21215.0
     <!--
     $ python porttest3_broken.py
     Empty portfolio cost: 0.0, should be 0.0
-    With 100 IBM @ 176.48: 17600.0, should be 17648.0
+    With 100 IBM @ 176.48: 17648.0, should be 17600.0
     Traceback (most recent call last):
       File "porttest3_broken.py", line 9, in <module>
-        assert p.cost() == 17648.0
+        assert p.cost() == 17600.0
     AssertionError
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;porttest3_broken.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> Empty&#xA0;portfolio&#xA0;cost:&#xA0;0.0,&#xA0;should&#xA0;be&#xA0;0.0&nbsp;</div>
-    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17600.0,&#xA0;should&#xA0;be&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> With&#xA0;100&#xA0;IBM&#xA0;@&#xA0;176.48:&#xA0;17648.0,&#xA0;should&#xA0;be&#xA0;17600.0&nbsp;</div>
     <div class="line"><span class="lineno">4</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
     <div class="line"><span class="lineno">5</span> &#xA0;&#xA0;File&#xA0;&quot;porttest3_broken.py&quot;,&#xA0;line&#xA0;9,&#xA0;in&#xA0;&lt;module&gt;&nbsp;</div>
-    <div class="line"><span class="lineno">6</span> &#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;p.cost()&#xA0;==&#xA0;17648.0&nbsp;</div>
+    <div class="line"><span class="lineno">6</span> &#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;p.cost()&#xA0;==&#xA0;17600.0&nbsp;</div>
     <div class="line"><span class="lineno">7</span> AssertionError&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
@@ -1099,10 +1098,10 @@ assert p.cost() == 21215.0
 <code lang='text'>
 $ python porttest3_broken.py
 Empty portfolio cost: 0.0, should be 0.0
-With 100 IBM @ 176.48: 17600.0, should be 17648.0
+With 100 IBM @ 176.48: 17648.0, should be 17600.0
 Traceback (most recent call last):
   File "porttest3_broken.py", line 9, in &lt;module>
-    assert p.cost() == 17648.0
+    assert p.cost() == 17600.0
 AssertionError
 </code>
 <!--[[[end]]] }}}-->
@@ -2030,7 +2029,7 @@ FAILED (errors=1)
     TypeError: buy() takes exactly 4 arguments (2 given)
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 4 tests in 0.000s
+    Ran 4 tests in 0.001s
 
     FAILED (errors=1)
     -->
@@ -2046,7 +2045,7 @@ FAILED (errors=1)
     <div class="line"><span class="lineno"> 9</span> TypeError:&#xA0;buy()&#xA0;takes&#xA0;exactly&#xA0;4&#xA0;arguments&#xA0;(2&#xA0;given)&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
     </div><!-- }}} -->
@@ -2083,7 +2082,7 @@ Traceback (most recent call last):
 TypeError: buy() takes exactly 4 arguments (2 given)
 
 ------------------------------------------------------------
-Ran 4 tests in 0.000s
+Ran 4 tests in 0.001s
 
 FAILED (errors=1)
 </code>
@@ -3125,10 +3124,10 @@ class PortfolioSellTest(PortfolioTestCase):
     >>> p.buy("HPQ", 100, 30.0)
 
     >>> p.current_prices()
-    {'HPQ': 32.72, 'IBM': 196.64}
+    {'HPQ': 32.45, 'IBM': 195.19}
 
     >>> p.value()
-    22936.0
+    22764.0
 
 
     -->
@@ -3138,10 +3137,10 @@ class PortfolioSellTest(PortfolioTestCase):
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;32.72,&#xA0;&#39;IBM&#39;:&#xA0;196.64}</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;32.45,&#xA0;&#39;IBM&#39;:&#xA0;195.19}</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">22936.0</span>&nbsp;</div>
+    <div class="line"><span class="go">22764.0</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
