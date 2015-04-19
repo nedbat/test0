@@ -1,28 +1,29 @@
 var viewport, output, delay, renderers = [];
+var system = require('system');
 
 // checks version
-if (phantom.version.major == 1 && phantom.version.minor < 3) {
-    console.log('This script requires PhantomJS v1.3.0+, you have v'+phantom.version.major+'.'+phantom.version.minor+'.'+phantom.version.patch);
+if (phantom.version.major < 2) {
+    console.log('This script requires PhantomJS v2.0+, you have v'+phantom.version.major+'.'+phantom.version.minor+'.'+phantom.version.patch);
     phantom.exit(-1);
 }
 
 // check usage
-if (phantom.args.length !== 3) {
-    console.log('Usage: phantom-pdf.js URL dirname');
+if (system.args.length !== 4) {
+    console.log('Usage: phantom-slippy-to-png.js URL dirname prefix');
     phantom.exit(-1);
 }
 
 // settings
 delay = 1000;
-viewport = { width: 512*2, height: 384*2 };
-output = phantom.args[1];
-prefix = phantom.args[2];
+viewport = { width: 1024, height: 768 };
+output = system.args[2];
+prefix = system.args[3];
 
 (function init() {
     var i, slides, workers, slidesPerWorker, page;
 
-    page = new WebPage()
-    page.open(phantom.args[0], function (status) {
+    page = require('webpage').create();
+    page.open(system.args[1], function (status) {
         if (status !== 'success') {
             console.log('Unable to load the given URL: ' + status);
             phantom.exit(-1);
@@ -43,7 +44,7 @@ prefix = phantom.args[2];
                 }
                 page.viewportSize = { width: viewport.width, height: viewport.height };
                 page.paperSize = { width: viewport.width * 1.5, height: viewport.height * 1.5 + 30 };
-                renderers.push(renderer(page, phantom.args[0], i * slidesPerWorker, Math.min(slidesPerWorker, slides)))
+                renderers.push(renderer(page, system.args[1], i * slidesPerWorker, Math.min(slidesPerWorker, slides)))
                 i++;
                 slides -= slidesPerWorker;
             }
@@ -75,6 +76,9 @@ function renderer(page, url, currentSlide, slides) {
     function initPage() {
         var i;
         page.evaluate(function () {
+            // Indicate that we are making PNGs
+            $('html').addClass('phantompng');
+            // Disable incremental display
             $('.incremental').css('opacity', '1').removeClass('incremental');
         });
         // move to the current slide

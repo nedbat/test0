@@ -26,7 +26,7 @@ SLUG = test0
 SLIDE_HTML = $(SLUG).html
 SAMPLE_ZIP = $(SLUG).zip
 
-IMAGES = dadtoon-chaos-2.png dadtoon-iambad-3.png happysticks.png mock.png
+IMAGES = dadtoon-chaos-2.png dadtoon-iambad-3.png dadtoon-mii.png happysticks.png mock.png
 SD = slippy/src
 JS_FILES = $(SD)/jquery.min.js $(SD)/jquery.history.js $(SD)/slippy.js lineselect.js
 CSS_FILES = $(SD)/slippy.css $(SD)/slippy-pure.css
