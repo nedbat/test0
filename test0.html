@@ -2223,7 +2223,7 @@ def sell(self, name, shares):
 
 <div class="slide" data-layout="clean">
     <h1>Testing sell()</h1>
-    <!--[[[cog include_file("test_port5.py", start=34)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port5.py", start=36)   ]]] {{{ -->
     <!--
     class PortfolioSellTest(PortfolioTestCase):
         def test_sell(self):
@@ -2251,30 +2251,30 @@ def sell(self, name, shares):
                 p.sell("IBM", 1)
     -->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="lineno">34</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">PortfolioTestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">36</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">42</span>&nbsp;</div>
-    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Didn&#39;t&#xA0;I&#xA0;just&#xA0;do&#xA0;this?</span>&nbsp;</div>
-    <div class="line"><span class="lineno">45</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">47</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">50</span>&nbsp;</div>
-    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;What,&#xA0;again!?!?</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">36</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">PortfolioTestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">44</span>&nbsp;</div>
+    <div class="line"><span class="lineno">45</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Didn&#39;t&#xA0;I&#xA0;just&#xA0;do&#xA0;this?</span>&nbsp;</div>
+    <div class="line"><span class="lineno">47</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;What,&#xA0;again!?!?</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -2285,7 +2285,7 @@ def sell(self, name, shares):
     we need to create a portfolio with some stocks in it so that we have
     something to sell:</p>
 
-<!--[[[cog include_file("test_port5.py", start=34, px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port5.py", start=36, px=True) ]]] {{{ -->
 <code lang='python'>
 class PortfolioSellTest(PortfolioTestCase):
     def test_sell(self):
@@ -2322,7 +2322,7 @@ class PortfolioSellTest(PortfolioTestCase):
 
 <div class="slide">
     <h1>Setting up a test</h1>
-    <!--[[[cog include_file("test_port6.py", start=34)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port6.py", start=36)   ]]] {{{ -->
     <!--
     class PortfolioSellTest(PortfolioTestCase):
         # Invoked before each test method
@@ -2345,25 +2345,25 @@ class PortfolioSellTest(PortfolioTestCase):
                 self.p.sell("IBM", 1)
     -->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="lineno">34</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">PortfolioTestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Invoked&#xA0;before&#xA0;each&#xA0;test&#xA0;method</span>&nbsp;</div>
-    <div class="line"><span class="lineno">36</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">41</span>&nbsp;</div>
-    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">45</span>&nbsp;</div>
-    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">47</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">49</span>&nbsp;</div>
-    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">36</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">PortfolioTestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Invoked&#xA0;before&#xA0;each&#xA0;test&#xA0;method</span>&nbsp;</div>
+    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">43</span>&nbsp;</div>
+    <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">45</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">47</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -2375,7 +2375,7 @@ class PortfolioSellTest(PortfolioTestCase):
     test method.  Because your test class is a class, you have a self object
     that you can create attributes on:</p>
 
-<!--[[[cog include_file("test_port6.py", start=34, px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port6.py", start=36, px=True) ]]] {{{ -->
 <code lang='python'>
 class PortfolioSellTest(PortfolioTestCase):
     # Invoked before each test method
@@ -3213,7 +3213,7 @@ def value(self):
 
 <div class="slide">
     <h1>Fake implementation of current_prices</h1>
-    <!--[[[cog include_file("test_port7.py", start=45, end=59)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port7.py", start=48)   ]]] {{{ -->
     <!--
     # Replace Portfolio.current_prices with a stub implementation.
     # This avoids the web, but also skips all our current_prices
@@ -3232,21 +3232,21 @@ def value(self):
             self.assertEqual(self.p.value(), 17200)
     -->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="lineno">45</span> <span class="c">#&#xA0;Replace&#xA0;Portfolio.current_prices&#xA0;with&#xA0;a&#xA0;stub&#xA0;implementation.</span>&nbsp;</div>
-    <div class="line"><span class="lineno">46</span> <span class="c">#&#xA0;This&#xA0;avoids&#xA0;the&#xA0;web,&#xA0;but&#xA0;also&#xA0;skips&#xA0;all&#xA0;our&#xA0;current_prices</span>&nbsp;</div>
-    <div class="line"><span class="lineno">47</span> <span class="c">#&#xA0;code.</span>&nbsp;</div>
-    <div class="line"><span class="lineno">48</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">fake_current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="p">{</span><span class="s">&#39;IBM&#39;</span><span class="p">:</span>&#xA0;<span class="mf">140.0</span><span class="p">,</span>&#xA0;<span class="s">&#39;HPQ&#39;</span><span class="p">:</span>&#xA0;<span class="mf">32.0</span><span class="p">}</span>&nbsp;</div>
-    <div class="line"><span class="lineno">51</span>&nbsp;</div>
-    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">fake_current_prices</span>&nbsp;</div>
-    <div class="line"><span class="lineno">57</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span> <span class="c">#&#xA0;Replace&#xA0;Portfolio.current_prices&#xA0;with&#xA0;a&#xA0;stub&#xA0;implementation.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> <span class="c">#&#xA0;This&#xA0;avoids&#xA0;the&#xA0;web,&#xA0;but&#xA0;also&#xA0;skips&#xA0;all&#xA0;our&#xA0;current_prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> <span class="c">#&#xA0;code.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">fake_current_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="p">{</span><span class="s">&#39;IBM&#39;</span><span class="p">:</span>&#xA0;<span class="mf">140.0</span><span class="p">,</span>&#xA0;<span class="s">&#39;HPQ&#39;</span><span class="p">:</span>&#xA0;<span class="mf">32.0</span><span class="p">}</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">fake_current_prices</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
@@ -3260,7 +3260,7 @@ def value(self):
     In our setUp function, we create a Portfolio, and then we give it a
     new current_prices method that simply returns a fixed value:</p>
 
-<!--[[[cog include_file("test_port7.py", start=45, end=59, px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port7.py", start=48, px=True) ]]] {{{ -->
 <code lang='python'>
 # Replace Portfolio.current_prices with a stub implementation.
 # This avoids the web, but also skips all our current_prices
@@ -3295,9 +3295,9 @@ class PortfolioValueTest(unittest.TestCase):
     Name            Stmts   Miss  Cover   Missing
     –––––––––––––––––––––––––––––––––––––––––––––
     portfolio3.py      31      4    87%   53–56
-    test_port7.py      43      0   100%   
+    test_port7.py      44      0   100%   
     –––––––––––––––––––––––––––––––––––––––––––––
-    TOTAL              74      4    95%   
+    TOTAL              75      4    95%   
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
@@ -3305,9 +3305,9 @@ class PortfolioValueTest(unittest.TestCase):
     <div class="line"><span class="lineno"> 9</span> ---------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;87%&#xA0;&#xA0;&#xA0;53-56
     </span>&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> test_port7.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;43&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port7.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;44&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ---------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;74&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;95%&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;75&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;95%&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog include_file("portfolio3.py", start=51, end=61, highlight=[53,54,55,56])   ]]] {{{ -->
@@ -3386,29 +3386,29 @@ class PortfolioValueTest(unittest.TestCase):
             portfolio3.urllib = self.old_urllib
     -->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="lineno">48</span> <span class="c">#&#xA0;A&#xA0;simple&#xA0;fake&#xA0;for&#xA0;urllib&#xA0;that&#xA0;implements&#xA0;only&#xA0;one&#xA0;method,</span>&nbsp;</div>
-    <div class="line"><span class="lineno">49</span> <span class="c">#&#xA0;and&#xA0;is&#xA0;only&#xA0;good&#xA0;for&#xA0;one&#xA0;request.&#xA0;&#xA0;You&#xA0;can&#xA0;make&#xA0;this&#xA0;much</span>&nbsp;</div>
-    <div class="line"><span class="lineno">50</span> <span class="c">#&#xA0;more&#xA0;complex&#xA0;for&#xA0;your&#xA0;own&#xA0;needs.</span>&nbsp;</div>
-    <div class="line"><span class="lineno">51</span> <span class="k">class</span>&#xA0;<span class="nc">FakeUrllib</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">url</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span>&nbsp;</div>
-    <div class="line"><span class="lineno">55</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Save&#xA0;the&#xA0;real&#xA0;urllib,&#xA0;and&#xA0;install&#xA0;our&#xA0;fake.</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">FakeUrllib</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">60</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">64</span>&nbsp;</div>
-    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> <span class="c">#&#xA0;A&#xA0;simple&#xA0;fake&#xA0;for&#xA0;urllib&#xA0;that&#xA0;implements&#xA0;only&#xA0;one&#xA0;method,</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> <span class="c">#&#xA0;and&#xA0;is&#xA0;only&#xA0;good&#xA0;for&#xA0;one&#xA0;request.&#xA0;&#xA0;You&#xA0;can&#xA0;make&#xA0;this&#xA0;much</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> <span class="c">#&#xA0;more&#xA0;complex&#xA0;for&#xA0;your&#xA0;own&#xA0;needs.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> <span class="k">class</span>&#xA0;<span class="nc">FakeUrllib</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>&#xA0;<span class="n">url</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Save&#xA0;the&#xA0;real&#xA0;urllib,&#xA0;and&#xA0;install&#xA0;our&#xA0;fake.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">FakeUrllib</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">66</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line"><span class="lineno">67</span>&nbsp;</div>
-    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Restore&#xA0;the&#xA0;real&#xA0;urllib.</span>&nbsp;</div>
-    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">70</span>&nbsp;</div>
+    <div class="line"><span class="lineno">71</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">72</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Restore&#xA0;the&#xA0;real&#xA0;urllib.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">73</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">portfolio3</span><span class="o">.</span><span class="n">urllib</span>&#xA0;<span class="o">=</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">old_urllib</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -3479,18 +3479,18 @@ class PortfolioValueTest(unittest.TestCase):
     Name            Stmts   Miss  Cover   Missing
     –––––––––––––––––––––––––––––––––––––––––––––
     portfolio3.py      31      0   100%   
-    test_port8.py      49      0   100%   
+    test_port8.py      50      0   100%   
     –––––––––––––––––––––––––––––––––––––––––––––
-    TOTAL              80      0   100%   
+    TOTAL              81      0   100%   
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
     <div class="line"><span class="lineno"> 9</span> ---------------------------------------------&nbsp;</div>
     <div class="line"><span class="lineno">10</span> portfolio3.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> test_port8.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;49&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port8.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;50&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
     <div class="line"><span class="lineno">12</span> ---------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;80&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;81&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
@@ -3601,28 +3601,28 @@ class PortfolioValueTest(unittest.TestCase):
                     )
     -->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="lineno">50</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">55</span>&nbsp;</div>
-    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Create&#xA0;a&#xA0;mock&#xA0;urllib.urlopen.</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s">&#39;urllib.urlopen&#39;</span><span class="p">)</span>&#xA0;<span class="k">as</span>&#xA0;<span class="n">urlopen</span><span class="p">:</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span>&nbsp;</div>
-    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;When&#xA0;called,&#xA0;it&#xA0;will&#xA0;return&#xA0;this&#xA0;value:</span>&nbsp;</div>
-    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">fake_yahoo</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">62</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">urlopen</span><span class="o">.</span><span class="n">return_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">fake_yahoo</span>&nbsp;</div>
-    <div class="line"><span class="lineno">63</span>&nbsp;</div>
-    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Run&#xA0;the&#xA0;test!</span>&nbsp;</div>
-    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioValueTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">120.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">58</span>&nbsp;</div>
+    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">60</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Create&#xA0;a&#xA0;mock&#xA0;urllib.urlopen.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">61</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s">&#39;urllib.urlopen&#39;</span><span class="p">)</span>&#xA0;<span class="k">as</span>&#xA0;<span class="n">urlopen</span><span class="p">:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">62</span>&nbsp;</div>
+    <div class="line"><span class="lineno">63</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;When&#xA0;called,&#xA0;it&#xA0;will&#xA0;return&#xA0;this&#xA0;value:</span>&nbsp;</div>
+    <div class="line"><span class="lineno">64</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">fake_yahoo</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">StringIO</span><span class="p">(</span><span class="s">&#39;&quot;IBM&quot;,140</span><span class="se">\n</span><span class="s">&quot;HPQ&quot;,32</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">65</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">urlopen</span><span class="o">.</span><span class="n">return_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">fake_yahoo</span>&nbsp;</div>
     <div class="line"><span class="lineno">66</span>&nbsp;</div>
-    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;We&#xA0;can&#xA0;ask&#xA0;the&#xA0;mock&#xA0;what&#xA0;its&#xA0;arguments&#xA0;were.</span>&nbsp;</div>
-    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">urlopen</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span>&nbsp;</div>
-    <div class="line"><span class="lineno">69</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;http://finance.yahoo.com/d/quotes.csv&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;?f=sl1&amp;s=HPQ,IBM&quot;</span>&nbsp;</div>
-    <div class="line"><span class="lineno">71</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">67</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Run&#xA0;the&#xA0;test!</span>&nbsp;</div>
+    <div class="line"><span class="lineno">68</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>&#xA0;<span class="mi">17200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">69</span>&nbsp;</div>
+    <div class="line"><span class="lineno">70</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;We&#xA0;can&#xA0;ask&#xA0;the&#xA0;mock&#xA0;what&#xA0;its&#xA0;arguments&#xA0;were.</span>&nbsp;</div>
+    <div class="line"><span class="lineno">71</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">urlopen</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span>&nbsp;</div>
+    <div class="line"><span class="lineno">72</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;http://finance.yahoo.com/d/quotes.csv&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">73</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="s">&quot;?f=sl1&amp;s=HPQ,IBM&quot;</span>&nbsp;</div>
+    <div class="line"><span class="lineno">74</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">)</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>

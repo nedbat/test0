@@ -29,7 +29,9 @@ class PortfolioTest(PortfolioTestCase):
 
     def test_bad_input(self):
         p = Portfolio()
-        self.assertRaises(TypeError, p.buy, "IBM")
+        with self.assertRaises(TypeError):
+            p.buy("IBM")
+
 
 class PortfolioSellTest(PortfolioTestCase):
     # Invoked before each test method

@@ -21,7 +21,9 @@ class PortfolioTest(unittest.TestCase):
 
     def test_bad_input(self):
         p = Portfolio()
-        self.assertRaises(TypeError, p.buy, "IBM")
+        with self.assertRaises(TypeError):
+            p.buy("IBM")
+
 
 class PortfolioSellTest(unittest.TestCase):
     def setUp(self):
@@ -41,6 +43,7 @@ class PortfolioSellTest(unittest.TestCase):
     def test_dont_own_it(self):
         with self.assertRaises(ValueError):
             self.p.sell("IBM", 1)
+
 
 # Replace Portfolio.current_prices with a stub implementation.
 # This avoids the web, but also skips all our current_prices
