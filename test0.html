@@ -3122,10 +3122,10 @@ class PortfolioSellTest(PortfolioTestCase):
     >>> p.buy("HPQ", 100, 30.0)
 
     >>> p.current_prices()
-    {'HPQ': 32.53, 'IBM': 160.67}
+    {'HPQ': 10.11, 'IBM': 130.03}
 
     >>> p.value()
-    19320.0
+    14014.0
 
 
     -->
@@ -3135,10 +3135,10 @@ class PortfolioSellTest(PortfolioTestCase):
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;HPQ&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">30.0</span><span class="p">)</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">current_prices</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;32.53,&#xA0;&#39;IBM&#39;:&#xA0;160.67}</span>&nbsp;</div>
+    <div class="line"><span class="go">{&#39;HPQ&#39;:&#xA0;10.11,&#xA0;&#39;IBM&#39;:&#xA0;130.03}</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
     <div class="line"><span class="gp">&gt;&gt;&gt;&#xA0;</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="go">19320.0</span>&nbsp;</div>
+    <div class="line"><span class="go">14014.0</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -3292,22 +3292,22 @@ class PortfolioValueTest(unittest.TestCase):
     <!--[[[cog include_file("test_port7.out", start=7, end=13, highlight=[10])   ]]] {{{ -->
     <!--
     $ coverage report –m
-    Name         Stmts   Miss  Cover   Missing
-    ––––––––––––––––––––––––––––––––––––––––––
-    portfolio3      31      4    87%   53–56
-    test_port7      43      0   100%   
-    ––––––––––––––––––––––––––––––––––––––––––
-    TOTAL           74      4    95%   
+    Name            Stmts   Miss  Cover   Missing
+    –––––––––––––––––––––––––––––––––––––––––––––
+    portfolio3.py      31      4    87%   53–56
+    test_port7.py      43      0   100%   
+    –––––––––––––––––––––––––––––––––––––––––––––
+    TOTAL              74      4    95%   
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
-    <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
-    <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;87%&#xA0;&#xA0;&#xA0;53-56
+    <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> ---------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> <span class="hll">portfolio3.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;87%&#xA0;&#xA0;&#xA0;53-56
     </span>&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> test_port7&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;43&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;74&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;95%&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port7.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;43&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> ---------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;74&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;4&#xA0;&#xA0;&#xA0;&#xA0;95%&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <!--[[[cog include_file("portfolio3.py", start=51, end=61, highlight=[53,54,55,56])   ]]] {{{ -->
@@ -3476,21 +3476,21 @@ class PortfolioValueTest(unittest.TestCase):
     <!--[[[cog include_file("test_port8.out", start=7, end=13)   ]]] {{{ -->
     <!--
     $ coverage report –m
-    Name         Stmts   Miss  Cover   Missing
-    ––––––––––––––––––––––––––––––––––––––––––
-    portfolio3      31      0   100%   
-    test_port8      49      0   100%   
-    ––––––––––––––––––––––––––––––––––––––––––
-    TOTAL           80      0   100%   
+    Name            Stmts   Miss  Cover   Missing
+    –––––––––––––––––––––––––––––––––––––––––––––
+    portfolio3.py      31      0   100%   
+    test_port8.py      49      0   100%   
+    –––––––––––––––––––––––––––––––––––––––––––––
+    TOTAL              80      0   100%   
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 7</span> $&#xA0;coverage&#xA0;report&#xA0;-m&nbsp;</div>
-    <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
-    <div class="line"><span class="lineno"> 9</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">10</span> portfolio3&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> test_port8&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;49&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> ------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;80&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> Name&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Stmts&#xA0;&#xA0;&#xA0;Miss&#xA0;&#xA0;Cover&#xA0;&#xA0;&#xA0;Missing&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> ---------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> portfolio3.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;31&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port8.py&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;49&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&#xA0;&#xA0;&#xA0;&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> ---------------------------------------------&nbsp;</div>
+    <div class="line"><span class="lineno">13</span> TOTAL&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;80&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;0&#xA0;&#xA0;&#xA0;100%&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>

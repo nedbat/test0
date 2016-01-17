@@ -1,4 +1,6 @@
 lxml
 cssselect
-cogapp
-Pygments
+cogapp==2.4
+coverage==4.0.3
+mock
+Pygments==1.6
