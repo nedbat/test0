@@ -17,9 +17,11 @@ UNIT_OUT = \
 	test_port4.out test_port4_broken.out \
 	test_port5.out test_port6.out test_port9.out
 
+PYTEST_OUT = test_port6_pytest.out
+
 COVERAGE_OUT = test_port7.out test_port8.out
 
-OUTPUT = $(PY_OUT) $(UNIT_OUT) $(COVERAGE_OUT)
+OUTPUT = $(PY_OUT) $(UNIT_OUT) $(COVERAGE_OUT) $(PYTEST_OUT)
 
 SLUG = test0
 
@@ -52,6 +54,10 @@ $(COVERAGE_OUT): test_port7.py test_port8.py portfolio3.py
 	coverage run -m unittest $* >> $@ 2>&1
 	echo "$$ coverage report -m" >> $@
 	coverage report -m >> $@
+
+$(PYTEST_OUT): test_port6_pytest.py
+	echo "$$ py.test $?" > $@
+	-py.test $? >> $@ 2>&1
 
 clean:
 	rm -f $(OUTPUT)
