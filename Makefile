@@ -54,24 +54,24 @@ SLIDE_SUPPORT = $(JS_FILES) $(CSS_FILES) $(IMAGES)
 slides: $(SLIDE_HTML)
 
 $(SLIDE_HTML): $(SAMPLES) $(OUTPUT)
-	python cog.py -r $@
+	python cog.py -n utf8 -r $@
 
 $(PY_OUT): *.py portfolio1.py portfolio2.py portfolio3.py
-	echo "$$ python $*.py" > $@
+	@echo "$$ python $*.py" > $@
 	-python $*.py >> $@ 2>&1
 
 $(UNIT_OUT): *.py
-	echo "$$ python -m unittest $*" > $@
+	@echo "$$ python -m unittest $*" > $@
 	-python -m unittest $* >> $@ 2>&1
 
 $(COVERAGE_OUT): test_port7.py test_port8.py portfolio3.py
-	echo "$$ coverage run -m unittest $*" > $@
+	@echo "$$ coverage run -m unittest $*" > $@
 	coverage run -m unittest $* >> $@ 2>&1
-	echo "$$ coverage report -m" >> $@
+	@echo "$$ coverage report -m" >> $@
 	coverage report -m >> $@
 
 $(PYTEST_OUT): *.py
-	echo "$$ py.test -q $*.py" > $@
+	@echo "$$ py.test -q $*.py" > $@
 	-py.test -q $*.py >> $@ 2>&1
 
 clean:
