@@ -17,7 +17,10 @@ UNIT_OUT = \
 	test_port4.out test_port4_broken.out \
 	test_port5.out test_port6.out test_port9.out
 
-PYTEST_OUT = test_port6_pytest.out
+PYTEST_OUT = \
+	test_port1_pytest.out test_port2_pytest.out test_port2_pytest_broken.out \
+	test_port3_pytest_broken2.out \
+	test_port6_pytest.out
 
 COVERAGE_OUT = test_port7.out test_port8.out
 
@@ -55,9 +58,9 @@ $(COVERAGE_OUT): test_port7.py test_port8.py portfolio3.py
 	echo "$$ coverage report -m" >> $@
 	coverage report -m >> $@
 
-$(PYTEST_OUT): test_port6_pytest.py
-	echo "$$ py.test $?" > $@
-	-py.test $? >> $@ 2>&1
+$(PYTEST_OUT): *.py
+	echo "$$ py.test -q $*.py" > $@
+	-py.test -q $*.py >> $@ 2>&1
 
 clean:
 	rm -f $(OUTPUT)
