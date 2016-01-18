@@ -1271,27 +1271,23 @@ AssertionError
     </ul>
     <!--[[[cog
     include_code("""\
-        $ pytest
+        $ pytest                            # .. for pytest
 
-        # .. or ...
 
-        $ python -m unittest discover
+        $ python -m unittest discover       # .. for unittest
 
-        # .. or ...
 
-        $ nosetests
+        $ nosetests                         # .. for nose
     """, lang="console")
     ]]]-->
     <div class="code console"> <!-- {{{ -->
-    <div class="line"><span class="gp">$</span>&#xA0;pytest&nbsp;</div>
+    <div class="line"><span class="gp">$</span>&#xA0;pytest&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;..&#xA0;for&#xA0;pytest</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
-    <div class="line"><span class="gp">#</span>&#xA0;..&#xA0;or&#xA0;...&nbsp;</div>
     <div class="line">&nbsp;</div>
-    <div class="line"><span class="gp">$</span>&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;discover&nbsp;</div>
+    <div class="line"><span class="gp">$</span>&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;discover&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;..&#xA0;for&#xA0;unittest</span>&nbsp;</div>
     <div class="line">&nbsp;</div>
-    <div class="line"><span class="gp">#</span>&#xA0;..&#xA0;or&#xA0;...&nbsp;</div>
     <div class="line">&nbsp;</div>
-    <div class="line"><span class="gp">$</span>&#xA0;nosetests&nbsp;</div>
+    <div class="line"><span class="gp">$</span>&#xA0;nosetests&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;..&#xA0;for&#xA0;nose</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
@@ -1325,12 +1321,12 @@ AssertionError
     <!--
     $ py.test –q test_port1_pytest.py
     .
-    1 passed in 0.00 seconds
+    1 passed in 0.01 seconds
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno">1</span> $&#xA0;py.test&#xA0;-q&#xA0;test_port1_pytest.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> .&nbsp;</div>
-    <div class="line"><span class="lineno">3</span> 1&#xA0;passed&#xA0;in&#xA0;0.00&#xA0;seconds&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> 1&#xA0;passed&#xA0;in&#xA0;0.01&#xA0;seconds&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
@@ -1569,11 +1565,11 @@ OK
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     >       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x10be846d0>>()
-    E        +    where <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x10be846d0>> = <portfolio1.Portfolio object at 0x10be846d0>.cost
+    E        +  where 17600.0 = <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x101b4b6d0>>()
+    E        +    where <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x101b4b6d0>> = <portfolio1.Portfolio object at 0x101b4b6d0>.cost
 
     test_port2_pytest_broken.py:12: AssertionError
-    1 failed, 2 passed in 0.01 seconds
+    1 failed, 2 passed in 0.02 seconds
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> $&#xA0;py.test&#xA0;-q&#xA0;test_port2_pytest_broken.py&nbsp;</div>
@@ -1589,11 +1585,11 @@ OK
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span> <span class="hll">E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;17600.0&#xA0;==&#xA0;17648.0
     </span>&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;where&#xA0;17600.0&#xA0;=&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x10be846d0&gt;&gt;()&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;&#xA0;&#xA0;where&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x10be846d0&gt;&gt;&#xA0;=&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x10be846d0&gt;.cost&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;where&#xA0;17600.0&#xA0;=&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x101b4b6d0&gt;&gt;()&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;&#xA0;&#xA0;where&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x101b4b6d0&gt;&gt;&#xA0;=&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x101b4b6d0&gt;.cost&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> test_port2_pytest_broken.py:12:&#xA0;AssertionError&nbsp;</div>
-    <div class="line"><span class="lineno">15</span> 1&#xA0;failed,&#xA0;2&#xA0;passed&#xA0;in&#xA0;0.01&#xA0;seconds&nbsp;</div>
+    <div class="line"><span class="lineno">15</span> 1&#xA0;failed,&#xA0;2&#xA0;passed&#xA0;in&#xA0;0.02&#xA0;seconds&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
     <ul>
@@ -3364,13 +3360,12 @@ class PortfolioValueTest(unittest.TestCase):
 
 <div class="slide">
     <h1>Tools</h1>
-    <h3 class="incremental">addCleanup: <span style="font-weight: normal">nicer than tearDown</span></h3>
-    <h3 class="incremental">doctest: <span style="font-weight: normal">only for testing docs!!!</span></h3>
-    <h3 class="incremental">nose, py.test: <span style="font-weight: normal">better test runners</span></h3>
-    <h3 class="incremental">ddt: <span style="font-weight: normal">data-driven tests</span></h3>
     <h3 class="incremental">coverage: <span style="font-weight: normal">you'll wonder how you lived without it</span></h3>
+    <h3 class="incremental">doctest: <span style="font-weight: normal">only for testing docs!!!</span></h3>
+    <h3 class="incremental">ddt: <span style="font-weight: normal">data-driven tests</span></h3>
     <h3 class="incremental">Selenium: <span style="font-weight: normal">in-browser testing</span></h3>
-    <h3 class="incremental">Jenkins, Travis: <span style="font-weight: normal">run tests all the time</span></h3>
+    <h3 class="incremental">Jenkins, Travis, CircleCI: <span style="font-weight: normal">run tests all the time</span></h3>
+    <h3 class="incremental">tox: <span style="font-weight: normal">test multiple configurations</span></h3>
 </div>
 
 <div class="text"><!-- {{{ -->
