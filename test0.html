@@ -1195,8 +1195,8 @@ AssertionError
 </div><!-- }}} -->
 
 <!-- }}} -->
-
 <!-- *** Using py.test {{{ -->
+
 <div class="slide section" data-layout="clean">
     <h1>unittest and py.test</h1>
     <h2>Writing tests</h2>
@@ -1240,6 +1240,31 @@ AssertionError
 
 
 <div class="slide">
+    <h1>Project structure</h1>
+    <div class="code">
+        <div class='line'>├── my_awesome_product</div>
+        <div class='line'>│   ├── __init__.py</div>
+        <div class='line'>│   ├── a_thing.py</div>
+        <div class='line'>│   ├── another_thing.py</div>
+        <div class='line'>│   ├── more_things.py</div>
+        <div class='line'>│   └── other_things.py</div>
+        <div class='line'>├── README.rst</div>
+        <div class='line'>├── setup.py</div>
+        <div class='line'>├── tests</div>
+        <div class='line'>│   ├── __init__.py</div>
+        <div class='line'>│   ├── test_a_thing.py</div>
+        <div class='line'>│   ├── test_another_thing.py</div>
+        <div class='line'>│   ├── test_more_things.py</div>
+        <div class='line'>│   └── test_other_things.py</div>
+    </div>
+    <ul>
+        <li>Separate "test" directory</li>
+        <li>Files named "test_*.py"</li>
+    </ul>
+</div>
+
+
+<div class="slide">
     <h1>A simple unit test</h1>
     <!--[[[cog include_file("test_port1_pytest.py")   ]]] {{{ -->
     <!--
@@ -1275,6 +1300,9 @@ AssertionError
     <div class="line"><span class="lineno">3</span> 1&#xA0;passed&#xA0;in&#xA0;0.00&#xA0;seconds&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
+    <ul>
+        <li>Every "test_*" function is a test</li>
+    </ul>
 </div>
 
 <div class="slide">
@@ -1508,8 +1536,8 @@ OK
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     >       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x102ae7a50>>()
-    E        +    where <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x102ae7a50>> = <portfolio1.Portfolio object at 0x102ae7a50>.cost
+    E        +  where 17600.0 = <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x10c6706d0>>()
+    E        +    where <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x10c6706d0>> = <portfolio1.Portfolio object at 0x10c6706d0>.cost
 
     test_port2_pytest_broken.py:12: AssertionError
     1 failed, 2 passed in 0.01 seconds
@@ -1528,8 +1556,8 @@ OK
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span> <span class="hll">E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;17600.0&#xA0;==&#xA0;17648.0
     </span>&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;where&#xA0;17600.0&#xA0;=&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x102ae7a50&gt;&gt;()&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;&#xA0;&#xA0;where&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x102ae7a50&gt;&gt;&#xA0;=&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x102ae7a50&gt;.cost&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;where&#xA0;17600.0&#xA0;=&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x10c6706d0&gt;&gt;()&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;&#xA0;&#xA0;where&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x10c6706d0&gt;&gt;&#xA0;=&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x10c6706d0&gt;.cost&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> test_port2_pytest_broken.py:12:&#xA0;AssertionError&nbsp;</div>
     <div class="line"><span class="lineno">15</span> 1&#xA0;failed,&#xA0;2&#xA0;passed&#xA0;in&#xA0;0.01&#xA0;seconds&nbsp;</div>
@@ -1612,7 +1640,7 @@ FAILED (failures=1)
     E       TypeError: buy() takes exactly 4 arguments (2 given)
 
     test_port4_pytest_broken.py:22: TypeError
-    1 failed, 3 passed in 0.01 seconds
+    1 failed, 3 passed in 0.02 seconds
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> $&#xA0;py.test&#xA0;-q&#xA0;test_port4_pytest_broken.py&nbsp;</div>
@@ -1627,7 +1655,7 @@ FAILED (failures=1)
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> test_port4_pytest_broken.py:22:&#xA0;TypeError&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> 1&#xA0;failed,&#xA0;3&#xA0;passed&#xA0;in&#xA0;0.01&#xA0;seconds&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> 1&#xA0;failed,&#xA0;3&#xA0;passed&#xA0;in&#xA0;0.02&#xA0;seconds&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
