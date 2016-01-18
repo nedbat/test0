@@ -12,14 +12,20 @@ SAMPLES = \
 PY_OUT = porttest1.out porttest2.out porttest3.out porttest3_broken.out
 
 UNIT_OUT = \
-	test_port1.out test_port2.out test_port2_broken.out \
+	test_port1.out \
+	test_port2.out test_port2_broken.out \
 	test_port3.out test_port3_broken.out test_port3_broken2.out \
 	test_port4.out test_port4_broken.out \
-	test_port5.out test_port6.out test_port9.out
+	test_port5.out \
+	test_port6.out \
+	test_port9.out
 
 PYTEST_OUT = \
-	test_port1_pytest.out test_port2_pytest.out test_port2_pytest_broken.out \
+	test_port1_pytest.out \
+	test_port2_pytest.out test_port2_pytest_broken.out \
 	test_port3_pytest_broken2.out \
+	test_port4_pytest.out test_port4_pytest_broken.out \
+	test_port5_pytest.out \
 	test_port6_pytest.out
 
 COVERAGE_OUT = test_port7.out test_port8.out

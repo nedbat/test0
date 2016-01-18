@@ -300,6 +300,10 @@ from cogutil import *
             content: "✘   ";    /* U+2718 U+00A0 U+00A0 */
             color: #f44;
         }
+        .slide li.unsure:before {
+            content: "⁈  ";    /* U+203D U+00A0 U+00A0 */
+            color: #44f;
+        }
 
         body.notes {
             overflow: auto;
@@ -1229,10 +1233,10 @@ AssertionError
     <ul>
         <li>Third-party test runner</li>
         <li>Functions instead of classes</li>
+        <li>Can be quirky</li>
         <li>Also runs unittest tests</li>
     </ul>
 </div>
-
 
 
 <div class="slide">
@@ -1492,7 +1496,7 @@ OK
 
 <div class="slide">
     <h1>What failure looks like</h1>
-    <!--[[[cog include_file("test_port2_pytest_broken.out")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port2_pytest_broken.out", highlight=[2, 9, 10])   ]]] {{{ -->
     <!--
     $ py.test –q test_port2_pytest_broken.py
     .F.
@@ -1504,25 +1508,28 @@ OK
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     >       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x10e2f2a50>>()
-    E        +    where <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x10e2f2a50>> = <portfolio1.Portfolio object at 0x10e2f2a50>.cost
+    E        +  where 17600.0 = <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x102ae7a50>>()
+    E        +    where <bound method Portfolio.cost of <portfolio1.Portfolio object at 0x102ae7a50>> = <portfolio1.Portfolio object at 0x102ae7a50>.cost
 
     test_port2_pytest_broken.py:12: AssertionError
     1 failed, 2 passed in 0.01 seconds
     -->
     <div class="code text"> <!-- {{{ -->
     <div class="line"><span class="lineno"> 1</span> $&#xA0;py.test&#xA0;-q&#xA0;test_port2_pytest_broken.py&nbsp;</div>
-    <div class="line"><span class="lineno"> 2</span> .F.&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> <span class="hll">.F.
+    </span>&nbsp;</div>
     <div class="line"><span class="lineno"> 3</span> ===================================&#xA0;FAILURES&#xA0;===================================&nbsp;</div>
     <div class="line"><span class="lineno"> 4</span> ______________________________&#xA0;test_buy_one_stock&#xA0;______________________________&nbsp;</div>
     <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
     <div class="line"><span class="lineno"> 6</span> &#xA0;&#xA0;&#xA0;&#xA0;def&#xA0;test_buy_one_stock():&nbsp;</div>
     <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;p&#xA0;=&#xA0;Portfolio()&nbsp;</div>
     <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;p.buy(&quot;IBM&quot;,&#xA0;100,&#xA0;176)&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;#&#xA0;this&#xA0;is&#xA0;wrong,&#xA0;to&#xA0;make&#xA0;the&#xA0;test&#xA0;fail!&nbsp;</div>
-    <div class="line"><span class="lineno"> 9</span> &gt;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;p.cost()&#xA0;==&#xA0;17648.0&nbsp;</div>
-    <div class="line"><span class="lineno">10</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;17600.0&#xA0;==&#xA0;17648.0&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;where&#xA0;17600.0&#xA0;=&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x10e2f2a50&gt;&gt;()&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;&#xA0;&#xA0;where&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x10e2f2a50&gt;&gt;&#xA0;=&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x10e2f2a50&gt;.cost&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> <span class="hll">&gt;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;p.cost()&#xA0;==&#xA0;17648.0
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">10</span> <span class="hll">E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;assert&#xA0;17600.0&#xA0;==&#xA0;17648.0
+    </span>&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;where&#xA0;17600.0&#xA0;=&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x102ae7a50&gt;&gt;()&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;+&#xA0;&#xA0;&#xA0;&#xA0;where&#xA0;&lt;bound&#xA0;method&#xA0;Portfolio.cost&#xA0;of&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x102ae7a50&gt;&gt;&#xA0;=&#xA0;&lt;portfolio1.Portfolio&#xA0;object&#xA0;at&#xA0;0x102ae7a50&gt;.cost&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> test_port2_pytest_broken.py:12:&#xA0;AssertionError&nbsp;</div>
     <div class="line"><span class="lineno">15</span> 1&#xA0;failed,&#xA0;2&#xA0;passed&#xA0;in&#xA0;0.01&#xA0;seconds&nbsp;</div>
@@ -1531,6 +1538,7 @@ OK
     <ul>
         <li class="good">Good: failed test didn't stop others</li>
         <li class="good">Good: shows the value returned</li>
+        <li class="unsure">Wow: automatic display of values</li>
     </ul>
 </div>
 
@@ -1551,7 +1559,7 @@ Traceback (most recent call last):
 AssertionError
 
 ------------------------------------------------------------
-Ran 3 tests in 0.001s
+Ran 3 tests in 0.000s
 
 FAILED (failures=1)
 </code>
@@ -1575,153 +1583,51 @@ FAILED (failures=1)
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>Third possible outcome: E</h1>
-    <p>Test raises an exception</p>
-    <!--[[[cog include_file("test_port3_pytest_broken2.out", highlight=[2,8,9])   ]]] {{{ -->
+    <h1>Testing for exceptions</h1>
+    <ul>
+        <li>Can't just call the function</li>
+    </ul>
+    <!--[[[cog include_file("test_port4_pytest_broken.py", start=20)   ]]] {{{ -->
     <!--
-    $ py.test –q test_port3_pytest_broken2.py
-    .F.
-    =================================== FAILURES ===================================
-    ______________________________ test_buy_one_stock ______________________________
-
-        def test_buy_one_stock():
-            p = Portfolio()
-    >       p.buyXX("IBM", 100, 176.48)
-    E       AttributeError: 'Portfolio' object has no attribute 'buyXX'
-
-    test_port3_pytest_broken2.py:11: AttributeError
-    1 failed, 2 passed in 0.01 seconds
-    -->
-    <div class="code text"> <!-- {{{ -->
-    <div class="line"><span class="lineno"> 1</span> $&#xA0;py.test&#xA0;-q&#xA0;test_port3_pytest_broken2.py&nbsp;</div>
-    <div class="line"><span class="lineno"> 2</span> <span class="hll">.F.
-    </span>&nbsp;</div>
-    <div class="line"><span class="lineno"> 3</span> ===================================&#xA0;FAILURES&#xA0;===================================&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> ______________________________&#xA0;test_buy_one_stock&#xA0;______________________________&nbsp;</div>
-    <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
-    <div class="line"><span class="lineno"> 6</span> &#xA0;&#xA0;&#xA0;&#xA0;def&#xA0;test_buy_one_stock():&nbsp;</div>
-    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;p&#xA0;=&#xA0;Portfolio()&nbsp;</div>
-    <div class="line"><span class="lineno"> 8</span> <span class="hll">&gt;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;p.buyXX(&quot;IBM&quot;,&#xA0;100,&#xA0;176.48)
-    </span>&nbsp;</div>
-    <div class="line"><span class="lineno"> 9</span> <span class="hll">E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;AttributeError:&#xA0;&#39;Portfolio&#39;&#xA0;object&#xA0;has&#xA0;no&#xA0;attribute&#xA0;&#39;buyXX&#39;
-    </span>&nbsp;</div>
-    <div class="line"><span class="lineno">10</span>&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> test_port3_pytest_broken2.py:11:&#xA0;AttributeError&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> 1&#xA0;failed,&#xA0;2&#xA0;passed&#xA0;in&#xA0;0.01&#xA0;seconds&nbsp;</div>
-    </div><!-- }}} -->
-    <!--[[[end]]] }}}-->
-</div>
-
-<div class="text"><!-- {{{ -->
-
-    <p>There are actually three possible outcomes for a test: passing, failure,
-    and error.  Error means that the test raised an exception other than
-    AssertionError.  Well-written tests should either succeed, or should fail
-    in an assertion.  If another exception happens, it could either mean that
-    the test is broken, or that the code is broken, but either way, it isn't
-    what you intended.  This condition is marked with an "E", and the error
-    stacktrace is displayed:</p>
-
-<!--[[[cog include_file("test_port3_broken2.out", px=True) ]]] {{{ -->
-<code lang='text'>
-$ python -m unittest test_port3_broken2
-E..
-============================================================
-ERROR: test_buy_one_stock (test_port3_broken2.PortfolioTest)
-------------------------------------------------------------
-Traceback (most recent call last):
-  File "test_port3_broken2.py", line 13, in test_buy_one_stock
-    p.buyXX("IBM", 100, 176.48)
-AttributeError: 'Portfolio' object has no attribute 'buyXX'
-
-------------------------------------------------------------
-Ran 3 tests in 0.001s
-
-FAILED (errors=1)
-</code>
-<!--[[[end]]] }}}-->
-
-    <p>In this case, the mistake is in the test: we tried to call a method
-    that doesn't exist.</p>
-
-</div><!-- }}} -->
-
-
-<div class="hidden_slide">
-    <h1>Under the covers</h1>
-    <!--[[[cog
-    include_code("""\
-        testcase = PortfolioTest()
-        try:
-            testcase.test_method()
-        except AssertionError:
-            [record failure]
-        except:
-            [record error]
-        else:
-            [record success]
-    """, lang="python")
-    ]]]-->
-    <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_method</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
-    <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
-    <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
-    </div><!-- }}} -->
-    <!--[[[end]]]-->
-</div>
-
-<div class="slide">
-    <h1>Can't call the function</h1>
-    <!--[[[cog include_file("test_port4_broken.py", start=22, end=24)   ]]] {{{ -->
-    <!--
-    def test_bad_input(self):
+    def test_bad_input():
         p = Portfolio()
         p.buy("IBM")
     -->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">24</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">20</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">():</span>&nbsp;</div>
+    <div class="line"><span class="lineno">21</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">22</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port4_broken.out")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port4_pytest_broken.out", highlight=[9])   ]]] {{{ -->
     <!--
-    $ python –m unittest test_port4_broken
-    E...
-    ============================================================
-    ERROR: test_bad_input (test_port4_broken.PortfolioTest)
-    ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Traceback (most recent call last):
-      File "test_port4_broken.py", line 24, in test_bad_input
-        p.buy("IBM")
-    TypeError: buy() takes exactly 4 arguments (2 given)
+    $ py.test –q test_port4_pytest_broken.py
+    ...F
+    =================================== FAILURES ===================================
+    ________________________________ test_bad_input ________________________________
 
-    ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 4 tests in 0.001s
+        def test_bad_input():
+            p = Portfolio()
+    >       p.buy("IBM")
+    E       TypeError: buy() takes exactly 4 arguments (2 given)
 
-    FAILED (errors=1)
+    test_port4_pytest_broken.py:22: TypeError
+    1 failed, 3 passed in 0.01 seconds
     -->
     <div class="code text"> <!-- {{{ -->
-    <div class="line"><span class="lineno"> 1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port4_broken&nbsp;</div>
-    <div class="line"><span class="lineno"> 2</span> E...&nbsp;</div>
-    <div class="line"><span class="lineno"> 3</span> ============================================================&nbsp;</div>
-    <div class="line"><span class="lineno"> 4</span> ERROR:&#xA0;test_bad_input&#xA0;(test_port4_broken.PortfolioTest)&nbsp;</div>
-    <div class="line"><span class="lineno"> 5</span> ------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno"> 6</span> Traceback&#xA0;(most&#xA0;recent&#xA0;call&#xA0;last):&nbsp;</div>
-    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;File&#xA0;&quot;test_port4_broken.py&quot;,&#xA0;line&#xA0;24,&#xA0;in&#xA0;test_bad_input&nbsp;</div>
-    <div class="line"><span class="lineno"> 8</span> &#xA0;&#xA0;&#xA0;&#xA0;p.buy(&quot;IBM&quot;)&nbsp;</div>
-    <div class="line"><span class="lineno"> 9</span> TypeError:&#xA0;buy()&#xA0;takes&#xA0;exactly&#xA0;4&#xA0;arguments&#xA0;(2&#xA0;given)&nbsp;</div>
+    <div class="line"><span class="lineno"> 1</span> $&#xA0;py.test&#xA0;-q&#xA0;test_port4_pytest_broken.py&nbsp;</div>
+    <div class="line"><span class="lineno"> 2</span> ...F&nbsp;</div>
+    <div class="line"><span class="lineno"> 3</span> ===================================&#xA0;FAILURES&#xA0;===================================&nbsp;</div>
+    <div class="line"><span class="lineno"> 4</span> ________________________________&#xA0;test_bad_input&#xA0;________________________________&nbsp;</div>
+    <div class="line"><span class="lineno"> 5</span>&nbsp;</div>
+    <div class="line"><span class="lineno"> 6</span> &#xA0;&#xA0;&#xA0;&#xA0;def&#xA0;test_bad_input():&nbsp;</div>
+    <div class="line"><span class="lineno"> 7</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;p&#xA0;=&#xA0;Portfolio()&nbsp;</div>
+    <div class="line"><span class="lineno"> 8</span> &gt;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;p.buy(&quot;IBM&quot;)&nbsp;</div>
+    <div class="line"><span class="lineno"> 9</span> <span class="hll">E&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;TypeError:&#xA0;buy()&#xA0;takes&#xA0;exactly&#xA0;4&#xA0;arguments&#xA0;(2&#xA0;given)
+    </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
-    <div class="line"><span class="lineno">11</span> ------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
-    <div class="line"><span class="lineno">13</span>&nbsp;</div>
-    <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
+    <div class="line"><span class="lineno">11</span> test_port4_pytest_broken.py:22:&#xA0;TypeError&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> 1&#xA0;failed,&#xA0;3&#xA0;passed&#xA0;in&#xA0;0.01&#xA0;seconds&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -1756,7 +1662,7 @@ Traceback (most recent call last):
 TypeError: buy() takes exactly 4 arguments (2 given)
 
 ------------------------------------------------------------
-Ran 4 tests in 0.001s
+Ran 4 tests in 0.000s
 
 FAILED (errors=1)
 </code>
@@ -1767,39 +1673,33 @@ FAILED (errors=1)
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>assertRaises</h1>
-    <!--[[[cog include_file("test_port4.py", start=22, end=25, highlight=[24,25])   ]]] {{{ -->
+    <h1>pytest.raises</h1>
+    <!--[[[cog include_file("test_port4_pytest.py", start=22, end=26, highlight=[24,25])   ]]] {{{ -->
     <!--
-    def test_bad_input(self):
+    def test_bad_input():
         p = Portfolio()
-        with self.assertRaises(TypeError):
+        with pytest.raises(TypeError):
             p.buy("IBM")
     -->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">22</span> <span class="k">def</span>&#xA0;<span class="nf">test_bad_input</span><span class="p">():</span>&nbsp;</div>
     <div class="line"><span class="lineno">23</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">24</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+    <div class="line"><span class="lineno">24</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">25</span> <span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">)</span>
     </span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port4.out")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port4_pytest.out")   ]]] {{{ -->
     <!--
-    $ python –m unittest test_port4
+    $ py.test –q test_port4_pytest.py
     ....
-    ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 4 tests in 0.000s
-
-    OK
+    4 passed in 0.01 seconds
     -->
     <div class="code text"> <!-- {{{ -->
-    <div class="line"><span class="lineno">1</span> $&#xA0;python&#xA0;-m&#xA0;unittest&#xA0;test_port4&nbsp;</div>
+    <div class="line"><span class="lineno">1</span> $&#xA0;py.test&#xA0;-q&#xA0;test_port4_pytest.py&nbsp;</div>
     <div class="line"><span class="lineno">2</span> ....&nbsp;</div>
-    <div class="line"><span class="lineno">3</span> ------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">4</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
-    <div class="line"><span class="lineno">5</span>&nbsp;</div>
-    <div class="line"><span class="lineno">6</span> OK&nbsp;</div>
+    <div class="line"><span class="lineno">3</span> 4&#xA0;passed&#xA0;in&#xA0;0.01&#xA0;seconds&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -1843,7 +1743,7 @@ OK
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>Portfolio: .sell()</h1>
+    <h1>More code:&#xa0; sell()</h1>
     <!--[[[cog include_file("portfolio2.py", start=21, end=30)   ]]] {{{ -->
     <!--
     def sell(self, name, shares):
@@ -1899,58 +1799,56 @@ def sell(self, name, shares):
 
 <div class="slide" data-layout="clean">
     <h1>Testing sell()</h1>
-    <!--[[[cog include_file("test_port5.py", start=36)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port5_pytest.py", start=32)   ]]] {{{ -->
     <!--
-    class PortfolioSellTest(PortfolioTestCase):
-        def test_sell(self):
-            p = Portfolio()
-            p.buy("MSFT", 100, 27.0)
-            p.buy("DELL", 100, 17.0)
-            p.buy("ORCL", 100, 34.0)
-            p.sell("MSFT", 50)
-            self.assertCostEqual(p, 6450)
+    def test_sell():
+        p = Portfolio()
+        p.buy("MSFT", 100, 27.0)
+        p.buy("DELL", 100, 17.0)
+        p.buy("ORCL", 100, 34.0)
+        p.sell("MSFT", 50)
+        assert_cost_equal(p, 6450)
 
-        def test_not_enough(self):
-            p = Portfolio()             # Didn't I just do this?
-            p.buy("MSFT", 100, 27.0)
-            p.buy("DELL", 100, 17.0)
-            p.buy("ORCL", 100, 34.0)
-            with self.assertRaises(ValueError):
-                p.sell("MSFT", 200)
+    def test_not_enough():
+        p = Portfolio()                 # Didn't I just do this?
+        p.buy("MSFT", 100, 27.0)
+        p.buy("DELL", 100, 17.0)
+        p.buy("ORCL", 100, 34.0)
+        with pytest.raises(ValueError):
+            p.sell("MSFT", 200)
 
-        def test_dont_own_it(self):
-            p = Portfolio()             # What, again!?!?
-            p.buy("MSFT", 100, 27.0)
-            p.buy("DELL", 100, 17.0)
-            p.buy("ORCL", 100, 34.0)
-            with self.assertRaises(ValueError):
-                p.sell("IBM", 1)
+    def test_dont_own_it():
+        p = Portfolio()                 # What, again!?!?
+        p.buy("MSFT", 100, 27.0)
+        p.buy("DELL", 100, 17.0)
+        p.buy("ORCL", 100, 34.0)
+        with pytest.raises(ValueError):
+            p.sell("IBM", 1)
     -->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="lineno">36</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">PortfolioTestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">44</span>&nbsp;</div>
-    <div class="line"><span class="lineno">45</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Didn&#39;t&#xA0;I&#xA0;just&#xA0;do&#xA0;this?</span>&nbsp;</div>
-    <div class="line"><span class="lineno">47</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">52</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;What,&#xA0;again!?!?</span>&nbsp;</div>
-    <div class="line"><span class="lineno">55</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">56</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">57</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">58</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">59</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">32</span> <span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">():</span>&nbsp;</div>
+    <div class="line"><span class="lineno">33</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">34</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">36</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">assert_cost_equal</span><span class="p">(</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">39</span>&nbsp;</div>
+    <div class="line"><span class="lineno">40</span> <span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">():</span>&nbsp;</div>
+    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Didn&#39;t&#xA0;I&#xA0;just&#xA0;do&#xA0;this?</span>&nbsp;</div>
+    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">45</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">47</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span> <span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">():</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;What,&#xA0;again!?!?</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
 </div>
@@ -1998,50 +1896,53 @@ class PortfolioSellTest(PortfolioTestCase):
 
 <div class="slide">
     <h1>Setting up a test</h1>
-    <!--[[[cog include_file("test_port6.py", start=36)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port6_pytest.py", start=33)   ]]] {{{ -->
     <!--
-    class PortfolioSellTest(PortfolioTestCase):
-        # Invoked before each test method
-        def setUp(self):
-            self.p = Portfolio()
-            self.p.buy("MSFT", 100, 27.0)
-            self.p.buy("DELL", 100, 17.0)
-            self.p.buy("ORCL", 100, 34.0)
+    @pytest.fixture()
+    def simple_portfolio():
+        p = Portfolio()
+        p.buy("MSFT", 100, 27.0)
+        p.buy("DELL", 100, 17.0)
+        p.buy("ORCL", 100, 34.0)
+        return p
 
-        def test_sell(self):
-            self.p.sell("MSFT", 50)
-            self.assertCostEqual(self.p, 6450)
+    def test_sell(simple_portfolio):
+        simple_portfolio.sell("MSFT", 50)
+        assert_cost_equal(simple_portfolio, 6450)
 
-        def test_not_enough(self):
-            with self.assertRaises(ValueError):
-                self.p.sell("MSFT", 200)
+    def test_not_enough(simple_portfolio):
+        with pytest.raises(ValueError):
+            simple_portfolio.sell("MSFT", 200)
 
-        def test_dont_own_it(self):
-            with self.assertRaises(ValueError):
-                self.p.sell("IBM", 1)
+    def test_dont_own_it(simple_portfolio):
+        with pytest.raises(ValueError):
+            simple_portfolio.sell("IBM", 1)
     -->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="lineno">36</span> <span class="k">class</span>&#xA0;<span class="nc">PortfolioSellTest</span><span class="p">(</span><span class="n">PortfolioTestCase</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Invoked&#xA0;before&#xA0;each&#xA0;test&#xA0;method</span>&nbsp;</div>
-    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
-    <div class="line"><span class="lineno">40</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">41</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">43</span>&nbsp;</div>
-    <div class="line"><span class="lineno">44</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">45</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertCostEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">47</span>&nbsp;</div>
-    <div class="line"><span class="lineno">48</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">49</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
-    <div class="line"><span class="lineno">51</span>&nbsp;</div>
-    <div class="line"><span class="lineno">52</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">53</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
-    <div class="line"><span class="lineno">54</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">33</span> <span class="nd">@pytest.fixture</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">34</span> <span class="k">def</span>&#xA0;<span class="nf">simple_portfolio</span><span class="p">():</span>&nbsp;</div>
+    <div class="line"><span class="lineno">35</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">Portfolio</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="lineno">36</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">27.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">37</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;DELL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">17.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">38</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s">&quot;ORCL&quot;</span><span class="p">,</span>&#xA0;<span class="mi">100</span><span class="p">,</span>&#xA0;<span class="mf">34.0</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">39</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">return</span>&#xA0;<span class="n">p</span>&nbsp;</div>
+    <div class="line"><span class="lineno">40</span>&nbsp;</div>
+    <div class="line"><span class="lineno">41</span> <span class="k">def</span>&#xA0;<span class="nf">test_sell</span><span class="p">(</span><span class="n">simple_portfolio</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">42</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">simple_portfolio</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">50</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">43</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="n">assert_cost_equal</span><span class="p">(</span><span class="n">simple_portfolio</span><span class="p">,</span>&#xA0;<span class="mi">6450</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">44</span>&nbsp;</div>
+    <div class="line"><span class="lineno">45</span> <span class="k">def</span>&#xA0;<span class="nf">test_not_enough</span><span class="p">(</span><span class="n">simple_portfolio</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">46</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">47</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">simple_portfolio</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;MSFT&quot;</span><span class="p">,</span>&#xA0;<span class="mi">200</span><span class="p">)</span>&nbsp;</div>
+    <div class="line"><span class="lineno">48</span>&nbsp;</div>
+    <div class="line"><span class="lineno">49</span> <span class="k">def</span>&#xA0;<span class="nf">test_dont_own_it</span><span class="p">(</span><span class="n">simple_portfolio</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">50</span> &#xA0;&#xA0;&#xA0;&#xA0;<span class="k">with</span>&#xA0;<span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>&nbsp;</div>
+    <div class="line"><span class="lineno">51</span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">simple_portfolio</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s">&quot;IBM&quot;</span><span class="p">,</span>&#xA0;<span class="mi">1</span><span class="p">)</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]] }}}-->
+    <ul>
+        <li class="unsure">Fixture called based on argument name</li>
+    </ul>
 </div>
 
 <div class="text"><!-- {{{ -->
@@ -2091,49 +1992,39 @@ class PortfolioSellTest(PortfolioTestCase):
     <h1>Under the covers</h1>
     <!--[[[cog
     include_code("""\
-        testcase = PortfolioTest()
+        [ introspection of argument names ]
         try:
-            testcase.setUp()
+            # Call the fixtures
+            simple_portfolio_value = simple_portfolio()
         except:
             [record error]
         else:
             try:
-                testcase.test_method()
-            except AssertionError:
-                [record failure]
+                # Call the test method
+                test_sell(simple_portfolio_value)
             except:
-                [record error]
+                [record failure]
             else:
                 [record success]
-            finally:
-                try:
-                    testcase.tearDown()
-                except:
-                    [record error]
-    """, lang="python", highlight=[3,17])
+    """, lang="python", highlight=[4, 10])
     ]]]-->
     <div class="code python"> <!-- {{{ -->
-    <div class="line"><span class="n">testcase</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">PortfolioTest</span><span class="p">()</span>&nbsp;</div>
+    <div class="line"><span class="p">[</span>&#xA0;<span class="n">introspection</span>&#xA0;<span class="n">of</span>&#xA0;<span class="n">argument</span>&#xA0;<span class="n">names</span>&#xA0;<span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">try</span><span class="p">:</span>&nbsp;</div>
-    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Call&#xA0;the&#xA0;fixtures</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">simple_portfolio_value</span>&#xA0;<span class="o">=</span>&#xA0;<span class="n">simple_portfolio</span><span class="p">()</span>
     </span>&nbsp;</div>
     <div class="line"><span class="k">except</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
     <div class="line"><span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">try</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">test_method</span><span class="p">()</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">except</span>&#xA0;<span class="ne">AssertionError</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="c">#&#xA0;Call&#xA0;the&#xA0;test&#xA0;method</span>&nbsp;</div>
+    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">test_sell</span><span class="p">(</span><span class="n">simple_portfolio_value</span><span class="p">)</span>
+    </span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">except</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
+    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">failure</span><span class="p">]</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">else</span><span class="p">:</span>&nbsp;</div>
     <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">success</span><span class="p">]</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">finally</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">try</span><span class="p">:</span>&nbsp;</div>
-    <div class="line"><span class="hll">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="n">testcase</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
-    </span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="k">except</span><span class="p">:</span>&nbsp;</div>
-    <div class="line">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="p">[</span><span class="n">record</span>&#xA0;<span class="n">error</span><span class="p">]</span>&nbsp;</div>
     </div><!-- }}} -->
     <!--[[[end]]]-->
 </div>
@@ -2154,12 +2045,12 @@ class PortfolioSellTest(PortfolioTestCase):
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>setUp and tearDown: isolation!</h1>
+    <h1>Fixtures: isolation!</h1>
     <ul>
         <li>Establish context</li>
         <li>Common pre- or post- work</li>
         <li>Isolation, even with failures</li>
-        <li>Also: "fixtures"</li>
+        <li>unittest: setUp and addCleanup</li>
     </ul>
 </div>
 
@@ -3976,7 +3867,7 @@ OK
     AssertionError
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (failures=1)
     -->
@@ -3992,7 +3883,7 @@ OK
     <div class="line"><span class="lineno"> 9</span> AssertionError&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
     </div><!-- }}} -->
@@ -4020,7 +3911,7 @@ Traceback (most recent call last):
 AssertionError
 
 ------------------------------------------------------------
-Ran 3 tests in 0.001s
+Ran 3 tests in 0.000s
 
 FAILED (failures=1)
 </code>
@@ -4074,7 +3965,7 @@ FAILED (failures=1)
     AssertionError: 17600.0 != 17648.0
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (failures=1)
     -->
@@ -4091,7 +3982,7 @@ FAILED (failures=1)
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(failures=1)&nbsp;</div>
     </div><!-- }}} -->
@@ -4300,7 +4191,7 @@ class PortfolioTest(PortfolioTestCase):
     AttributeError: 'Portfolio' object has no attribute 'buyXX'
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (errors=1)
     -->
@@ -4319,7 +4210,7 @@ class PortfolioTest(PortfolioTestCase):
     </span>&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;3&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
     </div><!-- }}} -->
@@ -4349,7 +4240,7 @@ Traceback (most recent call last):
 AttributeError: 'Portfolio' object has no attribute 'buyXX'
 
 ------------------------------------------------------------
-Ran 3 tests in 0.001s
+Ran 3 tests in 0.000s
 
 FAILED (errors=1)
 </code>
@@ -4417,7 +4308,7 @@ FAILED (errors=1)
     TypeError: buy() takes exactly 4 arguments (2 given)
 
     ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-    Ran 4 tests in 0.001s
+    Ran 4 tests in 0.000s
 
     FAILED (errors=1)
     -->
@@ -4433,7 +4324,7 @@ FAILED (errors=1)
     <div class="line"><span class="lineno"> 9</span> TypeError:&#xA0;buy()&#xA0;takes&#xA0;exactly&#xA0;4&#xA0;arguments&#xA0;(2&#xA0;given)&nbsp;</div>
     <div class="line"><span class="lineno">10</span>&nbsp;</div>
     <div class="line"><span class="lineno">11</span> ------------------------------------------------------------&nbsp;</div>
-    <div class="line"><span class="lineno">12</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.001s&nbsp;</div>
+    <div class="line"><span class="lineno">12</span> Ran&#xA0;4&#xA0;tests&#xA0;in&#xA0;0.000s&nbsp;</div>
     <div class="line"><span class="lineno">13</span>&nbsp;</div>
     <div class="line"><span class="lineno">14</span> FAILED&#xA0;(errors=1)&nbsp;</div>
     </div><!-- }}} -->
@@ -4470,7 +4361,7 @@ Traceback (most recent call last):
 TypeError: buy() takes exactly 4 arguments (2 given)
 
 ------------------------------------------------------------
-Ran 4 tests in 0.001s
+Ran 4 tests in 0.000s
 
 FAILED (errors=1)
 </code>
