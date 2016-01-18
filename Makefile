@@ -7,7 +7,13 @@ SAMPLES = \
 	test_port3.py test_port3_broken.py test_port3_broken2.py \
 	test_port3b.py \
 	test_port4.py test_port4_broken.py test_port5.py \
-	test_port6.py test_port7.py test_port8.py test_port9.py
+	test_port6.py test_port7.py test_port8.py test_port9.py \
+	test_port1_pytest.py \
+	test_port2_pytest.py test_port2_pytest_broken.py \
+	test_port3_pytest_broken2.py \
+	test_port4_pytest.py test_port4_pytest_broken.py \
+	test_port5_pytest.py \
+	test_port6_pytest.py
 
 PY_OUT = porttest1.out porttest2.out porttest3.out porttest3_broken.out
 
