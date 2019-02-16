@@ -4,6 +4,15 @@
 <what when="20140413T000000">Updated with actual talk</what>
 </history>
 
+<p>This is a presentation I gave at PyCon 2014.  You can read the
+slides and text on this page, open the <a href="text/test0/test0.html">actual presentation</a>
+in your browser (use right and left arrows to advance the slides),
+or watch the video:</p>
+
+<youtube_jump video="FxSsnHeWQBY" />
+
+<p>There is also a zipfile of <a href='text/test0/test0.zip'>all the code examples</a>.</p>
+
 <content/>
 
 <pagecomments/>
