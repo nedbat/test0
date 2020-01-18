@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- vim: set foldmethod=marker foldlevel=0 cc=60 :-->
 <html>
 <!-- Prez mode:
 
@@ -6,91 +6,6 @@
     Enable presentation settings at the top.
 
 -->
-
-<!-- TO DO:  {{{
-
-    * Content
-    - Something to replace the hidden Approaches section
-    - Most common question: how do I convince my team to test?
-
-    * Layout
-    - URL footer on first few slides.
-
-
-
-    # Getting Started Testing
-
-    - Goal
-        - Give you tools to start testing your code
-
-    - Two challenges:
-        - People
-        - Code
-
-    - Vegetables
-
-    = People
-
-    - Why test?
-        - Best way to know if your code works
-    - Resistance
-        - More work
-        - Hard to add to a legacy project
-        - Not a developer's job?
-    - Benefits
-        - Confidence
-        - Turns fear into boredom
-        - Faster in the long run
-    - Fighting Chaos!
-    - How to start
-        - Start with the easy
-        - Start with the necessary
-
-    = Code
-
-    - 2 vs 3
-
-    - How to write tests
-        - Show *a* way to do it.
-        - there are many techniques
-
-    = First principles
-
-    - Product code: stock portfolio
-
-    - First test: interactive
-
-    - Second test: standalone
-
-    - Third test: with expected results
-
-    - Fourth test: check results automatically
-
-    - Getting complicated!
-
-    = Unittest
-
-    - unittest
-        - stdlib
-        - a good solid foundation
-        - not the only way to do it
-        - not about unit vs integration
-
-    - Simple unit test
-
-    = Test Doubles
-
-
-    = Other stuff
-    - doctest
-    - coverage
-    - nose, py.test, trial
-    - lettuce
-    - Selenium
-    - ddt
-    - TDD
-
-}}} -->
 <!-- *** Head stuff {{{ -->
 <!--[[[cog
 import cog
@@ -102,6 +17,7 @@ include_file_default(classes="medium")
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <!-- Slide meta data, remove/edit as you see fit -->
     <title>Getting Started Testing</title>
+    <meta charset="utf-8" />
 
     <!-- Slippy core file and dependencies -->
     <script type="text/javascript" src="slippy/jquery.min.js"></script>
@@ -4036,4 +3952,87 @@ class PortfolioSellTest(PortfolioTestCase):
 
 </body>
 </html>
-<!-- vim: set foldmethod=marker: -->
+<!-- TO DO:  {{{
+
+    * Content
+    - Something to replace the hidden Approaches section
+    - Most common question: how do I convince my team to test?
+
+    * Layout
+    - URL footer on first few slides.
+
+
+
+    # Getting Started Testing
+
+    - Goal
+        - Give you tools to start testing your code
+
+    - Two challenges:
+        - People
+        - Code
+
+    - Vegetables
+
+    = People
+
+    - Why test?
+        - Best way to know if your code works
+    - Resistance
+        - More work
+        - Hard to add to a legacy project
+        - Not a developer's job?
+    - Benefits
+        - Confidence
+        - Turns fear into boredom
+        - Faster in the long run
+    - Fighting Chaos!
+    - How to start
+        - Start with the easy
+        - Start with the necessary
+
+    = Code
+
+    - 2 vs 3
+
+    - How to write tests
+        - Show *a* way to do it.
+        - there are many techniques
+
+    = First principles
+
+    - Product code: stock portfolio
+
+    - First test: interactive
+
+    - Second test: standalone
+
+    - Third test: with expected results
+
+    - Fourth test: check results automatically
+
+    - Getting complicated!
+
+    = Unittest
+
+    - unittest
+        - stdlib
+        - a good solid foundation
+        - not the only way to do it
+        - not about unit vs integration
+
+    - Simple unit test
+
+    = Test Doubles
+
+
+    = Other stuff
+    - doctest
+    - coverage
+    - nose, py.test, trial
+    - lettuce
+    - Selenium
+    - ddt
+    - TDD
+
+}}} -->
