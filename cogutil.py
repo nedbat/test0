@@ -3,8 +3,6 @@
 import os
 import textwrap
 
-import pygments, pygments.lexers, pygments.formatters
-
 import cog
 import cagedprompt
 
@@ -21,7 +19,29 @@ def clip_long_boring_line(s, l):
     return s
 
 
-def include_file(fname, start=None, end=None, highlight=None, section=None, px=False):
+INCLUDE_FILE_DEFAULTS = dict(
+    fname=None,
+    show_label=False,
+    classes="",
+    indir="",
+    )
+
+def include_file_default(**kwargs):
+    INCLUDE_FILE_DEFAULTS.update(kwargs)
+
+def include_file(
+        fname=None,
+        start=None, end=None,
+        start_has=None, end_has=None,
+        start_from=None, end_at=None,
+        start_nth=1, end_nth=1,
+        line_count=None,
+        highlight=None,
+        section=None,
+        show_label=None,
+        px=False,
+        classes=None,
+    ):
     """Include a text file.
 
     `fname` is read as text, and included in a <pre> tag.
@@ -29,44 +49,97 @@ def include_file(fname, start=None, end=None, highlight=None, section=None, px=F
     `highlight` is a list of lines to highlight.
 
     `start` and `end` are the first and last line numbers to show, if provided.
+    `start_has` is text that must appear in the start line, to check that the
+    file hasn't changed. Similarly for `end_has`.
+
+    `start_from` and `end_at` are substrings of the first and last lines to
+    show.  `start_nth` indicates which occurrence of `start_from` to take,
+    similarly for `end_nth`.
 
     `section` is a named section.  If provided, a marked section in the file is extracted
     for display.  Markers for section foobar are "(((foobar))" and "(((end)))".
 
     If `px` is true, the result is meant for text rather than slides.
 
+    `classes` are extra css classes to add to the <pre> tag.
+
     """
-    with open(fname) as f:
+    if fname is None:
+        fname = INCLUDE_FILE_DEFAULTS['fname']
+    if show_label is None:
+        show_label = INCLUDE_FILE_DEFAULTS['show_label']
+    if classes is None:
+        classes = INCLUDE_FILE_DEFAULTS['classes']
+    indir = INCLUDE_FILE_DEFAULTS['indir']
+
+    assert fname is not None, "Need a file name to include!"
+
+    with open(os.path.join(indir, fname)) as f:
         text = f.read()
 
     lines = text.splitlines()
     if section:
+        assert start_from is None
+        assert end_at is None
+        assert line_count is None
+        start_from = "(((" + section + ")))"
+        end_at = "(((end)))"
+    if start_from:
         assert start is None
         assert end is None
-        start_marker = "(((" + section + ")))"
-        end_marker = "(((end)))"
-        start = next(i for i, l in enumerate(lines, 1) if start_marker in l)
-        end = next(i for i, l in enumerate(lines[start:], start+1) if end_marker in l)
-        start += 1
-        end -= 1
+        start = find_nth(lines, 0, start_from, start_nth)
+        if start is None:
+            raise Exception("Didn't find {!r} as a start line".format(start_from))
+        if end_at:
+            end = find_nth(lines, start, end_at, end_nth)
+            if end is None:
+                raise Exception("Didn't find {!r} as an end line".format(end_at))
+        elif line_count is not None:
+            end = start + line_count - 1
+        if section:
+            start += 1
+            end -= 1
     else:
         if start is None:
             start = 1
         if end is None:
             end = len(lines)
 
+    if start_has:
+        start_line = lines[start-1]
+        if start_has not in start_line:
+            raise Exception("Didn't find {!r} in the start line: {}:{} {!r}".format(start_has, fname, start, start_line))
+    if end_has:
+        end_line = lines[end-1]
+        if end_has not in end_line:
+            raise Exception("Didn't find {!r} in the end line: {}:{} {!r}".format(end_has, fname, end, end_line))
+
     # Take only the lines we want, and shorten lines that are too long and
     # easily shortened.
     lines = [clip_long_boring_line(l, 60) for l in lines[start-1:end]]
 
     text = "\n".join(lines)
-
     lang = "python" if fname.endswith(".py") else "text"
-    include_code(text, lang=lang, firstline=start, number=True, show_text=True, highlight=highlight, px=px)
+
+    if show_label:
+        cog.outl("<div>")
+        cog.outl("<div class='prelabel'>{}</div>".format(fname))
+    include_code(text, lang=lang, firstline=start, number=True, highlight=highlight, px=px, classes=classes)
+    if show_label:
+        cog.outl("</div>")
 
 
-def include_code(text, lang=None, number=False, firstline=1, show_text=False, highlight=None, px=False):
+def find_nth(lines, start, needle, nth):
+    indexes = [i for i, l in enumerate(lines[start:], start+1) if needle in l]
+    if nth > len(indexes):
+        return None
+    return indexes[nth-1]
+
+
+def include_code(text, lang=None, number=False, firstline=1, show_text=False, highlight=None, px=False, classes=""):
     text = textwrap.dedent(text)
+
+    text = "\n".join(l.rstrip() for l in text.splitlines())
 
     if px:
         cog.outl("<code lang='{}'>".format(lang))
@@ -84,35 +157,22 @@ def include_code(text, lang=None, number=False, firstline=1, show_text=False, hi
         cog.outl("<!-- *** NOPYG: {} lines of text will be here. *** -->".format(len(text.splitlines())))
         return
 
-    # Because we are omitting the <pre> wrapper, we need spaces to become &nbsp;.
-    # This is totally not a public interface...
-    pygments.formatters.html._escape_html_table.update({ord(' '): u'&#xA0;'})
-
-    class CodeHtmlFormatter(pygments.formatters.HtmlFormatter):
-
-        def wrap(self, source, outfile):
-            return self._wrap_code(source)
-
-        def _wrap_code(self, source):
-            yield 0, '<div class="code {}"> <!-- {{{{{{ -->\n'.format(lang)
-            for i, t in source:
-                if i == 1:
-                    # it's a line of formatted code
-                    t = '<div class="line">{}&nbsp;</div>\n'.format(t.rstrip())
-                yield i, t
-            yield 0, '</div><!-- }}} -->'
-
-    lexer = pygments.lexers.get_lexer_by_name(lang, stripall=True)
-    linenos = 'inline' if number else False
-    hl_lines = [l-firstline+1 for l in (highlight or [])]
-    formatter = CodeHtmlFormatter(linenos=linenos, linenostart=firstline, cssclass="source", hl_lines=hl_lines)
-    result = pygments.highlight(text, lexer, formatter)
-    cog.outl(result)
+    result = []
+    class_attr = lang
+    if classes:
+        class_attr += " " + classes
+    result.append("<pre class='{}'>".format(class_attr))
+    result.append(quote_html(text))
+    result.append("</pre>")
+    cog.outl("\n".join(result))
 
 
 def prompt_session(input, command=False, prelude=""):
     output = ""
     if command:
         output += "$ python\n"
-    output += cagedprompt.prompt_session(input, banner=command, prelude=prelude)
-    include_code(output, lang="pycon", number=False, show_text=True)
+    repl_out = cagedprompt.prompt_session(input, banner=command, prelude=prelude)
+    # REPL sessions have lone triple-dot lines. Suppress them.
+    repl_out = "\n".join('' if l == '... ' else l for l in repl_out.splitlines())
+    output += repl_out
+    include_code(output, lang="python", number=False, classes="console")

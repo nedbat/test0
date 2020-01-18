@@ -21,7 +21,7 @@
 
     var select_line = function (container, line, single) {
         if (single) {
-            container.find("."+sub_class).removeClass("selected");
+            deselect_all(container);
         }
         line.addClass("selected");
         line.trigger("lineselected");
@@ -30,6 +30,10 @@
     var select_line_by_number = function (container, lineno, single) {
         var the_line = $(container.find("."+sub_class)[lineno-1]);
         select_line(container, the_line, single);
+    };
+
+    var deselect_all = function (container) {
+        container.find("."+sub_class).removeClass("selected");
     };
 
     var keydown_fn = function (e) {
@@ -69,7 +73,7 @@
 
         case 190:   // .: deselect
         case 88:    // X: deselect
-            container.find("."+sub_class).removeClass("selected");
+            deselect_all(container);
             return;
 
         default:
@@ -109,15 +113,27 @@
     };
 
     $.fn.lineselect = function (arg) {
-        if (typeof arg === "number") {
-            this.each(function () {
-                select_line_by_number($(this), arg, true);
-            });
-        }
-        else {
+        if (typeof arg === "object" || typeof arg === "undefined") {
             // Make elements line-selectable
             make_line_selectable(this, arg);
-        } 
+            return this;
+        }
+        else if (typeof arg === "string") {
+            arg = arg.split(",");
+        }
+        else {
+            arg = [arg];
+        }
+
+        this.each(function () {
+            var that = $(this);
+            deselect_all($(this));
+            $.each(arg, function (i, a) {
+                a = +a;
+                select_line_by_number(that, a, false);
+            });
+        });
+
         return this;
     };
 
