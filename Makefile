@@ -54,7 +54,7 @@ SLIDE_SUPPORT = $(JS_FILES) $(CSS_FILES) $(IMAGES)
 slides: $(SLIDE_HTML)
 
 $(SLIDE_HTML): $(SAMPLES) $(OUTPUT)
-	python cog.py -n utf8 -r $@
+	python -m cogapp -r $@
 
 $(PY_OUT): *.py portfolio1.py portfolio2.py portfolio3.py
 	@echo "$$ python $*.py" > $@
