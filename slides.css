@@ -1,6 +1,7 @@
 body, html {
-    background: #333;
+    background: #222;
     font-family: "Open Sans", sans-serif;
+    line-height: 1.3;
 }
 
 div.text {
@@ -29,25 +30,25 @@ h1, h2, h3, h4 {
 
 .slide.title h1 {
     font-weight: 800;
-    padding-top: 3em;
+    padding-top: 2em;
     font-size: 200%;
     text-align: center;
 }
 .slide.title h2 {
     text-align: center;
-    font-size: 150%;
+    font-size: 125%;
     color: #666;
-    padding-top: 2em;
+    margin-top: 2em;
 }
 .slide.section {
-    background-color: #ff8;
+    background-color: #ffb;
 }
 .slide.todo {
     background-color: #f88;
 }
 .slide.section h1 {
     font-weight: 700;
-    padding-top: 3em;
+    margin-top: 3em;
     font-size: 200%;
     text-align: center;
 }
@@ -55,7 +56,7 @@ h1, h2, h3, h4 {
     text-align: center;
     font-size: 125%;
     color: #666;
-    padding-top: 2em;
+    margin-top: 2em;
 }
 .hidden_slide {
     display: none;
@@ -69,16 +70,52 @@ h1, h2, h3, h4 {
     color: #666;
 }
 .slide .punct {
-    padding: 0 .15em;
+    padding: 0 .2em;
     color: #aaa;
+}
+
+.slide .punct:first-child {
+    padding-left: 0;
+}
+
+img.icon {
+    width: 1.2em;
+    vertical-align: bottom;
+}
+
+.slide p.generic {
+    font-family: serif;
+    margin-top: .5em;
+}
+
+.larger {
+    font-size: 200%;
+}
+
+.fullwidth {
+    width: 100%;
+    height: auto;
+}
+
+.fullheight {
+    width: auto;
+    height: calc(100% - 1em);   /* Slides have no bottom margin. */
+}
+.center {
+    text-align: center !important;
+}
+
+/* Styled the same as an h1 */
+.big {
+    font-weight: 700;
+    font-size: 150%;
 }
 
 .slide .code {
     font-family: Consolas, monaco, monospace;
-    font-weight: 600;
     margin-top: 1em;
     background: #ccf;
-    padding: .25em .25em;
+    padding: .3em .35em;
     line-height: 1.15;
     font-size: 75%;
 }
@@ -124,6 +161,15 @@ h1, h2, h3, h4 {
     font-size: 100%;
 }
 
+a:visited, a:active, a:link, a {
+    color: #0000CC;
+    cursor: pointer;
+}
+a.implicit {
+    text-decoration: none;
+    color: inherit;
+}
+
 body.notes {
     overflow: auto;
     background: white;
@@ -143,6 +189,66 @@ body.notes {
     display: none;
 }
 
+.overlay_container {
+    padding-top: 1em;
+}
+.overlay {
+    position: relative;
+    width: 100%;
+    height: 0;
+}
+.lefthalf {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.righthalf {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.tophalf {
+    position: relative;
+    width: 100%;
+}
+.bottomhalf {
+    position: relative;
+    width: 100%;
+}
+.opaque {
+    background: #fffaf0;
+}
+.slide pre.tophalf {
+    margin-top: 0;  /* No idea why I need this... :( :( */
+}
+
+table, td, th {
+    border: 1px solid #888;
+    font-weight: 600;
+}
+td, th {
+    padding: .35em .5em;
+}
+
+/* Slippy's css reset clobbers the meaning of <sub> and <sup> */
+sub {
+    line-height: 0;
+    font-size: 75%;
+    vertical-align: sub;
+}
+
+sup {
+    line-height: 0;
+    font-size: 75%;
+    vertical-align: super;
+}
+
+.overviewWrapper {
+    border: 1px solid #000;
+}
+.overviewWrapper.active {
+    border: 1px solid #fff;
+}
 .code .lineno {
     width: 1em;
     display: inline-block;
