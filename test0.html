@@ -507,20 +507,19 @@ class Portfolio(object):
     from portfolio1 import Portfolio
 
     p = Portfolio()
-    print "Empty portfolio cost: %s" % p.cost()
+    print(f"Empty portfolio cost: {p.cost()}")
     p.buy("IBM", 100, 176.48)
-    print "With 100 IBM @ 176.48: %s" % p.cost()
+    print(f"With 100 IBM @ 176.48: {p.cost()}")
     p.buy("HPQ", 100, 36.15)
-    print "With 100 HPQ @ 36.15: %s" % p.cost()
+    print(f"With 100 HPQ @ 36.15: {p.cost()}")
     </pre>
     <!--[[[end]]] }}}-->
     <!--[[[cog include_file("porttest1.out")   ]]] {{{ -->
     <pre class='text'>
     $ python porttest1.py
-      File "porttest1.py", line 5
-        print "Empty portfolio cost: %s" % p.cost()
-                                       ^
-    SyntaxError: invalid syntax
+    Empty portfolio cost: 0.0
+    With 100 IBM @ 176.48: 17648.0
+    With 100 HPQ @ 36.15: 21263.0
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -544,11 +543,11 @@ class Portfolio(object):
 from portfolio1 import Portfolio
 
 p = Portfolio()
-print "Empty portfolio cost: %s" % p.cost()
+print(f"Empty portfolio cost: {p.cost()}")
 p.buy("IBM", 100, 176.48)
-print "With 100 IBM @ 176.48: %s" % p.cost()
+print(f"With 100 IBM @ 176.48: {p.cost()}")
 p.buy("HPQ", 100, 36.15)
-print "With 100 HPQ @ 36.15: %s" % p.cost()
+print(f"With 100 HPQ @ 36.15: {p.cost()}")
 </code>
 <!--[[[end]]] }}}-->
 
@@ -557,10 +556,9 @@ print "With 100 HPQ @ 36.15: %s" % p.cost()
 <!--[[[cog include_file("porttest1.out", px=True) ]]] {{{ -->
 <code lang='text'>
 $ python porttest1.py
-  File "porttest1.py", line 5
-    print "Empty portfolio cost: %s" % p.cost()
-                                   ^
-SyntaxError: invalid syntax
+Empty portfolio cost: 0.0
+With 100 IBM @ 176.48: 17648.0
+With 100 HPQ @ 36.15: 21263.0
 </code>
 <!--[[[end]]] }}}-->
 
@@ -579,20 +577,19 @@ SyntaxError: invalid syntax
     <!--[[[cog include_file("porttest2.py", start=4)   ]]] {{{ -->
     <pre class='python'>
     p = Portfolio()
-    print "Empty portfolio cost: %s, should be 0.0" % p.cost()
+    print(f"Empty portfolio cost: {p.cost()}, should be 0.0")
     p.buy("IBM", 100, 176.48)
-    print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
+    print(f"With 100 IBM @ 176.48: {p.cost()}, should be 17648.0")
     p.buy("HPQ", 100, 36.15)
-    print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
+    print(f"With 100 HPQ @ 36.15: {p.cost()}, should be 21263.0")
     </pre>
     <!--[[[end]]] }}} -->
     <!--[[[cog include_file("porttest2.out")   ]]] {{{ -->
     <pre class='text'>
     $ python porttest2.py
-      File "porttest2.py", line 5
-        print "Empty portfolio cost: %s, should be 0.0" % p.cost()
-                                                      ^
-    SyntaxError: invalid syntax
+    Empty portfolio cost: 0.0, should be 0.0
+    With 100 IBM @ 176.48: 17648.0, should be 17648.0
+    With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -613,11 +610,11 @@ SyntaxError: invalid syntax
 from portfolio1 import Portfolio
 
 p = Portfolio()
-print "Empty portfolio cost: %s, should be 0.0" % p.cost()
+print(f"Empty portfolio cost: {p.cost()}, should be 0.0")
 p.buy("IBM", 100, 176.48)
-print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
+print(f"With 100 IBM @ 176.48: {p.cost()}, should be 17648.0")
 p.buy("HPQ", 100, 36.15)
-print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
+print(f"With 100 HPQ @ 36.15: {p.cost()}, should be 21263.0")
 </code>
 <!--[[[end]]] }}}-->
 
@@ -627,10 +624,9 @@ print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
 <!--[[[cog include_file("porttest2.out", px=True) ]]] {{{ -->
 <code lang='text'>
 $ python porttest2.py
-  File "porttest2.py", line 5
-    print "Empty portfolio cost: %s, should be 0.0" % p.cost()
-                                                  ^
-SyntaxError: invalid syntax
+Empty portfolio cost: 0.0, should be 0.0
+With 100 IBM @ 176.48: 17648.0, should be 17648.0
+With 100 HPQ @ 36.15: 21263.0, should be 21263.0
 </code>
 <!--[[[end]]] }}}-->
 
@@ -650,23 +646,22 @@ SyntaxError: invalid syntax
     <!--[[[cog include_file("porttest3.py", start=4)   ]]] {{{ -->
     <pre class='python'>
     p = Portfolio()
-    print "Empty portfolio cost: %s, should be 0.0" % p.cost()
+    print(f"Empty portfolio cost: {p.cost()}, should be 0.0")
     assert p.cost() == 0.0
     p.buy("IBM", 100, 176.48)
-    print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
+    print(f"With 100 IBM @ 176.48: {p.cost()}, should be 17648.0")
     assert p.cost() == 17648.0
     p.buy("HPQ", 100, 36.15)
-    print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
+    print(f"With 100 HPQ @ 36.15: {p.cost()}, should be 21263.0")
     assert p.cost() == 21263.0
     </pre>
     <!--[[[end]]] }}}-->
     <!--[[[cog include_file("porttest3.out")   ]]] {{{ -->
     <pre class='text'>
     $ python porttest3.py
-      File "porttest3.py", line 5
-        print "Empty portfolio cost: %s, should be 0.0" % p.cost()
-                                                      ^
-    SyntaxError: invalid syntax
+    Empty portfolio cost: 0.0, should be 0.0
+    With 100 IBM @ 176.48: 17648.0, should be 17648.0
+    With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -687,13 +682,13 @@ SyntaxError: invalid syntax
 <!--[[[cog include_file("porttest3.py", px=True, start=4) ]]] {{{ -->
 <code lang='python'>
 p = Portfolio()
-print "Empty portfolio cost: %s, should be 0.0" % p.cost()
+print(f"Empty portfolio cost: {p.cost()}, should be 0.0")
 assert p.cost() == 0.0
 p.buy("IBM", 100, 176.48)
-print "With 100 IBM @ 176.48: %s, should be 17648.0" % p.cost()
+print(f"With 100 IBM @ 176.48: {p.cost()}, should be 17648.0")
 assert p.cost() == 17648.0
 p.buy("HPQ", 100, 36.15)
-print "With 100 HPQ @ 36.15: %s, should be 21263.0" % p.cost()
+print(f"With 100 HPQ @ 36.15: {p.cost()}, should be 21263.0")
 assert p.cost() == 21263.0
 </code>
 <!--[[[end]]] }}}-->
@@ -712,10 +707,12 @@ assert p.cost() == 21263.0
     <!--[[[cog include_file("porttest3_broken.out")   ]]] {{{ -->
     <pre class='text'>
     $ python porttest3_broken.py
-      File "porttest3_broken.py", line 5
-        print "Empty portfolio cost: %s, should be 0.0" % p.cost()
-                                                      ^
-    SyntaxError: invalid syntax
+    Empty portfolio cost: 0.0, should be 0.0
+    With 100 IBM @ 176.48: 17648.0, should be 17600.0
+    Traceback (most recent call last):
+      File "porttest3_broken.py", line 9, in &lt;module&gt;
+        assert p.cost() == 17600.0
+    AssertionError
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -737,10 +734,12 @@ assert p.cost() == 21263.0
 <!--[[[cog include_file("porttest3_broken.out", px=True) ]]] {{{ -->
 <code lang='text'>
 $ python porttest3_broken.py
-  File "porttest3_broken.py", line 5
-    print "Empty portfolio cost: %s, should be 0.0" % p.cost()
-                                                  ^
-SyntaxError: invalid syntax
+Empty portfolio cost: 0.0, should be 0.0
+With 100 IBM @ 176.48: 17648.0, should be 17600.0
+Traceback (most recent call last):
+  File "porttest3_broken.py", line 9, in &lt;module>
+    assert p.cost() == 17600.0
+AssertionError
 </code>
 <!--[[[end]]] }}}-->
 
@@ -947,7 +946,7 @@ SyntaxError: invalid syntax
     <pre class='text'>
     $ py.test -q test_port1_pytest.py
     .                                                              [100%]
-    1 passed in 0.04 seconds
+    1 passed in 0.01 seconds
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -1004,7 +1003,7 @@ SyntaxError: invalid syntax
     <pre class='text'>
     $ py.test -q test_port2_pytest.py
     ...                                                            [100%]
-    3 passed in 0.03 seconds
+    3 passed in 0.01 seconds
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -1161,11 +1160,11 @@ OK
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     &gt;       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x105836048&gt;&gt;()
-    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x105836048&gt;&gt; = &lt;portfolio1.Portfolio object at 0x105836048&gt;.cost
+    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10df85748&gt;&gt;()
+    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10df85748&gt;&gt; = &lt;portfolio1.Portfolio object at 0x10df85748&gt;.cost
 
     test_port2_pytest_broken.py:12: AssertionError
-    1 failed, 2 passed in 0.08 seconds
+    1 failed, 2 passed in 0.05 seconds
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -1192,7 +1191,7 @@ Traceback (most recent call last):
 AssertionError
 
 ------------------------------------------------------------
-Ran 3 tests in 0.001s
+Ran 3 tests in 0.000s
 
 FAILED (failures=1)
 </code>
@@ -1240,7 +1239,7 @@ FAILED (failures=1)
     E       TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
     test_port4_pytest_broken.py:22: TypeError
-    1 failed, 3 passed in 0.07 seconds
+    1 failed, 3 passed in 0.05 seconds
     </pre>
     <!--[[[end]]] }}}-->
 </div>
@@ -1275,7 +1274,7 @@ Traceback (most recent call last):
 TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
 ------------------------------------------------------------
-Ran 4 tests in 0.000s
+Ran 4 tests in 0.001s
 
 FAILED (errors=1)
 </code>
@@ -1299,7 +1298,7 @@ FAILED (errors=1)
     <pre class='text'>
     $ py.test -q test_port4_pytest.py
     ....                                                           [100%]
-    4 passed in 0.03 seconds
+    4 passed in 0.01 seconds
     </pre>
     <!--[[[end]]] }}}-->
 </div>
@@ -3233,7 +3232,7 @@ OK
     AssertionError
 
     ------------------------------------------------------------
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (failures=1)
     </pre>
@@ -3261,7 +3260,7 @@ Traceback (most recent call last):
 AssertionError
 
 ------------------------------------------------------------
-Ran 3 tests in 0.001s
+Ran 3 tests in 0.000s
 
 FAILED (failures=1)
 </code>
@@ -3492,7 +3491,7 @@ class PortfolioTest(PortfolioTestCase):
     AttributeError: 'Portfolio' object has no attribute 'buyXX'
 
     ------------------------------------------------------------
-    Ran 3 tests in 0.001s
+    Ran 3 tests in 0.000s
 
     FAILED (errors=1)
     </pre>
@@ -3522,7 +3521,7 @@ Traceback (most recent call last):
 AttributeError: 'Portfolio' object has no attribute 'buyXX'
 
 ------------------------------------------------------------
-Ran 3 tests in 0.001s
+Ran 3 tests in 0.000s
 
 FAILED (errors=1)
 </code>
@@ -3585,7 +3584,7 @@ FAILED (errors=1)
     TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
     ------------------------------------------------------------
-    Ran 4 tests in 0.000s
+    Ran 4 tests in 0.001s
 
     FAILED (errors=1)
     </pre>
@@ -3622,7 +3621,7 @@ Traceback (most recent call last):
 TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
 ------------------------------------------------------------
-Ran 4 tests in 0.000s
+Ran 4 tests in 0.001s
 
 FAILED (errors=1)
 </code>
