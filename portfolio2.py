@@ -1,6 +1,6 @@
 # portfolio2.py
 
-class Portfolio(object):
+class Portfolio:
     """A simple stock portfolio"""
     def __init__(self):
         # stocks is a list of lists:

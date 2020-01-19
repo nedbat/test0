@@ -51,7 +51,7 @@ class PortfolioSellTest(unittest.TestCase):
 # A simple fake for urllib that implements only one method,
 # and is only good for one request.  You can make this much
 # more complex for your own needs.
-class FakeUrllib(object):
+class FakeUrllib:
     def urlopen(self, url):
         return StringIO('"IBM",140\n"HPQ",32\n')
 

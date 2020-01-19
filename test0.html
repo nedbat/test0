@@ -302,7 +302,7 @@ include_file_default(classes="medium")
     <pre class='python medium'>
     # portfolio1.py
 
-    class Portfolio(object):
+    class Portfolio:
         """A simple stock portfolio"""
         def __init__(self):
             # stocks is a list of lists:
@@ -334,7 +334,7 @@ include_file_default(classes="medium")
 <code lang='python'>
 # portfolio1.py
 
-class Portfolio(object):
+class Portfolio:
     """A simple stock portfolio"""
     def __init__(self):
         # stocks is a list of lists:
@@ -1082,8 +1082,8 @@ OK
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     &gt;       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x108139710&gt;&gt;()
-    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x108139710&gt;&gt; = &lt;portfolio1.Portfolio object at 0x108139710&gt;.cost
+    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x102183668&gt;&gt;()
+    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x102183668&gt;&gt; = &lt;portfolio1.Portfolio object at 0x102183668&gt;.cost
 
     test_port2_pytest_broken.py:12: AssertionError
     1 failed, 2 passed in 0.05 seconds
@@ -1220,7 +1220,7 @@ FAILED (errors=1)
     <pre class='text medium'>
     $ py.test -q test_port4_pytest.py
     ....                                                           [100%]
-    4 passed in 0.02 seconds
+    4 passed in 0.01 seconds
     </pre>
     <!--[[[end]]] }}}-->
 </div>
@@ -1248,7 +1248,7 @@ def test_bad_input(self):
 $ python -m unittest test_port4
 ....
 ------------------------------------------------------------
-Ran 4 tests in 0.001s
+Ran 4 tests in 0.000s
 
 OK
 </code>
@@ -2328,7 +2328,7 @@ class PortfolioValueTest(unittest.TestCase):
     # A simple fake for urllib that implements only one method,
     # and is only good for one request.  You can make this much
     # more complex for your own needs.
-    class FakeUrllib(object):
+    class FakeUrllib:
         def urlopen(self, url):
             return StringIO('"IBM",140\n"HPQ",32\n')
 
@@ -2369,7 +2369,7 @@ class PortfolioValueTest(unittest.TestCase):
 # A simple fake for urllib that implements only one method,
 # and is only good for one request.  You can make this much
 # more complex for your own needs.
-class FakeUrllib(object):
+class FakeUrllib:
     def urlopen(self, url):
         return StringIO('"IBM",140\n"HPQ",32\n')
 
@@ -3567,7 +3567,7 @@ FAILED (errors=1)
     $ python -m unittest test_port4
     ....
     ------------------------------------------------------------
-    Ran 4 tests in 0.001s
+    Ran 4 tests in 0.000s
 
     OK
     </pre>
@@ -3597,7 +3597,7 @@ def test_bad_input(self):
 $ python -m unittest test_port4
 ....
 ------------------------------------------------------------
-Ran 4 tests in 0.001s
+Ran 4 tests in 0.000s
 
 OK
 </code>

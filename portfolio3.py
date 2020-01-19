@@ -4,7 +4,7 @@ import urllib
 import csv
 
 
-class Portfolio(object):
+class Portfolio:
     """A simple stock portfolio
 
     >>> p = Portfolio()
