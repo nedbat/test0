@@ -7,7 +7,12 @@ $(function() {
                 $(e).removeClass('incremental');
             });
         }
-
+        var showhidden = (window.location.href.indexOf("showhidden") !== -1);
+        if (showhidden) {
+            $('.hidden_slide').each(function (i, e) {
+                $(e).removeClass('hidden_slide').addClass('slide').addClass('hidden');
+            });
+        }
         $(".slide").slippy({
             // settings go here
             // possible values are:
