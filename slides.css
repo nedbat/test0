@@ -8,10 +8,6 @@ div.text {
     display: none;
 }
 
-div.code.text {
-    display: block;
-}
-
 .slide {
     font-weight: 600;
     margin: 1em;
@@ -42,6 +38,12 @@ h1, h2, h3, h4 {
 }
 .slide.section {
     background-color: #ffb;
+}
+.slide.section label {
+    color: #888;
+    font-style: italic;
+    font-size: 85%;
+    display: block;
 }
 .slide.todo {
     background-color: #f88;
@@ -170,10 +172,42 @@ img.icon {
     font-size: 10%;
 }
 
-.code .selected .lineno {
+.slide pre.python {
+    background: #cfc;
+}
+
+.slide pre.python.console {
+    background: #cee;
+}
+
+.slide pre.python.console .meta {
+    color: #666;
+}
+
+.slide pre .attn {
+    background: #ada;
+    border-radius: .15em;
+}
+
+.slide pre .highlight {
+    background: #fe4;
+}
+
+.slide pre .comment {
+    font-style: italic;
+}
+
+pre .selected {
     background: #fff;
-    padding-left: .25em;
-    margin-left: -.25em;
+    border: .15em solid #f66;
+    border-radius: 5px;
+    padding: .15em .15em .05em .15em;
+    margin: -.30em -.30em -.20em -.30em;
+}
+
+html.phantompng pre .selected {
+    border-width: 0;
+    background: inherit;
 }
 
 .slide ul {
@@ -280,14 +314,4 @@ sup {
 }
 .overviewWrapper.active {
     border: 1px solid #fff;
-}
-.code .lineno {
-    width: 1em;
-    display: inline-block;
-    text-align: right;
-    padding-right: .5em;
-    color: #999;
-    font-style: italic;
-    font-weight: 400;
-    border-right: 1px dotted #999;
 }
