@@ -72,7 +72,7 @@ $(COVERAGE_OUT): test_port7.py test_port8.py portfolio3.py
 
 $(PYTEST_OUT): *.py
 	@echo "$$ py.test -q $*.py" > $@
-	-COLUMNS=70 py.test -q $*.py >> $@ 2>&1
+	-COLUMNS=68 py.test -q $*.py >> $@ 2>&1
 
 clean:
 	rm -f $(OUTPUT)

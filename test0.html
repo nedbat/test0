@@ -837,7 +837,7 @@ AssertionError
     <!--[[[cog include_file("test_port1_pytest.out")   ]]] {{{ -->
     <pre class='text medium'>
     $ py.test -q test_port1_pytest.py
-    .                                                              [100%]
+    .                                                            [100%]
     1 passed in 0.01 seconds
     </pre>
     <!--[[[end]]] }}}-->
@@ -894,7 +894,7 @@ AssertionError
     <!--[[[cog include_file("test_port2_pytest.out", highlight=[2])   ]]] {{{ -->
     <pre class='text medium'>
     $ py.test -q test_port2_pytest.py
-    ...                                                            [100%]
+    ...                                                          [100%]
     3 passed in 0.01 seconds
     </pre>
     <!--[[[end]]] }}}-->
@@ -945,7 +945,7 @@ class PortfolioTest(unittest.TestCase):
 $ python -m unittest test_port2
 ...
 ------------------------------------------------------------
-Ran 3 tests in 0.000s
+Ran 3 tests in 0.001s
 
 OK
 </code>
@@ -1043,20 +1043,20 @@ OK
     <!--[[[cog include_file("test_port2_pytest_broken.out", highlight=[2, 9, 10])   ]]] {{{ -->
     <pre class='text medium'>
     $ py.test -q test_port2_pytest_broken.py
-    .F.                                                            [100%]
-    ============================== FAILURES ==============================
-    _________________________ test_buy_one_stock _________________________
+    .F.                                                          [100%]
+    ============================= FAILURES =============================
+    ________________________ test_buy_one_stock ________________________
 
         def test_buy_one_stock():
             p = Portfolio()
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     &gt;       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x102183668&gt;&gt;()
-    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x102183668&gt;&gt; = &lt;portfolio1.Portfolio object at 0x102183668&gt;.cost
+    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10cac36d8&gt;&gt;()
+    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10cac36d8&gt;&gt; = &lt;portfolio1.Portfolio object at 0x10cac36d8&gt;.cost
 
     test_port2_pytest_broken.py:12: AssertionError
-    1 failed, 2 passed in 0.05 seconds
+    1 failed, 2 passed in 0.06 seconds
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -1121,9 +1121,9 @@ FAILED (failures=1)
     <!--[[[cog include_file("test_port4_pytest_broken.out", highlight=[9])   ]]] {{{ -->
     <pre class='text medium'>
     $ py.test -q test_port4_pytest_broken.py
-    ...F                                                           [100%]
-    ============================== FAILURES ==============================
-    ___________________________ test_bad_input ___________________________
+    ...F                                                         [100%]
+    ============================= FAILURES =============================
+    __________________________ test_bad_input __________________________
 
         def test_bad_input():
             p = Portfolio()
@@ -1189,7 +1189,7 @@ FAILED (errors=1)
     <!--[[[cog include_file("test_port4_pytest.out")   ]]] {{{ -->
     <pre class='text medium'>
     $ py.test -q test_port4_pytest.py
-    ....                                                           [100%]
+    ....                                                         [100%]
     4 passed in 0.01 seconds
     </pre>
     <!--[[[end]]] }}}-->
@@ -2956,7 +2956,7 @@ OK
     $ python -m unittest test_port2
     ...
     ------------------------------------------------------------
-    Ran 3 tests in 0.000s
+    Ran 3 tests in 0.001s
 
     OK
     </pre>
@@ -3008,7 +3008,7 @@ class PortfolioTest(unittest.TestCase):
 $ python -m unittest test_port2
 ...
 ------------------------------------------------------------
-Ran 3 tests in 0.000s
+Ran 3 tests in 0.001s
 
 OK
 </code>
