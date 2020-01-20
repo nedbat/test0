@@ -175,4 +175,4 @@ def prompt_session(input, command=False, prelude=""):
     # REPL sessions have lone triple-dot lines. Suppress them.
     repl_out = "\n".join('' if l == '... ' else l for l in repl_out.splitlines())
     output += repl_out
-    include_code(output, lang="python", number=False, classes="console")
+    include_code(output, lang="python", number=False, classes="console " + INCLUDE_FILE_DEFAULTS['classes'])
