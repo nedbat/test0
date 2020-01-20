@@ -40,17 +40,17 @@ include_file_default(classes="medium")
     <style type="text/css">
         .slide li.good:before {
             content: "✓   ";    /* U+2713 U+00A0 U+00A0 */
-            color: #4c4;
+            color: #5b5;
             background-color: none; width: 0; height: 0; top: 0; right: 0;
         }
         .slide li.bad:before {
             content: "✘   ";    /* U+2718 U+00A0 U+00A0 */
-            color: #f44;
+            color: #d66;
             background-color: none; width: 0; height: 0; top: 0; right: 0;
         }
         .slide li.unsure:before {
             content: "⁈  ";    /* U+203D U+00A0 U+00A0 */
-            color: #44f;
+            color: #66d;
             background-color: none; width: 0; height: 0; top: 0; right: 0;
         }
     </style>
@@ -358,11 +358,11 @@ class Portfolio:
     21263.0
     </pre>
     <!--[[[end]]] }}}-->
-    <ul>
-    <li class="good">Good: testing the code</li>
-    <li class="bad">Bad: not repeatable</li>
-    <li class="bad">Bad: labor intensive</li>
-    <li class="bad">Bad: is it right?</li>
+    <ul class="tight">
+        <li class="good">Good: testing the code</li>
+        <li class="bad">Bad: not repeatable</li>
+        <li class="bad">Bad: labor intensive</li>
+        <li class="bad">Bad: is it right?</li>
     </ul>
 </div>
 
@@ -414,7 +414,7 @@ class Portfolio:
     With 100 HPQ @ 36.15: 21263.0
     </pre>
     <!--[[[end]]] }}}-->
-    <ul>
+    <ul class="tight">
         <li class="good">Good: testing the code</li>
         <li class="good">Better: repeatable</li>
         <li class="good">Better: low effort</li>
@@ -484,7 +484,7 @@ With 100 HPQ @ 36.15: 21263.0
     With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     </pre>
     <!--[[[end]]] }}}-->
-    <ul>
+    <ul class="tight">
         <li class="good">Good: repeatable with low effort</li>
         <li class="good">Better: explicit expected results</li>
         <li class="bad">Bad: have to check the results yourself</li>
@@ -556,7 +556,7 @@ With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     </pre>
     <!--[[[end]]] }}}-->
-    <ul>
+    <ul class="tight">
         <li class="good">Good: repeatable with low effort</li>
         <li class="good">Good: explicit expected results</li>
         <li class="good">Good: results checked automatically</li>
@@ -607,10 +607,10 @@ assert p.cost() == 21263.0
     AssertionError
     </pre>
     <!--[[[end]]] }}}-->
-    <ul>
+    <ul class="tight">
         <li class="good">Good: repeatable with low effort</li>
         <li class="good">Good: expected results checked automatically</li>
-        <li class="good">OK: visible failure visible, but cluttered output</li>
+        <li class="good">OK: failure visible, but cluttered output</li>
         <li class="bad">Bad: failure stops tests</li>
     </ul>
 </div>

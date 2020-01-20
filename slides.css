@@ -207,13 +207,14 @@ html.phantompng pre .selected {
     background: inherit;
 }
 
-.slide li {
+.slide ul>li {
     margin-top: .5em;
     position: relative;
     line-height: 1.2em;
-}
-.slide ul>li {
     list-style: none;
+}
+.slide ul.tight>li {
+    margin-top: .25em;
 }
 .slide ul>li:before {
     content: '';
