@@ -1,7 +1,4 @@
-lxml
-cssselect
-cogapp==2.4
-coverage==4.0.3
+cogapp==3.0.0
+coverage==5.0.3
 mock
-Pygments==1.6
-pytest==2.8.5
+pytest==5.3.3

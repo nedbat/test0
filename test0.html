@@ -2430,30 +2430,17 @@ class PortfolioValueTest(unittest.TestCase):
         func.call_args
         """)
     ]]]-->
-    <pre class='python console'>
+    <pre class='python console medium'>
     &gt;&gt;&gt; from mock import Mock
-    Traceback (most recent call last):
-      File "&lt;console&gt;", line 1, in &lt;module&gt;
-    ModuleNotFoundError: No module named 'mock'
 
     &gt;&gt;&gt; func = Mock()
-    Traceback (most recent call last):
-      File "&lt;console&gt;", line 1, in &lt;module&gt;
-    NameError: name 'Mock' is not defined
     &gt;&gt;&gt; func.return_value = "Hello!"
-    Traceback (most recent call last):
-      File "&lt;console&gt;", line 1, in &lt;module&gt;
-    NameError: name 'func' is not defined
 
     &gt;&gt;&gt; func(17, "something")
-    Traceback (most recent call last):
-      File "&lt;console&gt;", line 1, in &lt;module&gt;
-    NameError: name 'func' is not defined
+    'Hello!'
 
     &gt;&gt;&gt; func.call_args
-    Traceback (most recent call last):
-      File "&lt;console&gt;", line 1, in &lt;module&gt;
-    NameError: name 'func' is not defined
+    call(17, 'something')
     </pre>
     <!--[[[end]]] }}}-->
 </div>
