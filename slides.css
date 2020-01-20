@@ -207,21 +207,24 @@ html.phantompng pre .selected {
     background: inherit;
 }
 
-.slide ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
 .slide li {
     margin-top: .5em;
-    padding-left: 1.25em;
-    text-indent: -1em;
-    font-size: 125%;
+    position: relative;
+    line-height: 1.2em;
 }
-
-.slide li li {
-    font-size: 100%;
+.slide ul>li {
+    list-style: none;
+}
+.slide ul>li:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: .4em;
+    height: .4em;
+    border-radius: .4em;
+    left: -1em;
+    top: .4em;
+    background-color: #999;
 }
 
 a:visited, a:active, a:link, a {
