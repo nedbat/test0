@@ -1,7 +1,7 @@
 # portfolio3.py
 
-import urllib
 import csv
+import urllib.request
 
 
 class Portfolio:
@@ -47,13 +47,17 @@ class Portfolio:
         else:
             raise ValueError("You don't own that stock")
 
+    SUFFIX = "&api_token=C5He7fxdnYvFGH2rJHRV47XRzYVjUxkdFPRaVM9ILMvlsoSAmqbggY3VbPgG&output=csv"
+
     #(((value)))
     def current_prices(self):
         """Return a dict mapping names to current prices."""
-        url = "http://finance.yahoo.com/d/quotes.csv?f=sl1&s="
-        url += ",".join(sorted(s[0] for s in self.stocks))
-        data = urllib.urlopen(url)
-        return { sym: float(last) for sym, last in csv.reader(data) }
+        url = "https://api.worldtradingdata.com/api/v1/stock?symbol="
+        url += ",".join(s[0] for s in sorted(self.stocks))
+        url += self.SUFFIX
+        data = urllib.request.urlopen(url).read().decode("utf-8")
+        lines = data.splitlines()[1:]
+        return { row[0]: float(row[3]) for row in csv.reader(lines) }
 
     def value(self):
         """Return the current value of the portfolio."""

@@ -3,7 +3,7 @@
 import unittest
 from portfolio3 import Portfolio
 import portfolio3
-from cStringIO import StringIO
+from io import BytesIO
 
 class PortfolioTest(unittest.TestCase):
     def test_empty(self):
@@ -51,15 +51,15 @@ class PortfolioSellTest(unittest.TestCase):
 # A simple fake for urllib that implements only one method,
 # and is only good for one request.  You can make this much
 # more complex for your own needs.
-class FakeUrllib:
+class FakeUrllibRequest:
     def urlopen(self, url):
-        return StringIO('"IBM",140\n"HPQ",32\n')
+        return BytesIO(b'\nIBM,,,140\nHPQ,,,32\n')
 
 class PortfolioValueTest(unittest.TestCase):
     def setUp(self):
         # Save the real urllib, and install our fake.
-        self.old_urllib = portfolio3.urllib
-        portfolio3.urllib = FakeUrllib()
+        self.old_urllib_request = portfolio3.urllib.request
+        portfolio3.urllib.request = FakeUrllibRequest()
 
         self.p = Portfolio()
         self.p.buy("IBM", 100, 120.0)
@@ -70,5 +70,5 @@ class PortfolioValueTest(unittest.TestCase):
 
     def tearDown(self):
         # Restore the real urllib.
-        portfolio3.urllib = self.old_urllib
+        portfolio3.urllib_request = self.old_urllib_request
 #(((end)))

@@ -1,7 +1,7 @@
 # test_port9.py
 
 import unittest
-from cStringIO import StringIO
+from io import BytesIO
 import mock
 
 from portfolio3 import Portfolio
@@ -58,18 +58,18 @@ class PortfolioValueTest(unittest.TestCase):
 
     def test_value(self):
         # Create a mock urllib.urlopen.
-        with mock.patch('urllib.urlopen') as urlopen:
+        with mock.patch('portfolio3.urllib.request.urlopen') as urlopen:
 
             # When called, it will return this value:
-            fake_yahoo = StringIO('"IBM",140\n"HPQ",32\n')
-            urlopen.return_value = fake_yahoo
+            fake_api = BytesIO(b'\nIBM,,,140\nHPQ,,,32\n')
+            urlopen.return_value = fake_api
 
             # Run the test!
             self.assertEqual(self.p.value(), 17200)
 
             # We can ask the mock what its arguments were.
-            urlopen.assert_called_with(
-                "http://finance.yahoo.com/d/quotes.csv"
-                "?f=sl1&s=HPQ,IBM"
-                )
+            self.assertEqual(len(urlopen.call_args_list), 1)
+            called_url = urlopen.call_args_list[0][0][0]
+            self.assertIn("api.worldtradingdata.com/api/v1/stock", called_url)
+            self.assertIn("symbol=HPQ,IBM", called_url)
 #(((end)))
