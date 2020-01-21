@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!-- vim: set foldmethod=marker foldlevel=0 cc=60 :-->
+<!DOCTYPE html> <!-- vim: set foldmethod=marker foldlevel=0 :-->
 <html>
 <!-- *** Head stuff {{{ -->
 <!--[[[cog
@@ -1052,8 +1052,8 @@ OK
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     &gt;       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10e802220&gt;&gt;()
-    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10e802220&gt;&gt; = &lt;portfolio1.Portfolio object at 0x10e802220&gt;.cost
+    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1011b2760&gt;&gt;()
+    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1011b2760&gt;&gt; = &lt;portfolio1.Portfolio object at 0x1011b2760&gt;.cost
 
     test_port2_pytest_broken.py:12: AssertionError
     1 failed, 2 passed in 0.04s
@@ -2601,12 +2601,12 @@ class PortfolioValueTest(unittest.TestCase):
 
     <ul>
 
-        <li><a href='https://docs.python.org/2/library/unittest.html#unittest.TestCase.addCleanup'>addCleanup</a> 
+        <li><a href='https://docs.python.org/2/library/unittest.html#unittest.TestCase.addCleanup'>addCleanup</a>
         is a method on test cases.  It lets you register clean up functions to
         be called when the test is done.  This has the advantage that partially
         set up tests can be torn down, and you can register clean up functions
         in the body of tests if you like.</li>
-        
+
         <li><a href='https://docs.python.org/2/library/doctest.html'>doctest</a>
         is another module in the standard library for writing tests.  It
         executes Python code embedded in docstrings.  Some people love it, but
@@ -2680,7 +2680,7 @@ class PortfolioValueTest(unittest.TestCase):
 
         <li>Load testing is the process of generating synthetic traffic to a
         web site or other concurrent system to determine its behavior as the
-        traffic load increases.  Specialized tools can help generate the 
+        traffic load increases.  Specialized tools can help generate the
         traffic and record response times as the load changes.</li>
 
     </ul>
@@ -2741,7 +2741,7 @@ class PortfolioValueTest(unittest.TestCase):
     <p>Here are our two developers, happy and confident at last because they
     have a good set of tests.  (I couldn't get my son to draw me a third
     picture!)</p>
-    
+
 </div><!-- }}} -->
 
 

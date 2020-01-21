@@ -43,10 +43,17 @@ SLUG = test0
 SLIDE_HTML = $(SLUG).html
 SAMPLE_ZIP = $(SLUG).zip
 
-IMAGES = dadtoon-chaos-2.png dadtoon-iambad-3.png dadtoon-mii.png happysticks.png mock.png
-SD = slippy/src
-JS_FILES = $(SD)/jquery.min.js $(SD)/jquery.history.js $(SD)/slippy.js lineselect.js
-CSS_FILES = $(SD)/slippy.css $(SD)/slippy-pure.css
+IMAGES = \
+	dadtoon-chaos-2.png dadtoon-iambad-3.png dadtoon-mii.png \
+	happysticks.png mock.png \
+	github.png twitter.png
+SD = slippy
+JS_FILES = \
+	$(SD)/jquery.min.js $(SD)/jquery.history.js $(SD)/slippy.js \
+	slides.js lineselect.js typogr.min.js
+CSS_FILES = \
+	$(SD)/slippy.css $(SD)/slippy-pure.css \
+	slides.css
 SLIDE_SUPPORT = $(JS_FILES) $(CSS_FILES) $(IMAGES)
 
 .PHONY: $(SLIDE_HTML)
@@ -85,7 +92,7 @@ clean:
 zip $(SAMPLE_ZIP): $(SAMPLES)
 	zip $(SAMPLE_ZIP) $(SAMPLES)
 
-tar $(TARFILE): $(SLIDE_HTML) $(SAMPLES) $(SLIDE_SUPPORT) Makefile cog.py
+tar $(TARFILE): $(SLIDE_HTML) $(SAMPLES) $(SLIDE_SUPPORT) Makefile
 	tar czvf $(TARFILE) --mode=777 $^
 
 PNG_DIR = png
