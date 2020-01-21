@@ -117,8 +117,12 @@ img.icon {
     font-family: Consolas, monaco, monospace;
     margin-top: 1em;
     background: #ccf;
-    padding: .3em .35em;
+    padding: .3em .15em;
     line-height: 1.15;
+    border-radius: .2em;
+}
+.slide pre .line {
+    padding: 0 .2em;
 }
 .slide .prelabel {
     font-size: 80%;
@@ -186,20 +190,20 @@ img.icon {
     border-radius: .15em;
 }
 
-.slide pre .highlight {
-    background: #fe4;
+.slide pre .hilite {
+    background: rgba(256, 256, 256, .66);
 }
 
 .slide pre .comment {
     font-style: italic;
 }
 
-pre .selected {
+.slide pre .selected {
     background: #fff;
     border: .15em solid #f66;
     border-radius: 5px;
     padding: .15em .15em .05em .15em;
-    margin: -.30em -.30em -.20em -.30em;
+    margin: -.30em -.30em -.20em -.1em;
 }
 
 html.phantompng pre .selected {

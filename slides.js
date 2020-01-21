@@ -88,6 +88,7 @@ $(function() {
     // Convert <pre> to have <span class='line'> for each line.
     $('pre').each(function (i, e) {
         var $e = $(e);
+        var hilite = $e.data("hilite");
         var lines = $e.html().split("\n");
         for (var i = 0; i < lines.length; i++) {
             var line = lines[i];
@@ -95,7 +96,13 @@ $(function() {
                 lines[i] = "<span class='blankline'>&nbsp;</span>";
             }
             else {
-                lines[i] = "<span class='line'>" + lines[i] + "</span>";
+                var line_class = 'line';
+                if (hilite) {
+                    if (hilite.includes("|"+i+"|")) {
+                        line_class += ' hilite';
+                    }
+                }
+                lines[i] = "<span class='" + line_class + "'>" + lines[i] + "</span>";
             }
         }
         $e.html(lines.join("\n"));

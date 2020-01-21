@@ -891,8 +891,8 @@ AssertionError
         assert p.cost() == 21263.0
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port2_pytest.out", highlight=[2])   ]]] {{{ -->
-    <pre class='text medium'>
+    <!--[[[cog include_file("test_port2_pytest.out", hilite=["..."])   ]]] {{{ -->
+    <pre class='text medium' data-hilite='|1|'>
     $ py.test -q test_port2_pytest.py
     ...                                                          [100%]
     3 passed in 0.01s
@@ -978,9 +978,9 @@ OK
             [record failure]
         else:
             [record success]
-    """, lang="python", highlight=[3, 10, 17])
+    """, lang="python", hilite=[2,9,16])
     ]]]-->
-    <pre class='python'>
+    <pre class='python' data-hilite='|2|9|16|'>
     # py.test runs the tests as if I had written:
     try:
         test_empty()
@@ -1040,8 +1040,8 @@ OK
 
 <div class="slide">
     <h1>What failure looks like</h1>
-    <!--[[[cog include_file("test_port2_pytest_broken.out", highlight=[2, 9, 10])   ]]] {{{ -->
-    <pre class='text medium'>
+    <!--[[[cog include_file("test_port2_pytest_broken.out", hilite=[".F.", "assert"])   ]]] {{{ -->
+    <pre class='text medium' data-hilite='|1|8|9|'>
     $ py.test -q test_port2_pytest_broken.py
     .F.                                                          [100%]
     ============================= FAILURES =============================
@@ -1052,8 +1052,8 @@ OK
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     &gt;       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x103a89220&gt;&gt;()
-    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x103a89220&gt;&gt; = &lt;portfolio1.Portfolio object at 0x103a89220&gt;.cost
+    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10e802220&gt;&gt;()
+    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10e802220&gt;&gt; = &lt;portfolio1.Portfolio object at 0x10e802220&gt;.cost
 
     test_port2_pytest_broken.py:12: AssertionError
     1 failed, 2 passed in 0.04s
@@ -1118,8 +1118,8 @@ FAILED (failures=1)
         p.buy("IBM")
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port4_pytest_broken.out", highlight=[9])   ]]] {{{ -->
-    <pre class='text medium'>
+    <!--[[[cog include_file("test_port4_pytest_broken.out", hilite=["TypeError"])   ]]] {{{ -->
+    <pre class='text medium' data-hilite='|8|10|'>
     $ py.test -q test_port4_pytest_broken.py
     ...F                                                         [100%]
     ============================= FAILURES =============================
@@ -1439,9 +1439,9 @@ class PortfolioSellTest(PortfolioTestCase):
                 [record failure]
             else:
                 [record success]
-    """, lang="python", highlight=[4, 10])
+    """, lang="python", hilite=[3, 9])
     ]]]-->
-    <pre class='python'>
+    <pre class='python' data-hilite='|3|9|'>
     [ introspection of argument names ]
     try:
         # Call the fixtures
@@ -2244,8 +2244,8 @@ class PortfolioValueTest(unittest.TestCase):
 
 <div class="slide">
     <h1>But some code isn't tested!</h1>
-    <!--[[[cog include_file("test_port7.out", start=7, end=13, highlight=[10])   ]]] {{{ -->
-    <pre class='text medium'>
+    <!--[[[cog include_file("test_port7.out", start=7, end=13, hilite=["portfolio3"])   ]]] {{{ -->
+    <pre class='text medium' data-hilite='|3|'>
     $ coverage report -m
     Name            Stmts   Miss  Cover   Missing
     ---------------------------------------------
@@ -2255,10 +2255,8 @@ class PortfolioValueTest(unittest.TestCase):
     TOTAL              78      6    92%
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("portfolio3.py", start=51, end=61, highlight=[53,54,55,56])   ]]] {{{ -->
+    <!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="return")   ]]] {{{ -->
     <pre class='python medium'>
-
-    #(((value)))
     def current_prices(self):
         """Return a dict mapping names to current prices."""
         url = "https://api.worldtradingdata.com/api/v1/stock?symbol="
@@ -2931,8 +2929,8 @@ OK
             assert p.cost() == 21263.0
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port2.out", highlight=[2])   ]]] {{{ -->
-    <pre class='text medium'>
+    <!--[[[cog include_file("test_port2.out", hilite=["..."])   ]]] {{{ -->
+    <pre class='text medium' data-hilite='|1|'>
     $ python -m unittest test_port2
     ...
     ------------------------------------------------------------
@@ -3024,9 +3022,9 @@ OK
             [record failure]
         else:
             [record success]
-    """, lang="python", highlight=[4, 12, 20])
+    """, lang="python", hilite=[3, 11, 19])
     ]]]-->
-    <pre class='python'>
+    <pre class='python' data-hilite='|3|11|19|'>
     # unittest runs the tests as if I had written:
     testcase = PortfolioTest()
     try:
