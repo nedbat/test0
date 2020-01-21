@@ -132,7 +132,7 @@ def include_file(
     if show_label:
         cog.outl("<div>")
         cog.outl("<div class='prelabel'>{}</div>".format(fname))
-    include_code(text, lang=lang, firstline=start, number=True, hilite=hilite_nums, px=px, classes=classes)
+    include_code(text, lang=lang, hilite=hilite_nums, px=px, classes=classes)
     if show_label:
         cog.outl("</div>")
 
@@ -144,7 +144,7 @@ def find_nth(lines, start, needle, nth):
     return indexes[nth-1]
 
 
-def include_code(text, lang=None, number=False, firstline=1, show_text=False, highlight=None, hilite=None, px=False, classes=""):
+def include_code(text, lang=None, highlight=None, hilite=None, px=False, classes=""):
     text = textwrap.dedent(text)
 
     text = "\n".join(l.rstrip() for l in text.splitlines())
@@ -153,16 +153,6 @@ def include_code(text, lang=None, number=False, firstline=1, show_text=False, hi
         cog.outl("<code lang='{}'>".format(lang))
         cog.outl(text.replace("&", "&amp;").replace("<", "&lt;"))
         cog.outl("</code>")
-        return
-
-    # Put the code in a comment, so we can see it in the HTML while editing.
-    if show_text:
-        cog.outl("<!--")
-        cog.outl(text.replace("-", u"\N{EN DASH}".encode("utf8"))) # Prevent breaking the HTML comment.
-        cog.outl("-->")
-
-    if os.environ.get("NOPYG"):
-        cog.outl("<!-- *** NOPYG: {} lines of text will be here. *** -->".format(len(text.splitlines())))
         return
 
     result = []
@@ -186,4 +176,4 @@ def prompt_session(input, command=False, prelude=""):
     # REPL sessions have lone triple-dot lines. Suppress them.
     repl_out = "\n".join('' if l == '... ' else l for l in repl_out.splitlines())
     output += repl_out
-    include_code(output, lang="python", number=False, classes="console " + INCLUDE_FILE_DEFAULTS['classes'])
+    include_code(output, lang="python", classes="console " + INCLUDE_FILE_DEFAULTS['classes'])
