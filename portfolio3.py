@@ -25,7 +25,7 @@ class Portfolio:
         self.stocks = []
 
     def buy(self, name, shares, price):
-        """Buy `name`: `shares` shares at `price`."""
+        """Buy shares at a certain price."""
         self.stocks.append([name, shares, price])
 
     def cost(self):
