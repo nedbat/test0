@@ -21,8 +21,7 @@ class Portfolio:
 
     """
     def __init__(self):
-        # stocks is a list of lists:
-        #   [[name, shares, price], ...]
+        # A list of lists: [[name, shares, price], ...]
         self.stocks = []
 
     def buy(self, name, shares, price):

@@ -275,8 +275,7 @@ include_file_default(classes="medium")
     class Portfolio:
         """A simple stock portfolio"""
         def __init__(self):
-            # stocks is a list of lists:
-            #   [[name, shares, price], ...]
+            # A list of lists: [[name, shares, price], ...]
             self.stocks = []
 
         def buy(self, name, shares, price):
@@ -307,8 +306,7 @@ include_file_default(classes="medium")
 class Portfolio:
     """A simple stock portfolio"""
     def __init__(self):
-        # stocks is a list of lists:
-        #   [[name, shares, price], ...]
+        # A list of lists: [[name, shares, price], ...]
         self.stocks = []
 
     def buy(self, name, shares, price):
@@ -997,8 +995,8 @@ OK
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     &gt;       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10edebbb0&gt;&gt;()
-    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x10edebbb0&gt;&gt; = &lt;portfolio1.Portfolio object at 0x10edebbb0&gt;.cost
+    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1015112e0&gt;&gt;()
+    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1015112e0&gt;&gt; = &lt;portfolio1.Portfolio object at 0x1015112e0&gt;.cost
 
     test_port2_pytest_broken.py:12: AssertionError
     1 failed, 2 passed in 0.04s
@@ -1111,7 +1109,7 @@ Traceback (most recent call last):
 TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
 ------------------------------------------------------------
-Ran 4 tests in 0.000s
+Ran 4 tests in 0.001s
 
 FAILED (errors=1)
 </code>
@@ -1180,7 +1178,7 @@ OK
 
 <div class="slide">
     <h1>More code:&#xa0; sell()</h1>
-    <!--[[[cog include_file("portfolio2.py", start=21, end=30)   ]]] {{{ -->
+    <!--[[[cog include_file("portfolio2.py", start_from="def sell", end_at="You don't")   ]]] {{{ -->
     <pre class='python medium'>
     def sell(self, name, shares):
         """Sell some shares."""
@@ -1202,7 +1200,7 @@ OK
     a .sell() method to our Portfolio class.  It will remove shares of a
     particular stock from our Portfolio:</p>
 
-<!--[[[cog include_file("portfolio2.py", start=21, end=30, px=True) ]]] {{{ -->
+<!--[[[cog include_file("portfolio2.py", start_from="def sell", end_at="You don't", px=True) ]]] {{{ -->
 <code lang='python'>
 def sell(self, name, shares):
     """Sell some shares."""
@@ -1812,7 +1810,7 @@ class PortfolioValueTest(unittest.TestCase):
     $ coverage report -m
     Name            Stmts   Miss  Cover   Missing
     ---------------------------------------------
-    portfolio3.py      34      6    82%   55-60
+    portfolio3.py      34      6    82%   54-59
     test_port7.py      44      0   100%
     ---------------------------------------------
     TOTAL              78      6    92%

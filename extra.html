@@ -1213,7 +1213,7 @@ class PortfolioTest(PortfolioTestCase):
     AttributeError: 'Portfolio' object has no attribute 'buyXX'
 
     ------------------------------------------------------------
-    Ran 3 tests in 0.000s
+    Ran 3 tests in 0.001s
 
     FAILED (errors=1)
     </pre>
@@ -1243,7 +1243,7 @@ Traceback (most recent call last):
 AttributeError: 'Portfolio' object has no attribute 'buyXX'
 
 ------------------------------------------------------------
-Ran 3 tests in 0.000s
+Ran 3 tests in 0.001s
 
 FAILED (errors=1)
 </code>
@@ -1306,7 +1306,7 @@ FAILED (errors=1)
     TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
     ------------------------------------------------------------
-    Ran 4 tests in 0.000s
+    Ran 4 tests in 0.001s
 
     FAILED (errors=1)
     </pre>
@@ -1343,7 +1343,7 @@ Traceback (most recent call last):
 TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
 ------------------------------------------------------------
-Ran 4 tests in 0.000s
+Ran 4 tests in 0.001s
 
 FAILED (errors=1)
 </code>
@@ -1415,7 +1415,7 @@ OK
 
 <div class="slide">
     <h1>Portfolio: .sell()</h1>
-    <!--[[[cog include_file("portfolio2.py", start=21, end=30)   ]]] {{{ -->
+    <!--[[[cog include_file("portfolio2.py", start_from="def sell", end_at="You don't")   ]]] {{{ -->
     <pre class='python medium'>
     def sell(self, name, shares):
         """Sell some shares."""
@@ -1437,7 +1437,7 @@ OK
     a .sell() method to our Portfolio class.  It will remove shares of a
     particular stock from our Portfolio:</p>
 
-<!--[[[cog include_file("portfolio2.py", start=21, end=30, px=True) ]]] {{{ -->
+<!--[[[cog include_file("portfolio2.py", start_from="def sell", end_at="You don't", px=True) ]]] {{{ -->
 <code lang='python'>
 def sell(self, name, shares):
     """Sell some shares."""
