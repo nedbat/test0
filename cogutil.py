@@ -24,6 +24,7 @@ INCLUDE_FILE_DEFAULTS = dict(
     show_label=False,
     classes="",
     indir="",
+    tweaks=[],
     )
 
 def include_file_default(**kwargs):
@@ -80,6 +81,16 @@ def include_file(
         text = f.read()
 
     lines = text.splitlines()
+
+    tweaks = INCLUDE_FILE_DEFAULTS['tweaks']
+    if tweaks:
+        tweaked = []
+        for line in lines:
+            for twfn in tweaks:
+                line = twfn(line)
+            tweaked.append(line)
+        lines = tweaked
+
     if section:
         assert start_from is None
         assert end_at is None

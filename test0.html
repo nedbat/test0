@@ -4,6 +4,7 @@
 <!--[[[cog
 import cog
 from cogutil import *
+import slides
 include_file_default(classes="medium")
 ]]]-->
 <!--[[[end]]]-->
@@ -888,7 +889,7 @@ class PortfolioTest(unittest.TestCase):
 $ python -m unittest test_port2
 ...
 ------------------------------------------------------------
-Ran 3 tests in 0.000s
+Ran 3 tests in 0.001s
 
 OK
 </code>
@@ -995,11 +996,11 @@ OK
             p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
     &gt;       assert p.cost() == 17648.0
     E       assert 17600.0 == 17648.0
-    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x107ef4220&gt;&gt;()
-    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x107ef4220&gt;&gt; = &lt;portfolio1.Portfolio object at 0x107ef4220&gt;.cost
+    E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1b01dface&gt;&gt;()
+    E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1b01dface&gt;&gt; = &lt;portfolio1.Portfolio object at 0x1b01dface&gt;.cost
 
     test_port2_pytest_broken.py:12: AssertionError
-    1 failed, 2 passed in 0.04s
+    1 failed, 2 passed in 0.05s
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -1161,7 +1162,7 @@ def test_bad_input(self):
 $ python -m unittest test_port4
 ....
 ------------------------------------------------------------
-Ran 4 tests in 0.000s
+Ran 4 tests in 0.001s
 
 OK
 </code>

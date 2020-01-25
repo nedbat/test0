@@ -4,6 +4,7 @@
 <!--[[[cog
 import cog
 from cogutil import *
+import slides
 include_file_default(classes="medium")
 ]]]-->
 <!--[[[end]]]-->
@@ -787,7 +788,7 @@ OK
     $ python -m unittest test_port2
     ...
     ------------------------------------------------------------
-    Ran 3 tests in 0.000s
+    Ran 3 tests in 0.001s
 
     OK
     </pre>
@@ -839,7 +840,7 @@ class PortfolioTest(unittest.TestCase):
 $ python -m unittest test_port2
 ...
 ------------------------------------------------------------
-Ran 3 tests in 0.000s
+Ran 3 tests in 0.001s
 
 OK
 </code>
@@ -1029,7 +1030,7 @@ FAILED (failures=1)
     AssertionError: 17600.0 != 17648.0
 
     ------------------------------------------------------------
-    Ran 3 tests in 0.000s
+    Ran 3 tests in 0.001s
 
     FAILED (failures=1)
     </pre>
@@ -1368,7 +1369,7 @@ FAILED (errors=1)
     $ python -m unittest test_port4
     ....
     ------------------------------------------------------------
-    Ran 4 tests in 0.000s
+    Ran 4 tests in 0.001s
 
     OK
     </pre>
@@ -1398,7 +1399,7 @@ def test_bad_input(self):
 $ python -m unittest test_port4
 ....
 ------------------------------------------------------------
-Ran 4 tests in 0.000s
+Ran 4 tests in 0.001s
 
 OK
 </code>
