@@ -43,6 +43,8 @@ SLUG = test0
 SLIDE_HTML = $(SLUG).html
 SAMPLE_ZIP = $(SLUG).zip
 
+EXTRA_HTML = extra.html
+
 IMAGES = \
 	dadtoon-chaos-2.png dadtoon-iambad-3.png dadtoon-mii.png \
 	happysticks.png mock.png \
@@ -56,11 +58,14 @@ CSS_FILES = \
 	slides.css
 SLIDE_SUPPORT = $(JS_FILES) $(CSS_FILES) $(IMAGES)
 
-.PHONY: $(SLIDE_HTML)
+.PHONY: $(SLIDE_HTML) $(EXTRA_HTML)
 
-slides: $(SLIDE_HTML)
+slides: $(SLIDE_HTML) $(EXTRA_HTML)
 
 $(SLIDE_HTML): $(SAMPLES) $(OUTPUT)
+	python -m cogapp -r $@
+
+$(EXTRA_HTML): $(SAMPLES) $(OUTPUT)
 	python -m cogapp -r $@
 
 $(PY_OUT): *.py portfolio1.py portfolio2.py portfolio3.py
