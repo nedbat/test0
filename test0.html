@@ -610,6 +610,7 @@ assert p.cost() == 21263.0
         <li class="good">Good: repeatable with low effort</li>
         <li class="good">Good: expected results checked automatically</li>
         <li class="good">OK: failure visible, but cluttered output</li>
+        <li class="bad">Bad: what was the wrong value?</li>
         <li class="bad">Bad: failure stops tests</li>
     </ul>
 </div>
@@ -669,8 +670,8 @@ AssertionError
 <!-- *** Using py.test {{{ -->
 
 <div class="slide section" data-layout="clean">
-    <h1>unittest and pytest</h1>
-    <h2>Writing tests</h2>
+    <h1>Test frameworks</h1>
+    <h2>Writing and running tests</h2>
 </div>
 
 <div class="slide">
@@ -698,6 +699,16 @@ AssertionError
     on.</p>
 
 </div><!-- }}} -->
+
+<div class="slide">
+    <h1>nose</h1>
+    <ul>
+        <li>Was popular</li>
+        <li>Unmaintained for years</li>
+        <li><b>Do not use!</b></li>
+    </ul>
+</div>
+
 
 <div class="slide">
     <h1>pytest</h1>
@@ -746,9 +757,6 @@ AssertionError
 
 
         $ python -m unittest discover       # .. for unittest
-
-
-        $ nosetests                         # .. for nose
     """, lang="console")
     ]]]-->
     <pre class='console'>
@@ -756,9 +764,6 @@ AssertionError
 
 
     $ python -m unittest discover       # .. for unittest
-
-
-    $ nosetests                         # .. for nose
     </pre>
     <!--[[[end]]]-->
 </div>
@@ -1499,25 +1504,20 @@ class PortfolioSellTest(PortfolioTestCase):
     </ul>
 </div>
 
-<!--
 <div class="hidden_slide">
     <h1>Running coverage.py</h1>
     <ul>
         <li>Install it from PyPI</li>
         <li><tt>coverage run my_prog.py arg ...</tt></li>
         <li><tt>coverage html</tt></li>
-        <li>Or: &nbsp;<tt>nosetests - -with-cover ...</tt></li>
-        <li>Or: &nbsp;<tt>pytest - -cov ...</tt></li>
+        <li>Or: &nbsp;<tt>pytest -&#x200b;-cov ...</tt></li>
     </ul>
 </div>
--->
 
-<!--
 <div class="hidden_slide">
     <h1>HTML report</h1>
     <iframe src='test0_static/htmlcov/index.html' style='background:white;width:100%;height:85%;'></iframe>
 </div>
--->
 
 <div class="hidden_slide">
     <h1>Coverage can only tell you a few things</h1>
