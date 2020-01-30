@@ -46,9 +46,9 @@ SAMPLE_ZIP = $(SLUG).zip
 EXTRA_HTML = extra.html
 
 IMAGES = \
-	dadtoon-chaos-2.png dadtoon-iambad-3.png dadtoon-mii.png \
-	happysticks.png mock.png \
-	github.png twitter.png
+	img/dadtoon-chaos-2.png img/dadtoon-iambad-3.png img/dadtoon-mii.png \
+	img/happysticks.png img/mock.png \
+	img/github.png img/twitter.png
 SD = slippy
 JS_FILES = \
 	$(SD)/jquery.min.js $(SD)/jquery.history.js $(SD)/slippy.js \
