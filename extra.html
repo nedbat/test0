@@ -643,7 +643,7 @@ include_file_default(classes="medium")
 
 <div class="slide">
     <h1>A simple unit test</h1>
-    <!--[[[cog include_file("test_port1.py")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port1_unittest.py")   ]]] {{{ -->
     <pre class='python medium'>
     # test_port1.py
 
@@ -657,9 +657,9 @@ include_file_default(classes="medium")
             assert p.cost() == 17648.0
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port1.out")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port1_unittest.out")   ]]] {{{ -->
     <pre class='text medium'>
-    $ python -m unittest test_port1
+    $ python -m unittest test_port1_unittest
     .
     ------------------------------------------------------------
     Ran 1 test in 0.000s
@@ -673,7 +673,7 @@ include_file_default(classes="medium")
 
     <p>Here is an actual unit test written with unittest:</p>
 
-<!--[[[cog include_file("test_port1.py", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port1_unittest.py", px=True) ]]] {{{ -->
 <code lang='python'>
 # test_port1.py
 
@@ -710,9 +710,9 @@ class PortfolioTest(unittest.TestCase):
 
     <p>We can see from the output that it ran 1 test, and it passed:</p>
 
-<!--[[[cog include_file("test_port1.out", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port1_unittest.out", px=True) ]]] {{{ -->
 <code lang='text'>
-$ python -m unittest test_port1
+$ python -m unittest test_port1_unittest
 .
 ------------------------------------------------------------
 Ran 1 test in 0.000s
@@ -764,7 +764,7 @@ OK
 
 <div class="slide" data-layout="clean">
     <h1>Add more tests</h1>
-    <!--[[[cog include_file("test_port2.py", start=6, end=20)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port2_unittest.py", start=6, end=20)   ]]] {{{ -->
     <pre class='python medium'>
     class PortfolioTest(unittest.TestCase):
         def test_empty(self):
@@ -783,9 +783,9 @@ OK
             assert p.cost() == 21263.0
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port2.out", hilite=["..."])   ]]] {{{ -->
+    <!--[[[cog include_file("test_port2_unittest.out", hilite=["..."])   ]]] {{{ -->
     <pre class='text medium' data-hilite='|1|'>
-    $ python -m unittest test_port2
+    $ python -m unittest test_port2_unittest
     ...
     ------------------------------------------------------------
     Ran 3 tests in 0.001s
@@ -804,7 +804,7 @@ OK
     test_empty, and a more complicated test, test_buy_two_stocks.  Each test is
     another test method in our PortfolioTest class:</p>
 
-<!--[[[cog include_file("test_port2.py", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port2_unittest.py", px=True) ]]] {{{ -->
 <code lang='python'>
 # test_port2.py
 
@@ -835,9 +835,9 @@ class PortfolioTest(unittest.TestCase):
     <p>When you run the tests, it prints a dot for every test that passes,
     which is why you see "..." in the test output here:</p>
 
-<!--[[[cog include_file("test_port2.out", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port2_unittest.out", px=True) ]]] {{{ -->
 <code lang='text'>
-$ python -m unittest test_port2
+$ python -m unittest test_port2_unittest
 ...
 ------------------------------------------------------------
 Ran 3 tests in 0.001s
@@ -942,15 +942,15 @@ OK
 
 <div class="slide">
     <h1>What failure looks like</h1>
-    <!--[[[cog include_file("test_port2_broken.out")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port2_unittest_broken.out")   ]]] {{{ -->
     <pre class='text medium'>
-    $ python -m unittest test_port2_broken
+    $ python -m unittest test_port2_unittest_broken
     F..
     ============================================================
-    FAIL: test_buy_one_stock (test_port2_broken.PortfolioTest)
+    FAIL: test_buy_one_stock (test_port2_unittest_broken.PortfolioTest)
     ------------------------------------------------------------
     Traceback (most recent call last):
-      File "/Users/ned/prz/test0/test_port2_broken.py", line 14, in test_buy_one_stock
+      File "/Users/ned/prz/test0/test_port2_unittest_broken.py", line 14, in test_buy_one_stock
         assert p.cost() == 17648.0
     AssertionError
 
@@ -970,15 +970,15 @@ OK
 
     <p>So far, all of our tests have passed.  What happens when they fail?</p>
 
-<!--[[[cog include_file("test_port2_broken.out", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port2_unittest_broken.out", px=True) ]]] {{{ -->
 <code lang='text'>
-$ python -m unittest test_port2_broken
+$ python -m unittest test_port2_unittest_broken
 F..
 ============================================================
-FAIL: test_buy_one_stock (test_port2_broken.PortfolioTest)
+FAIL: test_buy_one_stock (test_port2_unittest_broken.PortfolioTest)
 ------------------------------------------------------------
 Traceback (most recent call last):
-  File "/Users/ned/prz/test0/test_port2_broken.py", line 14, in test_buy_one_stock
+  File "/Users/ned/prz/test0/test_port2_unittest_broken.py", line 14, in test_buy_one_stock
     assert p.cost() == 17648.0
 AssertionError
 
@@ -1009,7 +1009,7 @@ FAILED (failures=1)
 <div class="slide">
     <h1>unittest assert helpers</h1>
     <p>self.assertEqual(x, y) instead of assert x == y</p>
-    <!--[[[cog include_file("test_port3.py", start=11, end=14, highlight=[14])   ]]] {{{ -->
+    <!--[[[cog include_file("test_port3_unittest.py", start=11, end=14, highlight=[14])   ]]] {{{ -->
     <pre class='python medium'>
     def test_buy_one_stock(self):
         p = Portfolio()
@@ -1017,15 +1017,15 @@ FAILED (failures=1)
         self.assertEqual(p.cost(), 17648.0)
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port3_broken.out", highlight=[9])   ]]] {{{ -->
+    <!--[[[cog include_file("test_port3_unittest_broken.out", highlight=[9])   ]]] {{{ -->
     <pre class='text medium'>
-    $ python -m unittest test_port3_broken
+    $ python -m unittest test_port3_unittest_broken
     F..
     ============================================================
-    FAIL: test_buy_one_stock (test_port3_broken.PortfolioTest)
+    FAIL: test_buy_one_stock (test_port3_unittest_broken.PortfolioTest)
     ------------------------------------------------------------
     Traceback (most recent call last):
-      File "/Users/ned/prz/test0/test_port3_broken.py", line 14, in test_buy_one_stock
+      File "/Users/ned/prz/test0/test_port3_unittest_broken.py", line 14, in test_buy_one_stock
         self.assertEqual(p.cost(), 17648.0)
     AssertionError: 17600.0 != 17648.0
 
@@ -1043,7 +1043,7 @@ FAILED (failures=1)
     is that it provides you with specialized assertion methods.  Here we
     rewrite our assertion using one of those methods:</p>
 
-<!--[[[cog include_file("test_port3.py", px=True, start=11, end=14) ]]] {{{ -->
+<!--[[[cog include_file("test_port3_unittest.py", px=True, start=11, end=14) ]]] {{{ -->
 <code lang='python'>
 def test_buy_one_stock(self):
     p = Portfolio()
@@ -1122,7 +1122,7 @@ def test_buy_one_stock(self):
 
 <div class="slide">
     <h1>Pro tip: your own base class</h1>
-    <!--[[[cog include_file("test_port3b.py", start=6)      ]]] {{{ -->
+    <!--[[[cog include_file("test_port3b_unittest.py", start=6)      ]]] {{{ -->
     <pre class='python medium'>
     class PortfolioTestCase(unittest.TestCase):
         """Base class for all Portfolio tests."""
@@ -1162,7 +1162,7 @@ def test_buy_one_stock(self):
     test helpers.  Here we've defined an assertCostEqual method that is
     specialized for our portfolio testing:</p>
 
-<!--[[[cog include_file("test_port3b.py", px=True, start=6) ]]] {{{ -->
+<!--[[[cog include_file("test_port3b_unittest.py", px=True, start=6) ]]] {{{ -->
 <code lang='python'>
 class PortfolioTestCase(unittest.TestCase):
     """Base class for all Portfolio tests."""
@@ -1201,15 +1201,15 @@ class PortfolioTest(PortfolioTestCase):
 <div class="slide">
     <h1>Third possible outcome: E</h1>
     <p>Test raises an exception</p>
-    <!--[[[cog include_file("test_port3_broken2.out", highlight=[2,8,9])   ]]] {{{ -->
+    <!--[[[cog include_file("test_port3_unittest_broken2.out", highlight=[2,8,9])   ]]] {{{ -->
     <pre class='text medium'>
-    $ python -m unittest test_port3_broken2
+    $ python -m unittest test_port3_unittest_broken2
     E..
     ============================================================
-    ERROR: test_buy_one_stock (test_port3_broken2.PortfolioTest)
+    ERROR: test_buy_one_stock (test_port3_unittest_broken2.PortfolioTest)
     ------------------------------------------------------------
     Traceback (most recent call last):
-      File "/Users/ned/prz/test0/test_port3_broken2.py", line 13, in test_buy_one_stock
+      File "/Users/ned/prz/test0/test_port3_unittest_broken2.py", line 13, in test_buy_one_stock
         p.buyXX("IBM", 100, 176.48)
     AttributeError: 'Portfolio' object has no attribute 'buyXX'
 
@@ -1231,15 +1231,15 @@ class PortfolioTest(PortfolioTestCase):
     what you intended.  This condition is marked with an "E", and the error
     stacktrace is displayed:</p>
 
-<!--[[[cog include_file("test_port3_broken2.out", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port3_unittest_broken2.out", px=True) ]]] {{{ -->
 <code lang='text'>
-$ python -m unittest test_port3_broken2
+$ python -m unittest test_port3_unittest_broken2
 E..
 ============================================================
-ERROR: test_buy_one_stock (test_port3_broken2.PortfolioTest)
+ERROR: test_buy_one_stock (test_port3_unittest_broken2.PortfolioTest)
 ------------------------------------------------------------
 Traceback (most recent call last):
-  File "/Users/ned/prz/test0/test_port3_broken2.py", line 13, in test_buy_one_stock
+  File "/Users/ned/prz/test0/test_port3_unittest_broken2.py", line 13, in test_buy_one_stock
     p.buyXX("IBM", 100, 176.48)
 AttributeError: 'Portfolio' object has no attribute 'buyXX'
 
@@ -1287,22 +1287,22 @@ FAILED (errors=1)
 
 <div class="slide">
     <h1>Can't call the function</h1>
-    <!--[[[cog include_file("test_port4_broken.py", start=22, end=24)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port4_unittest_broken.py", start=22, end=24)   ]]] {{{ -->
     <pre class='python medium'>
     def test_bad_input(self):
         p = Portfolio()
         p.buy("IBM")
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port4_broken.out")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port4_unittest_broken.out")   ]]] {{{ -->
     <pre class='text medium'>
-    $ python -m unittest test_port4_broken
+    $ python -m unittest test_port4_unittest_broken
     E...
     ============================================================
-    ERROR: test_bad_input (test_port4_broken.PortfolioTest)
+    ERROR: test_bad_input (test_port4_unittest_broken.PortfolioTest)
     ------------------------------------------------------------
     Traceback (most recent call last):
-      File "/Users/ned/prz/test0/test_port4_broken.py", line 24, in test_bad_input
+      File "/Users/ned/prz/test0/test_port4_unittest_broken.py", line 24, in test_bad_input
         p.buy("IBM")
     TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
@@ -1319,7 +1319,7 @@ FAILED (errors=1)
     <p>Here we try to write an automated test of an error case: calling a
     method with too few arguments:</p>
 
-<!--[[[cog include_file("test_port4_broken.py", start=22, end=24, px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port4_unittest_broken.py", start=22, end=24, px=True) ]]] {{{ -->
 <code lang='python'>
 def test_bad_input(self):
     p = Portfolio()
@@ -1331,15 +1331,15 @@ def test_bad_input(self):
     arguments, of course it raises TypeError, and there's nothing to catch the
     exception, so the test ends with an Error status:</p>
 
-<!--[[[cog include_file("test_port4_broken.out", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port4_unittest_broken.out", px=True) ]]] {{{ -->
 <code lang='text'>
-$ python -m unittest test_port4_broken
+$ python -m unittest test_port4_unittest_broken
 E...
 ============================================================
-ERROR: test_bad_input (test_port4_broken.PortfolioTest)
+ERROR: test_bad_input (test_port4_unittest_broken.PortfolioTest)
 ------------------------------------------------------------
 Traceback (most recent call last):
-  File "/Users/ned/prz/test0/test_port4_broken.py", line 24, in test_bad_input
+  File "/Users/ned/prz/test0/test_port4_unittest_broken.py", line 24, in test_bad_input
     p.buy("IBM")
 TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
@@ -1356,7 +1356,7 @@ FAILED (errors=1)
 
 <div class="slide">
     <h1>assertRaises</h1>
-    <!--[[[cog include_file("test_port4.py", start=22, end=25, highlight=[24,25])   ]]] {{{ -->
+    <!--[[[cog include_file("test_port4_unittest.py", start=22, end=25, highlight=[24,25])   ]]] {{{ -->
     <pre class='python medium'>
     def test_bad_input(self):
         p = Portfolio()
@@ -1364,9 +1364,9 @@ FAILED (errors=1)
             p.buy("IBM")
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port4.out")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port4_unittest.out")   ]]] {{{ -->
     <pre class='text medium'>
-    $ python -m unittest test_port4
+    $ python -m unittest test_port4_unittest
     ....
     ------------------------------------------------------------
     Ran 4 tests in 0.001s
@@ -1381,7 +1381,7 @@ FAILED (errors=1)
     <p>To properly handle the error-raising function call, we use a method
     called assertRaises:</p>
 
-<!--[[[cog include_file("test_port4.py", start=22, end=25, px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port4_unittest.py", start=22, end=25, px=True) ]]] {{{ -->
 <code lang='python'>
 def test_bad_input(self):
     p = Portfolio()
@@ -1394,9 +1394,9 @@ def test_bad_input(self):
     raise an exception.  It's used as a context manager with a "with" statement
     so that it can handle the exception when it is raised:</p>
 
-<!--[[[cog include_file("test_port4.out", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port4_unittest.out", px=True) ]]] {{{ -->
 <code lang='text'>
-$ python -m unittest test_port4
+$ python -m unittest test_port4_unittest
 ....
 ------------------------------------------------------------
 Ran 4 tests in 0.001s
@@ -1459,7 +1459,7 @@ def sell(self, name, shares):
 
 <div class="slide" data-layout="clean">
     <h1>Testing sell()</h1>
-    <!--[[[cog include_file("test_port5.py", start=36)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port5_unittest.py", start=36)   ]]] {{{ -->
     <pre class='python medium'>
     class PortfolioSellTest(PortfolioTestCase):
         def test_sell(self):
@@ -1495,7 +1495,7 @@ def sell(self, name, shares):
     we need to create a portfolio with some stocks in it so that we have
     something to sell:</p>
 
-<!--[[[cog include_file("test_port5.py", start=36, px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port5_unittest.py", start=36, px=True) ]]] {{{ -->
 <code lang='python'>
 class PortfolioSellTest(PortfolioTestCase):
     def test_sell(self):
@@ -1532,7 +1532,7 @@ class PortfolioSellTest(PortfolioTestCase):
 
 <div class="slide">
     <h1>Setting up a test</h1>
-    <!--[[[cog include_file("test_port6.py", start=36)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port6_unittest.py", start=36)   ]]] {{{ -->
     <pre class='python medium'>
     class PortfolioSellTest(PortfolioTestCase):
         # Invoked before each test method
@@ -1564,7 +1564,7 @@ class PortfolioSellTest(PortfolioTestCase):
     test method.  Because your test class is a class, you have a self object
     that you can create attributes on:</p>
 
-<!--[[[cog include_file("test_port6.py", start=36, px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port6_unittest.py", start=36, px=True) ]]] {{{ -->
 <code lang='python'>
 class PortfolioSellTest(PortfolioTestCase):
     # Invoked before each test method

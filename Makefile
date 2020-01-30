@@ -3,11 +3,11 @@
 SAMPLES = \
 	portfolio1.py portfolio2.py portfolio3.py \
 	porttest1.py porttest2.py porttest3.py porttest3_broken.py \
-	test_port1.py test_port2.py test_port2_broken.py \
-	test_port3.py test_port3_broken.py test_port3_broken2.py \
-	test_port3b.py \
-	test_port4.py test_port4_broken.py test_port5.py \
-	test_port6.py test_port7.py test_port8.py test_port9.py \
+	test_port1_unittest.py test_port2_unittest.py test_port2_unittest_broken.py \
+	test_port3_unittest.py test_port3_unittest_broken.py test_port3_unittest_broken2.py \
+	test_port3b_unittest.py \
+	test_port4_unittest.py test_port4_unittest_broken.py test_port5_unittest.py \
+	test_port6_unittest.py test_port7_unittest.py test_port8_unittest.py test_port9_unittest.py \
 	test_port1_pytest.py \
 	test_port2_pytest.py test_port2_pytest_broken.py \
 	test_port3_pytest_broken2.py \
@@ -18,13 +18,13 @@ SAMPLES = \
 PY_OUT = porttest1.out porttest2.out porttest3.out porttest3_broken.out
 
 UNIT_OUT = \
-	test_port1.out \
-	test_port2.out test_port2_broken.out \
-	test_port3.out test_port3_broken.out test_port3_broken2.out \
-	test_port4.out test_port4_broken.out \
-	test_port5.out \
-	test_port6.out \
-	test_port9.out
+	test_port1_unittest.out \
+	test_port2_unittest.out test_port2_unittest_broken.out \
+	test_port3_unittest.out test_port3_unittest_broken.out test_port3_unittest_broken2.out \
+	test_port4_unittest.out test_port4_unittest_broken.out \
+	test_port5_unittest.out \
+	test_port6_unittest.out \
+	test_port9_unittest.out
 
 PYTEST_OUT = \
 	test_port1_pytest.out \
@@ -34,7 +34,7 @@ PYTEST_OUT = \
 	test_port5_pytest.out \
 	test_port6_pytest.out
 
-COVERAGE_OUT = test_port7.out test_port8.out
+COVERAGE_OUT = test_port7_unittest.out test_port8_unittest.out
 
 OUTPUT = $(PY_OUT) $(UNIT_OUT) $(COVERAGE_OUT) $(PYTEST_OUT)
 
@@ -76,7 +76,7 @@ $(UNIT_OUT): *.py
 	@echo "$$ python -m unittest $*" > $@
 	-python -m unittest $* >> $@ 2>&1
 
-$(COVERAGE_OUT): test_port7.py test_port8.py portfolio3.py
+$(COVERAGE_OUT): test_port7_unittest.py test_port8_unittest.py portfolio3.py
 	@echo "$$ coverage run -m unittest $*" > $@
 	coverage run -m unittest $* >> $@ 2>&1
 	@echo "$$ coverage report -m" >> $@
