@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!-- vim: set foldmethod=marker foldlevel=0 :-->
+<!DOCTYPE html> <!-- vim: set foldmethod=marker :-->
 <html>
 <!-- *** Head stuff {{{ -->
 <!--[[[cog
@@ -667,6 +667,7 @@ AssertionError
 </div><!-- }}} -->
 
 <!-- }}} -->
+
 <!-- *** Using py.test {{{ -->
 
 <div class="slide section" data-layout="clean">
@@ -1217,7 +1218,6 @@ def sell(self, name, shares):
 </div><!-- }}} -->
 
 <div class="slide" data-layout="clean">
-    <h1>Testing sell()</h1>
     <!--[[[cog include_file("test_port5_pytest.py", start_from="test_sell")   ]]] {{{ -->
     <pre class='python medium'>
     def test_sell():
@@ -1226,21 +1226,21 @@ def sell(self, name, shares):
         p.buy("DELL", 100, 17.0)
         p.buy("ORCL", 100, 34.0)
         p.sell("MSFT", 50)
-        assert_cost_equal(p, 6450)
+        assert p.cost() == 6450
 
     def test_not_enough():
         p = Portfolio()                 # Didn't I just do this?
-        p.buy("MSFT", 100, 27.0)
-        p.buy("DELL", 100, 17.0)
-        p.buy("ORCL", 100, 34.0)
+        p.buy("MSFT", 100, 27.0)        #  |
+        p.buy("DELL", 100, 17.0)        #  |
+        p.buy("ORCL", 100, 34.0)        #  /
         with pytest.raises(ValueError):
             p.sell("MSFT", 200)
 
     def test_dont_own_it():
         p = Portfolio()                 # What, again!?!?
-        p.buy("MSFT", 100, 27.0)
-        p.buy("DELL", 100, 17.0)
-        p.buy("ORCL", 100, 34.0)
+        p.buy("MSFT", 100, 27.0)        #  |
+        p.buy("DELL", 100, 17.0)        #  |
+        p.buy("ORCL", 100, 34.0)        #  /
         with pytest.raises(ValueError):
             p.sell("IBM", 1)
     </pre>
@@ -1261,21 +1261,21 @@ def test_sell():
     p.buy("DELL", 100, 17.0)
     p.buy("ORCL", 100, 34.0)
     p.sell("MSFT", 50)
-    assert_cost_equal(p, 6450)
+    assert p.cost() == 6450
 
 def test_not_enough():
     p = Portfolio()                 # Didn't I just do this?
-    p.buy("MSFT", 100, 27.0)
-    p.buy("DELL", 100, 17.0)
-    p.buy("ORCL", 100, 34.0)
+    p.buy("MSFT", 100, 27.0)        #  |
+    p.buy("DELL", 100, 17.0)        #  |
+    p.buy("ORCL", 100, 34.0)        #  /
     with pytest.raises(ValueError):
         p.sell("MSFT", 200)
 
 def test_dont_own_it():
     p = Portfolio()                 # What, again!?!?
-    p.buy("MSFT", 100, 27.0)
-    p.buy("DELL", 100, 17.0)
-    p.buy("ORCL", 100, 34.0)
+    p.buy("MSFT", 100, 27.0)        #  |
+    p.buy("DELL", 100, 17.0)        #  |
+    p.buy("ORCL", 100, 34.0)        #  /
     with pytest.raises(ValueError):
         p.sell("IBM", 1)
 </code>
@@ -1288,7 +1288,55 @@ def test_dont_own_it():
 
 
 <div class="slide">
-    <h1>Setting up a test</h1>
+    <h1>Refactor using functions</h1>
+
+    <!--[[[cog include_file("test_port5b_pytest.py", start_from="def simple_")   ]]] {{{ -->
+    <pre class='python medium'>
+    def simple_portfolio():
+        p = Portfolio()
+        p.buy("MSFT", 100, 27.0)
+        p.buy("DELL", 100, 17.0)
+        p.buy("ORCL", 100, 34.0)
+        return p
+
+    def test_sell():
+        p = simple_portfolio()
+        p.sell("MSFT", 50)
+        assert p.cost() == 6450
+
+    def test_not_enough():
+        p = simple_portfolio()
+        with pytest.raises(ValueError):
+            p.sell("MSFT", 200)
+
+    def test_dont_own_it():
+        p = simple_portfolio()
+        with pytest.raises(ValueError):
+            p.sell("IBM", 1)
+    </pre>
+    <!--[[[end]]] }}} -->
+</div>
+
+<div class="slide">
+    <h1>Arrange --- Act --- Assert</h1>
+
+    <ul>
+        <li>Three distinct phases</li>
+        <li>Keep them separate</li>
+    </ul>
+
+    <!--[[[cog include_file("test_port5b_pytest.py", start_from="test_sell", end_at="assert")   ]]] {{{ -->
+    <pre class='python medium'>
+    def test_sell():
+        p = simple_portfolio()
+        p.sell("MSFT", 50)
+        assert p.cost() == 6450
+    </pre>
+    <!--[[[end]]] }}} -->
+</div>
+
+<div class="slide">
+    <h1>Fixtures</h1>
     <!--[[[cog include_file("test_port6_pytest.py", start_from="fixture")   ]]] {{{ -->
     <pre class='python medium'>
     @pytest.fixture()
@@ -1301,7 +1349,7 @@ def test_dont_own_it():
 
     def test_sell(simple_portfolio):
         simple_portfolio.sell("MSFT", 50)
-        assert_cost_equal(simple_portfolio, 6450)
+        assert simple_portfolio.cost() == 6450
 
     def test_not_enough(simple_portfolio):
         with pytest.raises(ValueError):
@@ -1336,7 +1384,7 @@ def simple_portfolio():
 
 def test_sell(simple_portfolio):
     simple_portfolio.sell("MSFT", 50)
-    assert_cost_equal(simple_portfolio, 6450)
+    assert simple_portfolio.cost() == 6450
 
 def test_not_enough(simple_portfolio):
     with pytest.raises(ValueError):
@@ -1364,7 +1412,6 @@ def test_dont_own_it(simple_portfolio):
     <h1>Under the hood</h1>
     <!--[[[cog
     include_code("""\
-        [ introspection of argument names ]
         try:
             # Call the fixtures
             simple_portfolio_value = simple_portfolio()
@@ -1378,10 +1425,9 @@ def test_dont_own_it(simple_portfolio):
                 [record failure]
             else:
                 [record success]
-    """, lang="python", hilite=[3, 9])
+    """, lang="python", hilite=[2, 8])
     ]]]-->
-    <pre class='python' data-hilite='|3|9|'>
-    [ introspection of argument names ]
+    <pre class='python' data-hilite='|2|8|'>
     try:
         # Call the fixtures
         simple_portfolio_value = simple_portfolio()
@@ -1414,13 +1460,91 @@ def test_dont_own_it(simple_portfolio):
 
 </div><!-- }}} -->
 
+
+<div class="slide">
+    <h1>Fixture cleanup</h1>
+    <!--[[[cog
+    include_code("""\
+        @pytest.fixture
+        def made_thing():
+            thing = make_a_thing()
+            yield thing
+            thing.clean_up()
+
+        def test_one(made_thing):
+            ...
+
+        def test_two(made_thing):
+            ...
+
+        def test_three(made_thing):
+            ...
+    """, lang="python")
+    ]]] {{{ -->
+    <pre class='python'>
+    @pytest.fixture
+    def made_thing():
+        thing = make_a_thing()
+        yield thing
+        thing.clean_up()
+
+    def test_one(made_thing):
+        ...
+
+    def test_two(made_thing):
+        ...
+
+    def test_three(made_thing):
+        ...
+    </pre>
+    <!--[[[end]]] }}} -->
+</div>
+
+<div class="slide">
+    <h1>Fixture scope</h1>
+    <!--[[[cog
+    include_code("""\
+        @pytest.fixture(scope="session")
+        def expensive_thing():
+            thing = very_expensive_setup()
+            yield thing
+            thing.clean_up()
+
+        def test_one(expensive_thing):
+            ...
+
+        def test_two(expensive_thing):
+            ...
+
+        def test_three(expensive_thing):
+            ...
+    """, lang="python")
+    ]]]-->
+    <pre class='python'>
+    @pytest.fixture(scope="session")
+    def expensive_thing():
+        thing = very_expensive_setup()
+        yield thing
+        thing.clean_up()
+
+    def test_one(expensive_thing):
+        ...
+
+    def test_two(expensive_thing):
+        ...
+
+    def test_three(expensive_thing):
+        ...
+    </pre>
+    <!--[[[end]]]-->
+</div>
+
 <div class="slide">
     <h1>Fixtures</h1>
     <ul>
         <li>Establish context</li>
         <li>Common pre- or post- work</li>
         <li>Isolation, even with failures</li>
-        <li>unittest: setUp and addCleanup</li>
     </ul>
 </div>
 
@@ -1657,10 +1781,10 @@ def test_dont_own_it(simple_portfolio):
     &gt;&gt;&gt; p.buy("HPQ", 100, 30.0)
 
     &gt;&gt;&gt; p.current_prices()
-    {'HPQ': 21.43, 'IBM': 137.69}
+    {'HPQ': 21.53, 'IBM': 136.77}
 
     &gt;&gt;&gt; p.value()
-    15912.0
+    15830.000000000002
     </pre>
     <!--[[[end]]] }}}-->
 </div>

@@ -1,4 +1,4 @@
-# test_port6_pytest.py
+# test_port5_pytest.py
 
 import pytest
 
@@ -24,8 +24,6 @@ def test_bad_input():
     with pytest.raises(TypeError):
         p.buy("IBM")
 
-
-@pytest.fixture()
 def simple_portfolio():
     p = Portfolio()
     p.buy("MSFT", 100, 27.0)
@@ -33,14 +31,17 @@ def simple_portfolio():
     p.buy("ORCL", 100, 34.0)
     return p
 
-def test_sell(simple_portfolio):
-    simple_portfolio.sell("MSFT", 50)
-    assert simple_portfolio.cost() == 6450
+def test_sell():
+    p = simple_portfolio()
+    p.sell("MSFT", 50)
+    assert p.cost() == 6450
 
-def test_not_enough(simple_portfolio):
+def test_not_enough():
+    p = simple_portfolio()
     with pytest.raises(ValueError):
-        simple_portfolio.sell("MSFT", 200)
+        p.sell("MSFT", 200)
 
-def test_dont_own_it(simple_portfolio):
+def test_dont_own_it():
+    p = simple_portfolio()
     with pytest.raises(ValueError):
-        simple_portfolio.sell("IBM", 1)
+        p.sell("IBM", 1)
