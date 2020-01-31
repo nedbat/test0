@@ -86,6 +86,9 @@ $(PYTEST_OUT): *.py
 	@echo "$$ pytest -q $*.py" > $@
 	-COLUMNS=68 pytest -q $*.py >> $@ 2>&1
 
+develop: slides
+	watchmedo shell-command -W -c "make slides"
+
 clean:
 	rm -f $(OUTPUT)
 	rm -f $(SAMPLE_ZIP) $(PX)
