@@ -54,6 +54,27 @@ include_file_default(classes="medium")
             color: #66d;
             background-color: none; width: 0; height: 0; top: 0; right: 0;
         }
+
+        .abscontainer {
+            position: relative;
+            margin: -1em -5%;
+        }
+        .absleft {
+            position: absolute;
+            top: 0;
+            left: 5%;
+            width: 45%;
+            padding-right: 5%;
+            box-sizing: border-box;
+        }
+        .absright {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            padding-right: 5%;
+            box-sizing: border-box;
+        }
     </style>
 
 </head>
@@ -1463,80 +1484,100 @@ def test_dont_own_it(simple_portfolio):
 
 <div class="slide">
     <h1>Fixture cleanup</h1>
-    <!--[[[cog
-    include_code("""\
-        @pytest.fixture
-        def made_thing():
-            thing = make_a_thing()
-            yield thing
-            thing.clean_up()
-
-        def test_one(made_thing):
-            ...
-
-        def test_two(made_thing):
-            ...
-
-        def test_three(made_thing):
-            ...
-    """, lang="python")
-    ]]] {{{ -->
+    <div class='abscontainer'>
+    <div class='absleft'>
     <pre class='python'>
     @pytest.fixture
-    def made_thing():
-        thing = make_a_thing()
+    def a_thing():
+        thing = make_thing()
         yield thing
         thing.clean_up()
 
-    def test_one(made_thing):
+    def test_1(a_thing):
         ...
 
-    def test_two(made_thing):
+    def test_2(a_thing):
         ...
 
-    def test_three(made_thing):
+    def test_3(a_thing):
         ...
     </pre>
-    <!--[[[end]]] }}} -->
+    </div>
+
+    <div class='incremental absright'>
+    <pre class='python'>
+    thing1 = make_thing()
+    test_1(thing1)
+    thing1.clean_up()
+
+    thing2 = make_thing()
+    test_2(thing2)
+    thing2.clean_up()
+
+    thing3 = make_thing()
+    test_3(thing3)
+    thing3.clean_up()
+    </pre>
+    </div>
+
+    <div class='incremental absright'>
+    <pre class='python'>
+    thing1 = make_thing()
+    try:
+        test_1(thing1)
+    finally:
+        thing1.clean_up()
+
+    thing2 = make_thing()
+    try:
+        test_2(thing2)
+    finally:
+        thing2.clean_up()
+
+    thing3 = make_thing()
+    try:
+        test_3(thing3)
+    finally:
+        thing3.clean_up()
+    </pre>
+    </div>
+    </div>
 </div>
 
 <div class="slide">
     <h1>Fixture scope</h1>
-    <!--[[[cog
-    include_code("""\
-        @pytest.fixture(scope="session")
-        def expensive_thing():
-            thing = very_expensive_setup()
-            yield thing
-            thing.clean_up()
-
-        def test_one(expensive_thing):
-            ...
-
-        def test_two(expensive_thing):
-            ...
-
-        def test_three(expensive_thing):
-            ...
-    """, lang="python")
-    ]]]-->
+    <div class='abscontainer'>
+    <div class='absleft'>
     <pre class='python'>
-    @pytest.fixture(scope="session")
-    def expensive_thing():
-        thing = very_expensive_setup()
+    @pytest.fixture(
+        scope="session"
+    )
+    def costly_thing():
+        thing = make_costly()
         yield thing
         thing.clean_up()
 
-    def test_one(expensive_thing):
+    def test_1(costly_thing):
         ...
 
-    def test_two(expensive_thing):
+    def test_2(costly_thing):
         ...
 
-    def test_three(expensive_thing):
+    def test_3(costly_thing):
         ...
     </pre>
-    <!--[[[end]]]-->
+    </div>
+
+    <div class='absright'>
+    <pre class='python'>
+    thing = make_costly()
+    test1(thing)
+    test2(thing)
+    test3(thing)
+    thing.clean_up()
+    </pre>
+    </div>
+    </div>
 </div>
 
 <div class="slide">
