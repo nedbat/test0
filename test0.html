@@ -1959,9 +1959,9 @@ def test_value(fake_prices_portfolio):
     Name                   Stmts   Miss  Cover   Missing
     ----------------------------------------------------
     portfolio3.py             34      6    82%   53-58
-    test_port7_pytest.py      40      0   100%
+    test_port7_pytest.py      42      0   100%
     ----------------------------------------------------
-    TOTAL                     74      6    92%
+    TOTAL                     76      6    92%
     </pre>
     <!--[[[end]]] }}}-->
     <!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="return", number=True)   ]]] {{{ -->
@@ -2070,9 +2070,9 @@ def test_value(simple_portfolio, fake_urllib_request):
     Name                   Stmts   Miss  Cover   Missing
     ----------------------------------------------------
     portfolio3.py             34      0   100%
-    test_port8_pytest.py      45      0   100%
+    test_port8_pytest.py      47      0   100%
     ----------------------------------------------------
-    TOTAL                     79      0   100%
+    TOTAL                     81      0   100%
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -2142,62 +2142,44 @@ def test_value(simple_portfolio, fake_urllib_request):
 
 <div class="slide">
     <h1>Mocking with no setup</h1>
-    <!--[[[cog include_file("test_port9_unittest.py", section="mock")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port9_pytest.py", start_from="test_value")   ]]] {{{ -->
     <pre class='python medium'>
-    class PortfolioValueTest(unittest.TestCase):
-        def setUp(self):
-            self.p = Portfolio()
-            self.p.buy("IBM", 100, 120.0)
-            self.p.buy("HPQ", 100, 30.0)
+    def test_value(simple_portfolio, mocker):
+        urlopen = mocker.patch(
+            "portfolio3.urllib.request.urlopen",
+            side_effect=[BytesIO(b'\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n')],
+        )
+        assert simple_portfolio.value() == 22300
 
-        def test_value(self):
-            # Create a mock urllib.urlopen.
-            with mock.patch('portfolio3.urllib.request.urlopen') as urlopen:
-
-                # When called, it will return this value:
-                fake_api = BytesIO(b'\nIBM,,,140\nHPQ,,,32\n')
-                urlopen.return_value = fake_api
-
-                # Run the test!
-                self.assertEqual(self.p.value(), 17200)
-
-                # We can ask the mock what its arguments were.
-                self.assertEqual(len(urlopen.call_args_list), 1)
-                called_url = urlopen.call_args_list[0][0][0]
-                self.assertIn("api.worldtradingdata.com/api/v1/stock", called_url)
-                self.assertIn("symbol=HPQ,IBM", called_url)
+        assert len(urlopen.call_args_list) == 1
+        opened_url = urlopen.call_args_list[0][0][0]
+        assert "api.worldtradingdata.com/api/v1/stock" in opened_url
+        assert "symbol=DELL,MSFT,ORCL" in opened_url
     </pre>
     <!--[[[end]]] }}}-->
+    <ul>
+        <li>No fixture needed</li>
+        <li>mock from pytest-mock</li>
+    </ul>
 </div>
 
 <div class="text"><!-- {{{ -->
 
     <p>Here's a new test of our current_prices code:</p>
 
-<!--[[[cog include_file("test_port9_unittest.py", section="mock", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port9_pytest.py", start_from="test_value", px=True) ]]] {{{ -->
 <code lang='python'>
-class PortfolioValueTest(unittest.TestCase):
-    def setUp(self):
-        self.p = Portfolio()
-        self.p.buy("IBM", 100, 120.0)
-        self.p.buy("HPQ", 100, 30.0)
+def test_value(simple_portfolio, mocker):
+    urlopen = mocker.patch(
+        "portfolio3.urllib.request.urlopen",
+        side_effect=[BytesIO(b'\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n')],
+    )
+    assert simple_portfolio.value() == 22300
 
-    def test_value(self):
-        # Create a mock urllib.urlopen.
-        with mock.patch('portfolio3.urllib.request.urlopen') as urlopen:
-
-            # When called, it will return this value:
-            fake_api = BytesIO(b'\nIBM,,,140\nHPQ,,,32\n')
-            urlopen.return_value = fake_api
-
-            # Run the test!
-            self.assertEqual(self.p.value(), 17200)
-
-            # We can ask the mock what its arguments were.
-            self.assertEqual(len(urlopen.call_args_list), 1)
-            called_url = urlopen.call_args_list[0][0][0]
-            self.assertIn("api.worldtradingdata.com/api/v1/stock", called_url)
-            self.assertIn("symbol=HPQ,IBM", called_url)
+    assert len(urlopen.call_args_list) == 1
+    opened_url = urlopen.call_args_list[0][0][0]
+    assert "api.worldtradingdata.com/api/v1/stock" in opened_url
+    assert "symbol=DELL,MSFT,ORCL" in opened_url
 </code>
 <!--[[[end]]] }}}-->
 
