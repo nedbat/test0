@@ -1964,8 +1964,8 @@ def test_value(fake_prices_portfolio):
     TOTAL                     74      6    92%
     </pre>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="return")   ]]] {{{ -->
-    <pre class='python medium'>
+    <!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="return", number=True)   ]]] {{{ -->
+    <pre class='python medium' data-numberfrom='51'>
     def current_prices(self):
         """Return a dict mapping names to current prices."""
         url = "https://api.worldtradingdata.com/api/v1/stock?symbol="

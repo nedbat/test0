@@ -43,6 +43,7 @@ def include_file(
         show_label=None,
         px=False,
         classes=None,
+        number=False,
     ):
     """Include a text file.
 
@@ -65,6 +66,8 @@ def include_file(
     If `px` is true, the result is meant for text rather than slides.
 
     `classes` are extra css classes to add to the <pre> tag.
+
+    If `number` is true, then line numbers will be shown.
 
     """
     if fname is None:
@@ -143,7 +146,8 @@ def include_file(
     if show_label:
         cog.outl("<div>")
         cog.outl("<div class='prelabel'>{}</div>".format(fname))
-    include_code(text, lang=lang, hilite=hilite_nums, px=px, classes=classes)
+    number_from = start if number else 0
+    include_code(text, lang=lang, hilite=hilite_nums, px=px, classes=classes, number_from=number_from)
     if show_label:
         cog.outl("</div>")
 
@@ -155,7 +159,7 @@ def find_nth(lines, start, needle, nth):
     return indexes[nth-1]
 
 
-def include_code(text, lang=None, highlight=None, hilite=None, px=False, classes=""):
+def include_code(text, lang=None, highlight=None, hilite=None, px=False, classes="", number_from=0):
     text = textwrap.dedent(text)
 
     text = "\n".join(l.rstrip() for l in text.splitlines())
@@ -170,10 +174,12 @@ def include_code(text, lang=None, highlight=None, hilite=None, px=False, classes
     class_attr = lang
     if classes:
         class_attr += " " + classes
-    hilite_attr = ""
+    more_attr = ""
     if hilite:
-        hilite_attr = " data-hilite='|{}|'".format("|".join(map(str, hilite)))
-    result.append("<pre class='{}'{}>".format(class_attr, hilite_attr))
+        more_attr += " data-hilite='|{}|'".format("|".join(map(str, hilite)))
+    if number_from:
+        more_attr += " data-numberfrom='{}'".format(number_from)
+    result.append("<pre class='{}'{}>".format(class_attr, more_attr))
     result.append(quote_html(text))
     result.append("</pre>")
     cog.outl("\n".join(result))

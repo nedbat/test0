@@ -89,6 +89,7 @@ $(function() {
     $('pre').each(function (i, e) {
         var $e = $(e);
         var hilite = $e.data("hilite");
+        var numberfrom = $e.data("numberfrom");
         var lines = $e.html().split("\n");
         for (var i = 0; i < lines.length; i++) {
             var line = lines[i];
@@ -101,6 +102,10 @@ $(function() {
                     if (hilite.includes("|"+i+"|")) {
                         line_class += ' hilite';
                     }
+                }
+                if (numberfrom) {
+                    lines[i] = "<span class='lineno'>" + numberfrom + "</span>" + lines[i];
+                    numberfrom += 1;
                 }
                 lines[i] = "<span class='" + line_class + "'>" + lines[i] + "</span>";
             }

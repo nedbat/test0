@@ -138,6 +138,15 @@ img.icon {
     background: #f8fff8;
 }
 
+.slide pre .lineno {
+    font-size: 80%;
+    font-weight: normal;
+    font-style: italic;
+    color: #888;
+    padding-right: .3em;
+    margin-right: .5em;
+}
+
 .slide tt {
     font-family: Consolas, monaco, monospace;
 }
