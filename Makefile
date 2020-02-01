@@ -34,9 +34,11 @@ PYTEST_OUT = \
 	test_port5_pytest.out \
 	test_port6_pytest.out
 
-COVERAGE_OUT = test_port7_unittest.out test_port8_unittest.out
+COVERAGE_UNIT_OUT = test_port7_unittest.out test_port8_unittest.out
 
-OUTPUT = $(PY_OUT) $(UNIT_OUT) $(COVERAGE_OUT) $(PYTEST_OUT)
+COVERAGE_PYTEST_OUT = test_port7_pytest.out
+
+OUTPUT = $(PY_OUT) $(UNIT_OUT) $(COVERAGE_UNIT_OUT) $(PYTEST_OUT) $(COVERAGE_PYTEST_OUT)
 
 SLUG = test0
 
@@ -76,7 +78,7 @@ $(UNIT_OUT): *.py
 	@echo "$$ python -m unittest $*" > $@
 	-python -m unittest $* >> $@ 2>&1
 
-$(COVERAGE_OUT): test_port7_unittest.py test_port8_unittest.py portfolio3.py
+$(COVERAGE_UNIT_OUT): test_port7_unittest.py test_port8_unittest.py portfolio3.py
 	@echo "$$ coverage run -m unittest $*" > $@
 	coverage run -m unittest $* >> $@ 2>&1
 	@echo "$$ coverage report -m" >> $@
@@ -85,6 +87,12 @@ $(COVERAGE_OUT): test_port7_unittest.py test_port8_unittest.py portfolio3.py
 $(PYTEST_OUT): *.py
 	@echo "$$ pytest -q $*.py" > $@
 	-COLUMNS=68 pytest -q $*.py >> $@ 2>&1
+
+$(COVERAGE_PYTEST_OUT): test_port7_pytest.py portfolio3.py
+	@echo "$$ coverage run -m pytest -q $*.py" > $@
+	coverage run --include=portfolio3.py,$*.py -m pytest -q $*.py >> $@ 2>&1
+	@echo "$$ coverage report -m" >> $@
+	coverage report -m >> $@
 
 develop: slides
 	watchmedo shell-command -W -c "make slides"

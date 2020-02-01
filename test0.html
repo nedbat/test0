@@ -1098,7 +1098,7 @@ test_port2_pytest_broken.py:12: AssertionError
     E       TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
     test_port4_pytest_broken.py:22: TypeError
-    1 failed, 3 passed in 0.05s
+    1 failed, 3 passed in 0.04s
     </pre>
     <!--[[[end]]] }}}-->
 </div>
@@ -1133,7 +1133,7 @@ __________________________ test_bad_input __________________________
 E       TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
 test_port4_pytest_broken.py:22: TypeError
-1 failed, 3 passed in 0.05s
+1 failed, 3 passed in 0.04s
 </code>
 <!--[[[end]]] }}}-->
 
@@ -1360,7 +1360,7 @@ def test_dont_own_it():
     <h1>Fixtures</h1>
     <!--[[[cog include_file("test_port6_pytest.py", start_from="fixture")   ]]] {{{ -->
     <pre class='python medium'>
-    @pytest.fixture()
+    @pytest.fixture
     def simple_portfolio():
         p = Portfolio()
         p.buy("MSFT", 100, 27.0)
@@ -1395,7 +1395,7 @@ def test_dont_own_it():
 
 <!--[[[cog include_file("test_port6_pytest.py", start_from="fixture", px=True) ]]] {{{ -->
 <code lang='python'>
-@pytest.fixture()
+@pytest.fixture
 def simple_portfolio():
     p = Portfolio()
     p.buy("MSFT", 100, 27.0)
@@ -1779,9 +1779,9 @@ def test_dont_own_it(simple_portfolio):
 
 </div><!-- }}} -->
 
-<div class="slide" data-layout="clean">
-    <h1>Portfolio: Real-time data!</h1>
-    <!--[[[cog include_file("portfolio3.py", section="value")   ]]] {{{ -->
+<div class="slide">
+    <h1>Portfolio: Real-time data</h1>
+    <!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="return total")   ]]] {{{ -->
     <pre class='python medium'>
     def current_prices(self):
         """Return a dict mapping names to current prices."""
@@ -1801,6 +1801,10 @@ def test_dont_own_it(simple_portfolio):
         return total
     </pre>
     <!--[[[end]]] }}}-->
+</div>
+
+<div class="slide">
+    <h1>Portfolio: Real-time data</h1>
     <!-- ** Interactive session {{{ -->
     <!--[[[cog
     prompt_session("""\
@@ -1822,10 +1826,10 @@ def test_dont_own_it(simple_portfolio):
     &gt;&gt;&gt; p.buy("HPQ", 100, 30.0)
 
     &gt;&gt;&gt; p.current_prices()
-    {'HPQ': 21.53, 'IBM': 136.77}
+    {'HPQ': 21.32, 'IBM': 143.73}
 
     &gt;&gt;&gt; p.value()
-    15830.000000000002
+    16505.0
     </pre>
     <!--[[[end]]] }}}-->
 </div>
@@ -1838,7 +1842,7 @@ def test_dont_own_it(simple_portfolio):
     uses a Yahoo web service to get the current market prices of the stocks
     we hold:</p>
 
-<!--[[[cog include_file("portfolio3.py", section="value", px=True) ]]] {{{ -->
+<!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="return total", px=True) ]]] {{{ -->
 <code lang='python'>
 def current_prices(self):
     """Return a dict mapping names to current prices."""
@@ -1902,23 +1906,17 @@ def value(self):
 
 <div class="slide">
     <h1>Fake implementation of current_prices</h1>
-    <!--[[[cog include_file("test_port7_unittest.py", start=48)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port7_pytest.py", start_from="fixture", start_nth=2)   ]]] {{{ -->
     <pre class='python medium'>
-    # Replace Portfolio.current_prices with a stub implementation.
-    # This avoids the web, but also skips all our current_prices
-    # code.
-    class PortfolioValueTest(unittest.TestCase):
-        def fake_current_prices(self):
-            return {'IBM': 140.0, 'HPQ': 32.0}
+    @pytest.fixture
+    def fake_prices_portfolio(simple_portfolio):
+        def fake_current_prices():
+            return {'DELL': 140.0, 'ORCL': 32.0, 'MSFT': 51.0}
+        simple_portfolio.current_prices = fake_current_prices
+        return simple_portfolio
 
-        def setUp(self):
-            self.p = Portfolio()
-            self.p.buy("IBM", 100, 120.0)
-            self.p.buy("HPQ", 100, 30.0)
-            self.p.current_prices = self.fake_current_prices
-
-        def test_value(self):
-            self.assertEqual(self.p.value(), 17200)
+    def test_value(fake_prices_portfolio):
+        assert fake_prices_portfolio.value() == 22300
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
@@ -1932,23 +1930,17 @@ def value(self):
     In our setUp function, we create a Portfolio, and then we give it a
     new current_prices method that simply returns a fixed value:</p>
 
-<!--[[[cog include_file("test_port7_unittest.py", start=48, px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port7_pytest.py", start_from="fixture", start_nth=2, px=True) ]]] {{{ -->
 <code lang='python'>
-# Replace Portfolio.current_prices with a stub implementation.
-# This avoids the web, but also skips all our current_prices
-# code.
-class PortfolioValueTest(unittest.TestCase):
-    def fake_current_prices(self):
-        return {'IBM': 140.0, 'HPQ': 32.0}
+@pytest.fixture
+def fake_prices_portfolio(simple_portfolio):
+    def fake_current_prices():
+        return {'DELL': 140.0, 'ORCL': 32.0, 'MSFT': 51.0}
+    simple_portfolio.current_prices = fake_current_prices
+    return simple_portfolio
 
-    def setUp(self):
-        self.p = Portfolio()
-        self.p.buy("IBM", 100, 120.0)
-        self.p.buy("HPQ", 100, 30.0)
-        self.p.current_prices = self.fake_current_prices
-
-    def test_value(self):
-        self.assertEqual(self.p.value(), 17200)
+def test_value(fake_prices_portfolio):
+    assert fake_prices_portfolio.value() == 22300
 </code>
 <!--[[[end]]] }}}-->
 
@@ -1960,16 +1952,16 @@ class PortfolioValueTest(unittest.TestCase):
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>But some code isn't tested!</h1>
-    <!--[[[cog include_file("test_port7_unittest.out", start=7, end=13, hilite=["portfolio3"])   ]]] {{{ -->
+    <h1>Bad: un-tested code!</h1>
+    <!--[[[cog include_file("test_port7_pytest.out", start_from="report", hilite=["portfolio3"])   ]]] {{{ -->
     <pre class='text medium' data-hilite='|3|'>
     $ coverage report -m
-    Name                     Stmts   Miss  Cover   Missing
-    ------------------------------------------------------
-    portfolio3.py               34      6    82%   54-59
-    test_port7_unittest.py      44      0   100%
-    ------------------------------------------------------
-    TOTAL                       78      6    92%
+    Name                   Stmts   Miss  Cover   Missing
+    ----------------------------------------------------
+    portfolio3.py             34      6    82%   53-58
+    test_port7_pytest.py      40      0   100%
+    ----------------------------------------------------
+    TOTAL                     74      6    92%
     </pre>
     <!--[[[end]]] }}}-->
     <!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="return")   ]]] {{{ -->
@@ -2406,20 +2398,6 @@ class PortfolioValueTest(unittest.TestCase):
     them all!</p>
 
 </div><!-- }}} -->
-
-
-<!--
-<div class="slide">
-    <h1>Doctest</h1>
-    <ul>
-        <li>Run code snippets in docstrings</li>
-        <li>Parses console sessions to find tests and results.</li>
-        <li>Good for testing code in docs</li>
-        <li>Don't use it for testing product code</li>
-    </ul>
-</div>
-
--->
 
 <!-- }}} -->
 

@@ -48,7 +48,6 @@ class Portfolio:
 
     SUFFIX = "&api_token=C5He7fxdnYvFGH2rJHRV47XRzYVjUxkdFPRaVM9ILMvlsoSAmqbggY3VbPgG&output=csv"
 
-    #(((value)))
     def current_prices(self):
         """Return a dict mapping names to current prices."""
         url = "https://api.worldtradingdata.com/api/v1/stock?symbol="
@@ -65,4 +64,3 @@ class Portfolio:
         for name, shares, _ in self.stocks:
             total += shares * prices[name]
         return total
-    #(((end)))

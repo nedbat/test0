@@ -1,8 +1,8 @@
-# test_port6_pytest.py
+# test_port7_pytest.py
 
 import pytest
 
-from portfolio2 import Portfolio
+from portfolio3 import Portfolio
 
 def test_empty():
     p = Portfolio()
@@ -44,3 +44,14 @@ def test_not_enough(simple_portfolio):
 def test_dont_own_it(simple_portfolio):
     with pytest.raises(ValueError):
         simple_portfolio.sell("IBM", 1)
+
+
+@pytest.fixture
+def fake_prices_portfolio(simple_portfolio):
+    def fake_current_prices():
+        return {'DELL': 140.0, 'ORCL': 32.0, 'MSFT': 51.0}
+    simple_portfolio.current_prices = fake_current_prices
+    return simple_portfolio
+
+def test_value(fake_prices_portfolio):
+    assert fake_prices_portfolio.value() == 22300
