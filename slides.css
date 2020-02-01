@@ -116,10 +116,11 @@ img.icon {
 .slide pre {
     font-family: Consolas, monaco, monospace;
     margin-top: 1em;
-    background: #ddf;
+    background: #e0e0ff;
     padding: .3em .15em;
     line-height: 1.15;
     border-radius: .2em;
+    border: 1px solid #bbb;
 }
 .slide pre .line {
     padding: 0 .2em;
@@ -143,10 +144,12 @@ img.icon {
 
 .slide pre.clear {
     background: none;
+    border: 0;
 }
 
 .slide pre.clear.python {
     background: none;
+    border: 0;
 }
 
 .slide pre.medium, .slide pre.s85 {
@@ -174,11 +177,13 @@ img.icon {
 }
 
 .slide pre.python {
-    background: #cfc;
+    background: #dfd;
+    border-color: #ddd;
 }
 
 .slide pre.python.console {
-    background: #cee;
+    background: #dee;
+    border-color: #ccc;
 }
 
 .slide pre.python.console .meta {
