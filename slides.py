@@ -8,9 +8,12 @@ def tweak_quick_times(line):
     Test times vary: make them more consistent to avoid
     lines changing constantly.
     """
-    m = re.match(r"^Ran \d+ tests in 0.00[01234]s$", line)
+    m = re.search(r"^Ran \d+ tests in 0.00\ds$", line)
     if m:
-        line = re.sub(r"in 0.00[01234]s", "in 0.001s", line)
+        line = re.sub(r"in 0.00\ds", "in 0.001s", line)
+    m = re.search(r"\d passed in 0.0\ds", line)
+    if m:
+        line = re.sub(r"in 0.0\ds", "in 0.01s", line)
     return line
 
 def tweak_object_address(line):
