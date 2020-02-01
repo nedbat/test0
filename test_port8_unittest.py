@@ -1,4 +1,4 @@
-# test_port8.py
+# test_port8_unittest.py
 
 import unittest
 from portfolio3 import Portfolio
