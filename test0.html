@@ -2092,7 +2092,7 @@ def test_value(simple_portfolio, fake_urllib_request):
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>Even better: mock objects</h1>
+    <h1>Mock objects</h1>
     <ul>
         <li>Automatic chameleons</li>
         <li>Act like any object</li>
@@ -2209,15 +2209,23 @@ def test_value(simple_portfolio, mocker):
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>Test doubles</h1>
+    <h1>Test doubles: good</h1>
     <ul>
         <li class="incremental">Powerful: isolates code</li>
         <li class="incremental">Focuses tests</li>
         <li class="incremental">Removes speed bumps and randomness</li>
-        <li class="incremental">BUT: fragile tests!</li>
-        <li class="incremental">Also: "dependency injection"</li>
     </ul>
 </div>
+
+<div class="slide">
+    <h1>Test doubles: bad</h1>
+    <ul>
+        <li class="incremental">Tied to implementation details</li>
+        <li class="incremental">Can be fragile</li>
+        <li class="incremental">Don't overdo it</li>
+    </ul>
+</div>
+
 
 <div class="text"><!-- {{{ -->
 
