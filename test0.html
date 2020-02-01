@@ -1992,32 +1992,23 @@ def test_value(fake_prices_portfolio):
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>Fake urllib.urlopen instead</h1>
-    <!--[[[cog include_file("test_port8_unittest.py", section="fake")   ]]] {{{ -->
+    <h1>Fake urlopen instead</h1>
+    <!--[[[cog include_file("test_port8_pytest.py", start_from="Fake")   ]]] {{{ -->
     <pre class='python medium'>
-    # A simple fake for urllib that implements only one method,
-    # and is only good for one request.  You can make this much
-    # more complex for your own needs.
     class FakeUrllibRequest:
+        # A simple fake for urlopen that is only good for one request.
         def urlopen(self, url):
-            return BytesIO(b'\nIBM,,,140\nHPQ,,,32\n')
+            return BytesIO(b'\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n')
 
-    class PortfolioValueTest(unittest.TestCase):
-        def setUp(self):
-            # Save the real urllib, and install our fake.
-            self.old_urllib_request = portfolio3.urllib.request
-            portfolio3.urllib.request = FakeUrllibRequest()
+    @pytest.fixture
+    def fake_urllib_request():
+        old_urllib_request = portfolio3.urllib.request
+        portfolio3.urllib.request = FakeUrllibRequest()
+        yield
+        portfolio3.urllib.request = old_urllib_request
 
-            self.p = Portfolio()
-            self.p.buy("IBM", 100, 120.0)
-            self.p.buy("HPQ", 100, 30.0)
-
-        def test_value(self):
-            self.assertEqual(self.p.value(), 17200)
-
-        def tearDown(self):
-            # Restore the real urllib.
-            portfolio3.urllib_request = self.old_urllib_request
+    def test_value(simple_portfolio, fake_urllib_request):
+        assert simple_portfolio.value() == 22300
     </pre>
     <!--[[[end]]] }}}-->
 </div>
@@ -2034,31 +2025,22 @@ def test_value(fake_prices_portfolio):
     simply returns a file object that provides the same stream of bytes that
     Yahoo would have returned:</p>
 
-<!--[[[cog include_file("test_port8_unittest.py", section="fake", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port8_pytest.py", start_from="Fake", px=True) ]]] {{{ -->
 <code lang='python'>
-# A simple fake for urllib that implements only one method,
-# and is only good for one request.  You can make this much
-# more complex for your own needs.
 class FakeUrllibRequest:
+    # A simple fake for urlopen that is only good for one request.
     def urlopen(self, url):
-        return BytesIO(b'\nIBM,,,140\nHPQ,,,32\n')
+        return BytesIO(b'\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n')
 
-class PortfolioValueTest(unittest.TestCase):
-    def setUp(self):
-        # Save the real urllib, and install our fake.
-        self.old_urllib_request = portfolio3.urllib.request
-        portfolio3.urllib.request = FakeUrllibRequest()
+@pytest.fixture
+def fake_urllib_request():
+    old_urllib_request = portfolio3.urllib.request
+    portfolio3.urllib.request = FakeUrllibRequest()
+    yield
+    portfolio3.urllib.request = old_urllib_request
 
-        self.p = Portfolio()
-        self.p.buy("IBM", 100, 120.0)
-        self.p.buy("HPQ", 100, 30.0)
-
-    def test_value(self):
-        self.assertEqual(self.p.value(), 17200)
-
-    def tearDown(self):
-        # Restore the real urllib.
-        portfolio3.urllib_request = self.old_urllib_request
+def test_value(simple_portfolio, fake_urllib_request):
+    assert simple_portfolio.value() == 22300
 </code>
 <!--[[[end]]] }}}-->
 
@@ -2082,15 +2064,15 @@ class PortfolioValueTest(unittest.TestCase):
 
 <div class="slide">
     <h1>All of our code is executed</h1>
-    <!--[[[cog include_file("test_port8_unittest.out", start=7, end=13)   ]]] {{{ -->
+    <!--[[[cog include_file("test_port8_pytest.out", start_from="report")   ]]] {{{ -->
     <pre class='text medium'>
     $ coverage report -m
-    Name                     Stmts   Miss  Cover   Missing
-    ------------------------------------------------------
-    portfolio3.py               34      0   100%
-    test_port8_unittest.py      50      0   100%
-    ------------------------------------------------------
-    TOTAL                       84      0   100%
+    Name                   Stmts   Miss  Cover   Missing
+    ----------------------------------------------------
+    portfolio3.py             34      0   100%
+    test_port8_pytest.py      45      0   100%
+    ----------------------------------------------------
+    TOTAL                     79      0   100%
     </pre>
     <!--[[[end]]] }}}-->
     <ul>
