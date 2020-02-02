@@ -61,7 +61,7 @@ CSS_FILES = \
 	slides.css
 SLIDE_SUPPORT = $(JS_FILES) $(CSS_FILES) $(IMAGES)
 
-.PHONY: $(SLIDE_HTML) $(EXTRA_HTML)
+.PHONY: slides $(SLIDE_HTML) $(EXTRA_HTML)
 
 slides: $(SLIDE_HTML) $(EXTRA_HTML)
 
@@ -95,9 +95,11 @@ $(COVERAGE_PYTEST_OUT): test_port7_pytest.py test_port8_pytest.py portfolio3.py
 	@echo "$$ coverage report -m" >> $@
 	coverage report -m >> $@
 
+.PHONY: develop
 develop: slides
 	watchmedo shell-command -W -c "make slides"
 
+.PHONY: clean
 clean:
 	rm -f $(OUTPUT)
 	rm -f $(SAMPLE_ZIP) $(PX)
@@ -106,30 +108,41 @@ clean:
 	rm -f .coverage
 	rm -rf $(PNG_DIR)
 
+.PHONY: sterile
+sterile: clean
+	python -m cogapp -x -r $(SLIDE_HTML)
+
+.PHONY: zip
 zip $(SAMPLE_ZIP): $(SAMPLES)
 	zip $(SAMPLE_ZIP) $(SAMPLES)
 
+.PHONY: tar
 tar $(TARFILE): $(SLIDE_HTML) $(SAMPLES) $(SLIDE_SUPPORT) Makefile
 	tar czvf $(TARFILE) --mode=777 $^
 
 PNG_DIR = png
 
+.PHONY: pngs
 pngs: $(SLIDE_HTML)
-	phantomjs phantom-slippy-to-png.js $(SLIDE_HTML) $(PNG_DIR)/ $(SLUG)_
+	phantomjs phantom-slippy-to-png.js $(SLIDE_HTML) $(PNG_DIR)/
 
 WEBHOME = ~/web/stellated/pages/text
 WEBPRZHOME = $(WEBHOME)/$(SLUG)
+WEBPIXHOME = $(WEBHOME)/$(SLUG)_pix
 
 PX = $(SLUG).px
 
+.PHONY: px
 px $(PX): $(SLIDE_HTML)
 	python slippy_to_px.py $(SLIDE_HTML) $(PX) $(SLUG)
 
+.PHONY: publish
 publish: $(SLIDE_HTML) $(SAMPLE_ZIP) $(PX) pngs
-	cp -f $(PX) $(WEBHOME)
 	rm -rf $(WEBPRZHOME)
-	mkdir -p $(WEBPRZHOME)/slippy/src
-	cp $(PNG_DIR)/*.png $(IMAGES) $(WEBPRZHOME)
+	mkdir -p $(WEBPREZHOME) $(WEBPIXHOME)
+	cp -f $(PX) $(WEBHOME)
+	mkdir -p $(WEBPRZHOME)/slippy/src $(WEBPRZHOME)/img
+	cp $(PNG_DIR)/*.png $(WEBPIXHOME)
 	echo $(SLIDE_SUPPORT) | xargs -n1 -I{} cp {} $(WEBPRZHOME)/{}
 	cp -f $(SLIDE_HTML) $(WEBPRZHOME)
 	cp -f $(SAMPLE_ZIP) $(WEBPRZHOME)

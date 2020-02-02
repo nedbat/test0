@@ -8,8 +8,8 @@ if (phantom.version.major < 2) {
 }
 
 // check usage
-if (system.args.length !== 4) {
-    console.log('Usage: phantom-slippy-to-png.js URL dirname prefix');
+if (system.args.length !== 3) {
+    console.log('Usage: phantom-slippy-to-png.js URL dirname');
     phantom.exit(-1);
 }
 
@@ -17,7 +17,6 @@ if (system.args.length !== 4) {
 delay = 1000;
 viewport = { width: 1024, height: 768 };
 output = system.args[2];
-prefix = system.args[3];
 
 (function init() {
     var i, slides, workers, slidesPerWorker, page;
@@ -95,7 +94,7 @@ function renderer(page, url, currentSlide, slides) {
         }
 
         console.log('Rendering slide '+currentSlide);
-        page.render(output+prefix+"000".substring(currentSlide.toString().length)+currentSlide+'.png');
+        page.render(output+"000".substring(currentSlide.toString().length)+currentSlide+'.png');
         page.evaluate(function () {
             $(document).slippy().nextSlide();
         });
