@@ -41,7 +41,7 @@ COVERAGE_PYTEST_OUT = test_port7_pytest.out test_port8_pytest.out
 
 OUTPUT = $(PY_OUT) $(UNIT_OUT) $(COVERAGE_UNIT_OUT) $(PYTEST_OUT) $(COVERAGE_PYTEST_OUT)
 
-SLUG = test0
+SLUG = test3
 
 SLIDE_HTML = $(SLUG).html
 SAMPLE_ZIP = $(SLUG).zip
