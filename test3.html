@@ -250,8 +250,8 @@ include_file_default(classes="medium")
     <h1>Roadmap</h1>
     <ul>
         <li>Growing tests</li>
-        <li>unittest</li>
-        <li>Mocks</li>
+        <li>pytest</li>
+        <li>Test doubles</li>
     </ul>
 </div>
 
@@ -1196,6 +1196,22 @@ $ pytest -q test_port4_pytest.py
 </div><!-- }}} -->
 
 <div class="slide">
+    <h1>Negative assertions</h1>
+    <ul>
+        <li>TODO</li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<div class="slide section" data-layout="clean">
+    <h1>Fixtures</h1>
+    <h2>More structure</h2>
+</div>
+
+
+<div class="slide">
     <h1>More code:&#xa0; sell()</h1>
     <!--[[[cog include_file("portfolio2.py", start_from="def sell", end_at="You don't")   ]]] {{{ -->
     <pre class='python medium'>
@@ -1602,6 +1618,17 @@ def test_dont_own_it(simple_portfolio):
 </div><!-- }}} -->
 
 <div class="slide">
+    <h1>Parameterized tests</h1>
+    <ul>
+        <li>TODO</li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+
+<div class="slide">
     <h1>Tests are real code!</h1>
     <ul>
         <li>Helper functions, classes, etc.</li>
@@ -1699,9 +1726,9 @@ def test_dont_own_it(simple_portfolio):
 
 <!-- }}} -->
 
-<!-- *** Mocking {{{ -->
+<!-- *** Test doubles {{{ -->
 <div class="slide section" data-layout="clean">
-    <h1>Mocks</h1>
+    <h1>Test doubles</h1>
     <h2>Focusing tests</h2>
 </div>
 
@@ -2266,6 +2293,16 @@ def test_value(simple_portfolio, mocker):
     <p>Testing is a huge topic, there are many paths to take from here.</p>
 
 </div><!-- }}} -->
+
+<div class="slide">
+    <h1>Ideas</h1>
+    <ul>
+        <li>unit vs integration vs system vs end-to-end</li>
+        <li>negative assertions</li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 
 <div class="slide">
     <h1>Tools</h1>
