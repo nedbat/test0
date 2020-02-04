@@ -1,6 +1,6 @@
 # test_port9_pytest.py
 
-from io import BytesIO
+from types import SimpleNamespace
 
 import pytest
 
@@ -50,13 +50,17 @@ def test_dont_own_it(simple_portfolio):
 
 
 def test_value(simple_portfolio, mocker):
-    urlopen = mocker.patch(
-        "portfolio3.urllib.request.urlopen",
-        side_effect=[BytesIO(b'\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n')],
+    req_get = mocker.patch(
+        "portfolio3.requests.get",
+        side_effect=[
+            SimpleNamespace(
+                text='\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n'
+            ),
+        ],
     )
     assert simple_portfolio.value() == 22300
 
-    assert len(urlopen.call_args_list) == 1
-    opened_url = urlopen.call_args_list[0][0][0]
+    assert len(req_get.call_args_list) == 1
+    opened_url = req_get.call_args_list[0][0][0]
     assert "api.worldtradingdata.com/api/v1/stock" in opened_url
     assert "symbol=DELL,MSFT,ORCL" in opened_url

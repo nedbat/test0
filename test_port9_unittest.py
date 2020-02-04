@@ -1,7 +1,8 @@
 # test_port9_unittest.py
 
 import unittest
-from io import BytesIO
+from types import SimpleNamespace
+
 import mock
 
 from portfolio3 import Portfolio
@@ -57,19 +58,20 @@ class PortfolioValueTest(unittest.TestCase):
         self.p.buy("HPQ", 100, 30.0)
 
     def test_value(self):
-        # Create a mock urllib.urlopen.
-        with mock.patch('portfolio3.urllib.request.urlopen') as urlopen:
+        # Create a mock requests.get.
+        with mock.patch('portfolio3.requests.get') as req_get:
 
             # When called, it will return this value:
-            fake_api = BytesIO(b'\nIBM,,,140\nHPQ,,,32\n')
-            urlopen.return_value = fake_api
+            req_get.return_value = SimpleNamespace(
+                text='\nIBM,,,140\nHPQ,,,32\n'
+            )
 
             # Run the test!
             self.assertEqual(self.p.value(), 17200)
 
             # We can ask the mock what its arguments were.
-            self.assertEqual(len(urlopen.call_args_list), 1)
-            called_url = urlopen.call_args_list[0][0][0]
+            self.assertEqual(len(req_get.call_args_list), 1)
+            called_url = req_get.call_args_list[0][0][0]
             self.assertIn("api.worldtradingdata.com/api/v1/stock", called_url)
             self.assertIn("symbol=HPQ,IBM", called_url)
 #(((end)))

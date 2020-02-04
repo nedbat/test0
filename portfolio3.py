@@ -1,7 +1,8 @@
 # portfolio3.py
 
 import csv
-import urllib.request
+
+import requests
 
 
 class Portfolio:
@@ -53,7 +54,7 @@ class Portfolio:
         url = "https://api.worldtradingdata.com/api/v1/stock?symbol="
         url += ",".join(s[0] for s in sorted(self.stocks))
         url += self.SUFFIX
-        data = urllib.request.urlopen(url).read().decode("utf-8")
+        data = requests.get(url).text
         lines = data.splitlines()[1:]
         return { row[0]: float(row[3]) for row in csv.reader(lines) }
 

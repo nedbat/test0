@@ -1,6 +1,6 @@
 # test_port8_pytest.py
 
-from io import BytesIO
+from types import SimpleNamespace
 
 import pytest
 
@@ -49,17 +49,19 @@ def test_dont_own_it(simple_portfolio):
         simple_portfolio.sell("IBM", 1)
 
 
-class FakeUrllibRequest:
-    # A simple fake for urlopen that is only good for one request.
-    def urlopen(self, url):
-        return BytesIO(b'\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n')
+class FakeRequests:
+    # A simple fake for requests that is only good for one request.
+    def get(self, url):
+        return SimpleNamespace(
+            text='\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n'
+        )
 
 @pytest.fixture
-def fake_urllib_request():
-    old_urllib_request = portfolio3.urllib.request
-    portfolio3.urllib.request = FakeUrllibRequest()
+def fake_requests():
+    old_requests = portfolio3.requests
+    portfolio3.requests = FakeRequests()
     yield
-    portfolio3.urllib.request = old_urllib_request
+    portfolio3.requests = old_requests
 
-def test_value(simple_portfolio, fake_urllib_request):
+def test_value(simple_portfolio, fake_requests):
     assert simple_portfolio.value() == 22300
