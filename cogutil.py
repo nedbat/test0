@@ -1,6 +1,7 @@
 # Helpers for cogging slides.
 
 import os
+import re
 import textwrap
 
 import cog
@@ -62,6 +63,10 @@ def include_file(
 
     `section` is a named section.  If provided, a marked section in the file is extracted
     for display.  Markers for section foobar are "(((foobar))" and "(((end)))".
+
+    If `show_label` is True, add a div with a label, the name of the
+    file.  If `show_label` is a string, then show the label if
+    `fname` matches the string as a regex.
 
     If `px` is true, the result is meant for text rather than slides.
 
@@ -143,6 +148,8 @@ def include_file(
     text = "\n".join(lines)
     lang = "python" if fname.endswith(".py") else "text"
 
+    if isinstance(show_label, str):
+        show_label = bool(re.search(show_label, fname))
     if show_label:
         cog.outl("<div>")
         cog.outl("<div class='prelabel'>{}</div>".format(fname))
