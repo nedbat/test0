@@ -1732,13 +1732,21 @@ def test_dont_own_it(simple_portfolio):
 
 <!-- }}} -->
 
+<div class="slide section" data-layout="clean">
+    <h1 style="margin-top: 2em"><i>Intermission</i></h1>
+    <p class="center">
+        <img src='https://nedbatchelder.com/pix/sleepy-snake-600.png' width="50%"/>
+    </p>
+</div>
+
+
 <!-- *** Coverage {{{ -->
-<div class="hidden_slide section" data-layout="clean">
+<div class="slide section" data-layout="clean">
     <h1>Coverage</h1>
     <h2>Testing tests</h2>
 </div>
 
-<div class="hidden_slide">
+<div class="slide">
     <h1>What code are you testing?</h1>
     <ul>
         <li>The goal: tests execute product code</li>
@@ -1747,7 +1755,7 @@ def test_dont_own_it(simple_portfolio):
     </ul>
 </div>
 
-<div class="hidden_slide">
+<div class="slide">
     <h1>Coverage measurement</h1>
     <ul>
         <li>Run your tests</li>
@@ -1759,22 +1767,31 @@ def test_dont_own_it(simple_portfolio):
     </ul>
 </div>
 
-<div class="hidden_slide">
-    <h1>Running coverage.py</h1>
-    <ul>
-        <li>Install it from PyPI</li>
-        <li><tt>coverage run my_prog.py arg ...</tt></li>
-        <li><tt>coverage html</tt></li>
-        <li>Or: &nbsp;<tt>pytest -&#x200b;-cov ...</tt></li>
-    </ul>
+<div class="slide">
+    <h1>coverage.py</h1>
+    <pre>
+    $ pip install coverage
+
+    $ coverage run -m pytest ...
+
+    $ coverage report -m
+    Name                      Stmts   Miss  Cover   Missing
+    -------------------------------------------------------
+    my_program.py                20      4    80%   33-35, 39
+    my_other_module.py           56      6    89%   17-23
+    -------------------------------------------------------
+    TOTAL                        76     10    87%
+
+    $ coverage html
+    </pre>
 </div>
 
-<div class="hidden_slide">
+<div class="slide">
     <h1>HTML report</h1>
-    <iframe src='test0_static/htmlcov/index.html' style='background:white;width:100%;height:85%;'></iframe>
+    <iframe src='https://nedbatchelder.com/files/sample_coverage_html/cogapp_backward_py.html' style='background:white;width:100%;height:75%;'></iframe>
 </div>
 
-<div class="hidden_slide">
+<div class="slide">
     <h1>Coverage can only tell you a few things</h1>
     <ul>
         <li>What lines were executed</li>
@@ -1784,11 +1801,10 @@ def test_dont_own_it(simple_portfolio):
     </ul>
 </div>
 
-<div class="hidden_slide">
+<div class="slide">
     <h1>What coverage can't tell you</h1>
     <ul>
         <li>Are you exercising all your data?</li>
-        <li>Are you exercising all your HTML templates?</li>
         <li>Are you checking results properly?</li>
         <li>Are you hitting all edge conditions?</li>
         <li>Are you testing the right things?</li>
@@ -1929,10 +1945,10 @@ def test_dont_own_it(simple_portfolio):
     &gt;&gt;&gt; p.buy("HPQ", 100, 30.0)
 
     &gt;&gt;&gt; p.current_prices()
-    {'HPQ': 21.55, 'IBM': 149.11}
+    {'HPQ': 21.78, 'IBM': 156.33}
 
     &gt;&gt;&gt; p.value()
-    17066.0
+    17811.0
     </pre>
     <!--[[[end]]] }}}-->
 </div>
