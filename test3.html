@@ -254,7 +254,10 @@ include_file_default(classes="medium", show_label=r"\.py$")
     <h1>Roadmap</h1>
     <ul>
         <li>Growing tests</li>
-        <li>pytest</li>
+        <li>Test frameworks</li>
+        <li>Fixtures</li>
+        <li>· Intermission ·</li>
+        <li>Coverage</li>
         <li>Test doubles</li>
     </ul>
 </div>
@@ -1254,6 +1257,10 @@ $ pytest -q test_port4_pytest.py
     </ul>
 </div>
 
+<!-- }}} -->
+
+<!-- *** Fixtures {{{ -->
+
 <div class="slide section" data-layout="clean">
     <h1>Fixtures</h1>
     <h2>More structure</h2>
@@ -1261,7 +1268,7 @@ $ pytest -q test_port4_pytest.py
 
 
 <div class="slide">
-    <h1>More code:&#xa0; sell()</h1>
+    <h1>More code:&#xa0; <tt>sell()</tt></h1>
     <!--[[[cog include_file("portfolio2.py", start_from="def sell", end_at="You don't")   ]]] {{{ -->
     <div>
     <div class='prelabel'>portfolio2.py</div>
@@ -1732,13 +1739,15 @@ def test_dont_own_it(simple_portfolio):
 
 <!-- }}} -->
 
+<!-- *** Intermission {{{ -->
+
 <div class="slide section" data-layout="clean">
-    <h1 style="margin-top: 2em"><i>Intermission</i></h1>
+    <h1 style="margin-top: 2em">· Intermission ·</h1>
     <p class="center">
         <img src='https://nedbatchelder.com/pix/sleepy-snake-600.png' width="50%"/>
     </p>
 </div>
-
+<!-- }}} -->
 
 <!-- *** Coverage {{{ -->
 <div class="slide section" data-layout="clean">
@@ -1781,14 +1790,14 @@ def test_dont_own_it(simple_portfolio):
     my_other_module.py           56      6    89%   17-23
     -------------------------------------------------------
     TOTAL                        76     10    87%
-
-    $ coverage html
     </pre>
 </div>
 
 <div class="slide">
-    <h1>HTML report</h1>
-    <iframe src='https://nedbatchelder.com/files/sample_coverage_html/cogapp_backward_py.html' style='background:white;width:100%;height:75%;'></iframe>
+    <pre>
+    $ coverage html
+    </pre>
+    <iframe src='https://nedbatchelder.com/files/sample_coverage_html/cogapp_backward_py.html' style='margin-top:1em;border:1px solid #ccc;background:white;width:100%;height:75%;'></iframe>
 </div>
 
 <div class="slide">
@@ -1808,7 +1817,7 @@ def test_dont_own_it(simple_portfolio):
         <li>Are you checking results properly?</li>
         <li>Are you hitting all edge conditions?</li>
         <li>Are you testing the right things?</li>
-        <li>Are you building the right product?  ;-)</li>
+        <li>Are you building the right product?  &nbsp;&nbsp;;-)</li>
     </ul>
 </div>
 
@@ -1945,10 +1954,10 @@ def test_dont_own_it(simple_portfolio):
     &gt;&gt;&gt; p.buy("HPQ", 100, 30.0)
 
     &gt;&gt;&gt; p.current_prices()
-    {'HPQ': 21.78, 'IBM': 156.33}
+    {'HPQ': 21.73, 'IBM': 153.41}
 
     &gt;&gt;&gt; p.value()
-    17811.0
+    17514.0
     </pre>
     <!--[[[end]]] }}}-->
 </div>
@@ -2538,6 +2547,7 @@ def test_value(simple_portfolio, mocker):
 
 <!-- }}} -->
 
+<!-- *** The end {{{ -->
 
 <div class="slide section" data-layout="clean">
     <h1>Summing up</h1>
@@ -2577,14 +2587,6 @@ def test_value(simple_portfolio, mocker):
 </div><!-- }}} -->
 
 
-<!--
-    Things to add:
-
-    - Start writing tests for bugs you find.
-    - Changing mindsets is hard.
-        - How do you get people on board?
--->
-
 <div class="slide title" data-layout="clean">
     <h1 style="padding-top: 0em">Thank You</h1>
     <h2 style="margin-top: 5em">
@@ -2602,18 +2604,19 @@ def test_value(simple_portfolio, mocker):
     </div>
 </div>
 
+<!-- }}} -->
 
 </body>
 </html>
-<!-- TO DO:  {{{
+<!-- Attic:  {{{
 
     * Content
     - Something to replace the hidden Approaches section
     - Most common question: how do I convince my team to test?
 
-    * Layout
-    - URL footer on first few slides.
-
+    - Start writing tests for bugs you find.
+    - Changing mindsets is hard.
+        - How do you get people on board?
 
 
     # Getting Started Testing

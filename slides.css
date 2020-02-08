@@ -18,6 +18,7 @@ div.text {
     overflow: hidden;
 }
 h1, h2, h3, h4 {
+    font-family: "PT Serif";
     font-weight: 700;
     line-height: 1.5;
     text-align: left;
