@@ -148,7 +148,9 @@ def include_file(
     text = "\n".join(lines)
     lang = "python" if fname.endswith(".py") else "text"
 
-    if isinstance(show_label, str):
+    if px:
+        show_label = False
+    elif isinstance(show_label, str):
         show_label = bool(re.search(show_label, fname))
     if show_label:
         cog.outl("<div>")

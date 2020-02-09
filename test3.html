@@ -332,8 +332,6 @@ include_file_default(classes="medium", show_label=r"\.py$")
     and a method that tells us the total cost of the portfolio:</p>
 
 <!--[[[cog include_file("portfolio1.py", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>portfolio1.py</div>
 <code lang='python'>
 # portfolio1.py
 
@@ -354,7 +352,6 @@ class Portfolio:
             amt += shares * price
         return amt
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
 </div><!-- }}} -->
@@ -466,8 +463,6 @@ class Portfolio:
     get:</p>
 
 <!--[[[cog include_file("porttest1.py", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>porttest1.py</div>
 <code lang='python'>
 # porttest1.py
 from portfolio1 import Portfolio
@@ -479,7 +474,6 @@ print(f"With 100 IBM @ 176.48: {p.cost()}")
 p.buy("HPQ", 100, 36.15)
 print(f"With 100 HPQ @ 36.15: {p.cost()}")
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>When we run it, we get:</p>
@@ -539,8 +533,6 @@ With 100 HPQ @ 36.15: 21263.0
     result it got, it prints the result it should have gotten:</p>
 
 <!--[[[cog include_file("porttest2.py", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>porttest2.py</div>
 <code lang='python'>
 # porttest2.py
 from portfolio1 import Portfolio
@@ -552,7 +544,6 @@ print(f"With 100 IBM @ 176.48: {p.cost()}, should be 17648.0")
 p.buy("HPQ", 100, 36.15)
 print(f"With 100 HPQ @ 36.15: {p.cost()}, should be 21263.0")
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>This is better: we don't have to calculate the expected results, they
@@ -620,8 +611,6 @@ With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     exception:</p>
 
 <!--[[[cog include_file("porttest3.py", px=True, start=4) ]]] {{{ -->
-<div>
-<div class='prelabel'>porttest3.py</div>
 <code lang='python'>
 p = Portfolio()
 print(f"Empty portfolio cost: {p.cost()}, should be 0.0")
@@ -633,7 +622,6 @@ p.buy("HPQ", 100, 36.15)
 print(f"With 100 HPQ @ 36.15: {p.cost()}, should be 21263.0")
 assert p.cost() == 21263.0
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>So now we have the results checked automatically.  If one of the results
@@ -918,8 +906,6 @@ AssertionError
     another test method in our PortfolioTest class:</p>
 
 <!--[[[cog include_file("test_port2_pytest.py", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>test_port2_pytest.py</div>
 <code lang='python'>
 # test_port2_pytest.py
 
@@ -940,7 +926,6 @@ def test_buy_two_stocks():
     p.buy("HPQ", 100, 36.15)
     assert p.cost() == 21263.0
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>Each one creates the portfolio object it needs, performs the
@@ -1152,14 +1137,11 @@ test_port2_pytest_broken.py:12: AssertionError
     method with too few arguments:</p>
 
 <!--[[[cog include_file("test_port4_pytest_broken.py", start_from="test_bad_input", end_at="buy", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>test_port4_pytest_broken.py</div>
 <code lang='python'>
 def test_bad_input():
     p = Portfolio()
     p.buy("IBM")
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>This test won't do what we want.  When we call buy() with too few
@@ -1215,15 +1197,12 @@ test_port4_pytest_broken.py:22: TypeError
     called assertRaises:</p>
 
 <!--[[[cog include_file("test_port4_pytest.py", start=22, end=25, px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>test_port4_pytest.py</div>
 <code lang='python'>
 def test_bad_input():
     p = Portfolio()
     with pytest.raises(TypeError):
         p.buy("IBM")
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>This neatly captures our intent: we are asserting that a statement will
@@ -1295,8 +1274,6 @@ $ pytest -q test_port4_pytest.py
     particular stock from our Portfolio:</p>
 
 <!--[[[cog include_file("portfolio2.py", start_from="def sell", end_at="You don't", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>portfolio2.py</div>
 <code lang='python'>
 def sell(self, name, shares):
     """Sell some shares."""
@@ -1309,7 +1286,6 @@ def sell(self, name, shares):
     else:
         raise ValueError("You don't own that stock")
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>Note: this code is very simple, for the purpose of fitting on a slide!</p>
@@ -1356,8 +1332,6 @@ def sell(self, name, shares):
     something to sell:</p>
 
 <!--[[[cog include_file("test_port5_pytest.py", start_from="test_sell", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>test_port5_pytest.py</div>
 <code lang='python'>
 def test_sell():
     p = Portfolio()
@@ -1383,7 +1357,6 @@ def test_dont_own_it():
     with pytest.raises(ValueError):
         p.sell("IBM", 1)
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>But now our tests are getting really repetitve.  We've used the same
@@ -1487,8 +1460,6 @@ def test_dont_own_it():
     that you can create attributes on:</p>
 
 <!--[[[cog include_file("test_port6_pytest.py", start_from="fixture", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>test_port6_pytest.py</div>
 <code lang='python'>
 @pytest.fixture
 def simple_portfolio():
@@ -1510,7 +1481,6 @@ def test_dont_own_it(simple_portfolio):
     with pytest.raises(ValueError):
         simple_portfolio.sell("IBM", 1)
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>Here we have a .setup() method that creates a portfolio and stores it as
@@ -1971,8 +1941,6 @@ def test_dont_own_it(simple_portfolio):
     we hold:</p>
 
 <!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="return total", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>portfolio3.py</div>
 <code lang='python'>
 def current_prices(self):
     """Return a dict mapping names to current prices."""
@@ -1991,7 +1959,6 @@ def value(self):
         total += shares * prices[name]
     return total
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>The new .value() method will get the current prices, and sum up the
@@ -2065,8 +2032,6 @@ def value(self):
     new current_prices method that simply returns a fixed value:</p>
 
 <!--[[[cog include_file("test_port7_pytest.py", start_from="fixture", start_nth=2, px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>test_port7_pytest.py</div>
 <code lang='python'>
 @pytest.fixture
 def fake_prices_portfolio(simple_portfolio):
@@ -2078,7 +2043,6 @@ def fake_prices_portfolio(simple_portfolio):
 def test_value(fake_prices_portfolio):
     assert fake_prices_portfolio.value() == 22300
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>This is very simple, and neatly solves a number of our problems: the
@@ -2171,8 +2135,6 @@ def test_value(fake_prices_portfolio):
     Yahoo would have returned:</p>
 
 <!--[[[cog include_file("test_port8_pytest.py", start_from="Fake", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>test_port8_pytest.py</div>
 <code lang='python'>
 class FakeRequests:
     # A simple fake for requests that is only good for one request.
@@ -2191,7 +2153,6 @@ def fake_requests():
 def test_value(simple_portfolio, fake_requests):
     assert simple_portfolio.value() == 22300
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>In our test's setUp() method, we replace the urllib reference in our
@@ -2325,8 +2286,6 @@ def test_value(simple_portfolio, fake_requests):
     <p>Here's a new test of our current_prices code:</p>
 
 <!--[[[cog include_file("test_port9_pytest.py", start_from="test_value", px=True) ]]] {{{ -->
-<div>
-<div class='prelabel'>test_port9_pytest.py</div>
 <code lang='python'>
 def test_value(simple_portfolio, mocker):
     req_get = mocker.patch(
@@ -2344,7 +2303,6 @@ def test_value(simple_portfolio, mocker):
     assert "api.worldtradingdata.com/api/v1/stock" in opened_url
     assert "symbol=DELL,MSFT,ORCL" in opened_url
 </code>
-</div>
 <!--[[[end]]] }}}-->
 
     <p>In our test method, we use a context manager provided by mock:
