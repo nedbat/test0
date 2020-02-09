@@ -4,7 +4,7 @@ body, html {
     line-height: 1.3;
 }
 
-div.text {
+div.text, div.hidden_text {
     display: none;
 }
 

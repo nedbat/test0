@@ -2419,36 +2419,22 @@ def test_value(simple_portfolio, mocker):
 
 <!-- }}} -->
 
-<!-- *** Other topics {{{ -->
+<!-- *** The end {{{ -->
 
 <div class="slide section" data-layout="clean">
-    <h1>Also</h1>
-    <h2>Too many things I couldn't fit!</h2>
+    <h1>Also...</h1>
+    <h2>I wish I had more time!</h2>
 </div>
 
-<div class="text"><!-- {{{ -->
-    <p>Testing is a huge topic, there are many paths to take from here.</p>
-
-</div><!-- }}} -->
-
 <div class="slide">
-    <h1>Ideas</h1>
+    <h1>More tools</h1>
     <ul>
-        <li>unit vs integration vs system vs end-to-end</li>
-        <li>refactoring for testability</li>
-        <li></li>
-        <li></li>
+    <li><b>doctest</b>: only for testing docs!!!</li>
+    <li><b>Selenium</b>: in-browser testing</li>
+    <li><b>Jenkins, Travis, CircleCI</b>: run tests all the time</li>
+    <li><b>tox</b>: test multiple configurations</li>
+    <li><b>hypothesis</b>: auto-generated test data</li>
     </ul>
-</div>
-
-<div class="slide">
-    <h1>Tools</h1>
-    <h3 class="incremental">coverage: <span style="font-weight: normal">you'll wonder how you lived without it</span></h3>
-    <h3 class="incremental">doctest: <span style="font-weight: normal">only for testing docs!!!</span></h3>
-    <h3 class="incremental">ddt: <span style="font-weight: normal">data-driven tests</span></h3>
-    <h3 class="incremental">Selenium: <span style="font-weight: normal">in-browser testing</span></h3>
-    <h3 class="incremental">Jenkins, Travis, CircleCI: <span style="font-weight: normal">run tests all the time</span></h3>
-    <h3 class="incremental">tox: <span style="font-weight: normal">test multiple configurations</span></h3>
 </div>
 
 <div class="text"><!-- {{{ -->
@@ -2456,33 +2442,11 @@ def test_value(simple_portfolio, mocker):
 
     <ul>
 
-        <li><a href='https://docs.python.org/2/library/unittest.html#unittest.TestCase.addCleanup'>addCleanup</a>
-        is a method on test cases.  It lets you register clean up functions to
-        be called when the test is done.  This has the advantage that partially
-        set up tests can be torn down, and you can register clean up functions
-        in the body of tests if you like.</li>
-
         <li><a href='https://docs.python.org/2/library/doctest.html'>doctest</a>
         is another module in the standard library for writing tests.  It
         executes Python code embedded in docstrings.  Some people love it, but
         most developers think it should only be used for testing code that
         naturally appears in docstrings, and not for anything else.</li>
-
-        <li><a href='https://nose.readthedocs.org/'>nose</a> and
-        <a href='http://pytest.org'>pytest</a> are alternative test runners.
-        They will run your unittest tests, but have a ton of extra features,
-        and plugins.</li>
-
-        <li><a href='http://ddt.readthedocs.org'>ddt</a> is a package for
-        writing data-driven tests.  This lets you write one test method, then
-        feed it a number of different data cases, and it will split out your
-        test method into a number of methods, one for each data case.  This
-        lets each one succeed or fail independently.</li>
-
-        <li><a href='/code/coverage'>coverage.py</a> runs your code, and
-        measures which lines executed and which did not.  This is a way of
-        testing your tests to see how much of your product code is covered by
-        your tests.</li>
 
         <li><a href='http://docs.seleniumhq.org/'>Selenium</a> is a tool for
         running tests of web sites.  It automates a browser to run your tests
@@ -2501,12 +2465,15 @@ def test_value(simple_portfolio, mocker):
 </div><!-- }}} -->
 
 <div class="slide">
-    <h1>Topics</h1>
-    <h3 class="incremental">TDD: <span style="font-weight: normal">tests before code!?</span></h3>
-    <h3 class="incremental">BDD: <span style="font-weight: normal">describe external behavior</span></h3>
-    <h3 class="incremental">integration tests: <span style="font-weight: normal">bigger chunks</span></h3>
-    <h3 class="incremental">load testing: <span style="font-weight: normal">how much traffic is OK?</span></h3>
-    <h3 class="incremental">others, I'm sure....<span style="font-weight: normal"></span></h3>
+    <h1>More topics</h1>
+    <ul>
+    <li><b>TDD</b>: tests before code!?</li>
+    <li><b>BDD</b>: describe external behavior</li>
+    <li><b>integration tests</b>: bigger chunks</li>
+    <li><b>load testing</b>: how much traffic is OK?</li>
+    <li><b>data testing</b>: how do you know your data is good?</li>
+    <li><b>fuzz testing</b>: automatic hacking</li>
+    </ul>
 </div>
 
 <div class="text"><!-- {{{ -->
@@ -2544,10 +2511,6 @@ def test_value(simple_portfolio, mocker):
     them all!</p>
 
 </div><!-- }}} -->
-
-<!-- }}} -->
-
-<!-- *** The end {{{ -->
 
 <div class="slide section" data-layout="clean">
     <h1>Summing up</h1>
