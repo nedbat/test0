@@ -162,6 +162,10 @@ img.icon {
     border: 0;
 }
 
+.slide pre.s100 {
+    font-size: 100%;
+}
+
 .slide pre.medium, .slide pre.s85 {
     font-size: 85%;
 }

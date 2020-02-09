@@ -131,6 +131,12 @@ include_file_default(classes="medium", show_label=r"\.py$")
         <li>Show you a way to test</li>
         <li>Remove mystery</li>
     </ul>
+    <div style="position:absolute;bottom:2em;left:2em">
+        <p class="incremental">&#x2B07; Short-link to slides and code</p>
+    </div>
+    <div style="position:absolute;bottom:2em;right:2em">
+        <p class="incremental">me on Twitter &#x2B07;</p>
+    </div>
 </div>
 
 <div class="text"><!-- {{{ -->
@@ -253,10 +259,10 @@ include_file_default(classes="medium", show_label=r"\.py$")
 <div class="slide">
     <h1>Roadmap</h1>
     <ul>
-        <li>Growing tests</li>
+        <li>First principles</li>
         <li>Test frameworks</li>
         <li>Fixtures</li>
-        <li>· Intermission ·</li>
+        <li>~~ Intermission ~~</li>
         <li>Coverage</li>
         <li>Test doubles</li>
     </ul>
@@ -264,14 +270,15 @@ include_file_default(classes="medium", show_label=r"\.py$")
 
 <div class="text"><!-- {{{ -->
 
-    <p>The rest of the talk is divided into three parts:</p>
+    <p>The rest of the talk is divided has these parts:</p>
 
-    <ol>
+    <ul>
         <li>We'll grow some tests in an ad-hoc way, examining what's good and
             bad about the style of code we get,</li>
         <li>we'll use pytest to write tests the right way,</li>
-        <li>and we'll talk some more advanced topics, including test doubles.</li>
-    </ol>
+        <li>we'll dive deeper into pytest's fixtures,</li>
+        <li>and we'll talk about some more advanced topics, including coverage and test doubles.</li>
+    </ul>
 
 </div><!-- }}} -->
 
@@ -322,11 +329,14 @@ include_file_default(classes="medium", show_label=r"\.py$")
     </pre>
     </div>
     <!--[[[end]]] }}}-->
+    <div style="position:absolute;top:0em;right:2em">
+        <p class="incremental">File name &#x2B07;</p>
+    </div>
 </div>
 
 <div class="text"><!-- {{{ -->
 
-    <p>Here is our code under test, a simple stock portfolio class.  It simply
+    <p>Here is our code under test, a simple stock portfolio class.  It just
     stores the lots of stocks purchased: each is a stock name, a number of
     shares, and the price it was bought at.  We have a method to buy a stock,
     and a method that tells us the total cost of the portfolio:</p>
@@ -944,7 +954,7 @@ $ pytest -q test_port2_pytest.py
 
 </div><!-- }}} -->
 
-<div class="slide" data-layout="clean">
+<div class="slide">
     <h1>Under the hood</h1>
     <!--[[[cog
     include_code("""\
@@ -969,9 +979,9 @@ $ pytest -q test_port2_pytest.py
             [record failure]
         else:
             [record success]
-    """, lang="python", hilite=[2,9,16])
+    """, lang="python", classes="small", hilite=[2,9,16])
     ]]]-->
-    <pre class='python' data-hilite='|2|9|16|'>
+    <pre class='python small' data-hilite='|2|9|16|'>
     # pytest runs the tests as if I had written:
     try:
         test_empty()
@@ -1010,6 +1020,9 @@ $ pytest -q test_port2_pytest.py
     <ul>
         <li>Tests don't affect each other</li>
         <li>Failure doesn't stop next tests</li>
+        <li>Run a subset of tests
+            <pre>pytest -k word_in_test_name</pre>
+        </li>
     </ul>
 </div>
 
