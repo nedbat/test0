@@ -154,7 +154,7 @@ include_file_default(classes="medium", show_label=r"\.py$")
         <li>Show you a way to test</li>
         <li>Remove mystery</li>
     </ul>
-    <div class="vibrate-1" style="position:absolute;bottom:2em;left:2em">
+    <div class="vibrate-1" style="position:absolute;bottom:2em;left:4em">
         <p class="incremental">&#x2B07; Short-link to slides and code</p>
     </div>
 </div>
@@ -293,8 +293,8 @@ include_file_default(classes="medium", show_label=r"\.py$")
     <p>The rest of the talk is divided has these parts:</p>
 
     <ul>
-        <li>We'll grow some tests in an ad-hoc way, examining what's good and
-            bad about the style of code we get,</li>
+        <li>We'll grow some tests from first principles in an ad-hoc way,
+            examining what's good and bad about the style of code we get,</li>
         <li>we'll use pytest to write tests the right way,</li>
         <li>we'll dive deeper into pytest's fixtures,</li>
         <li>and we'll talk about some more advanced topics, including coverage and test doubles.</li>
@@ -357,7 +357,7 @@ include_file_default(classes="medium", show_label=r"\.py$")
 <div class="text"><!-- {{{ -->
 
     <p>Here is our code under test, a simple stock portfolio class.  It just
-    stores the lots of stocks purchased: each is a stock name, a number of
+    stores the lots of stocks purchased: each lot is a stock name, a number of
     shares, and the price it was bought at.  We have a method to buy a stock,
     and a method that tells us the total cost of the portfolio:</p>
 
@@ -517,12 +517,12 @@ With 100 HPQ @ 36.15: 21263.0
 </code>
 <!--[[[end]]] }}}-->
 
-    <p>This is better because it's repeatable, since we can run this test file
+    <p>This is better because it's repeatable: we can run this test file
     any time we want and have the same tests run every time.  And it's low
     effort: running a file is easy and quick.</p>
 
     <p>But we still don't know for sure that the answers are right unless we
-    peer at the numbers printed and work out each time what they are supposed
+    peer at the printed numbers and work out each time what they are supposed
     to be.</p>
 
 </div><!-- }}} -->
@@ -594,7 +594,7 @@ With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     thousands of tests.  You don't want to examine each one to see if the
     result is correct.</p>
 
-    <p>This is still tedious work we have to do, we should get the computer to
+    <p>This is still tedious work we have to do. We should get the computer to
     do it for us.</p>
 
 </div><!-- }}} -->
@@ -638,7 +638,7 @@ With 100 HPQ @ 36.15: 21263.0, should be 21263.0
     across this before.  It takes a condition, and evaluates whether it's
     true or not.  If it's true, then execution continues onto the next
     statement.  If the condition is false, it raises an AssertionError
-    exception:</p>
+    exception.</p>
 
 <!--[[[cog include_file("porttest3.py", px=True, start=4) ]]] {{{ -->
 <code lang='python'>
@@ -657,9 +657,8 @@ assert p.cost() == 21263.0
     <p>So now we have the results checked automatically.  If one of the results
     is incorrect, the assert statement will raise an exception.</p>
 
-    <p>Assertions like these are at the heart of automated testing, and you'll
-    see a lot of them in real tests, though as we'll see, they take slightly
-    different forms.</p>
+    <p>Assertions like these are at the heart of automated testing. You'll
+    see a lot of them in real tests.</p>
 
 </div><!-- }}} -->
 
@@ -730,9 +729,8 @@ AssertionError
     complicated.</p>
 
     <p>Anyone writing tests will face these problems, and common problems can
-    often be solved with standard libraries. In the next section, we'll use
-    unittest, from the Python standard library, to solve our common
-    problems.</p>
+    often be solved with common frameworks. In the next section, we'll use
+    a test framework called pytest to solve these problems.</p>
 
 </div><!-- }}} -->
 
@@ -744,6 +742,13 @@ AssertionError
     <h1>Test frameworks</h1>
     <h2>Writing and running tests</h2>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>We'll consider a few alternatives to pytest before diving in.</p>
+
+</div><!-- }}} -->
+
 
 <div class="slide">
     <h1>unittest</h1>
@@ -757,17 +762,19 @@ AssertionError
 
 <div class="text"><!-- {{{ -->
 
-    <p>The Python standard library provides the unittest module.  It gives
-    us the infrastructure for writing well-structured tests.</p>
+    <p>The Python standard library provides the
+    <a href="https://docs.python.org/3/library/unittest.html">unittest</a> module.
+    It gives an infrastructure for writing class-oriented tests.</p>
 
     <p>The design of unittest is modelled on the common xUnit pattern that is
     available in many different languages, notably jUnit for Java.  This gives
     unittest a more verbose feeling than many Python libraries.  Some people
-    don't like this and prefer other styles of tests, but unittest is by far
-    the most widely used library, and is well-supported by every test tool.</p>
+    don't like this and prefer other styles of tests.  But these class-based
+    tests are classic, and are well-supported by other test tools.</p>
 
-    <p>There are alternatives to unittest, but it's a good foundation to build
-    on.</p>
+    <p>You will find lots of examples and help based on unittest.  If you write
+    your tests in unittest style, pytest will run them for you.  But we won't
+    be using unittest in this presentation.</p>
 
 </div><!-- }}} -->
 
@@ -781,16 +788,38 @@ AssertionError
 </div>
 
 
+<div class="text"><!-- {{{ -->
+
+    <p>Nose was a popular test framework and runner.  But it
+    <a href="https://github.com/nose-devs/nose/commit/0f40fa995384afad77e191636c89eb7d5b8870ca">hasn't been maintained</a>
+    for years.  You should not use it.</p>
+
+</div><!-- }}} -->
+
+
 <div class="slide">
     <h1>pytest</h1>
     <ul>
         <li>Third-party test runner</li>
         <li>Functions instead of classes</li>
-        <li>Can be quirky</li>
+        <li>Powerful</li>
         <li>Also runs unittest tests</li>
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p><a href="https://pytest.org">pytest</a> is the most popular and powerful
+    test framework these days.  You write tests as functions rather than
+    classes, and asserts are written as assert statements rather than unittest's
+    assert methods.  Many people find this a more natural "Pythonic" style of
+    writing tests.</p>
+
+    <p>pytest will also run unittest-style tests. If you already have a unittest
+    test suite, you can switch to pytest as a test runner, and start taking
+    advantage of pytest features without re-writing any tests.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Project structure</h1>
@@ -804,7 +833,6 @@ AssertionError
         ├── README.rst
         ├── setup.py
         └── tests
-            ├── __init__.py                  <span class='c'># maybe...</span>
             ├── test_a_thing.py
             ├── test_another_thing.py
             ├── test_more_things.py
@@ -815,6 +843,18 @@ AssertionError
         <li>Files named "test_*.py"</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>The usual layout for a project is to have one directory with your product
+    code, and a separate parallel directory with tests. The tests are all in
+    files named test_*.py.</p>
+
+    <p>BTW, this is not the structure of the
+    <a href='text/test3/test3.zip'>code accompanying this presentation</a>,
+    but it will be how most real projects are organized.</p>
+
+</div><!-- }}} -->
 
 
 <div class="slide">
@@ -838,6 +878,17 @@ AssertionError
     </pre>
     <!--[[[end]]]-->
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>A great thing about test runners is they can find your tests
+    automatically, so you don't have to write code to somehow collect them all
+    into one test suite. (nose is called nose because it was the first test
+    runner to "sniff out" your tests.)</p>
+
+    <!-- ZZZ -->
+
+</div><!-- }}} -->
 
 
 <div class="slide">
