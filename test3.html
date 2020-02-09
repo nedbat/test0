@@ -699,7 +699,7 @@ $ python porttest3_broken.py
 Empty portfolio cost: 0.0, should be 0.0
 With 100 IBM @ 176.48: 17648.0, should be 17600.0
 Traceback (most recent call last):
-  File "porttest3_broken.py", line 9, in &lt;module>
+  File "porttest3_broken.py", line 9, in &lt;module&gt;
     assert p.cost() == 17600.0
 AssertionError
 </code>
@@ -1104,10 +1104,10 @@ ________________________ test_buy_one_stock ________________________
     def test_buy_one_stock():
         p = Portfolio()
         p.buy("IBM", 100, 176)      # this is wrong, to make the test fail!
->       assert p.cost() == 17648.0
+&gt;       assert p.cost() == 17648.0
 E       assert 17600.0 == 17648.0
-E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1b01dface>>()
-E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1b01dface>> = &lt;portfolio1.Portfolio object at 0x1b01dface>.cost
+E        +  where 17600.0 = &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1b01dface&gt;&gt;()
+E        +    where &lt;bound method Portfolio.cost of &lt;portfolio1.Portfolio object at 0x1b01dface&gt;&gt; = &lt;portfolio1.Portfolio object at 0x1b01dface&gt;.cost
 
 test_port2_pytest_broken.py:12: AssertionError
 1 failed, 2 passed in 0.01s
@@ -1190,7 +1190,7 @@ __________________________ test_bad_input __________________________
 
     def test_bad_input():
         p = Portfolio()
->       p.buy("IBM")
+&gt;       p.buy("IBM")
 E       TypeError: buy() missing 2 required positional arguments: 'shares' and 'price'
 
 test_port4_pytest_broken.py:22: TypeError

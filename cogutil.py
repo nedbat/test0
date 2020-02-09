@@ -175,7 +175,7 @@ def include_code(text, lang=None, highlight=None, hilite=None, px=False, classes
 
     if px:
         cog.outl("<code lang='{}'>".format(lang))
-        cog.outl(text.replace("&", "&amp;").replace("<", "&lt;"))
+        cog.outl(quote_html(text))
         cog.outl("</code>")
         return
 
