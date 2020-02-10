@@ -1,6 +1,6 @@
 body, html {
     background: #222;
-    font-family: "Open Sans", sans-serif;
+    font-family: sans-serif;
     line-height: 1.3;
 }
 
@@ -9,6 +9,7 @@ div.text, div.hidden_text {
 }
 
 .slide {
+    font-family: "Open Sans", sans-serif;
     font-weight: 600;
     margin: 1em;
     border: 1px solid #ccc;
@@ -228,6 +229,11 @@ img.icon {
 html.phantompng pre .selected {
     border-width: 0;
     background: inherit;
+}
+
+/* Hide the slide numbers for pngs on the web site */
+html.phantompng .slideDisplay {
+    display: none;
 }
 
 .slide ul>li {
