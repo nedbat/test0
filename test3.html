@@ -457,7 +457,7 @@ class Portfolio:
 
 <div class="slide">
     <h1>Second test: standalone</h1>
-    <!--[[[cog include_file("porttest1.py")   ]]] {{{ -->
+    <!--[[[cog include_file("porttest1.py")]]] {{{ -->
     <div>
     <div class='prelabel'>porttest1.py</div>
     <pre class='python medium'>
@@ -473,7 +473,7 @@ class Portfolio:
     </pre>
     </div>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("porttest1.out")   ]]] {{{ -->
+    <!--[[[cog include_file("porttest1.out")]]] {{{ -->
     <pre class='text medium'>
     $ python porttest1.py
     Empty portfolio cost: 0.0
@@ -747,7 +747,23 @@ AssertionError
     <h2>Writing and running tests</h2>
 </div>
 
+<div class="slide">
+    <h1>All test frameworks</h1>
+    <ul>
+        <li>Solve common problems</li>
+        <li>Seem weird at first</li>
+        <li>Different than running programs</li>
+        <li>New conventions to learn</li>
+    </ul>
+</div>
+
 <div class="text"><!-- {{{ -->
+
+    <p>Test frameworks all look weird when you first learn about them.
+    Running tests is different than running a program, so they have
+    different conventions for how to write tests, and how they get run.</p>
+
+    <p>There are also different tools for reusing code and reducing duplication.</p>
 
     <p>We'll consider a few alternatives to pytest before diving in.</p>
 
@@ -890,13 +906,11 @@ AssertionError
     into one test suite. (nose is called nose because it was the first test
     runner to "sniff out" your tests.)</p>
 
-    <!-- ZZZ -->
-
 </div><!-- }}} -->
 
 
 <div class="slide">
-    <h1>A simple unit test</h1>
+    <h1>A simple test</h1>
     <!--[[[cog include_file("test_port1_pytest.py")   ]]] {{{ -->
     <div>
     <div class='prelabel'>test_port1_pytest.py</div>
@@ -923,6 +937,38 @@ AssertionError
         <li>Every "test_*" function is a test</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>Finally we write our first test.  The test is a function named
+    test_buy_one_stock.  In the function, we create a Portfolio, buy a stock,
+    and then make an assertion about the cost of the portfolio:</p>
+
+<!--[[[cog include_file("test_port1_pytest.py", px=True) ]]] {{{ -->
+<code lang='python'>
+# test_port1_pytest.py
+
+from portfolio1 import Portfolio
+
+def test_buy_one_stock():
+    p = Portfolio()
+    p.buy("IBM", 100, 176.48)
+    assert p.cost() == 17648.0
+</code>
+<!--[[[end]]] }}}-->
+
+    <p>We run the test with pytest, which finds our test function and runs it.
+    It prints a single dot when the test passes.</p>
+
+    <p>The name we chose for our function doesn't matter: every function that
+    starts with test_ will be run as a test.  You just have to make sure to not
+    reuse a function name, since Python won't let you have two functions with
+    the same name.</p>
+
+    <!-- ZZZ -->
+
+</div><!-- }}} -->
+
 
 <div class="slide">
     <h1>Under the hood</h1>
@@ -1317,11 +1363,16 @@ $ pytest -q test_port4_pytest.py
 <div class="slide">
     <h1>Negative assertions</h1>
     <ul>
-        <li>TODO</li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>Hard to test for something not happening</li>
+        <li>Be careful!</li>
     </ul>
+    <pre class='python'>
+    def test_dangerous_thing():
+        result = dangerous_thing()
+        assert "bad" not in result
+        # Oops: result == "I deleted your database"
+        # Test passes!
+    </pre>
 </div>
 
 <!-- }}} -->
@@ -1509,7 +1560,7 @@ def test_dont_own_it():
 
 <div class="slide">
     <h1>Fixtures</h1>
-    <!--[[[cog include_file("test_port6_pytest.py", start_from="fixture")   ]]] {{{ -->
+    <!--[[[cog include_file("test_port6_pytest.py", start_from="fixture", end_at="IBM")   ]]] {{{ -->
     <div>
     <div class='prelabel'>test_port6_pytest.py</div>
     <pre class='python medium'>
@@ -1547,7 +1598,7 @@ def test_dont_own_it():
     test method.  Because your test class is a class, you have a self object
     that you can create attributes on:</p>
 
-<!--[[[cog include_file("test_port6_pytest.py", start_from="fixture", px=True) ]]] {{{ -->
+<!--[[[cog include_file("test_port6_pytest.py", start_from="fixture", end_at="IBM", px=True) ]]] {{{ -->
 <code lang='python'>
 @pytest.fixture
 def simple_portfolio():
@@ -1757,12 +1808,40 @@ def test_dont_own_it(simple_portfolio):
 
 <div class="slide">
     <h1>Parameterized tests</h1>
-    <ul>
-        <li>TODO</li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+    <!--[[[cog include_file("test_port6_pytest.py", start_from="test_sell1", end_at="4740", classes="small") ]]] {{{ -->
+    <div>
+    <div class='prelabel'>test_port6_pytest.py</div>
+    <pre class='python small'>
+    def test_sell1(simple_portfolio):
+        simple_portfolio.sell("MSFT", 50)
+        assert simple_portfolio.cost() == 6450
+
+    def test_sell2(simple_portfolio):
+        simple_portfolio.sell("MSFT", 10)
+        assert simple_portfolio.cost() == 7530
+
+    def test_sell3(simple_portfolio):
+        simple_portfolio.sell("ORCL", 90)
+        assert simple_portfolio.cost() == 4740
+    </pre>
+    </div>
+    <!--[[[end]]] }}}-->
+    <!--[[[cog include_file("test_port6_pytest.py", start_from="parametrize", end_at="== cost", classes="small incremental") ]]] {{{ -->
+    <div>
+    <div class='prelabel'>test_port6_pytest.py</div>
+    <pre class='python small incremental'>
+    @pytest.mark.parametrize("sym, num, cost", [
+        ("MSFT", 50, 6450),
+        ("MSFT", 10, 7530),
+        ("ORCL", 90, 4740),
+    ])
+    def test_selling(simple_portfolio, sym, num, cost):
+        simple_portfolio.sell(sym, num)
+        assert simple_portfolio.cost() == cost
+    </pre>
+    </div>
+    <!--[[[end]]] }}}-->
+    <p class="incremental">Much more: <a href="https://github.com/okken/pycascades2020">https://github.com/okken/pycascades2020</a></p>
 </div>
 
 
@@ -2012,10 +2091,10 @@ def test_dont_own_it(simple_portfolio):
     &gt;&gt;&gt; p.buy("HPQ", 100, 30.0)
 
     &gt;&gt;&gt; p.current_prices()
-    {'HPQ': 21.73, 'IBM': 153.41}
+    {'HPQ': 21.9, 'IBM': 154.43}
 
     &gt;&gt;&gt; p.value()
-    17514.0
+    17633.0
     </pre>
     <!--[[[end]]] }}}-->
 </div>

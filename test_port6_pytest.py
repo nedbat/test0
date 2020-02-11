@@ -44,3 +44,26 @@ def test_not_enough(simple_portfolio):
 def test_dont_own_it(simple_portfolio):
     with pytest.raises(ValueError):
         simple_portfolio.sell("IBM", 1)
+
+
+def test_sell1(simple_portfolio):
+    simple_portfolio.sell("MSFT", 50)
+    assert simple_portfolio.cost() == 6450
+
+def test_sell2(simple_portfolio):
+    simple_portfolio.sell("MSFT", 10)
+    assert simple_portfolio.cost() == 7530
+
+def test_sell3(simple_portfolio):
+    simple_portfolio.sell("ORCL", 90)
+    assert simple_portfolio.cost() == 4740
+
+
+@pytest.mark.parametrize("sym, num, cost", [
+    ("MSFT", 50, 6450),
+    ("MSFT", 10, 7530),
+    ("ORCL", 90, 4740),
+])
+def test_selling(simple_portfolio, sym, num, cost):
+    simple_portfolio.sell(sym, num)
+    assert simple_portfolio.cost() == cost
