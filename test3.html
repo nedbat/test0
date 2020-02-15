@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!-- vim: set foldmethod=marker :-->
+<!DOCTYPE html> <!-- vim: set foldmethod=marker cc=80 tw=79 :-->
 <html>
 <!-- *** Head stuff {{{ -->
 <!--[[[cog
@@ -965,8 +965,6 @@ def test_buy_one_stock():
     reuse a function name, since Python won't let you have two functions with
     the same name.</p>
 
-    <!-- ZZZ -->
-
 </div><!-- }}} -->
 
 
@@ -994,6 +992,21 @@ def test_buy_one_stock():
     </pre>
     <!--[[[end]]]-->
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>Once you've defined the test function, the test runner is now
+    responsible for running it for you. It calls every one of your test
+    functions in its own try/except block.  This lets one function succeed or
+    fail without affecting other functions.</p>
+
+    <p>If your test function runs without an exception, then the test is
+    recorded as a success.  If an exception happens, it's recorded as a
+    failure.  The test runner keeps track of all that bookkeeping so that it
+    can present the results to you at the end of the test run.</p>
+
+</div><!-- }}} -->
+
 
 <div class="slide" data-layout="clean">
     <h1>Add more tests</h1>
@@ -1032,7 +1045,7 @@ def test_buy_one_stock():
 
 <div class="text"><!-- {{{ -->
 
-    <p>One test isn't enough, let's add some more.  Here we add a simpler test,
+    <p>One test isn't enough: let's add some more.  Here we add a simpler test,
     test_empty, and a more complicated test, test_buy_two_stocks.  Each test is
     another test method in our PortfolioTest class:</p>
 
@@ -1059,10 +1072,10 @@ def test_buy_two_stocks():
 </code>
 <!--[[[end]]] }}}-->
 
-    <p>Each one creates the portfolio object it needs, performs the
+    <p>Each one creates the Portfolio object it needs, performs the
     manipulations it wants, and makes assertions about the outcome.</p>
 
-    <p>When you run the tests, it prints a dot for every test that passes,
+    <p>When you run the tests, pytest prints a dot for every test that passes,
     which is why you see "..." in the test output here:</p>
 
 <!--[[[cog include_file("test_port2_pytest.out", px=True) ]]] {{{ -->
@@ -1129,10 +1142,10 @@ $ pytest -q test_port2_pytest.py
 </div>
 
 <div class="text"><!-- {{{ -->
-    <p>With three tests, the execution model is much as before.  The key
-    thing to note here is that a new instance of PortfolioTest is created
-    for each test method.  This helps to guarantee an important property of
-    good tests: isolation.</p>
+
+    <p>With three tests, the execution model is much as before.  Every test is
+    run in its own try/except block so that one test won't affect the others.
+    This helps to guarantee an important property of good tests: isolation.</p>
 
 </div><!-- }}} -->
 
@@ -1157,7 +1170,7 @@ $ pytest -q test_port2_pytest.py
     failure.</p>
 
     <p>Earlier we had a problem where one test failing prevented the other
-    tests from running.  Here unittest is running each test independently, so
+    tests from running.  Here pytest is running each test independently, so
     if one fails, the rest will run, and will run just as if the earlier test
     had succeeded.</p>
 
@@ -1226,9 +1239,14 @@ test_port2_pytest_broken.py:12: AssertionError
     on with other work, so passing tests, while a good thing, should not cause
     a lot of noise.  It's the failing tests we need to think about.</p>
 
-    <p>It's great that the traceback shows what assertion failed, but notice
-    that it doesn't tell us what bad value was returned.  We can see that we
-    expected it to be 17648.0, but we don't know what the actual value was.</p>
+    <p>One of the ways that pytest differs from unittest is that pytest
+    interprets the traceback and shows the actual values that occurred.  In
+    this case, the actual p.cost() was 17600.0.</p>
+
+    <p>Sometimes the traceback annotation is a little too much, as in this case
+    where it's showing us the actual Portfolio object.  In other cases, that
+    kind of detail could be very helpful in understanding the cause of the
+    failure.</p>
 
 </div><!-- }}} -->
 
@@ -1279,7 +1297,7 @@ def test_bad_input():
 <!--[[[end]]] }}}-->
 
     <p>This test won't do what we want.  When we call buy() with too few
-    arguments, of course it raises TypeError, and there's nothing to catch the
+    arguments, of course it raises TypeError, but there's nothing to catch the
     exception, so the test ends with an Error status:</p>
 
 <!--[[[cog include_file("test_port4_pytest_broken.out", px=True) ]]] {{{ -->
@@ -1327,8 +1345,8 @@ test_port4_pytest_broken.py:22: TypeError
 
 <div class="text"><!-- {{{ -->
 
-    <p>To properly handle the error-raising function call, we use a method
-    called assertRaises:</p>
+    <p>To properly test the error-raising function call, we use a function
+    called pytest.raises:</p>
 
 <!--[[[cog include_file("test_port4_pytest.py", start=22, end=25, px=True) ]]] {{{ -->
 <code lang='python'>
@@ -1341,7 +1359,7 @@ def test_bad_input():
 
     <p>This neatly captures our intent: we are asserting that a statement will
     raise an exception.  It's used as a context manager with a "with" statement
-    so that it can handle the exception when it is raised:</p>
+    so that it can handle the exception when it is raised.</p>
 
 <!--[[[cog include_file("test_port4_pytest.out", px=True) ]]] {{{ -->
 <code lang='text'>
@@ -1351,12 +1369,9 @@ $ pytest -q test_port4_pytest.py
 </code>
 <!--[[[end]]] }}}-->
 
-    <p>Now our test passes because the TypeError is caught by the assertRaises
+    <p>Now our test passes because the TypeError is caught by the pytest.raises
     context manager.  The assertion passes because the exception raised is the
     same type we claimed it would be, and all is well.</p>
-
-    <p>If you have experience with unittest before 2.7, the context manager
-    style is new, and much more convenient than the old way.</p>
 
 </div><!-- }}} -->
 
@@ -1375,6 +1390,21 @@ $ pytest -q test_port4_pytest.py
     </pre>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p>One thing to be careful of: making assertions about something
+    <em>not</em> happening.  This is tempting, especially when writing
+    regression tests. If something bad happened in the past, but now it's
+    fixed, you'd like to assert that the bad thing doesn't happen any more.</p>
+
+    <p>But there are an infinite number of things that could be happening that
+    are not the bad thing you are thinking of, and many of those things could
+    also be bad!  Be sure to pair up your negative assertions with positive
+    assertions of the good things that you do want to happen.</p>
+
+</div><!-- }}} -->
+
+
 <!-- }}} -->
 
 <!-- *** Fixtures {{{ -->
@@ -1383,6 +1413,15 @@ $ pytest -q test_port4_pytest.py
     <h1>Fixtures</h1>
     <h2>More structure</h2>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>One of pytest's powerful features for organizing your test code is
+    called fixtures.  Fixtures are functions that can be run automatically to
+    create test data, configure dependent services, or any other kind of
+    pre-test set up that you need.</p>
+
+</div><!-- }}} -->
 
 
 <div class="slide">
@@ -1410,7 +1449,7 @@ $ pytest -q test_port4_pytest.py
 
     <p>Our testing is going well, time to extend our product.  Let's add
     a .sell() method to our Portfolio class.  It will remove shares of a
-    particular stock from our Portfolio:</p>
+    particular stock from our portfolio:</p>
 
 <!--[[[cog include_file("portfolio2.py", start_from="def sell", end_at="You don't", px=True) ]]] {{{ -->
 <code lang='python'>
@@ -1427,9 +1466,11 @@ def sell(self, name, shares):
 </code>
 <!--[[[end]]] }}}-->
 
-    <p>Note: this code is very simple, for the purpose of fitting on a slide!</p>
+    <p>Note: this code is unrealistically simple, so that it will fit on a
+    slide!</p>
 
 </div><!-- }}} -->
+
 
 <div class="slide" data-layout="clean">
     <!--[[[cog include_file("test_port5_pytest.py", start_from="test_sell")   ]]] {{{ -->
@@ -1467,7 +1508,7 @@ def sell(self, name, shares):
 <div class="text"><!-- {{{ -->
 
     <p>To test the .sell() method, we add three more tests.  In each case,
-    we need to create a portfolio with some stocks in it so that we have
+    we need to create a Portfolio with some stocks in it so that we have
     something to sell:</p>
 
 <!--[[[cog include_file("test_port5_pytest.py", start_from="test_sell", px=True) ]]] {{{ -->
@@ -1537,26 +1578,15 @@ def test_dont_own_it():
     <!--[[[end]]] }}} -->
 </div>
 
-<div class="slide">
-    <h1>Arrange --- Act --- Assert</h1>
+<div class="text"><!-- {{{ -->
 
-    <ul>
-        <li>Three distinct phases</li>
-        <li>Keep them separate</li>
-    </ul>
+    <p>One way to remove the repetition is with a simple function.
+    simple_portfolio() creates the portfolio we need.  We call it from each of
+    our tests and then use the portfolio in our tests.  This works, but pytest
+    gives us a more powerful way to solve the problem.</p>
 
-    <!--[[[cog include_file("test_port5b_pytest.py", start_from="test_sell", end_at="assert")   ]]] {{{ -->
-    <div>
-    <div class='prelabel'>test_port5b_pytest.py</div>
-    <pre class='python medium'>
-    def test_sell():
-        p = simple_portfolio()
-        p.sell("MSFT", 50)
-        assert p.cost() == 6450
-    </pre>
-    </div>
-    <!--[[[end]]] }}} -->
-</div>
+    <!-- ZZZ -->
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Fixtures</h1>
@@ -2091,10 +2121,10 @@ def test_dont_own_it(simple_portfolio):
     &gt;&gt;&gt; p.buy("HPQ", 100, 30.0)
 
     &gt;&gt;&gt; p.current_prices()
-    {'HPQ': 21.9, 'IBM': 154.43}
+    {'HPQ': 22.37, 'IBM': 150.7}
 
     &gt;&gt;&gt; p.value()
-    17633.0
+    17307.0
     </pre>
     <!--[[[end]]] }}}-->
 </div>
