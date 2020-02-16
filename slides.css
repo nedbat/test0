@@ -236,6 +236,18 @@ html.phantompng .slideDisplay {
     display: none;
 }
 
+/* class='no-png' means don't use this for the png rendering. */
+html.phantompng .no-png {
+    display: none;
+}
+/* class='png-only' means this is only for the png rendering. */
+html .png-only {
+    display: none;
+}
+html.phantompng .png-only {
+    display: inherit;
+}
+
 .slide ul>li {
     margin-top: .5em;
     position: relative;
