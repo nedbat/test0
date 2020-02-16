@@ -963,12 +963,20 @@ def test_buy_one_stock():
 <!--[[[end]]] }}}-->
 
     <p>We run the test with pytest, which finds our test function and runs it.
-    It prints a single dot when the test passes.</p>
+    It prints a single dot when the test passes:</p>
+
+<!--[[[cog include_file("test_port1_pytest.out", px=True)   ]]] {{{ -->
+<code lang='text'>
+$ pytest -q test_port1_pytest.py
+.                                                            [100%]
+1 passed in 0.01s
+</code>
+<!--[[[end]]] }}}-->
 
     <p>The name we chose for our function doesn't matter: every function that
-    starts with test_ will be run as a test.  You just have to make sure to not
-    reuse a function name, since Python won't let you have two functions with
-    the same name.</p>
+    starts with "test_" will be run as a test.  You just have to make sure to
+    not reuse a function name, since Python won't let you have two functions
+    with the same name.</p>
 
 </div><!-- }}} -->
 
@@ -1916,7 +1924,6 @@ def test_dont_own_it(simple_portfolio):
     </pre>
     </div>
     <!--[[[end]]] }}}-->
-    <p class="incremental">Much more: <a href="https://github.com/okken/pycascades2020">https://github.com/okken/pycascades2020</a></p>
 </div>
 
 <div class="text"><!-- {{{ -->
@@ -1968,6 +1975,12 @@ def test_selling(simple_portfolio, sym, num, cost):
     the parameterized data.  Pytest makes it simple to combine its features
     together to write short tests and still have complex execution
     semantics.</p>
+
+    <p>This simple parameterization can be very helpful, but it's just the
+    tip of the iceberg of what pytest provides.  Brian Okken's presentation at
+    PyCascades 2020,
+    <a href="https://github.com/okken/pycascades2020">Multiply your Testing Effectiveness with Parametrized Testing</a>,
+    goes into much more depth, including parameterized fixtures.</p>
 
 </div><!-- }}} -->
 
