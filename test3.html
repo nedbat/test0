@@ -1985,35 +1985,6 @@ def test_selling(simple_portfolio, sym, num, cost):
 </div><!-- }}} -->
 
 
-<div class="slide">
-    <h1>Tests are real code!</h1>
-    <ul>
-        <li>Helper functions, classes, etc.</li>
-        <li>Can become significant</li>
-        <li>Might need tests!</li>
-    </ul>
-</div>
-
-<div class="text"><!-- {{{ -->
-
-    <p>You can see as we add more capability to our tests, they are becoming
-    significant, even with the help of pytest.  This is a key point to
-    understand: writing tests is real engineering!</p>
-
-    <p>If you approach your tests as boring paperwork to get done because
-    everyone says you have to, you will be unhappy and you will have bad
-    tests.</p>
-
-    <p>You have to approach tests as valuable solutions to a real problem: how
-    do you know if your code works?  And as a valuable solution, you will put
-    real effort into it, designing a strategy, building helpers, and so on.</p>
-
-    <p>In a well-tested project, it isn't unusual to have more lines of tests
-    than you have lines of product code! It is definitely worthwhile to
-    engineer those tests well.</p>
-
-</div><!-- }}} -->
-
 <!-- }}} -->
 
 <!-- *** Intermission {{{ -->
@@ -2192,8 +2163,8 @@ def test_selling(simple_portfolio, sym, num, cost):
 
 <div class="text"><!-- {{{ -->
 
-    <p>We've covered the basics of how to write tests.  There's more to it,
-    but I want to skip ahead to a more advanced technique: mocking.</p>
+    <p>We've covered the basics of how to write tests.  Now let's talk about a
+    more advanced topic: test doubles.</p>
 
 </div><!-- }}} -->
 
@@ -2226,10 +2197,10 @@ def test_selling(simple_portfolio, sym, num, cost):
 
 <div class="text"><!-- {{{ -->
 
-    <p>Dependencies among components are bad for testing.  They mean that when
-    you are testing one component, you are actually testing it and all the
-    components it depends on.  This is more code than you want to be thinking
-    about when writing or debugging a test.</p>
+    <p>Dependencies among components are bad for testing.  When you test one
+    component, you are actually testing it and all the components it depends
+    on.  This is more code than you want to be thinking about when writing or
+    debugging a test.</p>
 
     <p>Also, some components might be slow, which will make your tests slow,
     which makes it hard to write lots of tests that will be run frequently.</p>
@@ -2327,7 +2298,7 @@ def test_selling(simple_portfolio, sym, num, cost):
     <p>As an example, we'll add more code to our Portfolio class.  This code
     will tell us the actual real-world current value of our collection of
     stocks.  To do that, we've added a method called current_prices which
-    uses a Yahoo web service to get the current market prices of the stocks
+    uses a web service to get the current market prices of the stocks
     we hold:</p>
 
 <!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="return total", px=True) ]]] {{{ -->
@@ -2352,9 +2323,9 @@ def value(self):
 <!--[[[end]]] }}}-->
 
     <p>The new .value() method will get the current prices, and sum up the
-    value of each stock holding to tell us the current value.</p>
+    value of each holding to tell us the current value.</p>
 
-    <p>Here we can try out our code manually, and see that current_prices()
+    <p>Here we can try out our code manually, and see that .current_prices()
     really does return us a dictionary of market prices, and .value() computes
     the value of the portfolio using those market prices.</p>
 
@@ -2378,17 +2349,17 @@ def value(self):
 
     <p>This simple example gives us all the problems of difficult dependencies
     in a nutshell.  Our product code is great, but depends on an external web
-    service run by a third party.  It could be slow to contact, it could be
+    service run by a third party.  It could be slow to contact, or it could be
     unavailable.  But even when it is working, it is impossible to predict what
     values it will return.  The whole point of this function is to give us
     real-world data as of the current moment, so how can you write a test that
     proves it is working properly?  You don't know in advance what values it
     will produce.</p>
 
-    <p>If we actually contact Yahoo as part of our testing, then we are testing
-    whether Yahoo is working properly as well as our own code.  We want to only
-    test our own code.  Our test should tell us, if Yahoo is working properly,
-    will our code work properly?</p>
+    <p>If we actually hit the web service as part of our testing, then we are
+    testing whether that external service is working properly as well as our
+    own code.  We want to only test our own code.  Our test should tell us, if
+    the web service is working properly, will our code work properly?</p>
 
 </div><!-- }}} -->
 
@@ -2762,6 +2733,35 @@ def test_value(simple_portfolio, mocker):
     also make the code more modular, since it has fewer implicit connections to
     other components.  Again, this is a tradeoff, and you have to choose
     carefully how deeply to use the technique.</p>
+
+</div><!-- }}} -->
+
+<div class="slide">
+    <h1>Tests are real code!</h1>
+    <ul>
+        <li>Helper functions, classes, etc.</li>
+        <li>Can become significant</li>
+        <li>Might need tests!</li>
+    </ul>
+</div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>You can see as we add more capability to our tests, they are becoming
+    significant, even with the help of pytest.  This is a key point to
+    understand: writing tests is real engineering!</p>
+
+    <p>If you approach your tests as boring paperwork to get done because
+    everyone says you have to, you will be unhappy and you will have bad
+    tests.</p>
+
+    <p>You have to approach tests as valuable solutions to a real problem: how
+    do you know if your code works?  And as a valuable solution, you will put
+    real effort into it, designing a strategy, building helpers, and so on.</p>
+
+    <p>In a well-tested project, it isn't unusual to have more lines of tests
+    than you have lines of product code! It is definitely worthwhile to
+    engineer those tests well.</p>
 
 </div><!-- }}} -->
 
