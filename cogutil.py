@@ -45,6 +45,7 @@ def include_file(
         px=False,
         classes=None,
         number=False,
+        incremental=False,
     ):
     """Include a text file.
 
@@ -70,9 +71,12 @@ def include_file(
 
     If `px` is true, the result is meant for text rather than slides.
 
-    `classes` are extra css classes to add to the <pre> tag.
+    `classes` is a string of extra css classes to add to the <pre> tag.
 
     If `number` is true, then line numbers will be shown.
+
+    If `incremental` is true, then the "incremental" class should be
+    appropriately applied.
 
     """
     if fname is None:
@@ -153,9 +157,15 @@ def include_file(
     elif isinstance(show_label, str):
         show_label = bool(re.search(show_label, fname))
     if show_label:
-        cog.outl("<div>")
+        if incremental:
+            cog.outl("<div class='incremental'>")
+            incremental = False
+        else:
+            cog.outl("<div>")
         cog.outl("<div class='prelabel'>{}</div>".format(fname))
     number_from = start if number else 0
+    if incremental:
+        classes += " incremental"
     include_code(text, lang=lang, hilite=hilite_nums, px=px, classes=classes, number_from=number_from)
     if show_label:
         cog.outl("</div>")

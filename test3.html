@@ -1908,10 +1908,10 @@ def test_dont_own_it(simple_portfolio):
     </pre>
     </div>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port6_pytest.py", start_from="Nicely", end_at="== cost", classes="small incremental") ]]] {{{ -->
-    <div>
+    <!--[[[cog include_file("test_port6_pytest.py", start_from="Nicely", end_at="== cost", classes="small", incremental=True) ]]] {{{ -->
+    <div class='incremental'>
     <div class='prelabel'>test_port6_pytest.py</div>
-    <pre class='python small incremental'>
+    <pre class='python small'>
     # Nicely factored into parameters:
     @pytest.mark.parametrize("sym, num, cost", [
         ("MSFT", 50, 6450),
@@ -2017,7 +2017,6 @@ def test_selling(simple_portfolio, sym, num, cost):
 <!-- }}} -->
 
 <!-- *** Intermission {{{ -->
-
 <div class="slide section" data-layout="clean">
     <h1 style="margin-top: 2em">· Intermission ·</h1>
     <p class="center">
