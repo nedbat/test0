@@ -2031,8 +2031,6 @@ def test_selling(simple_portfolio, sym, num, cost):
     <h2>Testing tests</h2>
 </div>
 
-<!-- ZZZ -->
-
 <div class="slide">
     <h1>What code are you testing?</h1>
     <ul>
@@ -2041,6 +2039,15 @@ def test_selling(simple_portfolio, sym, num, cost):
         <li>How much of it?</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>OK, so you've written a bunch of tests. Your goal has been to run your
+    product code to see if it works.  But are your tests really running all
+    your code?  How can you find out?</p>
+
+</div><!-- }}} -->
+
 
 <div class="slide">
     <h1>Coverage measurement</h1>
@@ -2053,6 +2060,20 @@ def test_selling(simple_portfolio, sym, num, cost):
         <li>The world is better!</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>Coverage measurement is a technique for checking how much of your
+    product code is tested by your tests.  Using a coverage tool, you track
+    what parts of your code are executed by your test suite.  You get a report
+    of what code is covered and not covered.  This shows you what parts of your
+    product weren't run at all by your tests.</p>
+
+    <p>Code that isn't run by your tests can't have been tested.  This gives
+    you a clear direction: devise tests that will run the parts that aren't
+    run yet.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>coverage.py</h1>
@@ -2071,6 +2092,18 @@ def test_selling(simple_portfolio, sym, num, cost):
     </pre>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p>The most popular Python coverage testing tool is boringly named
+    "coverage.py".  (Full disclosure: I am the maintainer of coverage.py.)</p>
+
+    <p>After installing coverage.py, you have a "coverage" command.  "coverage
+    run" works like "python", but will monitor execution to see what parts of
+    the code have been executed.  Then "coverage report" will list your files,
+    and what parts of them were not executed.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <pre>
     $ coverage html
@@ -2083,6 +2116,13 @@ def test_selling(simple_portfolio, sym, num, cost):
     </div>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p>The "coverage html" command gives you an HTML report showing your code,
+    with colored lines indicating executed vs not executed.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Coverage can only tell you a few things</h1>
     <ul>
@@ -2093,16 +2133,53 @@ def test_selling(simple_portfolio, sym, num, cost):
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p>Coverage measurement is not a magic wand.  It's good at telling you some
+    things, but you have to understand what it is telling you.  It can tell you
+    what lines were executed, and what branches were taken.</p>
+
+    <p>People often think 100% coverage is the goal.  More coverage is better,
+    but 100% can be very difficult to get to.  Usually, your efforts are better
+    placed elsewhere.</p>
+
+    <p>And 100% coverage doesn't mean your code is perfectly tested.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>What coverage can't tell you</h1>
     <ul>
         <li>Are you exercising all your data?</li>
-        <li>Are you checking results properly?</li>
         <li>Are you hitting all edge conditions?</li>
+        <li>Are you checking results properly?</li>
         <li>Are you testing the right things?</li>
         <li>Are you building the right product?  &nbsp;&nbsp;;-)</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>There are lots of things coverage measurement can't tell you.</p>
+
+    <ul>
+
+        <li>Are you exercising all your data? Coverage can measure code
+            execution, but not the data you are operating on. You might have
+            bugs that only reveal themselves with unusual data.</li>
+
+        <li>Are you checking results properly? Your tests might be calling your
+            product code, but your assertions might be wrong.  Maybe there's an
+            important part of your result that you are not checking at
+            all.</li>
+
+        <li>Are you building the right product? Not to be glib about it, but
+            the larger problem here is that automated testing can only tell you
+            if your code works as you planned.  It can't tell you whether
+            people will like what your code does.</li>
+
+    </ul>
+</div><!-- }}} -->
 
 
 <!-- }}} -->
