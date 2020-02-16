@@ -46,6 +46,7 @@ def test_dont_own_it(simple_portfolio):
         simple_portfolio.sell("IBM", 1)
 
 
+# Tedious duplication:
 def test_sell1(simple_portfolio):
     simple_portfolio.sell("MSFT", 50)
     assert simple_portfolio.cost() == 6450
@@ -59,6 +60,7 @@ def test_sell3(simple_portfolio):
     assert simple_portfolio.cost() == 4740
 
 
+# Nicely factored into parameters:
 @pytest.mark.parametrize("sym, num, cost", [
     ("MSFT", 50, 6450),
     ("MSFT", 10, 7530),

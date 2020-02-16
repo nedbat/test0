@@ -283,8 +283,8 @@ include_file_default(classes="medium", show_label=r"\.py$")
 <div class="slide">
     <h1>Roadmap</h1>
     <ul>
-        <li>First principles</li>
-        <li>Test frameworks</li>
+        <li>First principles (doing it wrong)</li>
+        <li>Test frameworks (doing it right)</li>
         <li>Fixtures</li>
         <li>~~ Intermission ~~</li>
         <li>Coverage</li>
@@ -880,21 +880,26 @@ AssertionError
 <div class="slide">
     <h1>Running tests</h1>
     <ul>
-        <li>Test runners can find your tests</li>
+        <li>Test runners find your tests</li>
     </ul>
     <!--[[[cog
     include_code("""\
-        $ pytest                            # .. for pytest
-
-
-        $ python -m unittest discover       # .. for unittest
+        $ pytest                        # For pytest
+        $ python -m pytest              # .. or this
     """, lang="console")
     ]]]-->
     <pre class='console'>
-    $ pytest                            # .. for pytest
-
-
-    $ python -m unittest discover       # .. for unittest
+    $ pytest                        # For pytest
+    $ python -m pytest              # .. or this
+    </pre>
+    <!--[[[end]]]-->
+    <!--[[[cog
+    include_code("""\
+        $ python -m unittest discover   # for unittest
+    """, lang="console")
+    ]]]-->
+    <pre class='console'>
+    $ python -m unittest discover   # for unittest
     </pre>
     <!--[[[end]]]-->
 </div>
@@ -976,9 +981,9 @@ def test_buy_one_stock():
         try:
             test_buy_one_stock()
         except:
-            [record failure]
+            [record failure: "F"]
         else:
-            [record success]
+            [record success: "."]
     """, lang="python")
     ]]]-->
     <pre class='python'>
@@ -986,9 +991,9 @@ def test_buy_one_stock():
     try:
         test_buy_one_stock()
     except:
-        [record failure]
+        [record failure: "F"]
     else:
-        [record success]
+        [record success: "."]
     </pre>
     <!--[[[end]]]-->
 </div>
@@ -1096,23 +1101,23 @@ $ pytest -q test_port2_pytest.py
         try:
             test_empty()
         except:
-            [record failure]
+            [record failure: "F"]
         else:
-            [record success]
+            [record success: "."]
 
         try:
             test_buy_one_stock()
         except:
-            [record failure]
+            [record failure: "F"]
         else:
-            [record success]
+            [record success: "."]
 
         try:
             test_buy_two_stocks()
         except:
-            [record failure]
+            [record failure: "F"]
         else:
-            [record success]
+            [record success: "."]
     """, lang="python", classes="small", hilite=[2,9,16])
     ]]]-->
     <pre class='python small' data-hilite='|2|9|16|'>
@@ -1120,23 +1125,23 @@ $ pytest -q test_port2_pytest.py
     try:
         test_empty()
     except:
-        [record failure]
+        [record failure: "F"]
     else:
-        [record success]
+        [record success: "."]
 
     try:
         test_buy_one_stock()
     except:
-        [record failure]
+        [record failure: "F"]
     else:
-        [record success]
+        [record success: "."]
 
     try:
         test_buy_two_stocks()
     except:
-        [record failure]
+        [record failure: "F"]
     else:
-        [record success]
+        [record success: "."]
     </pre>
     <!--[[[end]]]-->
 </div>
@@ -1173,6 +1178,15 @@ $ pytest -q test_port2_pytest.py
     tests from running.  Here pytest is running each test independently, so
     if one fails, the rest will run, and will run just as if the earlier test
     had succeeded.</p>
+
+    <p>Pytest has a great -k option which will run only the tests whose name
+    contain the given string.  This lets you run just part of your test suite,
+    either because you want to run just one test for debugging, or for a faster
+    run of only the tests you are interested in.</p>
+
+    <p>Pytest can run a subset of tests because you've written your tests (with
+    pytest's help) to be independent of each other. If one test relied on a
+    previous test's results, you couldn't run them separately.</p>
 
 </div><!-- }}} -->
 
@@ -1585,7 +1599,6 @@ def test_dont_own_it():
     our tests and then use the portfolio in our tests.  This works, but pytest
     gives us a more powerful way to solve the problem.</p>
 
-    <!-- ZZZ -->
 </div><!-- }}} -->
 
 <div class="slide">
@@ -1623,10 +1636,18 @@ def test_dont_own_it():
 
 <div class="text"><!-- {{{ -->
 
-    <p>This is a common problem, so unittest has a solution for us.  A test
-    class can define a .setUp() method.  This method is invoked before each
-    test method.  Because your test class is a class, you have a self object
-    that you can create attributes on:</p>
+    <p>Creating test data is a common need, so pytest has a solution for us.
+    A fixture is a function to create the required initial state.  Pytest will
+    find and execute them as needed.</p>
+
+    <p>The fixture is a function decorated with @pytest.fixture.  A test
+    declares that it needs a certain fixture by having an argument with the
+    same name as the fixture. Yes, this is very odd, and runs counter to
+    everything you've learned about how function arguments work.</p>
+
+    <p>The value returned by the fixture function is passed into the test
+    function as the argument value.  In our case, the simple_portfolio fixture
+    creates and returns a Portfolio object.  Our tests use that Portfolio:</p>
 
 <!--[[[cog include_file("test_port6_pytest.py", start_from="fixture", end_at="IBM", px=True) ]]] {{{ -->
 <code lang='python'>
@@ -1652,16 +1673,6 @@ def test_dont_own_it(simple_portfolio):
 </code>
 <!--[[[end]]] }}}-->
 
-    <p>Here we have a .setup() method that creates a portfolio and stores it as
-    self.p.  Then the three test methods can simply use the self.p portfolio.
-    Note the three test methods are much smaller, since they share the common
-    setup code in .setUp().</p>
-
-    <p>Naturally, there's also a .tearDown() method that will be invoked when
-    the test method is finished.  tearDown can clean up after a test, for
-    example if your setUp created records in a database, or files on disk.  We
-    don't need one here.</p>
-
 </div><!-- }}} -->
 
 <div class="slide">
@@ -1672,15 +1683,15 @@ def test_dont_own_it(simple_portfolio):
             # Call the fixtures
             simple_portfolio_value = simple_portfolio()
         except:
-            [record error]
+            [record error: "E"]
         else:
             try:
                 # Call the test method
                 test_sell(simple_portfolio_value)
             except:
-                [record failure]
+                [record failure: "F"]
             else:
-                [record success]
+                [record success: "."]
     """, lang="python", hilite=[2, 8])
     ]]]-->
     <pre class='python' data-hilite='|2|8|'>
@@ -1688,31 +1699,35 @@ def test_dont_own_it(simple_portfolio):
         # Call the fixtures
         simple_portfolio_value = simple_portfolio()
     except:
-        [record error]
+        [record error: "E"]
     else:
         try:
             # Call the test method
             test_sell(simple_portfolio_value)
         except:
-            [record failure]
+            [record failure: "F"]
         else:
-            [record success]
+            [record success: "."]
     </pre>
     <!--[[[end]]]-->
 </div>
 
 <div class="text"><!-- {{{ -->
 
-    <p>Here's the detail on how unittest runs the setUp, test_method, and
-    tearDown methods.  A test case object is instantiated, and its .setUp() is
-    run.  if it doesn't raise an exception, then the .test_method() is run,
-    noting its outcome.  No matter what happens with the .test_method(), the
-    tearDown() is run.</p>
+    <p>Here's the detail on how pytest runs the fixture and test function.
+    When pytest finds a test function, it examines its argument names to
+    identify fixtures it needs.  It runs the fixtures, collecting their
+    returned values, then calls the test function, passing it the values.</p>
 
-    <p>This is an important reason to put clean up code in a tearDown() method:
-    it will be run even if your test fails.  If you try to clean up after
-    yourself at the end of your test method, then if the test fails, the
-    clean up doesn't happen, and you may pollute other tests.</p>
+    <p>All of this happens with appropriate try/except blocks so that
+    exceptions can be properly reported.  Exceptions in the fixtures are
+    counted as Errors, whereas exceptions in the test function are Failures.
+    This is a subtle but important distinction.  A Failure means the test ran,
+    and detected a problem in the product code. An Error means we couldn't run
+    the test properly.</p>
+
+    <p>This distinction is one reason to put set-up code in fixtures, but there
+    are others as we'll see.</p>
 
 </div><!-- }}} -->
 
@@ -1779,6 +1794,19 @@ def test_dont_own_it(simple_portfolio):
     </div>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p>Fixtures can do more than just create data for a test.  If your fixture
+    uses the yield statement instead of return, then the code after the yield
+    is run once the test is finished.  This lets one fixture both create an
+    initial environment, and clean it up.</p>
+
+    <p>This is much more convenient than trying to create and destroy objects
+    in the test itself, because a fixture's clean up will be run even if the
+    test fails.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Fixture scope</h1>
     <div class='abscontainer'>
@@ -1815,9 +1843,28 @@ def test_dont_own_it(simple_portfolio):
     </div>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p>Fixtures can also run at different "scopes."  For example, if you define
+    your fixture with scope="session", then the fixture is run just once for
+    your entire test suite. All test functions are passed the same value.
+    This can be useful if your fixture is especially expensive.</p>
+
+    <p>Pytest manages all of the execution and bookkeeping of fixtures, and
+    only runs them if needed.  You might define a session-scoped fixture, but
+    only have a few test functions that need it.  If you run a subset of your
+    tests, and none of them need that fixture, then it will never be run.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Fixtures</h1>
     <ul>
+        <li>More power
+            <ul>
+                <li>Multiple fixtures per test</li>
+                <li>Fixtures using other fixtures</li>
+            </ul>
         <li>Establish context</li>
         <li>Common pre- or post- work</li>
         <li>Isolation, even with failures</li>
@@ -1826,22 +1873,19 @@ def test_dont_own_it(simple_portfolio):
 
 <div class="text"><!-- {{{ -->
 
-    <p>setUp and tearDown are important ways to write more concise tests, and
-    more importantly, give you powerful tools for ensuring proper test
-    isolation.</p>
-
-    <p>If you find your setUp and tearDown methods getting elaborate, there are
-    third party "fixture" libraries that can help automate the creation of
-    test data and environments.</p>
+    <p>Fixtures are really powerful. Pytest has a number of other features that
+    let you combine fixtures to build elaborate systems of set up and tear down
+    for your tests.</p>
 
 </div><!-- }}} -->
 
 <div class="slide">
     <h1>Parameterized tests</h1>
-    <!--[[[cog include_file("test_port6_pytest.py", start_from="test_sell1", end_at="4740", classes="small") ]]] {{{ -->
+    <!--[[[cog include_file("test_port6_pytest.py", start_from="Tedious", end_at="4740", classes="small") ]]] {{{ -->
     <div>
     <div class='prelabel'>test_port6_pytest.py</div>
     <pre class='python small'>
+    # Tedious duplication:
     def test_sell1(simple_portfolio):
         simple_portfolio.sell("MSFT", 50)
         assert simple_portfolio.cost() == 6450
@@ -1856,10 +1900,11 @@ def test_dont_own_it(simple_portfolio):
     </pre>
     </div>
     <!--[[[end]]] }}}-->
-    <!--[[[cog include_file("test_port6_pytest.py", start_from="parametrize", end_at="== cost", classes="small incremental") ]]] {{{ -->
+    <!--[[[cog include_file("test_port6_pytest.py", start_from="Nicely", end_at="== cost", classes="small incremental") ]]] {{{ -->
     <div>
     <div class='prelabel'>test_port6_pytest.py</div>
     <pre class='python small incremental'>
+    # Nicely factored into parameters:
     @pytest.mark.parametrize("sym, num, cost", [
         ("MSFT", 50, 6450),
         ("MSFT", 10, 7530),
@@ -1874,6 +1919,58 @@ def test_dont_own_it(simple_portfolio):
     <p class="incremental">Much more: <a href="https://github.com/okken/pycascades2020">https://github.com/okken/pycascades2020</a></p>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p>Let's say we want to write more tests of our sell() method. They might
+    all take the same form, just with different data:</p>
+
+<!--[[[cog include_file("test_port6_pytest.py", start_from="test_sell1", end_at="4740", px=True) ]]] {{{ -->
+<code lang='python'>
+def test_sell1(simple_portfolio):
+    simple_portfolio.sell("MSFT", 50)
+    assert simple_portfolio.cost() == 6450
+
+def test_sell2(simple_portfolio):
+    simple_portfolio.sell("MSFT", 10)
+    assert simple_portfolio.cost() == 7530
+
+def test_sell3(simple_portfolio):
+    simple_portfolio.sell("ORCL", 90)
+    assert simple_portfolio.cost() == 4740
+</code>
+<!--[[[end]]] }}}-->
+
+    <p>These tests are only two lines each, but they are repetitive lines.
+    Pytest gives us a way to parameterize tests, so that the logic can be
+    expressed once.  The data is provided as a list of tuples:</p>
+
+<!--[[[cog include_file("test_port6_pytest.py", start_from="parametrize", end_at="== cost", px=True) ]]] {{{ -->
+<code lang='python'>
+@pytest.mark.parametrize("sym, num, cost", [
+    ("MSFT", 50, 6450),
+    ("MSFT", 10, 7530),
+    ("ORCL", 90, 4740),
+])
+def test_selling(simple_portfolio, sym, num, cost):
+    simple_portfolio.sell(sym, num)
+    assert simple_portfolio.cost() == cost
+</code>
+<!--[[[end]]] }}}-->
+
+    <p>The parametrize decorator takes a string of argument names, and a list
+    of values for those arguments.  Then pytest synthesizes one test for each
+    set of values.  The logic is written just once and the data is nice and
+    compact.  Each synthesized test can pass or fail independently, just as we
+    want.</p>
+
+    <p>Notice here our test function takes four arguments: the first is our
+    simple_portfolio fixture as before.  The remaining three are provided by
+    the parameterized data.  Pytest makes it simple to combine its features
+    together to write short tests and still have complex execution
+    semantics.</p>
+
+</div><!-- }}} -->
+
 
 <div class="slide">
     <h1>Tests are real code!</h1>
@@ -1887,7 +1984,7 @@ def test_dont_own_it(simple_portfolio):
 <div class="text"><!-- {{{ -->
 
     <p>You can see as we add more capability to our tests, they are becoming
-    significant, even with the help of unittest.  This is a key point to
+    significant, even with the help of pytest.  This is a key point to
     understand: writing tests is real engineering!</p>
 
     <p>If you approach your tests as boring paperwork to get done because
@@ -1921,6 +2018,8 @@ def test_dont_own_it(simple_portfolio):
     <h1>Coverage</h1>
     <h2>Testing tests</h2>
 </div>
+
+<!-- ZZZ -->
 
 <div class="slide">
     <h1>What code are you testing?</h1>
