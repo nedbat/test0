@@ -2737,8 +2737,6 @@ def test_value(simple_portfolio, mocker):
 
 </div><!-- }}} -->
 
-<!-- ZZZ -->
-
 <!-- }}} -->
 
 <!-- *** Testability {{{ -->
@@ -2779,8 +2777,32 @@ def test_value(simple_portfolio, mocker):
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p>We just tried a few different ways to test our current_prices function.
+    There's something we haven't tried yet: change the function to make it more
+    inherently testable!</p>
+
+    <p>Your first reaction might be, isn't that cheating? Ideally tests are
+    written as a stand-apart check that the code has been written properly.
+    Don't we run the danger of weakening that check if we twist the product
+    code to suit the tests?</p>
+
+    <p>The kind of change I'm talking about here is refactoring your product
+    code so that your tests can get at the parts they want to.  There's nothing
+    wrong with using your testing as a way to challenge the modularity of your
+    code.  Usually, improving the structure to benefit tests also ends up
+    helping you in other ways.</p>
+
+    <p>If we look at our current_prices function, it's got three parts: build a
+    URL, then get the text from that URL, then make a dictionary from the text.
+    Let's look at some other ways to structure that code that could make
+    testing easier.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
-    <h1>Separate IO</h1>
+    <h1>Separate I/O</h1>
     <!--[[[cog include_file("portfolio4.py", start_from="def text_from_url", end_at="csv")   ]]] {{{ -->
     <div>
     <div class='prelabel'>portfolio4.py</div>
@@ -2803,6 +2825,32 @@ def test_value(simple_portfolio, mocker):
         <li>Easier to patch</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>We can pull the I/O out of the middle of the function by moving it into
+    its own function:</p>
+
+    <!--[[[cog include_file("portfolio4.py", start_from="def text_from_url", end_at="csv", px=True)   ]]] {{{ -->
+    <code lang='python'>
+    def text_from_url(url):
+        return requests.get(url).text
+
+    def current_prices(self):
+        """Return a dict mapping names to current prices."""
+        url = "https://api.worldtradingdata.com/api/v1/stock?symbol="
+        url += ",".join(s[0] for s in sorted(self.stocks))
+        url += self.SUFFIX
+        data = text_from_url(url)
+        lines = data.splitlines()[1:]
+        return { row[0]: float(row[3]) for row in csv.reader(lines) }
+    </code>
+    <!--[[[end]]] }}}-->
+
+    <p>This isn't a radical change, but now we could test this function by
+    patching text_from_url.</p>
+
+</div><!-- }}} -->
 
 
 <div class="slide">
@@ -2828,6 +2876,20 @@ def test_value(simple_portfolio, mocker):
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+
+    <p>Here we've used the same text_from_url function, but instead of
+    referencing it by name, it's passed into current_prices as an argument.
+    The product implementation of text_from_url is the default for the
+    argument, so everything works normally if the argument isn't provided.</p>
+
+    <p>But now we can test this function by explicitly calling it with a fake
+    implementation of text_from_url.  No mocking or patching is needed, we can
+    be explicit about how we want current_prices to get some text from a
+    URL.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1>Separate phases</h1>
     <!--[[[cog include_file("portfolio4.py", start_from="def current_prices", start_nth=4, end_at="return")   ]]] {{{ -->
@@ -2845,6 +2907,15 @@ def test_value(simple_portfolio, mocker):
         <li>Test each function separately</li>
     </ul>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p>The last refactoring is extremely modular about the three phases of
+    current_prices.  Each phase is now a separate function.  The build_url
+    method and dict_from_csv functions are easily testable in isolation: they
+    are just computation based on some previous state.</p>
+
+</div><!-- }}} -->
 
 
 <div class="slide">
@@ -2902,10 +2973,10 @@ def test_value(simple_portfolio, mocker):
     <ul>
 
         <li><a href='https://docs.python.org/2/library/doctest.html'>doctest</a>
-        is another module in the standard library for writing tests.  It
-        executes Python code embedded in docstrings.  Some people love it, but
-        most developers think it should only be used for testing code that
-        naturally appears in docstrings, and not for anything else.</li>
+        is a module in the standard library for writing tests.  It executes
+        Python code embedded in docstrings.  Some people love it, but most
+        developers think it should only be used for testing code that naturally
+        appears in docstrings, and not for anything else.</li>
 
         <li><a href='http://docs.seleniumhq.org/'>Selenium</a> is a tool for
         running tests of web sites.  It automates a browser to run your tests
@@ -2957,7 +3028,7 @@ def test_value(simple_portfolio, mocker):
         chunks, after components have been integrated together.  The scale
         continues on to system tests (of the entire system), and acceptance
         tests (user-visible behavior).  There is no crisp distinction between
-        these categories, they fall on a spectrum of scale.</li>
+        these categories: they fall on a spectrum of scale.</li>
 
         <li>Load testing is the process of generating synthetic traffic to a
         web site or other concurrent system to determine its behavior as the
@@ -2990,7 +3061,7 @@ def test_value(simple_portfolio, mocker):
 
     <p>I hope this quick introduction has helped orient you in the world of
     testing.  Testing is a complicated pursuit, because it is trying to solve a
-    difficult problem: determining if your code works.  If your code is
+    difficult problem: determining if your code works.  If your code does
     anything interesting at all, then it is large and complex and involved, and
     determining how it behaves is a nearly impossible task.</p>
 
