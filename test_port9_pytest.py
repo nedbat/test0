@@ -52,11 +52,9 @@ def test_dont_own_it(simple_portfolio):
 def test_value(simple_portfolio, mocker):
     req_get = mocker.patch(
         "portfolio3.requests.get",
-        side_effect=[
-            SimpleNamespace(
-                text='\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n'
-            ),
-        ],
+        return_value=SimpleNamespace(
+            text='\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n'
+        ),
     )
     assert simple_portfolio.value() == 22300
 

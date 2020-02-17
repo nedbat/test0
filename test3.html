@@ -2388,11 +2388,10 @@ def value(self):
 
 <div class="text"><!-- {{{ -->
 
-    <!-- ZZZ -->
-
     <p>Our first test double will be a fake implementation of current_prices().
-    In our setUp function, we create a Portfolio, and then we give it a
-    new current_prices method that simply returns a fixed value:</p>
+    We make a fixture that gets a simple portfolio, and stuffs a new
+    implementation of current_prices into it.  fake_current_prices simply
+    returns a fixed value:</p>
 
 <!--[[[cog include_file("test_port7_pytest.py", start_from="fixture", start_nth=2, px=True) ]]] {{{ -->
 <code lang='python'>
@@ -2409,9 +2408,14 @@ def test_value(fake_prices_portfolio):
 <!--[[[end]]] }}}-->
 
     <p>This is very simple, and neatly solves a number of our problems: the
-    code no longer contacts Yahoo, so it is fast and reliable, and it always
-    produces the same value, so we can predict what values our .value() method
-    should return.</p>
+    code no longer contacts a web service, so it is fast and reliable, and it
+    always produces the same value, so we can predict what values our .value()
+    method should return.</p>
+
+    <p>BTW, notice that fake_prices_portfolio is a fixture that uses the
+    simple_portfolio fixture, by naming it as an argument, just as a test
+    function can. Fixtures can be chained together to build sophisticated
+    dependencies to support your test functions.</p>
 
 </div><!-- }}} -->
 
@@ -2448,13 +2452,11 @@ def test_value(fake_prices_portfolio):
 <div class="text"><!-- {{{ -->
 
     <p>But we may have gone too far: none of our actual current_prices() method
-    is tested now.  Here I've used <a href="http://nedbatchelder.com/code/coverage">coverage.py</a>
-    to measure what product lines are executed during testing, and it shows us
-    that lines 53 through 56 are not executed.  Those are the body of the
-    current_prices() method.</p>
+    is tested now.  Coverage.py shows us that a number of lines are not
+    executed.  Those are the body of the current_prices() method.</p>
 
     <p>That's our code, and we need to test it somehow.  We got isolation from
-    Yahoo, but we removed some of our own code in the process.</p>
+    the web service, but we removed some of our own code in the process.</p>
 
 </div><!-- }}} -->
 
@@ -2487,15 +2489,15 @@ def test_value(fake_prices_portfolio):
 
 <div class="text"><!-- {{{ -->
 
-    <p>To test our code but still not use Yahoo, we can intercept the flow
-    lower down.  Our current_prices() method uses the urllib module to make
-    the HTTP request to Yahoo.  We can replace urllib to let our code run,
+    <p>To test our code but still not use the external service, we can intercept the flow
+    lower down.  Our current_prices() method uses the requests package to make
+    the external HTTP request.  We can replace requests to let our code run,
     but not make a real network request.</p>
 
-    <p>Here we define a class called FakeUrlLib with a method called urlopen
-    that will be the test double for urllib.urlopen().  Our fake implementation
-    simply returns a file object that provides the same stream of bytes that
-    Yahoo would have returned:</p>
+    <p>Here we define a class called FakeRequests with a method called get
+    that will be the test double for requests.get().  Our fake implementation
+    returns an object that provides the same text attribute that the real
+    response object would have had:</p>
 
 <!--[[[cog include_file("test_port8_pytest.py", start_from="Fake", px=True) ]]] {{{ -->
 <code lang='python'>
@@ -2518,21 +2520,30 @@ def test_value(simple_portfolio, fake_requests):
 </code>
 <!--[[[end]]] }}}-->
 
-    <p>In our test's setUp() method, we replace the urllib reference in our
-    product code with our fake implementation.  When the test method runs,
-    our FakeUrlLib object will be invoked instead of the urllib module, it will
+    <p>Here we've defined another fixture: fake_requests. It replaces our
+    requests import with FakeRequests.  When the test function runs, our
+    FakeRequests object will be invoked instead of the requests module, it will
     return its canned response, and our code will process it just as if it had
-    come from Yahoo.</p>
+    come from the web.</p>
 
     <p>Notice that the product code uses a module with a function, and we are
     replacing it with an object with a method.  That's fine, Python's dynamic
-    nature means that it doesn't matter what "urllib" is defined as, so long as
-    it has a .urlopen attribute that is callable, the product code will be
+    nature means that it doesn't matter what "requests" is defined as, so long
+    as it has a .get attribute that is callable, the product code will be
     fine.</p>
 
     <p>This sort of manipulation is one place where Python really shines, since
     types and access protection don't constrain what we can do to create the
     test environment we want.</p>
+
+    <p>Another point about fixtures: here our test function asks for two
+    fixtures.  fake_requests is an argument to the test function, so it will be
+    executed, but the test function doesn't even use the value it produces.  We
+    count on it to install FakeRequests, and then the test function benefits
+    from that modification.  The fake_requests fixture uses yield so that it
+    can create some state before the test (it installs FakeRequests), and then
+    it can clean up that state when the test is done (it puts back the real
+    requests).</p>
 
 </div><!-- }}} -->
 
@@ -2559,9 +2570,9 @@ def test_value(simple_portfolio, fake_requests):
 <div class="text"><!-- {{{ -->
 
     <p>Now the coverage report shows that all of our code has been executed.
-    By stubbing the standard library, we cut off the component dependencies
-    at just the right point: where our code (current_prices) started calling
-    someone else's code (urllib.urlopen).</p>
+    By stubbing the requests, we cut off the component dependencies at just the
+    right point: where our code (current_prices) started calling someone else's
+    code (requests.get).</p>
 
 </div><!-- }}} -->
 
@@ -2603,11 +2614,11 @@ def test_value(simple_portfolio, fake_requests):
 
 <div class="text"><!-- {{{ -->
 
-    <p>A more powerful way to create test doubles is with Mock objects.
-    The mock library (third-party for 2.7, in the standard library for 3.3)
-    provides the Mock class.  This object will happily act like any object
-    you please.  You can set a return_value on it, and when called, it will
-    return that value.  Then you can ask what arguments it was called with.</p>
+    <p>A more powerful way to create test doubles is with Mock objects.  The
+    mock library provides the Mock class.  A Mock() object will happily act
+    like any object you please.  You can set a return_value on it, and when
+    called, it will return that value.  Then you can ask what arguments it was
+    called with.</p>
 
     <p>Mock objects can do other magic things, but these two behaviors give us
     what we need for now.</p>
@@ -2623,11 +2634,9 @@ def test_value(simple_portfolio, fake_requests):
     def test_value(simple_portfolio, mocker):
         req_get = mocker.patch(
             "portfolio3.requests.get",
-            side_effect=[
-                SimpleNamespace(
-                    text='\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n'
-                ),
-            ],
+            return_value=SimpleNamespace(
+                text='\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n'
+            ),
         )
         assert simple_portfolio.value() == 22300
 
@@ -2653,11 +2662,9 @@ def test_value(simple_portfolio, fake_requests):
 def test_value(simple_portfolio, mocker):
     req_get = mocker.patch(
         "portfolio3.requests.get",
-        side_effect=[
-            SimpleNamespace(
-                text='\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n'
-            ),
-        ],
+        return_value=SimpleNamespace(
+            text='\nDELL,,,140\nORCL,,,32\nMSFT,,,51\n'
+        ),
     )
     assert simple_portfolio.value() == 22300
 
@@ -2668,25 +2675,25 @@ def test_value(simple_portfolio, mocker):
 </code>
 <!--[[[end]]] }}}-->
 
-    <p>In our test method, we use a context manager provided by mock:
-    mock.patch will replace the given name with a mock object, and give us the
+    <p>In our test method, we use a fixture provided by pytest-mock: mocker
+    has a .patch method that will replace the given name with a mock object, and give us the
     mock object so we can manipulate it.</p>
 
-    <p>We mock out urllib.urlopen, and then set the value it should return. We
-    use the same open file object that we did in the last example, which just
-    mimics the bytes that Yahoo would return to us.</p>
+    <p>We mock out requests.get, and then set the value it should return. We
+    use the same SimpleNamespace object we used in the last example, which just
+    mimics the object that requests would return to us.</p>
 
     <p>Then we can run the product code, which will call current_prices, which
-    will call urllib.urlopen, which is now our mock object.  It will return our
+    will call requests.get, which is now our mock object.  It will return our
     mocked return value, and produce the expected portfolio value.</p>
 
-    <p>Mock objects also have a handy method on them called
-    .assert_called_with() that let us make assertions about the arguments the
-    mock object was passed.  This gives us certainty that our code called the
-    external component properly.</p>
+    <p>Mock objects also have a bunch of handy methods for checking what
+    happened to the mock.  Here we use call_args_list to see how the mock was
+    called.  We can make assertions on those values to give us certainty that
+    our code used the external component properly.</p>
 
-    <p>When the with statement ends, the mock.patch context manager cleans up,
-    restoring urllib.urlopen to it original value.</p>
+    <p>The mocker fixture cleans up all the patched objects automatically.
+    This is why we use it as a fixture rather than as a simple import.</p>
 
     <p>The net result is a clean self-contained test double, with assertions
     about how it was called.</p>
@@ -2720,23 +2727,17 @@ def test_value(simple_portfolio, mocker):
     of your tests.</p>
 
     <p>Notice though, that they also make our tests more fragile.  I tested
-    current_prices by mocking urllib.urlopen, which only works because I knew
-    that current_prices called urlopen.  If I later change the implementation
+    current_prices by mocking requests.get, which only works because I knew
+    that current_prices used requests.  If I later change the implementation
     of current_prices to access the URL differently, my test will break.</p>
 
     <p>Finding the right way to use test doubles is a very tricky problem,
     involving tradeoffs between what code is tested, and how dependent on the
     implementation you want to be.</p>
 
-    <p>Another test double technique is "dependency injection," where your code
-    is given explicit references to the components it relies on.  This way, the
-    dependencies are made more visible.  This also makes them more visible to
-    the non-test callers of the code, which you might not want.  But it can
-    also make the code more modular, since it has fewer implicit connections to
-    other components.  Again, this is a tradeoff, and you have to choose
-    carefully how deeply to use the technique.</p>
-
 </div><!-- }}} -->
+
+<!-- ZZZ -->
 
 <!-- }}} -->
 
