@@ -1,7 +1,7 @@
 # Makefile for Getting Started Testing
 
 SAMPLES = \
-	portfolio1.py portfolio2.py portfolio3.py \
+	portfolio1.py portfolio2.py portfolio3.py portfolio4.py \
 	porttest1.py porttest2.py porttest3.py porttest3_broken.py \
 	test_port1_unittest.py test_port2_unittest.py test_port2_unittest_broken.py \
 	test_port3_unittest.py test_port3_unittest_broken.py test_port3_unittest_broken2.py \

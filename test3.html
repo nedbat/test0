@@ -2388,6 +2388,8 @@ def value(self):
 
 <div class="text"><!-- {{{ -->
 
+    <!-- ZZZ -->
+
     <p>Our first test double will be a fake implementation of current_prices().
     In our setUp function, we create a Portfolio, and then we give it a
     new current_prices method that simply returns a fixed value:</p>
@@ -2735,6 +2737,114 @@ def test_value(simple_portfolio, mocker):
     carefully how deeply to use the technique.</p>
 
 </div><!-- }}} -->
+
+<!-- }}} -->
+
+<!-- *** Testability {{{ -->
+
+<div class="slide section" data-layout="clean">
+    <h1>Testability</h1>
+    <h2>Tests at the center of your world</h2>
+</div>
+
+<div class="slide">
+    <h1>Refactoring for tests</h1>
+    <!--[[[cog include_file("portfolio3.py", start_from="current_prices", end_at="SUFFIX")   ]]] {{{ -->
+    <div>
+    <div class='prelabel'>portfolio3.py</div>
+    <pre class='python medium'>
+    def current_prices(self):
+        """Return a dict mapping names to current prices."""
+        url = "https://api.worldtradingdata.com/api/v1/stock?symbol="
+        url += ",".join(s[0] for s in sorted(self.stocks))
+        url += self.SUFFIX
+    </pre>
+    </div>
+    <!--[[[end]]] }}}-->
+    <!--[[[cog include_file("portfolio3.py", start_from="data =", line_count=1, indent=4, show_label=False)   ]]] {{{ -->
+    <pre class='python medium'>
+    &nbsp;&nbsp;&nbsp;&nbsp;data = requests.get(url).text
+    </pre>
+    <!--[[[end]]] }}}-->
+    <!--[[[cog include_file("portfolio3.py", start_from="splitlines", end_at="return", indent=4, show_label=False)   ]]] {{{ -->
+    <pre class='python medium'>
+    &nbsp;&nbsp;&nbsp;&nbsp;lines = data.splitlines()[1:]
+    &nbsp;&nbsp;&nbsp;&nbsp;return { row[0]: float(row[3]) for row in csv.reader(lines) }
+    </pre>
+    <!--[[[end]]] }}}-->
+    <ul class="incremental">
+        <li>Change code to make it more testable</li>
+        <li>It's not cheating!</li>
+    </ul>
+</div>
+
+<div class="slide">
+    <h1>Separate IO</h1>
+    <!--[[[cog include_file("portfolio4.py", start_from="def text_from_url", end_at="csv")   ]]] {{{ -->
+    <div>
+    <div class='prelabel'>portfolio4.py</div>
+    <pre class='python medium'>
+    def text_from_url(url):
+        return requests.get(url).text
+
+    def current_prices(self):
+        """Return a dict mapping names to current prices."""
+        url = "https://api.worldtradingdata.com/api/v1/stock?symbol="
+        url += ",".join(s[0] for s in sorted(self.stocks))
+        url += self.SUFFIX
+        data = text_from_url(url)
+        lines = data.splitlines()[1:]
+        return { row[0]: float(row[3]) for row in csv.reader(lines) }
+    </pre>
+    </div>
+    <!--[[[end]]] }}}-->
+    <ul class="incremental">
+        <li>Easier to patch</li>
+    </ul>
+</div>
+
+
+<div class="slide">
+    <h1>Dependency injection</h1>
+    <!--[[[cog include_file("portfolio4.py", start_from="def current_prices", start_nth=3, end_at="csv")   ]]] {{{ -->
+    <div>
+    <div class='prelabel'>portfolio4.py</div>
+    <pre class='python medium'>
+    def current_prices(self, text_from_url=text_from_url):
+        """Return a dict mapping names to current prices."""
+        url = "https://api.worldtradingdata.com/api/v1/stock?symbol="
+        url += ",".join(s[0] for s in sorted(self.stocks))
+        url += self.SUFFIX
+        data = text_from_url(url)
+        lines = data.splitlines()[1:]
+        return { row[0]: float(row[3]) for row in csv.reader(lines) }
+    </pre>
+    </div>
+    <!--[[[end]]] }}}-->
+    <ul class="incremental">
+        <li>Can call without patching</li>
+        <li>Explicitly provide a double</li>
+    </ul>
+</div>
+
+<div class="slide">
+    <h1>Separate phases</h1>
+    <!--[[[cog include_file("portfolio4.py", start_from="def current_prices", start_nth=4, end_at="return")   ]]] {{{ -->
+    <div>
+    <div class='prelabel'>portfolio4.py</div>
+    <pre class='python medium'>
+    def current_prices(self):
+        url = self.build_url()
+        data = text_from_url(url)
+        return dict_from_csv(data)
+    </pre>
+    </div>
+    <!--[[[end]]] }}}-->
+    <ul class="incremental">
+        <li>Test each function separately</li>
+    </ul>
+</div>
+
 
 <div class="slide">
     <h1>Tests are real code!</h1>
