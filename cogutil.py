@@ -8,7 +8,12 @@ import cog
 import cagedprompt
 
 def quote_html(s):
-    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    return (s
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace("\xa0", "&nbsp;")
+    )
 
 
 def clip_long_boring_line(s, l):
@@ -46,6 +51,7 @@ def include_file(
         classes=None,
         number=False,
         incremental=False,
+        indent=None,
     ):
     """Include a text file.
 
@@ -77,6 +83,8 @@ def include_file(
 
     If `incremental` is true, then the "incremental" class should be
     appropriately applied.
+
+    if `indent` is not None, it is the number of spaces to indent the text.
 
     """
     if fname is None:
@@ -166,7 +174,7 @@ def include_file(
     number_from = start if number else 0
     if incremental:
         classes += " incremental"
-    include_code(text, lang=lang, hilite=hilite_nums, px=px, classes=classes, number_from=number_from)
+    include_code(text, lang=lang, hilite=hilite_nums, px=px, classes=classes, number_from=number_from, indent=indent)
     if show_label:
         cog.outl("</div>")
 
@@ -178,8 +186,11 @@ def find_nth(lines, start, needle, nth):
     return indexes[nth-1]
 
 
-def include_code(text, lang=None, highlight=None, hilite=None, px=False, classes="", number_from=0):
+def include_code(text, lang=None, highlight=None, hilite=None, px=False, classes="", number_from=0, indent=None):
     text = textwrap.dedent(text)
+
+    if indent is not None:
+        text = textwrap.indent(text, "\xa0" * indent)
 
     text = "\n".join(l.rstrip() for l in text.splitlines())
 
