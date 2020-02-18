@@ -15,7 +15,7 @@ if (system.args.length !== 3) {
 
 // settings
 delay = 1000;
-viewport = { width: 1024, height: 768 };
+viewport = { width: 1000, height: 768 };
 output = system.args[2];
 
 (function init() {
