@@ -138,8 +138,8 @@ px $(PX): $(SLIDE_HTML)
 
 .PHONY: publish
 publish: $(SLIDE_HTML) $(SAMPLE_ZIP) $(PX) pngs
-	rm -rf $(WEBPRZHOME)
-	mkdir -p $(WEBPREZHOME) $(WEBPIXHOME)
+	rm -rf $(WEBPRZHOME) $(WEBPIXHOME)
+	mkdir -p $(WEBPRZHOME) $(WEBPIXHOME)
 	cp -f $(PX) $(WEBHOME)
 	mkdir -p $(WEBPRZHOME)/slippy/src $(WEBPRZHOME)/img
 	cp $(PNG_DIR)/*.png $(WEBPIXHOME)
