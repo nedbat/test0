@@ -51,13 +51,17 @@ EXTRA_HTML = extra.html
 IMAGES = \
 	img/dadtoon-chaos-2.png img/dadtoon-iambad-3.png img/dadtoon-mii.png \
 	img/happysticks.png img/mock.png \
+	coverage_html.png \
 	img/github.png img/twitter.png
 SD = slippy
+HL = highlight
 JS_FILES = \
 	$(SD)/jquery.min.js $(SD)/jquery.history.js $(SD)/slippy.js \
+	$(HL)/highlight.pack.js \
 	slides.js lineselect.js typogr.min.js
 CSS_FILES = \
 	$(SD)/slippy.css $(SD)/slippy-pure.css \
+	$(HL)/vs.css \
 	slides.css
 SLIDE_SUPPORT = $(JS_FILES) $(CSS_FILES) $(IMAGES)
 
@@ -141,7 +145,7 @@ publish: $(SLIDE_HTML) $(SAMPLE_ZIP) $(PX) pngs
 	rm -rf $(WEBPRZHOME) $(WEBPIXHOME)
 	mkdir -p $(WEBPRZHOME) $(WEBPIXHOME)
 	cp -f $(PX) $(WEBHOME)
-	mkdir -p $(WEBPRZHOME)/slippy/src $(WEBPRZHOME)/img
+	mkdir -p $(WEBPRZHOME)/slippy/src $(WEBPRZHOME)/highlight $(WEBPRZHOME)/img
 	cp $(PNG_DIR)/*.png $(WEBPIXHOME)
 	echo $(SLIDE_SUPPORT) | xargs -n1 -I{} cp {} $(WEBPRZHOME)/{}
 	cp -f $(SLIDE_HTML) $(WEBPRZHOME)
