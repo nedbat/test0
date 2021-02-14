@@ -2,7 +2,7 @@
 
 import csv
 
-import requests
+import fake_requests as requests
 
 
 class Portfolio:
