@@ -59,3 +59,5 @@ if __name__ == '__main__':
         """
 
     print(prompt_session(TEST_INPUT))
+    print("-" * 40)
+    print(prompt_session("x ** 2", banner=False, prelude="x = 12"))
