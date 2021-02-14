@@ -52,6 +52,7 @@ IMAGES = \
 	img/dadtoon-chaos-2.png img/dadtoon-iambad-3.png img/dadtoon-mii.png \
 	img/happysticks.png img/mock.png \
 	coverage_html.png \
+	img/card.png \
 	img/github.png img/twitter.png
 SD = slippy
 HL = highlight
